@@ -34,7 +34,6 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx.ext.extlinks',
     'sphinx.ext.autosectionlabel',
-    # 'sphinx.ext.intersphinx',     # not working so turning off
     'hoverxref.extension',          # Enables tooltips and previews on hover
     'sphinx_tabs.tabs'              # Tabs (esp for code blocks)
 ]
