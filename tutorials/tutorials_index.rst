@@ -19,15 +19,10 @@ corresponding biological and modelling theory for these can be found in the
 If you are already familiar with CellML and just want to jump in, please see
 the :ref:`Examples guide<examples>` instead.
 
-Tutorials for users
--------------------
-
 .. toctree::
     :maxdepth: 2
     :titlesonly:
 
-    examples/quickstart
-    tutorial0/outline0
     tutorial1/outline1
     tutorial2/outline2
     tutorial3/outline3

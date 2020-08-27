@@ -1,8 +1,8 @@
 .. _howto:
 
-==============================
-Quickstart and common examples
-==============================
+================================
+How-to guide and common examples
+================================
 
 If you're reading this it's presumed that you're already familiar with the structure and usage of CellML models, and you want to get started on creating or reading your own as soon as possible.
 If that doesn't sound like you, and you'd rather start with a gentler introduction, please start from :ref:`Tutorial 1<tutorial1>` instead.
@@ -13,6 +13,9 @@ If you know the action you want to perform, you can jump straight to its descrip
 
 If not, you may like to follow the common progressions listed by the types of jobs we anticipate users will want to do.
 These are listed in the second section.
+
+How-to do stuff
+---------------
 
 .. toctree::  List by actions
     :maxdepth: 1
@@ -30,6 +33,8 @@ These are listed in the second section.
     actions/examples_annotate_model.rst
     actions/examples_get_issues.rst
 
+Common user pathways
+--------------------
 
 .. toctree:: List by user profiles
     :maxdepth: 2
