@@ -14,12 +14,11 @@ Instalation
 ===========
 How and where you install libCellML will depend a little on who you are and how you want to use it.
 
-**TODO** need binary info and pip stuff here.
-
 .. toctree::
-   
-   .. instalation/instal_from_binary.rst
-   .. instalation/instal_using_pip.rst
+   :maxdepth: 1
+
+   instalation/instal_from_binaries.rst
+   instalation/instal_with_pip.rst
    instalation/build_from_source.rst
 
 Getting started
@@ -34,3 +33,6 @@ Getting started
 Other useful links
 ==================
 
+Link to the API **TODO**
+
+The official documents describing the CellML 2.0 format are available from **TODO**

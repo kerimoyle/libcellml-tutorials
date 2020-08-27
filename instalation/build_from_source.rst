@@ -1,8 +1,8 @@
-..  _tutorial0_cpp:
+..  _build_from_source:
 
-================================
-Installation for C++ from source
-================================
+============================
+Build and instal from source
+============================
 
 .. contents:: Contents
     :local:
