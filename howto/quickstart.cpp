@@ -33,12 +33,12 @@ int main()
     //  STEP 2:   Validate the contents of a model
 
     //  2.a   Create a Validator instance and pass it the model pointer for
-    //        checking
+    //        checking.
     libcellml::ValidatorPtr validator = libcellml::Validator::create();
     validator->validateModel(model);
 
     //  2.b   Retrieve the errors from the validator and access their
-    //        specificiation reference and description
+    //        specification reference and description.
     // printErrorsToTerminal(validator);
 
     for (size_t e = 0; e < validator->issueCount(); ++e) {

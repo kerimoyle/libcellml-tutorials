@@ -1,10 +1,8 @@
 ..  _tutorial0_cpp:
 
-===========================================
-Tutorial 0: Installation and testing in C++
-===========================================
-
-**TODO** Update this with binary/Docker/something else installation instructions
+================================
+Installation for C++ from source
+================================
 
 .. contents:: Contents
     :local:
@@ -47,7 +45,6 @@ Your folder structure is now:
     mv libcellml source
     mkdir build
     mkdir install
-    mkdir tutorials
 
 Your folder structure should now look like this:
 
@@ -58,11 +55,8 @@ Your folder structure should now look like this:
       │   └─ ( ... empty )
       ├─ install
       │   └─ ( ... empty )
-      ├─ source
-      │   └─ ( ... contains the files you cloned )
-      └─ tutorials
-          └─ ( ... empty )
-
+      └─ source
+          └─ ( ... contains the files you cloned )
 
 2: Build and instal the library
 ===============================
@@ -74,7 +68,7 @@ Your folder structure should now look like this:
   .. code-block:: console
 
     cd build
-    cmake -DINSTALL_PREFIX=../install -DTUT_PREFIX=../tutorials ../source
+    cmake -DINSTALL_PREFIX=../install ../source
     make -j
 
 You should see output which runs through some checks (make sure they all pass), and finishes with a message like this:
@@ -94,15 +88,14 @@ You should see output which runs through some checks (make sure they all pass), 
 
       make -j install
 
-You should see output which finishes with a list of library and include files
-like this:
+You should see output which finishes with a list of library and include files like this:
 
 .. code-block:: console
 
   Install the project...
   -- Install configuration: "Debug"
   -- Installing: /Users/YourName/MyLibCellMLDirectory/build/../install/lib/libcellmld.0.2.0.dylib
-  -- Installing: /Users/kmoy001/MyLibCellMLDirectory/build/../install/lib/libcellmld.dylib
+  -- Installing: /Users/YourName/MyLibCellMLDirectory/build/../install/lib/libcellmld.dylib
       ...
 
 Your directory structure should now look like:
@@ -115,51 +108,42 @@ Your directory structure should now look like:
       ├─ install
       │   ├─ include
       │   └─ lib
-      ├─ source
-      │   └─ ( ... the files you cloned in step 1.b )
-      └─ tutorials
-          └─ ( ... a collection of folders explained below )
+      └─ source
+          └─ ( ... the files you cloned in step 1.b )
 
-3: Test the installation by running your first tutorial
-=======================================================
-All the documentation and tutorials are inside the :code:`docs` folder within
-the initial cloned directory, but in order to keep your source tree clean,
-the :code:`tutorials` directory has been copied into the directory given by the
-:code:`-DTUT_PREFIX` argument when you built the library.  If you've used the
-same structure as outlined here, this will be the
-:code:`MyLibCellMLDirectory/tutorials` directory.
 
 .. container:: dothis
 
-  **3.a** Navigate into the :code:`MyLibCellMLDirectory/tutorials` directory to see its contents:
+  **2.c (optional)** If you intend to use the Python bindings, you will need to instal the Python version of the local library using pip.
+  Again, this expects that you are still in the :code:`build` directory.
 
   .. code-block:: console
 
-    cd tutorials
+    pip install -e src/bindings/python
 
-You should see a list of directories like this:
 
-  - images (ignore this one)
-  - examples (ignore this one too)
-  - resources
-    - This directory contains input files for tutorials which you'll need later on.
-      These tutorials have been designed so that they will build from one to another, but if you've missed an earlier tutorial you can always copy the required files from this folder instead.
-  - solver
-    - The solver directory has simple scripts to run a numerical integration on your model.
-  - tutorial0 ( ... to tutorial8)
-    - The tutorial directories contain the bulk of what you'll need, including skeleton code to get you started, as well as instructions for both C++ and Python, and completed code in case you get stuck.
-  - utilities
-    - The utilities directory contains some commonly used scripts and functions which make life easier.
+3: Test the instalation: C++
+============================
 
 .. container:: dothis
 
-  **3.b** Navigate into the :code:`tutorial0` directory to run CMake to create the Makefile.
-  Note that you will need to specify the path to the :code:`install` directory using the :code:`-DINSTALL_PREFIX` flag.
+  **3.a** Download the following files to a folder, and navigate there:
+  - For C++ users:
+    - :download:`CMakeLists.txt<CMakeLists.txt>` 
+    - :download:`test_install.cpp<test_install.cpp>` 
 
   .. code-block:: console
 
-    cd tutorial0
-    cmake -DINSTALL_PREFIX=../../install .
+    cd wherever/you/downloaded/them
+
+.. container:: dothis
+
+  **3.b** Run CMake to create the Makefile.
+  Note that you will need to specify the path to the :code:`install` directory you created in step 2.b using the :code:`-DINSTALL_PREFIX` flag.
+
+  .. code-block:: console
+
+    cmake -DINSTALL_PREFIX=path/to/your/install .
 
 If this is correct you should see an output ending similar to this:
 
@@ -181,13 +165,13 @@ If this is correct you should see an output ending similar to this:
     -- Detecting CXX compile features - done
     -- Configuring done
     -- Generating done
-    -- Build files have been written to: /Users/YourName/MyLibCellMLDirectory/tutorials/tutorial0
+    -- Build files have been written to: path/to/your/current/directory
 
 If this isn't what you see then please see the Troubleshooting section **TODO**
 
 .. container:: dothis
 
-  **3.c** Now build the :code:`tutorial0` example
+  **3.c** Now build the :code:`test_install` example
 
   .. code-block:: console
 
@@ -197,10 +181,10 @@ You should see an output similar to this:
 
 .. code-block:: console
 
-    Scanning dependencies of target tutorial1
-    [ 50%] Building CXX object CMakeFiles/tutorial1.dir/tutorial1.cpp.o
-    [100%] Linking CXX executable tutorial1
-    [100%] Built target tutorial1
+    Scanning dependencies of target test_install
+    [ 50%] Building CXX object CMakeFiles/test_install.dir/test_install.cpp.o
+    [100%] Linking CXX executable test_install
+    [100%] Built target test_install
 
 .. container:: dothis
 
@@ -208,7 +192,37 @@ You should see an output similar to this:
 
   .. code-block:: console
 
-    ./tutorial0
+    ./test_install
+
+You should see the output of:
+
+.. code-block:: console
+
+  -----------------------------------------------
+      Welcome to libCellML!
+      This version number is 0.2.0
+  -----------------------------------------------
+
+4: Test the instalation: Python
+===============================
+
+.. container:: dothis
+
+  **4.a** Download the file below and save it.
+  Navigate to the directory where it is saved.
+    - :download:`test_install.py<test_install.py>` 
+
+  .. code-block:: console
+
+    cd wherever/you/downloaded/them
+
+.. container:: dothis
+
+  **4.b** Run the test script from here.
+
+  .. code-block:: console
+
+    python3 test_install.py
 
 You should see the output of:
 
@@ -221,4 +235,4 @@ You should see the output of:
 
 .. container:: dothis
 
-  **3.e** Go and have a cuppa, you're done!
+  **4.c** Go and have a cuppa, you're done!
