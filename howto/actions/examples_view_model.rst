@@ -4,6 +4,9 @@
 View the contents of a ``Model``
 ================================
 
+
+About viewing models
+====================
 All CellML entities exist in a hierarchical structure as shown below.
 In some circumstances additional links are made between items (equivalent variables, for example), but on the whole it follows a basic tree structure.
 

@@ -1,5 +1,6 @@
 .. _examples_include_libcellml:
 
+=============================================
 Include the libCellML library in your project
 =============================================
 If you've followed :ref:`the instructions for installing libCellML<build_from_source>` then the library is available for use as shown below.

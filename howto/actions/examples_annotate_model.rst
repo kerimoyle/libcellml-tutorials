@@ -14,6 +14,9 @@ These ID attributes themselves must follow the specification rules: please see :
   At present, items within MathML blocks which have :code:`id` attributes are not retrieved or edited by the annotation class.
   Any editing or manipulation must be done external to libCellML.
 
+About the annotation tools
+==========================
+
 Annotation tools for entity items
 ---------------------------------
 

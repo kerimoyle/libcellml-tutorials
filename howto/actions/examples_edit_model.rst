@@ -14,6 +14,10 @@ Within the structure each item has two parts:
 - A set of *collections* which this - the parent item - curates.
   For example, the collection of :code:`Variable` items owned by a parent :code:`Component`.
 
+
+About editing
+=============
+
 Editing attributes
 ------------------
 For any item type, each attribute :code:`xyz` may be edited using the general :code:`setXyz` function, whose arguments vary depending on the attribute.
@@ -111,3 +115,9 @@ When adding a component from one location in the encapsulation to another ... **
 This is shown in the code snippet below.
 
 .. include:: ../snippets/snippet_edit_encapsulation.rst
+
+Useful snippets for editing
+===========================
+
+**TODO**
+

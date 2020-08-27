@@ -18,6 +18,7 @@ How to do stuff
 ---------------
 
 .. toctree::  List by actions
+    :maxdepth: 1
 
     actions/examples_include_libcellml.rst
     actions/examples_create_model.rst
