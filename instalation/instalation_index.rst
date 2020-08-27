@@ -1,5 +1,9 @@
 .. _instalation_index:
 
+======================================
+Instalation instructions for libCellML
+======================================
+
 .. toctree::
 
    instal_from_binaries.rst
