@@ -1,5 +1,6 @@
 .. _examples_understand_collections:
 
+===============================
 Understand collections of items
 ===============================
 

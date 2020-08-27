@@ -1,5 +1,6 @@
 .. _examples_print_model:
 
+============================================================
 Serialise a ``Model`` into CellML 2.0 for printing to a file
 ============================================================
 The :code:`Printer` class has the opposite functionality to the :code:`Parser` class.

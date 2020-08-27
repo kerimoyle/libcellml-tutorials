@@ -1,5 +1,6 @@
 .. _examples_annotate_model:
 
+====================
 Annotate a ``Model``
 ====================
 
@@ -288,8 +289,8 @@ Annotator ``Type`` and returned types
 | VARIABLE          | Pointer to a :code:`Variable` item with the given :code:`id`.                                       |
 +-------------------+-----------------------------------------------------------------------------------------------------+
 
-Useful snippets
-===============
+Useful snippets for annotation
+==============================
 
 .. include:: ../snippets/snippet_annotator_auto_ids.rst
 

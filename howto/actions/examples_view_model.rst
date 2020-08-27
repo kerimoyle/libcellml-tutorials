@@ -1,5 +1,6 @@
 .. _examples_view_model:
 
+================================
 View the contents of a ``Model``
 ================================
 
@@ -199,8 +200,8 @@ This can be confusing if the simple :code:`componentCount()` function on a model
     mother_has_two_kids = grandfather.component("Mother").componentCount() # returns 2
 
 
-Useful snippets
-===============
+Useful snippets for viewing a model
+===================================
 
 Some useful snippets for viewing parts of your model are shown below.
 

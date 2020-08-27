@@ -14,7 +14,7 @@ If you know the action you want to perform, you can jump straight to its descrip
 If not, you may like to follow the common progressions listed by the types of jobs we anticipate users will want to do.
 These are listed in the second section.
 
-How-to do stuff
+How to do stuff
 ---------------
 
 .. toctree::  List by actions

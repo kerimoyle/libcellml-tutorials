@@ -1,5 +1,6 @@
 .. _examples_get_issues:
 
+========================
 Retrieve ``Issue`` items
 ========================
 Selected libCellML classes contain a :code:`Logger` whose job it is to curate any issues encountered within the class, and return them to the user when asked.
@@ -167,3 +168,8 @@ Each :code:`Issue` also contains the following attributes:
 
     # Retrieve and print the level - a libcellml.Issue.LEVEL enum - for the issue.
     print(get_issue_level_from_enum(issue.level()))
+
+
+Useful snippets for dealing with issues
+=======================================
+**TODO**

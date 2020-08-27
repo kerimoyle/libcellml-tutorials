@@ -1,5 +1,6 @@
 .. _examples_edit_model:
 
+=====================
 Edit items in a model
 =====================
 
