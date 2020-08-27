@@ -7,6 +7,7 @@ Software developer for a package
 .. contents::
    :local:
 
+
 .. include:: ../actions/examples_parse_model.rst
 .. include:: ../actions/examples_understand_collections.rst
 .. include:: ../actions/examples_view_model.rst
