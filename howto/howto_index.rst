@@ -18,7 +18,6 @@ How to do stuff
 ---------------
 
 .. toctree::  List by actions
-    :titlesonly:
 
     actions/examples_include_libcellml.rst
     actions/examples_create_model.rst
@@ -36,8 +35,7 @@ Common user pathways
 --------------------
 
 .. toctree:: List by user profiles
-    :maxdepth: 2
-    :titlesonly:
+    :maxdepth: 1
 
     user_profiles/examples_package_dev.rst
     user_profiles/examples_simulation_tool_dev.rst
