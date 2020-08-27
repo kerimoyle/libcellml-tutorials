@@ -8,14 +8,17 @@ The purpose of libCellML is to create, manipulate, serialise, deserialise, valid
 All serialising and deserialising is to and from standard strings and using the CellML2.0 specification.
 The library is intended to be lightweight and focused purely in dealing with CellML 2.0 models.
 
-Instalation
-===========
-How and where you install libCellML will depend a little on who you are and how you want to use it.
-
 .. toctree::
    :maxdepth: 1
 
-   instalation/index.rst
+   instalation/instalation_index.rst
+   howto/howto_index.rst
+   tutorials/tutorials_index.rst
+   theory/theory_index.rst
+
+Instalation
+===========
+How and where you install libCellML will depend a little on who you are and how you want to use it.
 
 
 Getting started
