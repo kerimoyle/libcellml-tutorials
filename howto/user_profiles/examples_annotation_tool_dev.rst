@@ -11,8 +11,6 @@ Obtain existing IDs for entities in a model
 Set IDs for things that don’t have one
 For a given ID, find out what kind of entity it is for
 
+.. toctree::
 
-.. contents::
-   :local:
-
-.. include:: ../actions/examples_annotate_model.rst
+   ../actions/examples_annotate_model.rst

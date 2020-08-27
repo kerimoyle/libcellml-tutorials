@@ -4,16 +4,14 @@
 Software developer for a package
 ================================
 
-.. contents::
-   :local:
+.. toctree::
 
-
-.. include:: ../actions/examples_parse_model.rst
-.. include:: ../actions/examples_understand_collections.rst
-.. include:: ../actions/examples_view_model.rst
-.. include:: ../actions/examples_edit_model.rst
-.. include:: ../actions/examples_annotate_model.rst
-.. include:: ../actions/examples_validate_model.rst
-.. include:: ../actions/examples_get_issues.rst
-.. include:: ../actions/examples_generate_model.rst
-.. include:: ../actions/examples_trace_imports.rst
+   ../actions/examples_parse_model.rst
+   ../actions/examples_understand_collections.rst
+   ../actions/examples_view_model.rst
+   ../actions/examples_edit_model.rst
+   ../actions/examples_annotate_model.rst
+   ../actions/examples_validate_model.rst
+   ../actions/examples_get_issues.rst
+   ../actions/examples_generate_model.rst
+   ../actions/examples_trace_imports.rst
