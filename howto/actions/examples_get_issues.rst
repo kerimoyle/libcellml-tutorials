@@ -4,6 +4,9 @@
 Retrieve ``Issue`` items
 ========================
 
+.. contents::
+    :local:
+    
 About issues
 ============
 

@@ -4,6 +4,9 @@
 View the contents of a ``Model``
 ================================
 
+.. contents::
+    :local:
+    
 About viewing models
 ====================
 All CellML entities exist in a hierarchical structure as shown below.

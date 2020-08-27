@@ -4,6 +4,9 @@
 Generate runnable code for a ``Model``
 ======================================
 
+.. contents::
+    :local:
+    
 About code generation
 =====================
 

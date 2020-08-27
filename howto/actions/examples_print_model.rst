@@ -3,6 +3,10 @@
 ============================================================
 Serialise a ``Model`` into CellML 2.0 for printing to a file
 ============================================================
+
+.. contents::
+    :local:
+    
 The :code:`Printer` class has the opposite functionality to the :code:`Parser` class.
 It accepts an existing :code:`ModelPtr` and creates a :code:`string` which can be written to a file.
 As with the :code:`Parser` and the :code:`Validator`, the :code:`Printer` also records a collection of :code:`Issue` items which can be accessed as shown below.

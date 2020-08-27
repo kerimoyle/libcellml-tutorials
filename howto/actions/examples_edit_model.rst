@@ -14,6 +14,8 @@ Within the structure each item has two parts:
 - A set of *collections* which this - the parent item - curates.
   For example, the collection of :code:`Variable` items owned by a parent :code:`Component`.
 
+.. contents::
+    :local:
 
 About editing
 =============

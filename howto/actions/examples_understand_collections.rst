@@ -4,6 +4,7 @@
 Understand collections of items
 ===============================
 
+
 Where an item can contain more than one child item (for example, more than one :code:`Variable` in a :code:`Component`, more than one :code:`Units` item in a :code:`Model`, etc) the processes for curating that collection follow the patterns outlined below.
 
 **NB:** All of this explanation uses "thing" in place of the specific type of item (component, variable etc).
