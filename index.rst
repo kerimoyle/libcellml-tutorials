@@ -1,12 +1,12 @@
-.. _main_index:
+.. _index:
 
 =======================
 libCellML Documentation
 =======================
 
-The purpose of libCellML is to create, manipulate, serialise, deserialise, validate and instantiate :cellml2:`CellML2 <>` models.
+The purpose of libCellML is to create, manipulate, serialise, deserialise, validate and instantiate :cellml2:`CellML 2.0 <>` models.
 All serialising and deserialising is to and from standard strings and using the CellML2.0 specification.
-The library is intended to be lightweight and focused purely in dealing with :cellml2:`CellML <>` models.
+The library is intended to be lightweight and focused purely in dealing with CellML 2.0 models.
 
 Instalation
 ===========
@@ -15,9 +15,8 @@ How and where you install libCellML will depend a little on who you are and how 
 .. toctree::
    :maxdepth: 1
 
-   instalation/instal_from_binaries.rst
-   instalation/instal_with_pip.rst
-   instalation/build_from_source.rst
+   instalation/index.rst
+
 
 Getting started
 ===============
@@ -34,3 +33,5 @@ Other useful links
 Link to the API **TODO**
 
 The official documents describing the CellML 2.0 format are available from **TODO**
+
+Changing from CellML 1 to CellML 2 **TODO**
