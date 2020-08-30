@@ -4,39 +4,14 @@
 Parse an existing ``Model`` from a file
 =======================================
 
-The following code will read a file called :code:`quickstart.cellml` and deserialise its contents into a :code:`ModelPtr` instance.
-
-.. tabs::
-
-  .. code-tab:: c++
-
-    std::ifstream inFile("quickstart.cellml");
-    std::stringstream inFileContents;
-    inFileContents << inFile.rdbuf();
-
-    // Create a Parser instance.
-    auto parser = libcellml::Parser::create();
-
-    // Deserialise the CellML contents of the parsed file into a Model.
-    auto model = parser->parseModel(inFileContents.str());
-
-
-  .. code-tab:: py
-
-    from libcellml import Parser
-
-    #  Open the CellML file for reading.
-    read_file = open("quickstart.cellml", "r")
-
-    #  Create a libCellML Parser, and use it to parse the file string contents
-    #  and convert it into a CellML Model structure.
-    parser = Parser()
-    model = parser.parseModel(read_file.read())
+The following code will read a file called :code:`example.cellml` and deserialise its contents into a :code:`Model` instance.
 
 Note that the :code:`Parser` class will make a note of any issues it finds, which can be accessed as described in the :ref:`Retrieve Issue items<examples_get_issues>` page.
 
-This example can be seen in more context in:
-- :ref:`Tutorial 1: Reading and writing CellML files<tutorial1>` and
-- :ref:`Tutorial 2: : Debugging, error checking and validating<tutorial2>`.
-
 .. include:: ../snippets/snippet_parse_model.rst
+
+
+
+.. This example can be seen in more context in:
+.. - :ref:`Tutorial 1: Reading and writing CellML files<tutorial1>` and
+.. - :ref:`Tutorial 2: Debugging, error checking and validating<tutorial2>`.
