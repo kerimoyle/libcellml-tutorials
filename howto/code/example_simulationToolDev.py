@@ -14,7 +14,7 @@ from libcellml import Component, Variable
 
 if __name__ == '__main__':
 
-    # STEP 1
+    # STEP 1. Parse the model from a CellML file.
 
     # Create a libCellML Parser, and use it to parse the fileContents
     # string and convert it into a CellML Model structure.
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     model = parser.parseModel(read_file.read())
     print_issues_to_terminal(parser)
 
-    # STEP 2
+    # STEP 2. Resolve any import dependencies (if present) in the model.
 
     if(model.hasUnresolvedImports()) {
 
@@ -41,19 +41,19 @@ if __name__ == '__main__':
         model = importer.flattenModel()
     }
 
-    # STEP 3.  Validate the model: check for syntactic and semantic errors.
+    # STEP 3. Validate the model: check for syntactic and semantic errors.
 
     # Create a Validator instance and pass the model for checking.
     validator = Validator()
     validator.validateModel(model)
     print_issues_to_terminal(validator)
 
-    # STEP 4.  TODO Analyse a model: check for mathematical and modelling errors.
+    # STEP 4. TODO Analyse a model: check for mathematical and modelling errors.
     analyser = Analyser()
     analyser.analyseModel(model)
     print_issues_to_terminal(analyser)
 
-    # STEP 5.  Generate runnable code in other language formats for this model.
+    # STEP 5. Generate runnable code in other language formats for this model.
 
     # Create a Generator instance.  Note that by default this is the C language.
     generator = Generator()
