@@ -125,6 +125,8 @@ Your directory structure should now look like:
 3: Test the instalation: C++
 ============================
 
+If you are intending to use the Python library only, please skip to :ref:`Test the instalation: Python<test_python_instalation>`.
+
 .. container:: dothis
 
   **3.a** Download the following files to a folder, and navigate there:
@@ -202,6 +204,8 @@ You should see the output of:
       Welcome to libCellML!
       This version number is 0.2.0
   -----------------------------------------------
+
+.. _test_python_instalation:
 
 4: Test the instalation: Python
 ===============================

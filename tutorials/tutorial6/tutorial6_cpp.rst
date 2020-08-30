@@ -74,7 +74,7 @@ The governing mathematical equation becomes:
 
     i_K = n^4 g_K (V - E_K)
 
-... where :math:`i_K` is blah blah.
+... where :math:`i_K` is TODO.
 
 .. container:: dothis
 
@@ -162,7 +162,7 @@ The governing mathematical equation becomes:
 
 Step 2: Create the n-gate component
 ===================================
-Here we create the voltage dependency behavior of the potassium component.
+Here we create the voltage dependency behaviour of the potassium component.
 This is accomplished by creating a second component, and embedding it within the one we already have.
 
 .. container:: dothis
@@ -310,12 +310,12 @@ In :ref:`Tutorial 7<tutorial7_cpp>` we will use the :code:`import` functionality
 
 .. container:: dothis
 
-    **3.b** From the parsed model, retrieve the component named "controller" and add it to your model (that is, at the top level of the encapuslation hierarchy).
+    **3.b** From the parsed model, retrieve the component named "controller" and add it to your model (that is, at the top level of the encapsulation hierarchy).
     Remember that you will need to use the :code:`removeParent()` function to detach it from the parsed model before adding.
 
 .. container:: dothis
 
-    **3.c** Repeat the process to retieve the component named "parameters" and add this at the top level of the model.
+    **3.c** Repeat the process to retrieve the component named "parameters" and add this at the top level of the model.
 
 At this stage, you should have an arrangement like that shown below.
 
@@ -350,7 +350,7 @@ Step 4: Connect the components together
 In order for components to be able to relate to one another, we have to define two things.
 Firstly, the hierarchy in which they exist - this is called the *encapsulation* and determines which components are able to access others.
 Each component is only visible to its direct parents, direct children, and siblings (those which share a direct parent).
-Secondly, we need to define the way in which the varaibles within the component relate to those outside it.
+Secondly, we need to define the way in which the variables within the component relate to those outside it.
 This is done by creating *equivalent variables*.
 
 We have already defined the encapsulation hierarchy by setting our components to be nested within other components in steps 2.a and 3.b-d.
@@ -492,7 +492,7 @@ At this stage you should have some new files created:
 - The generated file for the Python profile (an example for changing profiles only); and
 - the generated files for the C profile, the header and source files.
 
-These last three files can be used in conjuction with a simple solver to model the behaviour of the potassium channel.
+These last three files can be used in conjunction with a simple solver to model the behaviour of the potassium channel.
 Because this tutorial is in C++ we give instructions for the C++ solver.
 For the Python solver please see :ref:`the Python Tutorial 6 instructions<tutorial6_py>` or :ref:`the general solver instructions<solver>`.
 
@@ -518,7 +518,7 @@ Because the code you've generated needs to be built at the same time as the solv
 
 .. container:: gotcha
 
-  Note that the fullstop in the cmake command sets both the source and binary directories to the solver directory.
+  Note that the full-stop in the cmake command sets both the source and binary directories to the solver directory.
   This is because even though your generated files are elsewhere, the solver code and CMakeLists.txt file are in *this* directory, and the executable will end up here too.
 
 If all has gone well you should see the output similar to:

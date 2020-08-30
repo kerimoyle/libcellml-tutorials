@@ -6,7 +6,7 @@ User tutorials for libCellML
 
 These tutorials are designed so that you can choose to work through them in
 sequence, and build on your code, or to jump in at any stage and use the
-files provided.  Each tutorial is avaiable in both C++ and Python, and each
+files provided.  Each tutorial is available in both C++ and Python, and each
 one comes with the full 'solutions' which should be able to run out of the box.
 Click the links below to read the outline for each tutorial, access the
 resources needed, and select which language to follow.

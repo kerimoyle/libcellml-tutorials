@@ -7,7 +7,7 @@ In this tutorial you'll explore how the :code:`Validator` object can be put to u
 You'll be taking a CellML2.0 file which has some mistakes in it, using the validation functionality to identify them, and then using the access and editing functions to fix them.
 By the time you have worked through Tutorial 2 you will be able to:
 
-- Use the :code:`Parser` to report errors enountered when reading a file or deserialising a string; and
+- Use the :code:`Parser` to report errors encountered when reading a file or deserialising a string; and
 - Use the :code:`Validator` to check for errors related to a model's description as compared to the CellML2.0 specifications.
 
 This tutorial assumes that you can already:

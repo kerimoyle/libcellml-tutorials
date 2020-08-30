@@ -20,7 +20,7 @@
       auto parser = libcellml::Parser::create();
       auto model = parser->parseModel(inString);
 
-      // Create a Printer to serialse the model back to a string, but
+      // Create a Printer to serialise the model back to a string, but
       // use the option to create automatic ids.
       auto printer = libcellml::Printer::create();
       auto outString = printer->printModel(model, true);
@@ -33,9 +33,9 @@
       parser = libcellml.Parser()
       model = parser.parseModel(in_string)
 
-      # Create a Printer to serialse the model back to a string, but
+      # Create a Printer to serialise the model back to a string, but
       # use the option to create automatic ids.
       printer = libcellml.Printer()
       out_string = printer.printModel(model, true)
 
-      # The out_string will have the same model contents, but witht id attributes set throughout.
+      # The out_string will have the same model contents, but with id attributes set throughout.

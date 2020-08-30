@@ -39,6 +39,7 @@
       annotator->assignIds(libcellml::Annotator::Type::VARIABLE);
     
       // ---------- OPTION 3: Automatic id by item -------------------------
+      //
       // Finally, you can submit single items for automatic id.
       // There are two ways to do this as shown below.  Note that when you use the
       // built-in Annotator functions to assign ids, there is no need to rebuild the 
@@ -81,6 +82,7 @@
       annotator.assignIds(Annotator.Type.VARIABLE)
     
       # ---------- OPTION 3: Automatic id by item -------------------------
+      #
       # Finally, you can submit single items for automatic id.
       # There are two ways to do this as shown below.  Note that when you use the
       # built-in Annotator functions to assign ids, there is no need to rebuild the 

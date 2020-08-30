@@ -18,8 +18,8 @@ You will need to download these files first:
 .. contents:: Contents
     :local:
 
-Setup
-=====
+Set-up
+======
 Navigate into the :code:`tutorial6` folder and check that you can run the template against the libCellML library successfully:
 
 Running the template:
@@ -67,7 +67,7 @@ The governing mathematical equation becomes:
 
     i_K = n^4 g_K (V - E_K)
 
-... where :math:`i_K` is blah blah.
+... where :math:`i_K` is TODO.
 
 .. container:: dothis
 
@@ -101,7 +101,7 @@ The governing mathematical equation becomes:
 
 .. container:: dothis
 
-    **1.c** Create and call a Validator instance, and use it to check the model so far.
+    **1.c** Create and call a :code:`Validator` instance, and use it to check the model so far.
     At this stage we will expect errors related to missing variables.
 
 .. code-block:: console
@@ -156,7 +156,7 @@ The governing mathematical equation becomes:
 
 Step 2: Create the n-gate component
 ===================================
-Here we create the voltage dependency behavior of the potassium component.
+Here we create the voltage dependency behaviour of the potassium component.
 This is accomplished by creating a second component, and embedding it within the one we already have.
 
 .. container:: dothis
@@ -304,12 +304,12 @@ In :ref:`Tutorial 7<tutorial7_py>` we will use the :code:`import` functionality 
 
 .. container:: dothis
 
-    **3.b** From the parsed model, retrieve the component named "controller" and add it to your model (that is, at the top level of the encapuslation hierarchy).
+    **3.b** From the parsed model, retrieve the component named "controller" and add it to your model (that is, at the top level of the encapsulation hierarchy).
     Remember that you will need to use the :code:`removeParent()` function to detach it from the parsed model before adding.
 
 .. container:: dothis
 
-    **3.c** Repeat the process to retieve the component named "parameters" and add this at the top level of the model.
+    **3.c** Repeat the process to retrieve the component named "parameters" and add this at the top level of the model.
 
 At this stage, you should have an arrangement like that shown below.
 
@@ -344,7 +344,7 @@ Step 4: Connect the components together
 In order for components to be able to relate to one another, we have to define two things.
 Firstly, the hierarchy in which they exist - this is called the *encapsulation* and determines which components are able to access others.
 Each component is only visible to its direct parents, direct children, and siblings (those which share a direct parent).
-Secondly, we need to define the way in which the varaibles within the component relate to those outside it.
+Secondly, we need to define the way in which the variables within the component relate to those outside it.
 This is done by creating *equivalent variables*.
 
 We have already defined the encapsulation hierarchy by setting our components to be nested within other components in steps 2.a and 3.b-d.
@@ -435,7 +435,7 @@ The interface types between the variables in these components needs to be specif
 
 .. container:: dothis
 
-    **4.d** Use the :code:`setInterfaceType` function for each of the shared variables to specify their avaiable interfaces using the recommendation from the error messages.
+    **4.d** Use the :code:`setInterfaceType` function for each of the shared variables to specify their available interfaces using the recommendation from the error messages.
 
 .. container:: dothis
 
@@ -486,7 +486,7 @@ At this stage you should have some new files created:
 - The generated file for the Python profile; and
 - the generated files for the C profile, the header and source files.
 
-These last three files can be used in conjuction with a simple solver to model the behaviour of the potassium channel.
+These last three files can be used in conjunction with a simple solver to model the behaviour of the potassium channel.
 Because this tutorial is in Python we give instructions for the Python solver.
 For the C++ solver please see :ref:`the C++ Tutorial 6 instructions<tutorial6_cpp>` or :ref:`the general solver instructions<solver>`.
 
