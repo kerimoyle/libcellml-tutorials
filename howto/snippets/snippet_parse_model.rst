@@ -11,16 +11,14 @@
     .. tab:: C++ snippet
 
       .. literalinclude:: ../code/example_simulationToolDev.cpp
-        :start-after: "    // STEP 1."
-        :end-before: "    // STEP 2."
         :language: c++
+        :lines: 23-35
 
     .. tab:: Python snippet
 
       .. literalinclude:: ../code/example_simulationToolDev.py
-        :start-after: "    # STEP 1."
-        :end-before: "    # STEP 2."
         :language: python
+        :lines: 19-25
       
     .. tab:: Full context links
 
