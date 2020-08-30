@@ -38,3 +38,5 @@ Note that the :code:`Parser` class will make a note of any issues it finds, whic
 This example can be seen in more context in:
 - :ref:`Tutorial 1: Reading and writing CellML files<tutorial1>` and
 - :ref:`Tutorial 2: : Debugging, error checking and validating<tutorial2>`.
+
+.. include:: ../snippets/snippet_parse_model.rst
