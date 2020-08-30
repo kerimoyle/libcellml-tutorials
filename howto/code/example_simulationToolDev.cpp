@@ -18,7 +18,7 @@
 
 int main()
 {
-    // STEP 1. Parse a model file.
+    // STEP 1
 
     // Read the file containing the CellML model into a string.
     std::string inFileName = "resources/example.cellml";
@@ -34,7 +34,7 @@ int main()
     auto model = parser->parseModel(inFileContents.str());
     printIssuesToTerminal(parser);
 
-    // STEP 2. Resolve import dependencies (if present).
+    // STEP 2
 
     if(model->hasUnresolvedImports()) {
         auto importer = libcellml::Importer::create();

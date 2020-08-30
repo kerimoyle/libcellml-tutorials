@@ -14,7 +14,7 @@ from libcellml import Component, Variable
 
 if __name__ == '__main__':
 
-    # STEP 1. Parse a model file.
+    # STEP 1
 
     # Create a libCellML Parser, and use it to parse the fileContents
     # string and convert it into a CellML Model structure.
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     model = parser.parseModel(read_file.read())
     print_issues_to_terminal(parser)
 
-    # STEP 2. Resolve import dependencies (if present).
+    # STEP 2
 
     if(model.hasUnresolvedImports()) {
 
