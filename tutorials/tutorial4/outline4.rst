@@ -27,7 +27,7 @@ The files you will need to download are:
 
 - :download:`CMakeLists.txt` The CMake file for building this tutorial;
 - :download:`tutorial4.cpp` Either the skeleton code, :download:`tutorial4_complete.cpp` the completed tutorial code; and
-- :download:`../utilities/tutorial_utilities.h` and :download:`../utilities/tutorial_utilities.cpp` Utility functions for
+- :download:`../../utilities/tutorial_utilities.h` and :download:`../../utilities/tutorial_utilities.cpp` Utility functions for
   use in the tutorials.
 
 If you did not complete :ref:`Tutorial 3<tutorial 3>` you can download the files created by the :code:`Generator` from the :code:`resources` folder. These are:
@@ -41,7 +41,7 @@ Please see the :ref:`Python instructions<tutorial4_py>` page.
 The files you will need to download are:
 
 - :download:`tutorial4.py` Either the skeleton code or :download:`tutorial4_complete.py` the completed tutorial code; and
-- :download:`../utilities/tutorial_utilities.py`  Utility functions for use in the tutorials.
+- :download:`../../utilities/tutorial_utilities.py`  Utility functions for use in the tutorials.
 
 If you did not complete :ref:`Tutorial 3<tutorial 3>` you can download the file created by the :code:`Generator` from the :code:`resources` folder:
 - :download:`../resources/tutorial3_PredatorPrey_generated.py` The Python implementation/source file.

@@ -37,7 +37,7 @@ You will need to download the following files:
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial5.cpp` Either the skeleton code, or :download:`tutorial5_complete.cpp` the completed tutorial code; and
-    - :download:`../utilities/tutorial_utilities.h` and :download:`../utilities/tutorial_utilities.cpp` Utility functions for use in the tutorials.
+    - :download:`../../utilities/tutorial_utilities.h` and :download:`../../utilities/tutorial_utilities.cpp` Utility functions for use in the tutorials.
 
 
 Python instructions
@@ -46,4 +46,4 @@ Please see the :ref:`Python instructions<tutorial5_py>` page.
 You will need to download the following files:
 
     - :download:`tutorial5.py` Either the skeleton code, or :download:`tutorial5_complete.py` the completed tutorial code; and
-    - :download:`../utilities/tutorial_utilities.py`  Utility functions for use in the tutorials.
+    - :download:`../../utilities/tutorial_utilities.py`  Utility functions for use in the tutorials.

@@ -21,7 +21,7 @@ Resources:
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial7.cpp` Either the skeleton code, or ...
     - :download:`tutorial7_complete.cpp` the completed tutorial code; and
-    - :download:`../utilities/tutorial_utilities.h` and :download:`../utilities/tutorial_utilities.cpp` Utility functions for use in the tutorials.
+    - :download:`../../utilities/tutorial_utilities.h` and :download:`../../utilities/tutorial_utilities.cpp` Utility functions for use in the tutorials.
 
 Python instructions
 -------------------
@@ -31,4 +31,4 @@ Resources:
 
     - :download:`tutorial7.py` Either the skeleton code, or ...
     - :download:`tutorial7_complete.py` the completed tutorial code; and
-    - :download:`../utilities/tutorial_utilities.py` Utility functions for use in the tutorials.
+    - :download:`../../utilities/tutorial_utilities.py` Utility functions for use in the tutorials.

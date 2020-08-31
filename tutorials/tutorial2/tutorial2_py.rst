@@ -12,7 +12,7 @@ For the same tutorial in C++ please see the :ref:`Tutorial 2 C++<tutorial2_cpp>`
 
 - :download:`tutorial2.py` The skeleton code or: download:`tutorial2_complete.py` the completed tutorial code;
 - :download:`../resources/tutorial2.cellml` The input CellML file to read; and
-- :download:`../utilities/tutorial_utilities.py` Utility functions for use in the tutorials.
+- :download:`../../utilities/tutorial_utilities.py` Utility functions for use in the tutorials.
 
 .. contents:: Contents
     :local:

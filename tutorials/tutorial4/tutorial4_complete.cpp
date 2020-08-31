@@ -17,7 +17,7 @@
 
 #include <libcellml>
 
-#include "../utilities/tutorial_utilities.h"
+#include "../../utilities/tutorial_utilities.h"
 #include "../resources/tutorial3_PredatorPrey_generated.h"
 
 int main()

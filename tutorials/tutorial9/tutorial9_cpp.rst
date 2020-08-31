@@ -12,7 +12,7 @@ For the same tutorial in Python please see the :ref:`Tutorial 9 in Python<tutori
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial
     - :download:`tutorial9.cpp` Either the skeleton code, or :download:`tutorial9_complete.cpp` the completed tutorial code
-    - :download:`../utilities/tutorial_utilities.h` and :download:`../utilities/tutorial_utilities.cpp` Utility functions for use in the tutorials.
+    - :download:`../../utilities/tutorial_utilities.h` and :download:`../../utilities/tutorial_utilities.cpp` Utility functions for use in the tutorials.
 
 .. contents:: Contents
     :local:

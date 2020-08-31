@@ -12,7 +12,7 @@
 
       .. literalinclude:: ../code/example_simulationToolDev.cpp
         :language: c++
-        :lines: 39.51
+        :lines: 39-51
 
       Full context: :download:`example_simulationToolDev.cpp<../code/example_simulationToolDev.cpp>`
 

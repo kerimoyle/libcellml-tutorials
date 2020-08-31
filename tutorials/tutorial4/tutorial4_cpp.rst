@@ -51,7 +51,7 @@ Because this is for generated code in C you will need the files:
         #          order for CMake to accept it.
         set (PROJECT_SRC
                 ${PROJECT_NAME}.cpp
-                ../utilities/tutorial_utilities.cpp
+                ../../utilities/tutorial_utilities.cpp
                 ../resources/tutorial3_PredatorPrey_generated.cpp
              )
 

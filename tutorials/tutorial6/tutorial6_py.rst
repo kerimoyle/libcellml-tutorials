@@ -12,7 +12,7 @@ You will need to download these files first:
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial6.py` Either the skeleton code or :download:`tutorial6_complete.py` the completed tutorial code;
-    - :download:`../utilities/tutorial_utilities.py` Utility functions for use in the tutorials; and
+    - :download:`../../utilities/tutorial_utilities.py` Utility functions for use in the tutorials; and
     - :download:`../resources/tutorial6_controller.cellml` A CellML file required for the controller and initialisation components.
 
 .. contents:: Contents

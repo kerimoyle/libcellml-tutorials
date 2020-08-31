@@ -8,7 +8,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "../utilities/tutorial_utilities.h"
+#include "../../utilities/tutorial_utilities.h"
 #include <libcellml>
 
 int main()

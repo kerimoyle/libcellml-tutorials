@@ -29,7 +29,7 @@ You will need to download these resources:
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial6.cpp` Either the skeleton code, or :download:`tutorial6_complete.cpp` the completed tutorial code; and
-    - :download:`../utilities/tutorial_utilities.h` and :download:`../utilities/tutorial_utilities.cpp`  Utility functions for
+    - :download:`../../utilities/tutorial_utilities.h` and :download:`../../utilities/tutorial_utilities.cpp`  Utility functions for
       use in the tutorials.
     - If you did not complete Tutorial 5 you can download the file created there from: :download:`../resources/tutorial5_IonChannelModel.cellml`
 
@@ -39,5 +39,5 @@ Please see the :ref:`Python instructions<tutorial6_py>` page.
 You will need to download these resources:
 
     - :download:`tutorial6.py` Either the skeleton code, or :download:`tutorial6_complete.py` the completed tutorial code; and
-    - :download:`../utilities/tutorial_utilities.py`  Utility functions for use in the tutorials.
+    - :download:`../../utilities/tutorial_utilities.py`  Utility functions for use in the tutorials.
     - If you did not complete Tutorial 5 you can download the file created there from: :download:`../resources/tutorial5_IonChannelModel.cellml`

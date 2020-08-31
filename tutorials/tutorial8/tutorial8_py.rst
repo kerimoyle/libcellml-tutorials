@@ -11,7 +11,7 @@ For the same tutorial in C++ please see the :ref:`Tutorial 8 in C++<tutorial8_cp
 **Resources:**
 
 - :download:`tutorial8.py` Either the skeleton code, or :download:`tutorial8_complete.py` the completed tutorial code;
-- :download:`../utilities/tutorial_utilities.py` utility functions for use in the tutorials.
+- :download:`../../utilities/tutorial_utilities.py` utility functions for use in the tutorials.
 
 The following files are needed as inputs for this tutorial.
 If you did not complete the relevant tutorials you can copy these files from the resources folder:

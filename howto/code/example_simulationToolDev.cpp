@@ -16,12 +16,14 @@
 
 #include <libcellml>
 
+#include "../utilities/tutorial_utilities.h"
+
 int main()
 {
     // STEP 1.  Parse a CellML file into a model.
 
     // Read the file containing the CellML model into a string.
-    std::string inFileName = "resources/example.cellml";
+    std::string inFileName = "example.cellml";
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
@@ -32,7 +34,7 @@ int main()
     // string and convert it into a CellML Model structure.
     auto parser = libcellml::Parser::create();
     auto model = parser->parseModel(inFileContents.str());
-    printIssuesToTerminal(parser);
+    printErrorsToTerminal(parser);
 
     // STEP 2.  Resolve the import dependencies (if any).
 
@@ -48,6 +50,7 @@ int main()
         // Retrieve a "flattened" (ie: import-free) model from the importer,
         // and use it to over-write the current model.
         model = importer->flattenModel();
+
     }
 
     // STEP 3.  Validate the model: check for syntactic and semantic errors.

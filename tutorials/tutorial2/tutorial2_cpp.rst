@@ -13,7 +13,7 @@ For the same tutorial in Python please see the :ref:`Tutorial 2 in Python<tutori
 - :download:`CMakeLists.txt` The CMake file for building this tutorial;
 - :download:`tutorial2.cpp` Either the skeleton code or :download:`tutorial2_complete.cpp` the completed tutorial code;
 - :download:`../resources/tutorial2.cellml` The input CellML file to read;
-- :download:`../utilities/tutorial_utilities.h` and :download:`../utilities/tutorial_utilities.cpp` Utility functions for
+- :download:`../../utilities/tutorial_utilities.h` and :download:`../../utilities/tutorial_utilities.cpp` Utility functions for
   use in the tutorials.
 
 .. contents:: Contents

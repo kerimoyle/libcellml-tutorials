@@ -6,7 +6,7 @@
 #include <libcellml>
 #include <regex>
 
-#include "../utilities/tutorial_utilities.h"
+#include "../../utilities/tutorial_utilities.h"
 
 int main()
 {

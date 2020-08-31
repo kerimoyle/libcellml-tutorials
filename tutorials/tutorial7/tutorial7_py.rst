@@ -13,7 +13,7 @@ For the same tutorial in C++ please see the :ref:`Tutorial 7 in C++<tutorial7_cp
 **Resources:**
 
     - :download:`tutorial7.py` Either the skeleton code, or :download:`tutorial7_complete.py` the completed tutorial code;
-    - :download:`../utilities/tutorial_utilities.py`  Utility functions for use in the tutorials; and
+    - :download:`../../utilities/tutorial_utilities.py`  Utility functions for use in the tutorials; and
     - :download:`../resources/tutorial7_controller.cellml` An external controller model.
 
 .. contents:: Contents:

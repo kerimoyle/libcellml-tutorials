@@ -12,7 +12,7 @@ For the same tutorial in Python please see the :ref:`Tutorial 7 in Python<tutori
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial7.cpp` Either the skeleton code, or :download:`tutorial7_complete.cpp` the completed tutorial code;
-    - :download:`../utilities/tutorial_utilities.h` and :download:`../utilities/tutorial_utilities.cpp`  Utility functions for
+    - :download:`../../utilities/tutorial_utilities.h` and :download:`../../utilities/tutorial_utilities.cpp`  Utility functions for
       use in the tutorials; and
     - :download:`../resources/tutorial7_resources.cellml` An external controller model.
 

@@ -54,8 +54,8 @@ Resources:
     - :download:`CMakeLists.txt` The CMake file for building this tutorial
     - :download:`tutorial8.cpp` Either the skeleton code, or ..
     - :download:`tutorial8_complete.cpp` the completed tutorial code
-    - :download:`../utilities/tutorial_utilities.h` and
-      :download:`../utilities/tutorial_utilities.cpp`  Utility functions for
+    - :download:`../../utilities/tutorial_utilities.h` and
+      :download:`../../utilities/tutorial_utilities.cpp`  Utility functions for
       use in the tutorials.
     - :download:`../resources/tutorial8_LeakageCurrentModel.cellml` The leakage current model
     - If you did not complete Tutorial 7 you can download the file created there:
@@ -69,7 +69,7 @@ Resources:
 
     - :download:`tutorial8.py` Either the skeleton code, or ..
     - :download:`tutorial8_complete.cpp` the completed tutorial code
-    - :download:`../utilities/tutorial_utilities.py`  Utility functions for
+    - :download:`../../utilities/tutorial_utilities.py`  Utility functions for
       use in the tutorials.
     - :download:`../resources/tutorial8_LeakageCurrentModel.cellml` The leakage current model
     - If you did not complete Tutorial 7 you can download the file created there:

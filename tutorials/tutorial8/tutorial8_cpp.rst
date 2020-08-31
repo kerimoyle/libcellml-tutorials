@@ -12,7 +12,7 @@ For the same tutorial in Python please see the :ref:`Tutorial 8 in Python<tutori
 
 - :download:`CMakeLists.txt` The CMake file for building this tutorial;
 - :download:`tutorial8.cpp` Either the skeleton code, or :download:`tutorial8_complete.cpp` the completed tutorial code;
-- :download:`../utilities/tutorial_utilities.h` and :download:`../utilities/tutorial_utilities.cpp` Utility functions for use in the tutorials.
+- :download:`../../utilities/tutorial_utilities.h` and :download:`../../utilities/tutorial_utilities.cpp` Utility functions for use in the tutorials.
 
 The following files are needed as inputs for this tutorial.
 If you did not complete the relevant tutorials you can copy these files from the resources folder:
