@@ -14,12 +14,13 @@
         :language: c++
         :lines: 23-35
 
+      Full context: :download:`example_simulationToolDev.cpp<../code/example_simulationToolDev.cpp>`
+
     .. tab:: Python snippet
 
       .. literalinclude:: ../code/example_simulationToolDev.py
         :language: python
         :lines: 19-25
       
-    .. tab:: Full context links
+      Full context: :download:`example_simulationToolDev.py<../code/example_simulationToolDev.py>`
 
-      The full files can be found somewhere ... 
