@@ -43,7 +43,7 @@ int main()
 
         // Submit the model to the importer and the absolute location 
         // against which the import reference paths will be resolved.
-        importer->resolveModelImports(model, "resources/");
+        importer->resolveImports(model, "resources/");
 
         printErrorsToTerminal(importer);
 
@@ -52,7 +52,7 @@ int main()
 
         // Retrieve a "flattened" (ie: import-free) model from the importer,
         // and use it to over-write the current model.
-        model = importer->flattenModel();
+        model = importer->flattenModel(model);
 
          printImportDependencies(model);
     }
