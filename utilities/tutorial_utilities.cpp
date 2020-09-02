@@ -495,24 +495,24 @@ void printEquivalentVariableSet(const libcellml::VariablePtr &variable)
     }
 }
 
-void doPrintImportDependencies(const libcellml::ModelPtr &model, std::string &spacer){
+void doPrintImportDependencies(const libcellml::ModelPtr &model, std::string &spacer) {
     // Function to recursively iterate through the import dependencies in this model, and 
     // print their URL and what they require to the terminal.
-    if(model->hasUnresolvedImports()){
+    if(model->hasUnresolvedImports() || (model->importSourceCount() == 0)) {
         return;
     }
-    std::cout << "Model "<<model->name()<< " requires: "<<std::endl;
-    for(size_t i = 0; i < model->importSourceCount(); ++i){
+    std::cout << spacer << "Model '" << model->name() << "' imports:" << std::endl;
+    for(size_t i = 0; i < model->importSourceCount(); ++i) {
         // Each import source should have its own model pointer attached now.
         auto importSource = model->importSource(i);
-        std::cout << spacer << importSource->url() << std::endl;
+        std::cout << spacer << "   From "<< importSource->url() << ":" << std::endl;
         for(size_t u = 0; u < importSource->unitsCount(); ++u){
-            std::cout << spacer << " - units "<<importSource->units(u)->name() << " <- "<<importSource->units(u)->importReference()<<std::endl;
+            std::cout << spacer << "    - units "<<importSource->units(u)->name() << " <- "<<importSource->units(u)->importReference()<<std::endl;
         }
         for(size_t c = 0; c < importSource->componentCount(); ++c){
-            std::cout << spacer << " - component "<<importSource->component(c)->name() << " <- "<<importSource->component(c)->importReference()<<std::endl;
+            std::cout << spacer << "    - component "<<importSource->component(c)->name() << " <- "<<importSource->component(c)->importReference()<<std::endl;
         }
-        std::string bigSpacer = spacer + "   ";
+        std::string bigSpacer = spacer + "    ";
         doPrintImportDependencies(importSource->model(), bigSpacer);
     }
 }
