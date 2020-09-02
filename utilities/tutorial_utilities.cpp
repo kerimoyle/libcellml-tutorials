@@ -332,6 +332,9 @@ std::string getIssueLevelFromEnum(libcellml::Issue::Level myLevel)
     case libcellml::Issue::Level::HINT:
         myTypeAsString = "HINT";
         break;
+    case libcellml::Issue::Level::MESSAGE:
+        myTypeAsString = "MESSAGE";
+        break;
     }
     return myTypeAsString;
 }
