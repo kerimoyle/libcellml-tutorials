@@ -493,7 +493,7 @@ void printEquivalentVariableSet(const libcellml::VariablePtr &variable)
 }
 
 void printImportDependencies(const libcellml::ModelPtr &model){
-  std::string spacer = " ";
+    std::string spacer = " ";
     printImportDependencies(model, spacer);
 }
 
