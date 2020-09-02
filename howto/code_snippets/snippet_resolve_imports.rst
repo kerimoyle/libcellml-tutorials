@@ -1,4 +1,4 @@
-.. _snippet_parse_model:
+.. _snippet_resolve_imports:
 
 .. container:: toggle
 

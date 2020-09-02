@@ -16,7 +16,7 @@
 
 #include <libcellml>
 
-#include "../utilities/tutorial_utilities.h"
+#include "../../utilities/tutorial_utilities.h"
 
 int main()
 {
@@ -47,10 +47,14 @@ int main()
 
         printErrorsToTerminal(importer);
 
+        // Print a list of dependencies for the current unflattened model.
+        printImportDependencies(model);
+
         // Retrieve a "flattened" (ie: import-free) model from the importer,
         // and use it to over-write the current model.
         model = importer->flattenModel();
 
+         printImportDependencies(model);
     }
 
     // STEP 3.  Validate the model: check for syntactic and semantic errors.
@@ -61,9 +65,9 @@ int main()
     printErrorsToTerminal(validator);
 
     // STEP 4.  TODO Analyse a model: check for mathematical and modelling errors.
-    auto analyser = libcellml::Analyser::create();
-    analyser->analyseModel(model);
-    printErrorsToTerminal(analyser);
+    // auto analyser = libcellml::Analyser::create();
+    // analyser->analyseModel(model);
+    // printErrorsToTerminal(analyser);
 
     // STEP 5.  Generate runnable code in other language formats for this model.
 

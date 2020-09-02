@@ -36,3 +36,6 @@ void solveWithEuler(double stepSize, int stepCount, std::string outFileName);
 void listEquivalentVariables(const libcellml::VariablePtr &variable, std::vector<libcellml::VariablePtr> &variableList);
 
 void printEquivalentVariableSet(const libcellml::VariablePtr &variable);
+
+void printImportDependencies(const libcellml::ModelPtr);
+void printImportDependencies(const libcellml::ModelPtr, std::string &spacer);
