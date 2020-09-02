@@ -160,6 +160,58 @@ void printErrorsToTerminal(libcellml::GeneratorPtr &item)
     }
 }
 
+void printErrorsToTerminal(libcellml::ParserPtr &item)
+{
+    //  2.b   Check whether there were errors returned from the item
+    int numberOfErrors = item->errorCount();
+
+    std::cout << "The parser has found " << numberOfErrors
+              << " errors!" << std::endl;
+    if (numberOfErrors != 0) {
+        // 2.c  Retrieve the errors, and print their description and
+        //      reference to the terminal
+        for (size_t e = 0; e < numberOfErrors; ++e) {
+            libcellml::IssuePtr error = item->error(e);
+            std::string errorReference = error->referenceHeading();
+
+            std::cout << "  Parser error[" << e << "]:" << std::endl;
+            std::cout << "     Description: " << error->description()
+                      << std::endl;
+            // std::cout << "     Kind: " << (int)validatorError->cause() << std::endl;
+            if (errorReference != "") {
+                std::cout << "    See section " << errorReference
+                          << " in the CellML specification." << std::endl;
+            }
+        }
+    }
+}
+
+void printErrorsToTerminal(libcellml::ImporterPtr &item)
+{
+    //  2.b   Check whether there were errors returned from the item
+    int numberOfErrors = item->errorCount();
+
+    std::cout << "The importer has found " << numberOfErrors
+              << " errors!" << std::endl;
+    if (numberOfErrors != 0) {
+        // 2.c  Retrieve the errors, and print their description and
+        //      reference to the terminal
+        for (size_t e = 0; e < numberOfErrors; ++e) {
+            libcellml::IssuePtr error = item->error(e);
+            std::string errorReference = error->referenceHeading();
+
+            std::cout << "  Importer error[" << e << "]:" << std::endl;
+            std::cout << "     Description: " << error->description()
+                      << std::endl;
+            // std::cout << "     Kind: " << (int)validatorError->cause() << std::endl;
+            if (errorReference != "") {
+                std::cout << "    See section " << errorReference
+                          << " in the CellML specification." << std::endl;
+            }
+        }
+    }
+}
+
 std::string fileContents(const std::string &fileName)
 {
     std::ifstream file(fileName);

@@ -18,6 +18,8 @@ void printModelToTerminal(libcellml::ModelPtr &model, bool includeMaths);
  */
 void printErrorsToTerminal(libcellml::ValidatorPtr &item);
 void printErrorsToTerminal(libcellml::GeneratorPtr &item);
+void printErrorsToTerminal(libcellml::ImporterPtr &item);
+void printErrorsToTerminal(libcellml::ParserPtr &item);
 void printComponentToTerminal(const libcellml::ComponentPtr &component, size_t const c, std::string const spacer);
 void printComponentToTerminal(const libcellml::ComponentPtr &component, size_t const c, std::string const spacer, bool includeMaths);
 void printEncapsulationStructureToTerminal(libcellml::ModelPtr &model);
