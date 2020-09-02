@@ -39,4 +39,4 @@ void listEquivalentVariables(const libcellml::VariablePtr &variable, std::vector
 
 void printEquivalentVariableSet(const libcellml::VariablePtr &variable);
 
-void printImportDependencies(const libcellml::ModelPtr);
+void printImportDependencies(const libcellml::ModelPtr &model);

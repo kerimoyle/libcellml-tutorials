@@ -23,7 +23,7 @@ int main()
     // STEP 1.  Parse a CellML file into a model.
 
     // Read the file containing the CellML model into a string.
-    std::string inFileName = "example.cellml";
+    std::string inFileName = "resources/diamond.cellml";
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
@@ -54,7 +54,7 @@ int main()
         // and use it to over-write the current model.
         model = importer->flattenModel(model);
 
-         printImportDependencies(model);
+        printImportDependencies(model);
     }
 
     // STEP 3.  Validate the model: check for syntactic and semantic errors.
