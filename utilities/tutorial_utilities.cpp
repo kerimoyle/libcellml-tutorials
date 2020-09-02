@@ -494,10 +494,10 @@ void printEquivalentVariableSet(const libcellml::VariablePtr &variable)
 
 void printImportDependencies(const libcellml::ModelPtr &model){
     std::string spacer = " ";
-    printImportDependencies(model, spacer);
+    doPrintImportDependencies(model, spacer);
 }
 
-void printImportDependencies(const libcellml::ModelPtr &model, std::string &spacer){
+void doPrintImportDependencies(const libcellml::ModelPtr &model, std::string &spacer){
     // Function to recursively iterate through the import dependencies in this model, and 
     // print their URL and what they require to the terminal.
     if(model->hasUnresolvedImports()){
@@ -515,6 +515,6 @@ void printImportDependencies(const libcellml::ModelPtr &model, std::string &spac
             std::cout << spacer << " - component "<<importSource->component(c)->name() << " <- "<<importSource->component(c)->importReference()<<std::endl;
         }
         std::string bigSpacer = spacer + "   ";
-        printImportDependencies(importSource->model(), bigSpacer);
+        doPrintImportDependencies(importSource->model(), bigSpacer);
     }
 }
