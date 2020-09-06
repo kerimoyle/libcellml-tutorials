@@ -64,7 +64,7 @@ int main()
     validator->validateModel(model);
     printErrorsToTerminal(validator);
 
-    // STEP 4.  TODO Analyse a model: check for mathematical and modelling errors.
+    // STEP 4.  TODO Analyse the model: check for mathematical and modelling errors.
     // auto analyser = libcellml::Analyser::create();
     // analyser->analyseModel(model);
     // printErrorsToTerminal(analyser);
@@ -79,11 +79,11 @@ int main()
     printErrorsToTerminal(generator);
 
     // Retrieve and write the interface code (*.h) and implementation code (*.c) to files.
-    std::ofstream outFile("example.h");
+    std::ofstream outFile("sineComparisonExample.h");
     outFile << generator->interfaceCode();
     outFile.close();
 
-    outFile.open("example.c");
+    outFile.open("sineComparisonExample.c");
     outFile << generator->implementationCode();
     outFile.close();
 
@@ -93,7 +93,7 @@ int main()
     generator->processModel(model);
 
     // Retrieve and write the implementation code (*.py) to a file.
-    outFile.open("example.py");
+    outFile.open("sineComparisonExample.py");
     outFile << generator->implementationCode();
     outFile.close();
 }
