@@ -6,7 +6,7 @@
  * - resolve any import dependencies in the model;
  * - validate the model (check for semantic/syntactic errors);
  * - debug the model (check for modelling errors);
- * - generate runnable code in C or Python; and
+ * - generate runnable code in C and/or Python; and
  * - output in the desired format.
  */
 
@@ -23,7 +23,7 @@ int main()
     // STEP 1.  Parse a CellML file into a model.
 
     // Read the file containing the CellML model into a string.
-    std::string inFileName = "resources/diamond.cellml";
+    std::string inFileName = "resources/sine_comparison.cellml";
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
@@ -36,7 +36,7 @@ int main()
     auto model = parser->parseModel(inFileContents.str());
     printErrorsToTerminal(parser);
 
-    // STEP 2.  Resolve the import dependencies (if any).
+    // STEP 2.  Resolve the import dependencies (if any) and flatten the model.
 
     if(model->hasUnresolvedImports()) {
         auto importer = libcellml::Importer::create();
@@ -51,7 +51,7 @@ int main()
         printImportDependencies(model);
 
         // Retrieve a "flattened" (ie: import-free) model from the importer,
-        // and use it to over-write the current model.
+        // and use it to over-write the current model.cd 
         model = importer->flattenModel(model);
 
         printImportDependencies(model);
@@ -96,6 +96,4 @@ int main()
     outFile.open("example.py");
     outFile << generator->implementationCode();
     outFile.close();
-
 }
-

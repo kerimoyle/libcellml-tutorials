@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     # Create a libCellML Parser, and use it to parse the fileContents
     # string and convert it into a CellML Model structure.
-    read_file = open("example.cellml", "r")
+    read_file = open("sine_comparison.cellml", "r")
     parser = Parser()
     model = parser.parseModel(read_file.read())
     print_issues_to_terminal(parser)
@@ -33,12 +33,15 @@ if __name__ == '__main__':
         # Submit the model to the importer and the absolute location 
         # against which the import reference paths will be resolved.
         importer.resolveModelImports(model, "resources/")
-
         print_issues_to_terminal(importer)
+
+        # Print a list of sources that this model requires. This list will 
+        # be empty after the model has been flattened.
+        print_import_dependencies(model)
 
         # Retrieve a "flattened" (ie: import-free) model from the importer,
         # and use it to over-write the current model.
-        model = importer.flattenModel()
+        model = importer.flattenModel(model)
     }
 
     # STEP 3. Validate the model: check for syntactic and semantic errors.
@@ -49,9 +52,9 @@ if __name__ == '__main__':
     print_issues_to_terminal(validator)
 
     # STEP 4. TODO Analyse a model: check for mathematical and modelling errors.
-    analyser = Analyser()
-    analyser.analyseModel(model)
-    print_issues_to_terminal(analyser)
+    # analyser = Analyser()
+    # analyser.analyseModel(model)
+    # print_issues_to_terminal(analyser)
 
     # STEP 5. Generate runnable code in other language formats for this model.
 
