@@ -6,7 +6,7 @@
     - resolve any import dependencies in the model;
     - validate the model (check for semantic/syntactic errors);
     - debug the model (check for modelling errors);
-    - generate runnable code in C or Python; and
+    - generate runnable code in C and/or Python; and
     - output in the desired format.
 """
 
@@ -66,11 +66,11 @@ if __name__ == '__main__':
     print_issues_to_terminal(generator)
 
     # Retrieve and write the interface code (*.h) and implementation code (*.c) to files.
-    write_file = open("example.h", "w")
+    write_file = open("sineComparisonExample.h", "w")
     write_file.write(generator.interfaceCode())
     write_file.close()
 
-    write_file = open("example.c", "w")
+    write_file = open("sineComparisonExample.c", "w")
     write_file.write(generator.implementationCode())
     write_file.close()
 
@@ -80,7 +80,7 @@ if __name__ == '__main__':
     generator.processModel(model)
 
     # Retrieve and write the implementation code (*.py) to a file.
-    write_file = open("example.py", "w")
+    write_file = open("sineComparisonExample.py", "w")
     write_file.write(generator.implementationCode())
     write_file.close()
 
