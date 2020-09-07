@@ -52,5 +52,15 @@ The file is created and opened, and the columns labelled with information from t
 
 .. include:: ../code_snippets/snippet_create_output.rst
 
+Perform the integration
+-----------------------
+There are myriad stepping schemes for numerical integration, but here we use the very basic Euler method.
+At each step, new rates are calculated by calling the *compute rates* function.
+The states are then extrapolated from the rates using the Euler approximation step. 
+In this example we are writing the output at every step, so we also need to update the variables too using the *compute variables* function, and everything is written to the output file.
+
+.. include:: ../code_snippets/snippet_write_output.rst
+
+
 
 

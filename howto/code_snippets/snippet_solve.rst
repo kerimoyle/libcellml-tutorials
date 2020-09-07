@@ -1,10 +1,10 @@
-.. _snippet_initialise_solver:
+.. _snippet_solve:
 
 .. container:: toggle
 
   .. container:: header-left
 
-    Allocate solution arrays
+    Perform the integration and output
 
   .. tabs::
 
@@ -12,8 +12,8 @@
 
       .. literalinclude:: ../code/example_solveGeneratedModel.cpp
         :language: c++
-        :start-after: // STEP 3
-        :end-before: // STEP 4
+        :start-after: // STEP 5
+        :end-before: // END
 
       Full context: :download:`example_solveGeneratedModel.cpp<../code/example_solveGeneratedModel.cpp>`
 
@@ -21,7 +21,7 @@
 
       .. literalinclude:: ../code/example_solveGeneratedModel.py
         :language: python
-        :start-after: # STEP 3
-        :end-before: # STEP 4
+        :start-after: # STEP 5
+        :end-before: # END
       
       Full context: :download:`example_solveGeneratedModel.py<../code/example_solveGeneratedModel.py>`
