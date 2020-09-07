@@ -1,6 +1,5 @@
-.. _examples_get_issues:
+.. _actions_get_issues:
 
-========================
 Retrieve ``Issue`` items
 ========================
 
@@ -118,14 +117,17 @@ Each :code:`Issue` also contains the following attributes:
   - :code:`CONNECTION`,
   - :code:`ENCAPSULATION`,
   - :code:`IMPORT`,
+  - :code:`MAP_VARIABLES`,
   - :code:`MATHML`,
   - :code:`MODEL`,
   - :code:`RESET`,
+  - :code:`RESET_VALUE`,
+  - :code:`TEST_VALUE`,
   - :code:`UNDEFINED`,
+  - :code:`UNIT`,
   - :code:`UNITS`,
-  - :code:`VARIABLE`,
-  - :code:`XML`, and
-  - :code:`GENERATOR`.
+  - :code:`VARIABLE`, and
+  - :code:`XML`.
 
 .. container:: toggle
 
