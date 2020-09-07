@@ -1,4 +1,4 @@
-.. _snippet_build_solver:
+.. _snippet_allocate_arrays:
 
 .. container:: toggle
 
@@ -12,8 +12,8 @@
 
       .. literalinclude:: ../code/example_solveGeneratedModel.cpp
         :language: c++
-        :start-after: // STEP 3
-        :end-before: // STEP 4
+        :start-after: // STEP 2
+        :end-before: // STEP 3
 
       Full context: :download:`example_solveGeneratedModel.cpp<../code/example_solveGeneratedModel.cpp>`
 
@@ -21,7 +21,7 @@
 
       .. literalinclude:: ../code/example_solveGeneratedModel.py
         :language: python
-        :start-after: # STEP 3
-        :end-before: # STEP 4
+        :start-after: # STEP 2
+        :end-before: # STEP 3
       
       Full context: :download:`example_solveGeneratedModel.py<../code/example_solveGeneratedModel.py>`

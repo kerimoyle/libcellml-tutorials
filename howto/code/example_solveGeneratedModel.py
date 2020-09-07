@@ -110,17 +110,17 @@ if __name__ == "__main__":
     print("\n")
 
     # STEP 2
-    # Call module functions to construct and initialise the variable arrays.
+    # Call module functions to construct the variable arrays.
     # Note that both the rates and the states arrays have the same dimensions,
     # so it's possible to call the create_states_array() function for both.
     time = 0.0
     my_variables = model.create_variables_array()
     my_state_variables = model.create_states_array()
     my_rates = model.create_states_array()
-    model.initialise_states_and_constants(my_state_variables, my_variables)
-
+    
     # STEP 3
     # Compute the parameters which require it, including the rates and variable values.
+    model.initialise_states_and_constants(my_state_variables, my_variables)
     model.compute_computed_constants(my_variables)
     model.compute_rates(0, my_state_variables, my_rates, my_variables)
     model.compute_variables(0, my_state_variables, my_rates, my_variables)

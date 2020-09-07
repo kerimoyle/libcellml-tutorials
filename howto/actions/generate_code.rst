@@ -7,7 +7,7 @@ Code generation is the process of representing the CellML model in another langu
 At the time of writing, two profiles are available: C (default) and Python.
 There are four steps to code generation:
 
-1. Create a :class:`Generator` item and select the profile language.
+1. Create a :code:`Generator` item and select the profile language.
    (The default profile is C).
 2. Pass a model to the generator for processing.
 3. Retrieve the generated implementation code. 
