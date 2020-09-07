@@ -12,7 +12,8 @@
 
       .. literalinclude:: ../code/example_simulationToolDev.cpp
         :language: c++
-        :lines: 23-35
+        :start-after: "STEP 1"
+        :end-before: "STEP 2"
 
       Full context: :download:`example_simulationToolDev.cpp<../code/example_simulationToolDev.cpp>`
 
@@ -20,6 +21,5 @@
 
       .. literalinclude:: ../code/example_simulationToolDev.py
         :language: python
-        :lines: 19-25
       
       Full context: :download:`example_simulationToolDev.py<../code/example_simulationToolDev.py>`

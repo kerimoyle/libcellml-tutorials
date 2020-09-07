@@ -11,3 +11,4 @@ Simulation tool developer
    ../actions/examples_get_issues.rst
    ../actions/examples_generate_model.rst
    ../actions/examples_alter_generator.rst
+   ../actions/examples_solve_generated_model.rst
