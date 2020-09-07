@@ -26,6 +26,8 @@ std::map<std::string, std::string> processArguments(int argc, char **argv);
 
 int main(int argc, char **argv)
 {
+    // STEP 1
+    // Retrieve the command line arguments.
     std::map<std::string, std::string> args = processArguments(argc, argv);
 
     std::cout << "-------------------------------------------------------------" << std::endl;
@@ -36,6 +38,11 @@ int main(int argc, char **argv)
     std::cout << "       number of steps = " << args["n"] << std::endl
               << std::endl;
 
+    // Inside the generated code are structures with information about the 
+    // model and its dimensions.  These are:
+    //   - VOI_INFO: a dict with the name, units, and component of the variable of integration,
+    //   - STATE_INFO: a list of dicts for the state variables,
+    //   - VARIABLE_INFO: a list of dicts for the non-state variables. 
     std::cout << "   STATE VARIABLES (units) " << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
     for (size_t i = 0; i < STATE_COUNT; ++i) {
@@ -43,15 +50,13 @@ int main(int argc, char **argv)
     }
     std::cout << std::endl;
 
-    // STEP 1
-    // Initialise the runtime parameters: dt is the timestep, n is the number of steps to take.
+    // STEP 2
+    // Call module functions to construct and initialise the variable arrays.
+    // Note that both the rates and the states arrays have the same dimensions,
+    // so it's possible to call the createStatesArray() function for both.
     double time = 0.0;
     double stepSize = std::stod(args["dt"]);
     int stepCount = std::stoi(args["n"]);
-
-    // STEP 2
-    // Create arrays to hold the state variables, their rates, and the other non-integrated variables.
-    // Note that both the state and rates arrays are the same length.
     auto myStateVariables = createStatesArray();
     auto myRates = createStatesArray();
     auto myVariables = createVariablesArray();
@@ -64,8 +69,7 @@ int main(int argc, char **argv)
     computeVariables(time, myStateVariables, myRates, myVariables);
 
     // STEP 4
-    // Create an output file to save the solution into.
-
+    // Prepare a file for writing during the solution process.
     std::cout << "   INITIAL CONDITIONS" << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
     for (size_t i = 0; i < STATE_COUNT; ++i) {
@@ -102,7 +106,7 @@ int main(int argc, char **argv)
     outFile << std::endl;
 
     // STEP 5
-    // Iterate through the solution and perform the integration of the state variables.
+    // Numerically integrate the state variables using the Euler method to step through the solution.
 
     // Solution columns in output file
     for (size_t step = 1; step < stepCount; ++step) {
@@ -133,7 +137,7 @@ int main(int argc, char **argv)
     deleteArray(myRates);
 
     // END
-    
+
     std::cout << "   OUTPUT" << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
     std::cout << "      The results have been written to:"<<std::endl;
@@ -141,6 +145,7 @@ int main(int argc, char **argv)
     std::cout << "-------------------------------------------------------------" << std::endl;
 }
 
+// COMMAND LINE FUNCTION
 std::map<std::string, std::string> processArguments(int argc, char **argv)
 {
     if (argc == 1) {
@@ -167,3 +172,4 @@ std::map<std::string, std::string> processArguments(int argc, char **argv)
     }
     return argMap;
 }
+// END COMMAND LINE FUNCTION

@@ -1,10 +1,10 @@
-.. _snippet_build_solver:
+.. _snippet_command_line:
 
 .. container:: toggle
 
   .. container:: header-left
 
-    Initialise solution variables
+    Retrieve command line parameters
 
   .. tabs::
 
@@ -12,8 +12,8 @@
 
       .. literalinclude:: ../code/example_solveGeneratedModel.cpp
         :language: c++
-        :start-after: // STEP 1
-        :end-before: // STEP 3
+        :start-after: // COMMAND LINE FUNCTION
+        :end-before: // END COMMAND LINE FUNCTION
 
       Full context: :download:`example_solveGeneratedModel.cpp<../code/example_solveGeneratedModel.cpp>`
 
@@ -21,7 +21,7 @@
 
       .. literalinclude:: ../code/example_solveGeneratedModel.py
         :language: python
-        :start-after: # STEP 1
-        :end-before: # STEP 3
+        :start-after: # Command line function
+        :end-before: # End command line function
       
       Full context: :download:`example_solveGeneratedModel.py<../code/example_solveGeneratedModel.py>`

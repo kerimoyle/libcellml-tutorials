@@ -17,7 +17,7 @@
 import sys
 import importlib
 
-
+# Command line function
 def process_arguments(argv):
 
     if (len(argv) == 1):
@@ -61,11 +61,12 @@ def process_arguments(argv):
         exit(1)
 
     return arg_map
+# End command line function
 
-
+# MODULE FROM FILE
 def module_from_file(input):
 
-    # Shouldn't need to check this if the extension is stripped during input
+    # Check the extension is stripped during input.
     if input[-3:] != '.py':
         module_file = input + ".py"
         module_name = input.split("/")[-1]
@@ -73,17 +74,27 @@ def module_from_file(input):
         module_file = input
         module_name = ".".join(input.split("/")[-1].split(".")[:-1])
 
+    # Import the generated code as a module, and return it.
     spec = importlib.util.spec_from_file_location(module_name, module_file)
     module = importlib.util.module_from_spec(spec)
     sys.modules[module_name] = module
     spec.loader.exec_module(module)
     return module
-
+# END MODULE FROM FILE
 
 if __name__ == "__main__":
+
     args = process_arguments(sys.argv)
+
+    # STEP 1
+    # Retrieve model module from the generated code file.
     model = module_from_file(args['m'])
 
+    # Inside the 'model' module are structures with information about the 
+    # model and its dimensions.  These are:
+    #   - VOI_INFO: a dict with the name, units, and component of the variable of integration,
+    #   - STATE_INFO: a list of dicts for the state variables,
+    #   - VARIABLE_INFO: a list of dicts for the non-state variables. 
     print("\n")
     print("\n")
     print("====================================================================")
@@ -97,23 +108,29 @@ if __name__ == "__main__":
                                      args['dt']))
     print("      {} steps".format(args['n']))
     print("\n")
-    print("   STATE VARIABLES (units, initial value)")
-    print("--------------------------------------------------------------------")
 
+    # STEP 2
+    # Call module functions to construct and initialise the variable arrays.
+    # Note that both the rates and the states arrays have the same dimensions,
+    # so it's possible to call the create_states_array() function for both.
     time = 0.0
     my_variables = model.create_variables_array()
     my_state_variables = model.create_states_array()
     my_rates = model.create_states_array()
-    model.initialize_states_and_constants(my_state_variables, my_variables)
+    model.initialise_states_and_constants(my_state_variables, my_variables)
+
+    # STEP 3
+    # Compute the parameters which require it, including the rates and variable values.
     model.compute_computed_constants(my_variables)
     model.compute_rates(0, my_state_variables, my_rates, my_variables)
     model.compute_variables(0, my_state_variables, my_rates, my_variables)
 
+    print("   STATE VARIABLES (units, initial value)")
+    print("--------------------------------------------------------------------")
     for i in range(0, model.STATE_COUNT):
         print("      {} ({}, {})".format(model.STATE_INFO[i]['name'],
                                          model.STATE_INFO[i]['units'],
                                          my_state_variables[i]))
-
     print("\n")
     print("   VARIABLES (units, initial value)")
     print("--------------------------------------------------------------------")
@@ -123,7 +140,8 @@ if __name__ == "__main__":
                                          model.VARIABLE_INFO[v]['units'],
                                          my_variables[v]))
 
-    # Writing the column headers to the output file
+    # STEP 4
+    # Prepare to write output to a file during the solution process.
     row = "iteration\t{}({})".format(
         model.VOI_INFO['name'], model.VOI_INFO['units'])
     for s in range(0, model.STATE_COUNT):
@@ -138,21 +156,29 @@ if __name__ == "__main__":
     write_file = open(write_file_name, "w")
     write_file.write(row)
 
-    # Stepping through the Euler steps to solve
+    # STEP 5
+    # Numerically integrate using Euler steps to solve the model.
     for step in range(0, args['n']):
         time = step * args['dt']
 
         model.compute_rates(time, my_state_variables, my_rates, my_variables)
 
+        # Formatting for output.
         row = "{}\t{}".format(step, time)
         for s in range(0, model.STATE_COUNT):
             my_state_variables[s] = my_state_variables[s] + \
                 my_rates[s] * args['dt']
             row += "\t{}".format(my_state_variables[s])
 
+        # Note that the variables in the my_variables array are those which 
+        # are independent of the integration: thus, they only need to be
+        # computed at timesteps where the solution is to be written to the
+        # output.  For large simulations, this may not be every integration 
+        # timestep.
         model.compute_variables(
             time, my_state_variables, my_rates, my_variables)
 
+        # Output the solution.
         for s in range(0, model.VARIABLE_COUNT):
             row += "\t{}".format(my_variables[s])
 
@@ -160,6 +186,8 @@ if __name__ == "__main__":
         write_file.write(row)
 
     write_file.close()
+
+    # END
 
     print("\n")
     print("   SOLUTION written to {}".format(write_file_name))
