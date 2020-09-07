@@ -11,6 +11,4 @@ Simulation tool developer
 .. include:: ../actions/resolve_imports.rst
 .. include:: ../actions/validate_model.rst
 .. include:: ../actions/generate_code.rst
-.. include :: ../actions/examples_alter_generator.rst
-
 .. include:: ../actions/solve_model.rst

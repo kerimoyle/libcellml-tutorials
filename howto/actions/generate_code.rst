@@ -3,11 +3,6 @@
 Generate runnable code from a model
 ===================================
 
-.. contents::
-    :local:
-    
-About code generation
----------------------
 Code generation is the process of representing the CellML model in another language format.
 At the time of writing, two profiles are available: C (default) and Python.
 There are four steps to code generation:
