@@ -12,8 +12,8 @@
 
       .. literalinclude:: ../code/example_simulationToolDev.cpp
         :language: c++
-        :start-after: //STEP1
-        :end-before: //STEP2
+        :start-after: // STEP 1
+        :end-before: // STEP 2
 
       Full context: :download:`example_simulationToolDev.cpp<../code/example_simulationToolDev.cpp>`
 
