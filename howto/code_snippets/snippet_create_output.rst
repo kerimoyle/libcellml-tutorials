@@ -4,7 +4,7 @@
 
   .. container:: header-left
 
-    Allocate solution arrays
+    Prepare for output
 
   .. tabs::
 

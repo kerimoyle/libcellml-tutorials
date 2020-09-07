@@ -4,7 +4,7 @@
 
   .. container:: header-left
 
-    Allocate solution arrays
+    Initialise variables
 
   .. tabs::
 
