@@ -20,7 +20,7 @@
       .. literalinclude:: ../code/example_solveGeneratedModel.py
         :language: python
         :linenos:
-        :linenos-start: 67
+        :lineno-start: 67
         :start-after: # MODULE FROM FILE
         :end-before: # END MODULE FROM FILE
       
