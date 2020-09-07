@@ -59,4 +59,4 @@ At each step, new rates are calculated by calling the *compute rates* function.
 The states are then extrapolated from the rates using the Euler approximation step. 
 In this example we are writing the output at every step, so we also need to update the variables too using the *compute variables* function, and everything is written to the output file.
 
-.. include:: ../code_snippets/snippet_write_output.rst
+.. include:: ../code_snippets/snippet_solve.rst
