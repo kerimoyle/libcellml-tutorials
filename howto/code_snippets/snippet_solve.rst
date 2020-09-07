@@ -13,7 +13,7 @@
       .. literalinclude:: ../code/example_solveGeneratedModel.cpp
         :language: c++
         :start-after: // STEP 5
-        :end-before: // END
+        :end-before: // STEP 6
 
       Full context: :download:`example_solveGeneratedModel.cpp<../code/example_solveGeneratedModel.cpp>`
 
