@@ -20,7 +20,7 @@
 
 int main()
 {
-    // STEP 1
+    // STEP 1 helo
     // Parse a CellML file into a model.
 
     // Read the file containing the CellML model into a string.
@@ -37,7 +37,7 @@ int main()
     auto model = parser->parseModel(inFileContents.str());
     printErrorsToTerminal(parser);
 
-    // STEP 2
+    // STEP 2 there
     // Resolve the import dependencies (if any) and flatten the model.
 
     if(model->hasUnresolvedImports()) {
@@ -59,19 +59,22 @@ int main()
         printImportDependencies(model);
     }
 
-    // STEP 3.  Validate the model: check for syntactic and semantic errors.
+    // STEP 3
+    // Validate the model: check for syntactic and semantic errors.
 
     // Create a Validator instance and pass the model for checking.
     auto validator = libcellml::Validator::create();
     validator->validateModel(model);
     printErrorsToTerminal(validator);
 
-    // STEP 4.  TODO Analyse the model: check for mathematical and modelling errors.
+    // STEP 4
+    // TODO Analyse the model: check for mathematical and modelling errors.
     // auto analyser = libcellml::Analyser::create();
     // analyser->analyseModel(model);
     // printErrorsToTerminal(analyser);
 
-    // STEP 5.  Generate runnable code in other language formats for this model.
+    // STEP 5
+    // Generate runnable code in other language formats for this model.
 
     // Create a Generator instance.  Note that by default this is the C language.
     auto generator = libcellml::Generator::create();
