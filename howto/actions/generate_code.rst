@@ -1,8 +1,7 @@
 .. _actions_generate_code:
 
-
-Generate runnable code for a ``Model``
-======================================
+Generate runnable code from a model
+===================================
 
 .. contents::
     :local:

@@ -43,17 +43,28 @@ int main(int argc, char **argv)
     }
     std::cout << std::endl;
 
+    // STEP 1
+    // Initialise the runtime parameters: dt is the timestep, n is the number of steps to take.
     double time = 0.0;
     double stepSize = std::stod(args["dt"]);
     int stepCount = std::stoi(args["n"]);
-    auto myVariables = createVariablesArray();
+
+    // STEP 2
+    // Create arrays to hold the state variables, their rates, and the other non-integrated variables.
+    // Note that both the state and rates arrays are the same length.
     auto myStateVariables = createStatesArray();
     auto myRates = createStatesArray();
+    auto myVariables = createVariablesArray();
 
-    initializeStatesAndConstants(myStateVariables, myVariables);
+    // STEP 3
+    // Make use of the access functions provided to initialise the variable arrays.
+    initialiseStatesAndConstants(myStateVariables, myVariables);
     computeComputedConstants(myVariables);
     computeRates(time, myStateVariables, myRates, myVariables);
     computeVariables(time, myStateVariables, myRates, myVariables);
+
+    // STEP 4
+    // Create an output file to save the solution into.
 
     std::cout << "   INITIAL CONDITIONS" << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
@@ -90,6 +101,8 @@ int main(int argc, char **argv)
     }
     outFile << std::endl;
 
+    // STEP 5
+    // Iterate through the solution and perform the integration of the state variables.
 
     // Solution columns in output file
     for (size_t step = 1; step < stepCount; ++step) {
@@ -100,7 +113,11 @@ int main(int argc, char **argv)
             myStateVariables[s] = myStateVariables[s] + myRates[s] * stepSize;
             outFile << "\t" << myStateVariables[s];
         }
-        computeVariables(time, myStateVariables, myRates, myVariables); // update states before updating variables?
+        // The variables in the "myVariables" array are those which do not affect the calculation
+        // of rates or state variables.  They only need to be computed when outputting the 
+        // results of a timestep: if you're not saving every timestep, then you can skip this
+        // until you are.
+        computeVariables(time, myStateVariables, myRates, myVariables); 
         for (size_t s = 0; s < VARIABLE_COUNT; ++s) {
             outFile << "\t" << myVariables[s];
         }
@@ -108,10 +125,15 @@ int main(int argc, char **argv)
     }
     outFile.close();
 
+    // STEP 6
+    // Housekeeping.
+
     deleteArray(myStateVariables);
     deleteArray(myVariables);
     deleteArray(myRates);
 
+    // END
+    
     std::cout << "   OUTPUT" << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
     std::cout << "      The results have been written to:"<<std::endl;

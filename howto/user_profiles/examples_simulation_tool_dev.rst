@@ -10,7 +10,7 @@ Simulation tool developer
 .. include:: ../actions/parse_model.rst
 .. include:: ../actions/resolve_imports.rst
 .. include:: ../actions/validate_model.rst
-.. include:: ../actions/examples_get_issues.rst
-.. include:: ../actions/examples_generate_model.rst
-.. include:: ../actions/examples_alter_generator.rst
-.. include:: ../actions/examples_solve_generated_model.rst
+.. include:: ../actions/generate_code.rst
+.. include :: ../actions/examples_alter_generator.rst
+
+.. include:: ../actions/solve_model.rst
