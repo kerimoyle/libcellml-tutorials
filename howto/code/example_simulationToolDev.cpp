@@ -65,6 +65,7 @@ int main()
     // Create a Validator instance and pass the model for checking.
     auto validator = libcellml::Validator::create();
     validator->validateModel(model);
+    auto isValid = validator->errorCount() == 0;
     printErrorsToTerminal(validator);
 
     // STEP 4

@@ -10,7 +10,3 @@ Thus even if a model is valid, it could still be the equivalent of correctly-spe
 
 Once a model has been passed to a :code:`Validator` instance, the validator's internal logger will contain a list of any of the issues which have been encountered during the checking process. 
 A model can be said to be valid - that is, conforming to the :cellml2:`CellML normative specification <>` - if the validator's logger contains no issues with a level of :code:`ERROR`.
-
-.. include:: ../code_snippets/snippet_validate_model.rst
-
-
