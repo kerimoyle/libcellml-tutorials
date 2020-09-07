@@ -21,5 +21,7 @@
 
       .. literalinclude:: ../code/example_simulationToolDev.py
         :language: python
+        :start-after: # STEP 1
+        :end-before: # STEP 2
       
       Full context: :download:`example_simulationToolDev.py<../code/example_simulationToolDev.py>`

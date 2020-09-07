@@ -4,11 +4,12 @@
 Simulation tool developer
 =========================
 
-.. toctree::
+.. contents::
+   :local:
 
-   ../actions/examples_parse_model.rst
-   ../actions/examples_validate_model.rst
-   ../actions/examples_get_issues.rst
-   ../actions/examples_generate_model.rst
-   ../actions/examples_alter_generator.rst
-   ../actions/examples_solve_generated_model.rst
+.. include:: ../actions/examples_parse_model.rst
+.. include:: ../actions/examples_validate_model.rst
+.. include:: ../actions/examples_get_issues.rst
+.. include:: ../actions/examples_generate_model.rst
+.. include:: ../actions/examples_alter_generator.rst
+.. include:: ../actions/examples_solve_generated_model.rst
