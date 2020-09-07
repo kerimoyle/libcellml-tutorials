@@ -20,6 +20,7 @@
 
 int main()
 {
+STEP1
     // STEP 1.  Parse a CellML file into a model.
 
     // Read the file containing the CellML model into a string.
@@ -35,7 +36,7 @@ int main()
     auto parser = libcellml::Parser::create();
     auto model = parser->parseModel(inFileContents.str());
     printErrorsToTerminal(parser);
-
+STEP2
     // STEP 2.  Resolve the import dependencies (if any) and flatten the model.
 
     if(model->hasUnresolvedImports()) {
