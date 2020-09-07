@@ -10,8 +10,8 @@
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/CMakeLists_solver.txt
-
+      .. literalinclude:: ../code/CMakeLists_Solver.txt
+        
 
     .. tab:: Python snippet
 
