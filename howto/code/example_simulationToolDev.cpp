@@ -20,8 +20,9 @@
 
 int main()
 {
+// STEP 1
 
-    // STEP 1.  Parse a CellML file into a model.
+    // Parse a CellML file into a model.
 
     // Read the file containing the CellML model into a string.
     std::string inFileName = "resources/sine_comparison.cellml";
@@ -37,7 +38,8 @@ int main()
     auto model = parser->parseModel(inFileContents.str());
     printErrorsToTerminal(parser);
 
-    // STEP 2.  Resolve the import dependencies (if any) and flatten the model.
+// STEP 2
+    // Resolve the import dependencies (if any) and flatten the model.
 
     if(model->hasUnresolvedImports()) {
         auto importer = libcellml::Importer::create();
