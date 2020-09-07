@@ -17,6 +17,7 @@
 
       .. literalinclude:: ../code/example_solveGeneratedModel.py
         :language: python
+        :linenos:
         :start-after: # MODULE FROM FILE
         :end-before: # END MODULE FROM FILE
       
