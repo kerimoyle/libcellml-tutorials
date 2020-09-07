@@ -12,7 +12,7 @@ The generated code only represents the mathematical formulation of the model, so
 This integration is not provided, but some basic functions to interact with the model are.
 Depending on whether you're using C++ or Python, the generated code must either be compiled with your solver, or imported as a module.
 
-.. include :: ../code_snippets/snippet_build_solver.rst
+.. include:: ../code_snippets/snippet_build_solver.rst
 
 Set solution parameters
 -----------------------
@@ -60,7 +60,3 @@ The states are then extrapolated from the rates using the Euler approximation st
 In this example we are writing the output at every step, so we also need to update the variables too using the *compute variables* function, and everything is written to the output file.
 
 .. include:: ../code_snippets/snippet_write_output.rst
-
-
-
-
