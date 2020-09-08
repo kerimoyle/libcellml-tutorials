@@ -96,7 +96,6 @@ if __name__ == "__main__":
     # remaining in the model.
     allItemsWithDuplicateId1 = annotator.items('duplicateId1')
     print('After assigning automatic ids there are {} items with an id of "duplicateId1".'.format(annotator.duplicateCount('duplicateId1')))
-    print()
 
     # It's straightforward to use a double loop to automatically assign new and unique ids to
     # any duplicated ids in the model.
@@ -108,7 +107,8 @@ if __name__ == "__main__":
 
     # Get the list of duplicates again.
     duplicatedIds = annotator.duplicateIds()
-    print('There are {} duplicated ids in the model.'.format(len(duplicatedIds)))
+    print('After fixing all duplicates there are {} duplicated ids in the model.'.format(len(duplicatedIds)))
+    print()
 
     # STEP 6
     # Automatically assign id strings to anything without them in the model.
@@ -140,7 +140,7 @@ if __name__ == "__main__":
 
     # Check the dictionary again.
     numberOfIds = len(annotator.dictionary())
-    print('After assigning all automatic ids:, there are {} items with an id attribute.'.format(numberOfIds))
+    print('After assigning all automatic ids, there are {} items with an id attribute.'.format(numberOfIds))
 
     # Completely clear all ids in the model.
     annotator.clearAllIds()
