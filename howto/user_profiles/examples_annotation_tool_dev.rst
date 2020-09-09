@@ -1,14 +1,27 @@
 .. _examples_annotation_tool_dev:
 
-=========================
 Annotation tool developer
 =========================
 
-Full context: :download:`example_annotationToolDev.cpp<../code/example_annotationToolDev.cpp>`
-Full context: :download:`example_annotationToolDev.py<../code/example_annotationToolDev.py>`
+This example walks through the processes involved in preparing a CellML model for annotation.
+Any item in the model which requires annotation needs to have a unique ID string, so the chief business of the :code:`Annotator` class is working with the id attributes.
+In all other parts of libCellML, items are retrieved from their parents using either their index or their name.
+In the :code:`Annotator`, the ID string is used instead.
+Because an item of any type could have an ID attribute, there is no way of knowing what kind of will be returned.
+The class makes use of casting to and from the (C++ only) :cpp_reference:`std::any type<w/cpp/utility/any>` to handle this uncertainty.
+
+.. contents::
+   :local:
+
+Full C++ context: :download:`example_annotationToolDev.cpp<../code/example_annotationToolDev.cpp>`
+
+Full Python context: :download:`example_annotationToolDev.py<../code/example_annotationToolDev.py>`
 
 Parse an existing CellML model 
 ------------------------------
+The first step in any annotation process is to open the model to be annotated.
+Here we use the :code:`Parser` class to read the file, and deserialise the CellML into a :code:`Model` object.
+The CellML file used in this example can be downloaded from :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`.
 
 .. tabs::
 
@@ -26,8 +39,10 @@ Parse an existing CellML model
         :start-after: # STEP 1
         :end-before: # STEP 2
       
-Use an Annotator item to investigate the model 
-----------------------------------------------
+Use an annotator to investigate the model 
+-----------------------------------------
+The :code:`Annotator` class is fundamentally different from other libCellML classes in that it used ID strings (as opposed to names or indices) to retrieve and manipulate items.  
+It can be used to retrieve the ID string and item type to which it pertains, using the *dictionary* function.
 
 .. tabs::
 
@@ -73,6 +88,8 @@ Use an Annotator item to investigate the model
       
 Retrieve items by id (known type) 
 ---------------------------------
+When you know the type of item which is assigned a certain ID, it is straightforward to fetch that item from the :code:`Annotator` using any of the type-specific functions, as shown below.
+A null pointer will be returned if the item does not have the type requested, or if its ID does not exist in the model. 
 
 .. tabs::
 
@@ -96,6 +113,9 @@ Retrieve items by id (known type)
       
 Retrieve items by id (unknown type) 
 -----------------------------------
+It's more likely that you won't know the type of item to which a given ID relates, so will need to use the generic *item* function to retrieve it.  
+This returns two pieces of information: the first is the appropriate :code:`CellMLElements` enum value for the type, and the second is the item itself cast into the :cpp_reference:`std::any type<w/cpp/utility/any>` (in C++).
+In Python, the returned item requires no further transformation.
 
 .. tabs::
 
@@ -120,6 +140,12 @@ Retrieve items by id (unknown type)
       
 Handle duplicated ID attributes
 -------------------------------
+Duplicated IDs in any XML document are not permitted, and CellML is no different.
+There are several tools to support users in removing duplicates from their models.
+The code snippet below uses the annotator to return a set of ID strings which have been duplicated within the model scope, and then uses the collective and generic function *items* to return all of them.
+From here, the items can be assigned an automatically generated ID string which is guaranteed to be unique within the model scope.
+Of course, you can also set the id of these items manually too if you'd rather.
+
 
 .. tabs::
 
@@ -149,8 +175,11 @@ Handle duplicated ID attributes
          After assigning automatic ids there are 0 items with an id of "duplicateId1".
          After fixing all duplicates there are 0 duplicated ids in the model.
       
-Automatically assign unique IDs 
--------------------------------
+Automatically assign unique IDs in bulk 
+---------------------------------------
+In addition to using the automatic ID generation on individual items as shown above, you can also use it for all items of a certain type.
+The example below shows how calling the *assignIds* function for the :code:`CellMLElement COMPONENT` type fills in the missing ID from :code:`component2` without changing the IDs of the other components.
+Finally, IDs for every item in a model can be set with the *assignAllIds* function, and cleared from every item using the *clearAllIds* function. 
 
 .. tabs::
 

@@ -66,6 +66,7 @@ extlinks = {
     'clang': ('https://clang.llvm.org/%s', ''),
     'clcache': ('https://github.com/frerich/clcache/%s', ''),
     'cmake': ('https://cmake.org/%s', ''),
+    'cpp_reference': ('https://en.cppreference.com/%s',''),
     'doxygen': ('http://www.doxygen.nl/%s', ''),
     'euler_method': ('https://en.wikipedia.org/wiki/Euler_method%s', ''),
     'gcc': ('https://gcc.gnu.org/%s', ''),
