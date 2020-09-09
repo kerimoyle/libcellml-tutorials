@@ -33,7 +33,7 @@ int main()
     for(auto const &i : dictionary){
         std::cout << " " << i.first <<" = " << annotator->typeAsString(i.second) << std::endl;
     }
-
+    std::cout << std::endl;
     // STEP 3
     // Retrieve items by their id where the item type is known.
 
@@ -67,7 +67,7 @@ int main()
     
     // In this example reset, resetValue and testValue will be the same because the
     // "taupe" reset value and "mauve" test value are in the "violet" reset item.
-    
+    std::cout << std::endl;
     // STEP 4
     // Dealing with unique id strings where the item has an unknown type.
 
@@ -132,7 +132,7 @@ int main()
         case libcellml::CellMLElement::UNDEFINED:
             break;
     }
-
+    std::cout << std::endl;
     // STEP 5
     // Handling duplicate ID strings.
 
@@ -173,7 +173,7 @@ int main()
     // Get the list of duplicates again.
     duplicatedIds = annotator->duplicateIds();
     std::cout << "There are " << duplicatedIds.size() << " duplicated ids in the model." << std::endl;
-
+    std::cout << std::endl;
     // STEP 6
     // Automatically assign id strings to anything without them in the model.
     // This can be done by item type (eg: all the components, all the resets, etc)
@@ -203,7 +203,7 @@ int main()
 
     // Check the dictionary again.
     numberOfIds = annotator->dictionary().size();
-    std::cout << "After assigning all automatic ids:, there are " << numberOfIds <<" items with an id attribute." << std::endl;
+    std::cout << "After assigning all automatic ids, there are " << numberOfIds <<" items with an id attribute." << std::endl;
 
     // Completely clear all ids in the model.
     annotator->clearAllIds();
