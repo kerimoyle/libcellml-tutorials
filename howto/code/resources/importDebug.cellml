@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.cellml.org/cellml/2.0#" xmlns:cellml="http://www.cellml.org/cellml/2.0#" name="importExample">
+  <component name="importMe">
+    <variable units="dimensionless" name="d" initial_value="e" interface="public_and_private" />
+    <variable units="dimensionless" name="e" interface="public_and_private" />
+    <variable units="dimensionless" name="f" initial_value="2" interface="public_and_private" />
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>d</ci>
+        <apply>
+          <plus/>
+          <ci>e</ci>
+          <ci>f</ci>
+        </apply>
+      </apply>
+    </math>
+  </component>
+</model>
