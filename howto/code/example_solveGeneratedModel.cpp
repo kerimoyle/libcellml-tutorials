@@ -26,23 +26,31 @@ std::map<std::string, std::string> processArguments(int argc, char **argv);
 
 int main(int argc, char **argv)
 {
-    // STEP 1
+    // STEP 0
     // Retrieve the command line arguments.
     std::map<std::string, std::string> args = processArguments(argc, argv);
+    double stepSize = std::stod(args["dt"]);
+    int stepCount = std::stoi(args["n"]);
+    std::string input = args["input"];
 
     std::cout << "-------------------------------------------------------------" << std::endl;
     std::cout << "   SIMPLE SOLVER  " << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
-    std::cout << "       model = " << args["input"] << std::endl;
-    std::cout << "       timestep = " << args["dt"] << std::endl;
-    std::cout << "       number of steps = " << args["n"] << std::endl
+    std::cout << "       model = " << input << std::endl;
+    std::cout << "       timestep = " << stepSize << std::endl;
+    std::cout << "       number of steps = " << stepCount << std::endl
               << std::endl;
 
+    // STEP 1
     // Inside the generated code are structures with information about the 
     // model and its dimensions.  These are:
     //   - VOI_INFO: a dict with the name, units, and component of the variable of integration,
     //   - STATE_INFO: a list of dicts for the state variables,
     //   - VARIABLE_INFO: a list of dicts for the non-state variables. 
+
+    std::cout << "   VARIABLE OF INTEGRATION (units) " << std::endl;
+    std::cout << "      " << VOI_INFO.name << " (" << VOI_INFO.units << ")" <<std::endl 
+              << std::endl;
     std::cout << "   STATE VARIABLES (units) " << std::endl;
     std::cout << "-------------------------------------------------------------" << std::endl;
     for (size_t i = 0; i < STATE_COUNT; ++i) {
@@ -55,8 +63,6 @@ int main(int argc, char **argv)
     // Note that both the rates and the states arrays have the same dimensions,
     // so it's possible to call the createStatesArray() function for both.
     double time = 0.0;
-    double stepSize = std::stod(args["dt"]);
-    int stepCount = std::stoi(args["n"]);
     auto myStateVariables = createStatesArray();
     auto myRates = createStatesArray();
     auto myVariables = createVariablesArray();

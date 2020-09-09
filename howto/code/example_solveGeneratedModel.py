@@ -17,7 +17,7 @@
 import sys
 import importlib
 
-# Command line function
+# COMMAND LINE FUNCTION
 def process_arguments(argv):
 
     if (len(argv) == 1):
@@ -61,7 +61,7 @@ def process_arguments(argv):
         exit(1)
 
     return arg_map
-# End command line function
+# END COMMAND LINE FUNCTION
 
 # MODULE FROM FILE
 def module_from_file(input):
@@ -82,9 +82,20 @@ def module_from_file(input):
     return module
 # END MODULE FROM FILE
 
+# STEP 0
 if __name__ == "__main__":
 
     args = process_arguments(sys.argv)
+    dt = args['dt']
+    n = args['n']
+
+    print('-------------------------------------------------------------')
+    print('   SIMPLE SOLVER')
+    print('-------------------------------------------------------------')
+    print('       model = {}'.format(input))
+    print('       timestep = {}'.format(stepSize)
+    print('       number of steps = {}'.format(stepCount)
+    print()
 
     # STEP 1
     # Retrieve model module from the generated code file.
@@ -93,21 +104,16 @@ if __name__ == "__main__":
     # Inside the 'model' module are structures with information about the 
     # model and its dimensions.  These are:
     #   - VOI_INFO: a dict with the name, units, and component of the variable of integration,
-    #   - STATE_INFO: a list of dicts for the state variables,
-    #   - VARIABLE_INFO: a list of dicts for the non-state variables. 
-    print("\n")
-    print("\n")
-    print("====================================================================")
-    print("   SIMPLE SOLVER: {}".format(args['m']))
-    print("--------------------------------------------------------------------")
-    print("\n")
-    print("   VARIABLE OF INTEGRATION (units, stepsize)")
-    print("--------------------------------------------------------------------")
-    print("      {} ({}, {})".format(model.VOI_INFO['name'],
+    #   - STATE_INFO: a list of similar dicts for the state variables,
+    #   - VARIABLE_INFO: a list of similar dicts for the non-state variables. 
+
+    print('   VARIABLE OF INTEGRATION (units)')
+    print('--------------------------------------------------------------------')
+    print('      {} ({}, {})'.format(model.VOI_INFO['name'],
                                      model.VOI_INFO['units'],
-                                     args['dt']))
-    print("      {} steps".format(args['n']))
-    print("\n")
+                                     dt))
+    print('      {} steps'.format(n))
+    print()
 
     # STEP 2
     # Call module functions to construct the variable arrays.
@@ -125,50 +131,50 @@ if __name__ == "__main__":
     model.compute_rates(0, my_state_variables, my_rates, my_variables)
     model.compute_variables(0, my_state_variables, my_rates, my_variables)
 
-    print("   STATE VARIABLES (units, initial value)")
-    print("--------------------------------------------------------------------")
+    print('   STATE VARIABLES (units, initial value)')
+    print('--------------------------------------------------------------------')
     for i in range(0, model.STATE_COUNT):
-        print("      {} ({}, {})".format(model.STATE_INFO[i]['name'],
+        print('      {} ({}, {})'.format(model.STATE_INFO[i]['name'],
                                          model.STATE_INFO[i]['units'],
                                          my_state_variables[i]))
-    print("\n")
-    print("   VARIABLES (units, initial value)")
-    print("--------------------------------------------------------------------")
+    print()
+    print('   VARIABLES (units, initial value)')
+    print('--------------------------------------------------------------------')
 
     for v in range(0, model.VARIABLE_COUNT):
-        print("      {} ({}, {})".format(model.VARIABLE_INFO[v]['name'],
+        print('      {} ({}, {})'.format(model.VARIABLE_INFO[v]['name'],
                                          model.VARIABLE_INFO[v]['units'],
                                          my_variables[v]))
 
     # STEP 4
     # Prepare to write output to a file during the solution process.
-    row = "iteration\t{}({})".format(
+    row = 'iteration\t{}({})'.format(
         model.VOI_INFO['name'], model.VOI_INFO['units'])
     for s in range(0, model.STATE_COUNT):
-        row += "\t{}({})".format(model.STATE_INFO[s]
+        row += '\t{}({})'.format(model.STATE_INFO[s]
                                  ['name'], model.STATE_INFO[s]['units'])
     for s in range(0, model.VARIABLE_COUNT):
-        row += "\t{}({})".format(model.VARIABLE_INFO[s]
+        row += '\t{}({})'.format(model.VARIABLE_INFO[s]
                                  ['name'], model.VARIABLE_INFO[s]['units'])
-    row += "\n"
+    row += '\n'
 
-    write_file_name = "{}_solution.txt".format(args['m'])
-    write_file = open(write_file_name, "w")
+    write_file_name = '{}_solution.txt'.format(args['m'])
+    write_file = open(write_file_name, 'w')
     write_file.write(row)
 
     # STEP 5
     # Numerically integrate using Euler steps to solve the model.
-    for step in range(0, args['n']):
-        time = step * args['dt']
+    for step in range(0, n):
+        time = step * dt
 
         model.compute_rates(time, my_state_variables, my_rates, my_variables)
 
         # Formatting for output.
-        row = "{}\t{}".format(step, time)
+        row = '{}\t{}'.format(step, time)
         for s in range(0, model.STATE_COUNT):
             my_state_variables[s] = my_state_variables[s] + \
-                my_rates[s] * args['dt']
-            row += "\t{}".format(my_state_variables[s])
+                my_rates[s] * dt
+            row += '\t{}'.format(my_state_variables[s])
 
         # Note that the variables in the my_variables array are those which 
         # are independent of the integration: thus, they only need to be
@@ -180,17 +186,17 @@ if __name__ == "__main__":
 
         # Output the solution.
         for s in range(0, model.VARIABLE_COUNT):
-            row += "\t{}".format(my_variables[s])
+            row += '\t{}'.format(my_variables[s])
 
-        row += "\n"
+        row += '\n'
         write_file.write(row)
 
     write_file.close()
 
     # END
 
-    print("\n")
-    print("   SOLUTION written to {}".format(write_file_name))
-    print("====================================================================")
-    print("\n")
-    print("\n")
+    print()
+    print('   SOLUTION written to {}'.format(write_file_name))
+    print('====================================================================')
+    print()
+    print()

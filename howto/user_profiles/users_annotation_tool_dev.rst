@@ -26,7 +26,6 @@ The class makes use of casting to and from the (C++ only) :cpp_reference:`std::a
 |        └ :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`
 
 
-
 Parse an existing CellML model 
 ------------------------------
 The first step in any annotation process is to open the model to be annotated.
