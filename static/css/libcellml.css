@@ -47,7 +47,7 @@ div[class^="issue"], div[class*=" issue"] > ol {
 .dothis {
     border-left: 5px solid rgb(174, 189, 145);
     background:rgb(242, 249, 227);
-    padding: 3px 3px 3px 8px;
+    padding: 3px 3px 5px 8px;
     margin-top:20px;
     margin-bottom:20px;
     line-height: 24px;
@@ -60,6 +60,10 @@ div[class^="issue"], div[class*=" issue"] > ol {
 
 .dothis > .highlight-console {
     margin: 6px 6px 6px 0;
+}
+
+.dothis > p {
+    margin-bottom:0;
 }
 
 .toggle .header {
@@ -130,11 +134,15 @@ div[class^="issue"], div[class*=" issue"] > ol {
 .gotcha {
     border-left: 5px solid sandybrown;
     background:rgb(255, 243, 206);
-    padding: 3px 3px 3px 8px;
+    padding: 3px 3px 5px 8px;
     margin-top:20px;
     margin-bottom:20px;
     line-height: 24px;
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
+}
+
+.gotcha > p {
+    margin-bottom:0;
 }
 
 .heading2 {
