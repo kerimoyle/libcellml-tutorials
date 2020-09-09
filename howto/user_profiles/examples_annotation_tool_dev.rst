@@ -2,7 +2,6 @@
 
 Annotation tool developer
 =========================
-
 This example walks through the processes involved in preparing a CellML model for annotation.
 Any item in the model which requires annotation needs to have a unique ID string, so the chief business of the :code:`Annotator` class is working with the id attributes.
 In all other parts of libCellML, items are retrieved from their parents using either their index or their name.
@@ -10,18 +9,27 @@ In the :code:`Annotator`, the ID string is used instead.
 Because an item of any type could have an ID attribute, there is no way of knowing what kind of will be returned.
 The class makes use of casting to and from the (C++ only) :cpp_reference:`std::any type<w/cpp/utility/any>` to handle this uncertainty.
 
+**Contents**
 .. contents::
    :local:
 
-Full C++ context: :download:`example_annotationToolDev.cpp<../code/example_annotationToolDev.cpp>`
+| **C++ resources**
+|    ├ :download:`CMakeLists.txt<../code/example_annotationToolDev_CMakeLists.txt>`
+|    ├ :download:`example_annotationToolDev.cpp<../code/example_annotationToolDev.cpp>`
+|    └ resources/
+|        └ :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`
 
-Full Python context: :download:`example_annotationToolDev.py<../code/example_annotationToolDev.py>`
+| **Python resources**
+|    ├ :download:`example_annotationToolDev.py<../code/example_annotationToolDev.py>`
+|    └ resources/
+|        └ :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`
+
+
 
 Parse an existing CellML model 
 ------------------------------
 The first step in any annotation process is to open the model to be annotated.
 Here we use the :code:`Parser` class to read the file, and deserialise the CellML into a :code:`Model` object.
-The CellML file used in this example can be downloaded from :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`.
 
 .. tabs::
 

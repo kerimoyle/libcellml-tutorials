@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     # Create a libCellML Parser, and use it to parse the fileContents
     # string and convert it into a CellML Model structure.
-    read_file = open("sine_comparison.cellml", "r")
+    read_file = open("resources/simulationExample.cellml", "r")
     parser = Parser()
     model = parser.parseModel(read_file.read())
     print_issues_to_terminal(parser)

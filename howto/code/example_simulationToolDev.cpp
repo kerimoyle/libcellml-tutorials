@@ -24,7 +24,7 @@ int main()
     // Parse a CellML file into a model.
 
     // Read the file containing the CellML model into a string.
-    std::string inFileName = "resources/sine_comparison.cellml";
+    std::string inFileName = "resources/simulationExample.cellml";
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
@@ -69,10 +69,10 @@ int main()
     printErrorsToTerminal(validator);
 
     // STEP 4
-    // TODO Analyse the model: check for mathematical and modelling errors.
-    // auto analyser = libcellml::Analyser::create();
-    // analyser->analyseModel(model);
-    // printErrorsToTerminal(analyser);
+    // Analyse the model: check for mathematical and modelling errors.
+    auto analyser = libcellml::Analyser::create();
+    analyser->analyseModel(model);
+    printErrorsToTerminal(analyser);
 
     // STEP 5
     // Generate runnable code in other language formats for this model.
