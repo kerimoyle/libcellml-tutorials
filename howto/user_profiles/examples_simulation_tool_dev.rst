@@ -7,6 +7,7 @@ The code generation functionality in libCellML can be used to transform CellML m
 This example works through that process. 
 
 **Contents**
+
 .. contents::
    :local:
 

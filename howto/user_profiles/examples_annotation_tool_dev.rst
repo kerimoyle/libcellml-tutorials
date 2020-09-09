@@ -10,6 +10,7 @@ Because an item of any type could have an ID attribute, there is no way of knowi
 The class makes use of casting to and from the (C++ only) :cpp_reference:`std::any type<w/cpp/utility/any>` to handle this uncertainty.
 
 **Contents**
+
 .. contents::
    :local:
 

@@ -5,6 +5,7 @@ Model debugger
 This example walks through the process of using the :code:`Validator` and :code:`Analyser` classes to check a CellML model's syntax and mathematical composition.
 
 **Contents**
+
 .. contents::
    :local:
 
