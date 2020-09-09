@@ -39,7 +39,8 @@ Common user pathways
 .. toctree:: List by user profiles
     :maxdepth: 2
 
-    user_profiles/examples_package_dev.rst
-    user_profiles/examples_simulation_tool_dev.rst
-    user_profiles/examples_model_debugger.rst
-    user_profiles/examples_annotation_tool_dev.rst
+    user_profiles/users_package_dev.rst
+    user_profiles/users_model_debugger.rst
+    user_profiles/users_annotation_tool_dev.rst
+    user_profiles/users_simulation_tool_dev.rst
+    user_profiles/users_solver.rst

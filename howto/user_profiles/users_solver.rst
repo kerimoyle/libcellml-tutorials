@@ -142,3 +142,6 @@ These are:
         :start-after: # STEP 1
         :end-before: # STEP 2
 
+Retrieve the generated mathematical model
+-----------------------------------------
+
