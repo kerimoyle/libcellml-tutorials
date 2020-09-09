@@ -7,14 +7,23 @@ This example walks through the process of using the :code:`Validator` and :code:
 .. contents::
    :local:
 
-Full C++ context: :download:`example_modelDebugger.cpp<../code/example_modelDebugger.cpp>`
+**C++ resources**
+    ├ :download:`CMakeLists.txt<../code/example_modelDebugger_CMakeLists.txt>`
+    ├ :download:`example_modelDebugger.cpp<../code/example_modelDebugger.cpp>`
+    └ resources/
+        ├ :download:`debugAnalysisExample.cellml<../code/resources/debugAnalysisExample.cellml>`
+        └ :download:`debugAnalysisExampleImport.cellml<../code/resources/debugAnalysisExampleImport.cellml>`
 
-Full Python context: :download:`example_modelDebugger.py<../code/example_modelDebugger.py>`
+**Python resources**
+    ├ :download:`example_modelDebugger.py<../code/example_modelDebugger.py>`
+    └ resources/
+        ├ :download:`debugAnalysisExample.cellml<../code/resources/debugAnalysisExample.cellml>`
+        └ :download:`debugAnalysisExampleImport.cellml<../code/resources/debugAnalysisExampleImport.cellml>`
 
 Parse an existing CellML model 
 ------------------------------
 Here we use the :code:`Parser` class to read the file, and deserialise the CellML into a :code:`Model` object.
-The CellML file used in this example makes use of imports, so we need to have the main file (:download:`debugAnalysisExample.cellml<../code/resources/debugAnalysisExample.cellml>`) as well as the file which it imports (:download:`importDebug.cellml<../code/resources/importDebug.cellml>`).
+The CellML file used in this example makes use of imports, so we need to have the main file (debugAnalysisExample.cellml) as well as the file which it imports (debugAnalysisExampleImport.cellml).
 
 .. tabs::
 
