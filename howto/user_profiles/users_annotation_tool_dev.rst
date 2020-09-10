@@ -25,7 +25,6 @@ The class makes use of casting to and from the (C++ only) :cpp_reference:`std::a
 |    └ resources/
 |        └ :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`
 
-
 Parse an existing CellML model 
 ------------------------------
 The first step in any annotation process is to open the model to be annotated.
@@ -145,7 +144,6 @@ In Python, the returned item requires no further transformation.
 
          The item with id of "green" has type of "units".
 
-      
 Handle duplicated ID attributes
 -------------------------------
 Duplicated IDs in any XML document are not permitted, and CellML is no different.
@@ -153,7 +151,6 @@ There are several tools to support users in removing duplicates from their model
 The code snippet below uses the annotator to return a set of ID strings which have been duplicated within the model scope, and then uses the collective and generic function *items* to return all of them.
 From here, the items can be assigned an automatically generated ID string which is guaranteed to be unique within the model scope.
 Of course, you can also set the id of these items manually too if you'd rather.
-
 
 .. tabs::
 

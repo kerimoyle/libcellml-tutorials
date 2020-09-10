@@ -135,7 +135,6 @@ int main(int argc, char **argv)
     }
     outFile.close();
 
-    // STEP 6
     // Housekeeping.
 
     deleteArray(myStateVariables);
