@@ -1,4 +1,4 @@
-.. _examples_annotation_tool_dev:
+.. _users_annotation_tool_dev:
 
 Annotation tool developer
 =========================

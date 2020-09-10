@@ -1,4 +1,4 @@
-.. _examples_model_debugger:
+.. _users_model_debugger:
 
 Model debugger
 ==============

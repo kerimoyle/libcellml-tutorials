@@ -1,4 +1,4 @@
-.. _examples_package_dev:
+.. _users_package_dev:
 
 Software developer for a package
 ================================
