@@ -15,12 +15,13 @@ This example works through that process.
 |    ├ :download:`CMakeLists.txt<../code/example_solveGeneratedModel_CMakeLists.txt>`
 |    ├ :download:`example_solveGeneratedModel.cpp<../code/example_solveGeneratedModel.cpp>`
 |    └ resources/
-|        └ :download:`example_solveGeneratedModel.cellml<../code/resources/simulationExample.cellml>`
+|        ├ :download:`sineComparisonExample.c<../code/generated_code/sineComparisonExample.c>`
+|        └ :download:`sineComparisonExample.h<../code/generated_code/sineComparisonExample.h>`
 
 | **Python resources**
 |    ├ :download:`example_solveGeneratedModel.py<../code/example_solveGeneratedModel.py>`
 |    └ resources/
-|        └ :download:`simulationExample.cellml<../code/resources/simulationExample.cellml>`
+|        └ :download:`sineComparisonExample.py<../code/generated_code/sineComparisonExample.py>`
 
 Create a placeholder for the solver
 -----------------------------------
@@ -79,10 +80,13 @@ This step is required so that within the solver code we can :code:`#include` a k
 
     .. tab:: C building and linking
 
-        Navigate into the folder containing 
+        Navigate into the folder containing the generated code :code:`sineComparisonExample.[c,h]` as well as the :code:` example_solveGeneratedModel.cpp` source code from above.
+
         .. code-block:: terminal
         
-            cmake -DINPUT=example_solveGeneratedModel .
+            cmake -DINPUT=sineComparisonExample .
+
+        You should see an output similar to this:
 
         .. code-block:: terminal
 
@@ -102,13 +106,15 @@ This step is required so that within the solver code we can :code:`#include` a k
             -- Detecting CXX compile features - done
 
             1) First use 'make -j' to build the executable
-            2) Then solve by running: ./solve_example_solveGeneratedModel with the arguments:
+            2) Then solve by running: ./solve_sineComparisonExample with the arguments:
             -n  step_total
             -dt step_size
 
             -- Configuring done
             -- Generating done
             -- Build files have been written to: your/file/location/here
+
+        Note that the combined program is now available with the prefix :code:`solve_` before the base file name you provided with the :code:`-DINPUT` argument, and can be run using the instructions given in the printout above.
 
     .. tab:: Python 
 
@@ -142,6 +148,108 @@ These are:
         :start-after: # STEP 1
         :end-before: # STEP 2
 
-Retrieve the generated mathematical model
------------------------------------------
+Allocate space for the solution
+-------------------------------
+Also within the generated code are functions to allocate space for the variables:
 
+- create states array: to construct arrays for storage of the state variables and their rates;
+- create variables array: to construct an array to store the other variables.
+
+.. tabs::
+
+    .. tab:: Python 
+
+      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+        :language: c++
+        :start-after: // STEP 2
+        :end-before: // STEP 3
+
+    .. tab:: Python 
+
+      .. literalinclude:: ../code/example_solveGeneratedModel.py
+        :language: python
+        :start-after: # STEP 2
+        :end-before: # STEP 3
+
+Retrieve the model's mathematical formulation
+---------------------------------------------
+The mathematical equations that govern the model's behaviour can be applied using functions from within the generated code:
+
+- initialise states and constants: does what it says, sets all the initial value attributes;
+- compute computed constants: computes the value of any constants which depend on others;
+- compute variables: calculates those variables whose values depend on the state variables; and
+- compute rates: calculates the rates of change of the state variables.
+
+Note that all model variables which affect the rates' values (and thereby affect the states' values) are updated in the *compute rates* function.
+This means that you only need to call the *compute variables* function when you're saving the output from a step; it does not need to be called for intermediate timesteps.
+
+Before we begin iterating, the values of all variables are calculated.
+
+.. tabs::
+
+    .. tab:: Python 
+
+      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+        :language: c++
+        :start-after: // STEP 3
+        :end-before: // STEP 4
+
+    .. tab:: Python 
+
+      .. literalinclude:: ../code/example_solveGeneratedModel.py
+        :language: python
+        :start-after: # STEP 3
+        :end-before: # STEP 4
+
+Prepare a file for the solution output
+--------------------------------------
+If you have an alternative way to save your solution, you can skip this step.
+Here we create a simple text-delimited file into which the solution can be written at each timestep.
+
+.. tabs::
+
+    .. tab:: Python 
+
+      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+        :language: c++
+        :start-after: // STEP 4
+        :end-before: // STEP 5
+
+    .. tab:: Python 
+
+      .. literalinclude:: ../code/example_solveGeneratedModel.py
+        :language: python
+        :start-after: # STEP 4
+        :end-before: # STEP 5
+
+Perform the integration steps
+-----------------------------
+Finally we iterate through the timesteps, calculating the state variables, and updating the rates each step.
+The solution values and calculated variables are written to the output file.
+
+.. tabs::
+
+    .. tab:: Python 
+
+      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+        :language: c++
+        :start-after: // STEP 5
+        :end-before: // END
+
+    .. tab:: Python 
+
+      .. literalinclude:: ../code/example_solveGeneratedModel.py
+        :language: python
+        :start-after: # STEP 5
+        :end-before: # END
+
+The solution files are written in a tab-delimited format which can be read by your favourite plotting application.
+The plots below were generated using a step size of 0.1 for 100 iterations.
+
+.. figure:: ../images/sineComparison.png
+   :name: sineComparison
+   :alt: Solution to sine comparison model
+   :align: right
+   :figwidth: 8cm
+
+   Plots generated from an Euler solution to the sine comparison model for a step size of 0.1.
