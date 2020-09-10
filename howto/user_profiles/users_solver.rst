@@ -1,6 +1,5 @@
 .. _users_solver:
 
-
 Simulation tool developer: Solver
 =================================
 The code generation functionality in libCellML can be used to transform CellML models into procedural code for simulation.

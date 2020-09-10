@@ -125,6 +125,6 @@ There are four steps to code generation:
         :start-after: # STEP 4
         :end-before: # STEP 5
 
-Interact with generated code
-----------------------------
-A simple solver can interact with the generated code **TODO**.
+Use the generated code to simulate the model
+--------------------------------------------
+Instructions for a simple solver to solve the model can be found on the :ref:`Simulation tool developer: Solver<users_solver>` page.
