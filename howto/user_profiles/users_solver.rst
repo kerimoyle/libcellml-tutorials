@@ -134,7 +134,7 @@ These are:
 
 .. tabs::
 
-    .. tab:: Python 
+    .. tab:: C++ 
 
       .. literalinclude:: ../code/example_solveGeneratedModel.cpp
         :language: c++
@@ -157,7 +157,7 @@ Also within the generated code are functions to allocate space for the variables
 
 .. tabs::
 
-    .. tab:: Python 
+    .. tab:: C++ 
 
       .. literalinclude:: ../code/example_solveGeneratedModel.cpp
         :language: c++
@@ -187,7 +187,7 @@ Before we begin iterating, the values of all variables are calculated.
 
 .. tabs::
 
-    .. tab:: Python 
+    .. tab:: C++ 
 
       .. literalinclude:: ../code/example_solveGeneratedModel.cpp
         :language: c++
@@ -208,7 +208,7 @@ Here we create a simple text-delimited file into which the solution can be writt
 
 .. tabs::
 
-    .. tab:: Python 
+    .. tab:: C++ 
 
       .. literalinclude:: ../code/example_solveGeneratedModel.cpp
         :language: c++
@@ -229,7 +229,7 @@ The solution values and calculated variables are written to the output file.
 
 .. tabs::
 
-    .. tab:: Python 
+    .. tab:: C++ 
 
       .. literalinclude:: ../code/example_solveGeneratedModel.cpp
         :language: c++
