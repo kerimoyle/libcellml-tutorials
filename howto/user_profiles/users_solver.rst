@@ -249,7 +249,6 @@ The plots below were generated using a step size of 0.1 for 100 iterations.
 .. figure:: ../images/sineComparison.png
    :name: sineComparison
    :alt: Solution to sine comparison model
-   :align: right
-   :figwidth: 8cm
+   :align: center
 
    Plots generated from an Euler solution to the sine comparison model for a step size of 0.1.
