@@ -20,14 +20,6 @@ Software developer for a package
 
 
 
-
-
-
-
-
-
-
-
 .. toctree ::
 
 ..    /actions/examples_parse_model.rst
