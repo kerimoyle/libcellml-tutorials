@@ -19,3 +19,4 @@ CMakeLists.txt.user
 # VS Code system files
 .vscode/
 *.profraw
+howto/images/sineComparisonExample_solution.xlsx
