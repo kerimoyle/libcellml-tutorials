@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.cellml.org/cellml/2.0#" xmlns:cellml="http://www.cellml.org/cellml/2.0#" name="debugExample">
+
+  <import xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="debugAnalysisExampleImport.cellml">
+    <component component_ref="importMe" name="importedComponent"/>
+  </import>
+
+  <units name="per_second">
+    <unit exponent="-1" units="second"/>
+  </units>
+
+  <component name="validationErrors">
+    <variable units="dimensionless" name="a" interface="public_and_private" />
+    <variable name="b" interface="public_and_private" initial_value="1" />
+    <variable units="dimensionless" name="iShouldBeNamed_c" interface="public_and_private" />
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>a</ci>
+        <apply>
+          <plus/>
+          <ci>b</ci>
+          <ci>c</ci>
+        </apply>
+      </apply>
+    </math>
+  </component>
+
+  <component name="nonInitialisedStateVariable">
+    <variable interface="public" name="time" units="second"/>
+    <variable name="x" units="dimensionless"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>time</ci>
+          </bvar>
+          <ci>x</ci>
+        </apply>
+        <cn cellml:units="per_second">1</cn>
+      </apply>
+    </math>
+  </component>
+
+  <component name="uncomputedVariable">
+    <variable name="x" units="dimensionless"/>
+  </component>
+
+  <component name="overconstrainedModel">
+    <variable name="x" units="dimensionless"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML">
+      <apply>
+        <eq/>
+        <ci>x</ci>
+        <cn cellml:units="dimensionless">1</cn>
+      </apply>
+      <apply>
+        <eq/>
+        <ci>x</ci>
+        <cn cellml:units="dimensionless">3</cn>
+      </apply>
+    </math>
+  </component>
+  
+</model>
