@@ -10,22 +10,22 @@ For more general debugging use cases, please see the :ref:`Model debugger<users_
 .. contents::
    :local:
 
-| **C++ resources**
-|    ├ :download:`CMakeLists.txt<../code/example_importDebugger_CMakeLists.txt>`
-|    ├ :download:`example_importDebugger.cpp<../code/example_importDebugger.cpp>`
-|    └ resources/
-|        ├ :download:`importerExample1.cellml<../code/resources/importerExample1.cellml>`
-|        ├ :download:`importerExample2a.cellml<../code/resources/importerExample2a.cellml>`
-|        ├ :download:`importerExample2b.cellml<../code/resources/importerExample2b.cellml>`
-|        └ :download:`importerExample3.cellml<../code/resources/importerExample3.cellml>`
+**C++ resources**
+   ├ :download:`CMakeLists.txt<../code/example_importDebugger_CMakeLists.txt>`
+   ├ :download:`example_importDebugger.cpp<../code/example_importDebugger.cpp>`
+   └ resources/
+       ├ :download:`importerExample1.cellml<../code/resources/importerExample1.cellml>`
+       ├ :download:`importerExample2a.cellml<../code/resources/importerExample2a.cellml>`
+       ├ :download:`importerExample2b.cellml<../code/resources/importerExample2b.cellml>`
+       └ :download:`importerExample3.cellml<../code/resources/importerExample3.cellml>`
 
-| **Python resources**
-|    ├ :download:`example_importDebugger.py<../code/example_importDebugger.py>`
-|    └ resources/
-|        ├ :download:`importerExample1.cellml<../code/resources/importerExample1.cellml>`
-|        ├ :download:`importerExample2a.cellml<../code/resources/importerExample2a.cellml>`
-|        ├ :download:`importerExample2b.cellml<../code/resources/importerExample2b.cellml>`
-|        └ :download:`importerExample3.cellml<../code/resources/importerExample3.cellml>`
+**Python resources**
+   ├ :download:`example_importDebugger.py<../code/example_importDebugger.py>`
+   └ resources/
+       ├ :download:`importerExample1.cellml<../code/resources/importerExample1.cellml>`
+       ├ :download:`importerExample2a.cellml<../code/resources/importerExample2a.cellml>`
+       ├ :download:`importerExample2b.cellml<../code/resources/importerExample2b.cellml>`
+       └ :download:`importerExample3.cellml<../code/resources/importerExample3.cellml>`
 
 
 Parse an existing CellML model 
@@ -107,15 +107,15 @@ This can be used to identify mistakes in the original version of the model.
 
     Investigating the flattened model:
     The validator found 4 issues.
-    |   - CellML identifiers must contain one or more basic Latin alphabetic characters.
-    |   - Variable 'i_need_units' does not have a valid units attribute.
-    |   - CellML identifiers must contain one or more basic Latin alphabetic characters.
-    |   - Variable 'i_need_units' does not have a valid units attribute.
+      - CellML identifiers must contain one or more basic Latin alphabetic characters.
+      - Variable 'i_need_units' does not have a valid units attribute.
+      - CellML identifiers must contain one or more basic Latin alphabetic characters.
+      - Variable 'i_need_units' does not have a valid units attribute.
     The analyser found 4 issues.
-    |   - CellML identifiers must contain one or more basic Latin alphabetic characters.
-    |   - Variable 'i_need_units' does not have a valid units attribute.
-    |   - CellML identifiers must contain one or more basic Latin alphabetic characters.
-    |   - Variable 'i_need_units' does not have a valid units attribute.
+      - CellML identifiers must contain one or more basic Latin alphabetic characters.
+      - Variable 'i_need_units' does not have a valid units attribute.
+      - CellML identifiers must contain one or more basic Latin alphabetic characters.
+      - Variable 'i_need_units' does not have a valid units attribute.
 
 Print the model's import dependencies
 -------------------------------------
@@ -134,6 +134,7 @@ We need to create a recursive call to traverse the import hierarchy so that we c
         :end-before: // STEP 5
 
       Define the importing function recursion.
+      This, and the following snippet, should occur above the main function. 
 
       .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
@@ -144,8 +145,8 @@ We need to create a recursive call to traverse the import hierarchy so that we c
 
       .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
-        :start-after: // START PRINT FUNCTION
-        :end-before: // END PRINT FUNCTION
+        :start-after: // START PRINT COMPONENT
+        :end-before: // END PRINT COMPONENT
       
 
     .. tab:: Python 
@@ -155,19 +156,34 @@ We need to create a recursive call to traverse the import hierarchy so that we c
         :start-after: # STEP 4
         :end-before: # STEP 5
 
+      Define the importing function recursion.
+      This, and the following snippet, should occur above the main function.
+
+      .. literalinclude:: ../code/example_importDebugger.py
+        :language: python
+        :start-after: # START IMPORT FUNCTION
+        :end-before: # END IMPORT FUNCTION
+      
+      Simple function to print variables within a component.
+
+      .. literalinclude:: ../code/example_importDebugger.py
+        :language: python
+        :start-after: # START PRINT COMPONENT
+        :end-before: # END PRINT COMPONENT
+
 The code above will print the following to the terminal:
 
 .. code-block:: terminal
 
-    | The import dependency hierarchy is:
-    | - Component: 'importedSideA' imports 'sideA' from importExample2a.cellml
-    |     - Component: 'sideA' imports 'shared' from importExample3.cellml
-    |         - Component: 'shared'
-    |             - Variable: 'i_need_units' has no units
-    | - Component: 'importedSideB' imports 'sideB' from importExample2b.cellml
-    |     - Component: 'sideB' imports 'shared' from importExample3.cellml
-    |         - Component: 'shared'
-    |             - Variable: 'i_need_units' has no units
+    The import dependency hierarchy is:
+    - Component: 'importedSideA' imports 'sideA' from importExample2a.cellml
+        - Component: 'sideA' imports 'shared' from importExample3.cellml
+            - Component: 'shared'
+                - Variable: 'i_need_units' has no units
+    - Component: 'importedSideB' imports 'sideB' from importExample2b.cellml
+        - Component: 'sideB' imports 'shared' from importExample3.cellml
+            - Component: 'shared'
+                - Variable: 'i_need_units' has no units
 
 Fix the errors in the imported model
 ------------------------------------
