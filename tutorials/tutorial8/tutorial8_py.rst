@@ -26,7 +26,7 @@ If you did not complete the relevant tutorials you can copy these files from the
     :local:
 
 This tutorial combines four existing models into one: two are the ion channel models for potassium and sodium which were created in :ref:`Tutorial 6<tutorial6_py>` and :ref:`Tutorial 7<tutorial7>` respectively, plus two new ones provided here.
-The goal of the tutorial is to combine the coponents of these models such that the three currents - potassium, sodium, and a new leakage current - are children of the membrane component.
+The goal of the tutorial is to combine the components of these models such that the three currents - potassium, sodium, and a new leakage current - are children of the membrane component.
 
 Step 0: Set the stage
 =====================
@@ -56,7 +56,7 @@ As we go through the rest of the tutorial, you will be adding variables to this 
 
 Step 2: Parse the membrane model
 ================================
-Parsing and importing can - in certain cases - result in the same situtation (an instantiated model), but the have very different philisophies behind them.
+Parsing and importing can - in certain cases - result in the same situation (an instantiated model), but the have very different philosophies behind them.
 You can read more about that under the link below.
 
 .. include:: asides/import_vs_parse.rst
@@ -69,7 +69,7 @@ Our first job is to parse the membrane model so that we can edit it accordingly.
 
 .. container:: dothis
 
-    **2.a** Create a :code:`Parser` and use it to deserialse the contents of the :code:`tutorial8_MembraneModel.cellml` file supplied into a new model instance.
+    **2.a** Create a :code:`Parser` and use it to deserialise the contents of the :code:`tutorial8_MembraneModel.cellml` file supplied into a new model instance.
     This will be referred to as the "model", and the one you created in step 1.a as the "controller model" or "parameters component".
     This model will - after modification - represent the Hodgkin-Huxley model, so rename it appropriately.
 
@@ -85,7 +85,7 @@ Our first job is to parse the membrane model so that we can edit it accordingly.
         [0]: V [mV]                  # integrated variable, initialised by parameters component
         [1]: t [ms]                  # base variable of integration
         [2]: i_K [microA_per_cm2]    # potassium current, calculated by imported component
-        [3]: i_Na [microA_per_cm2]   # sodium current, calculated by imported componnet
+        [3]: i_Na [microA_per_cm2]   # sodium current, calculated by imported component
         [4]: i_L [microA_per_cm2]    # leakage current, calculated by imported component
         [5]: i_stim [microA_per_cm2] # stimulus current, specified locally in the membrane
         [6]: Cm [microF_per_cm2]     # constant, membrane capacitance, initialised by the parameters component
@@ -246,7 +246,7 @@ Membrane parameters:
 
     **6.b** Link the units of the controller model, and use the validator to check that it contains no errors.
 
-.. contianer:: dothis
+.. container:: dothis
 
     **6.c** Create a printer, and use it to serialise your controller model.
     Write it to a file named appropriately: you will need to use its name in the next step.
