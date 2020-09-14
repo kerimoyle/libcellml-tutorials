@@ -47,6 +47,7 @@ Resolve the imports and flatten the model
 -----------------------------------------
 At present the :code:`Analyser` class ignores the contents of imported items.  
 This example shows a model which has imports, so we need to resolve these and flatten the model before any analysis can happen.
+For detailed information on debugging models with imports, please see the :ref:`Import debugging<users_import_debugger>` examples.
 
 .. tabs::
 

@@ -101,18 +101,18 @@ int main()
     // We don't expect either of these to report any issues.
     auto validator = libcellml::Validator::create();
     validator->validateModel(originalModel);
-    std::cout << "The validator found " << validator->issueCount() << " issues." << std::endl;
+
+    std::cout << "Investigating the original model:" << std::endl;
+    std::cout << " - the validator found " << validator->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < validator->issueCount(); ++i) {
-        auto issue = validator->issue(i);
-        std::cout << issue->description() << std::endl;
+        std::cout << "    - " << validator->issue(i)->description() << std::endl;
     }
 
     auto analyser = libcellml::Analyser::create();
     analyser->analyseModel(originalModel);
-    std::cout << "The analyser found " << analyser->issueCount() << " issues." << std::endl;
+    std::cout << " - the analyser found " << analyser->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < analyser->issueCount(); ++i) {
-        auto issue = analyser->issue(i);
-        std::cout << issue->description() << std::endl;
+        std::cout << "    - " << analyser->issue(i)->description() << std::endl;
     }
 
     // Create a flattened version for diagnostics.
@@ -120,17 +120,16 @@ int main()
 
     // Repeat the validation and analysis above on the flattened model.
     validator->validateModel(flatModel);
+    std::cout << std::endl << "Investigating the flattened model:" << std::endl;
     std::cout << "The validator found "<<validator->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < validator->issueCount(); ++i) {
-        auto issue = validator->issue(i);
-        std::cout << issue->description() << std::endl;
+        std::cout << "    - " << validator->issue(i)->description() << std::endl;
     }
 
     analyser->analyseModel(flatModel);
     std::cout << "The analyser found "<<analyser->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < analyser->issueCount(); ++i) {
-        auto issue = analyser->issue(i);
-        std::cout << issue->description() << std::endl;
+        std::cout << "    - " << analyser->issue(i)->description() << std::endl;
     }
 
     // STEP 4 
@@ -139,6 +138,7 @@ int main()
     // Because of the import structure, this could be hidden inside the importing
     // hierarchy.  We can use a recursive function to print information on the imported
     // items within the unflattened hierarchy. 
+    std::cout << "The import dependency hierarchy is:" << std::endl;
     std::string spacer = "";
     printImportDependencies(originalModel, spacer);
 
@@ -149,9 +149,9 @@ int main()
     // To fix this, we need to fix the model inside the "importExample3.cellml" file.
     // When the originalModel's imports were resolved, this model was added to the
     // library in the Importer.  We can retrieve the model from there for repair.
-    std::cout << "The Importer contains " <<importer->libraryCount() << " models:"<< std::endl;
+    std::cout << "The importer library contains " <<importer->libraryCount() << " models:"<< std::endl;
     for(size_t i = 0; i < importer->libraryCount(); ++i) {
-        std::cout << "  Model " << i << ": " << importer->key(i) << std::endl;
+        std::cout << "  model " << i << ": " << importer->key(i) << std::endl;
     }
     // Retrieve from the library by key.
     auto importedModel = importer->library("resources/importExample3.cellml");
@@ -164,17 +164,16 @@ int main()
     flatModel = importer->flattenModel(originalModel);
 
     validator->validateModel(flatModel);
+    std::cout << std::endl << "Investigating the flattened model:" << std::endl;
     std::cout << "The validator found "<<validator->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < validator->issueCount(); ++i) {
-        auto issue = validator->issue(i);
-        std::cout << issue->description() << std::endl;
+        std::cout << "    - " << validator->issue(i)->description() << std::endl;
     }
 
     analyser->analyseModel(flatModel);
     std::cout << "The analyser found "<<analyser->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < analyser->issueCount(); ++i) {
-        auto issue = analyser->issue(i);
-        std::cout << issue->description() << std::endl;
+        std::cout << "    - " << analyser->issue(i)->description() << std::endl;
     }
 
     // STEP 6
