@@ -37,14 +37,14 @@ Here we use the :code:`Parser` class to read the file, and deserialise the CellM
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importUser.cpp
+      .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
         :start-after: // STEP 1
         :end-before: // STEP 2
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importUser.py
+      .. literalinclude:: ../code/example_importDebugger.py
         :language: python
         :start-after: # STEP 1
         :end-before: # STEP 2
@@ -59,14 +59,14 @@ Since the :code:`Importer` class contains a logger, we can check that the proces
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importUser.cpp
+      .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
         :start-after: // STEP 2
         :end-before: // STEP 3
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importUser.py
+      .. literalinclude:: ../code/example_importDebugger.py
         :language: python
         :start-after: # STEP 2
         :end-before: # STEP 3
@@ -87,14 +87,14 @@ This can be used to identify mistakes in the original version of the model.
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importUser.cpp
+      .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
         :start-after: // STEP 3
         :end-before: // STEP 4
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importUser.py
+      .. literalinclude:: ../code/example_importDebugger.py
         :language: python
         :start-after: # STEP 3
         :end-before: # STEP 4
@@ -128,21 +128,21 @@ We need to create a recursive call to traverse the import hierarchy so that we c
 
       Call a recursive function from the main function.
 
-      .. literalinclude:: ../code/example_importUser.cpp
+      .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
         :start-after: // STEP 4
         :end-before: // STEP 5
 
       Define the importing function recursion.
 
-      .. literalinclude:: ../code/example_importUser.cpp
+      .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
         :start-after: // START IMPORT FUNCTION
         :end-before: // END IMPORT FUNCTION
       
       Simple function to print variables within a component.
 
-      .. literalinclude:: ../code/example_importUser.cpp
+      .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
         :start-after: // START PRINT FUNCTION
         :end-before: // END PRINT FUNCTION
@@ -150,7 +150,7 @@ We need to create a recursive call to traverse the import hierarchy so that we c
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importUser.py
+      .. literalinclude:: ../code/example_importDebugger.py
         :language: python
         :start-after: # STEP 4
         :end-before: # STEP 5
@@ -186,14 +186,14 @@ Here we print the list of the importer's library keys to demonstrate, and then r
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importUser.cpp
+      .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
         :start-after: // STEP 5
         :end-before: // STEP 6
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importUser.py
+      .. literalinclude:: ../code/example_importDebugger.py
         :language: python
         :start-after: # STEP 5
         :end-before: # STEP 6
@@ -208,14 +208,14 @@ In this case - and for demonstration purposes only - we print it to a separate n
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importUser.cpp
+      .. literalinclude:: ../code/example_importDebugger.cpp
         :language: c++
         :start-after: // STEP 6
         :end-before: // END
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importUser.py
+      .. literalinclude:: ../code/example_importDebugger.py
         :language: python
         :start-after: # STEP 6
         :end-before: # END
