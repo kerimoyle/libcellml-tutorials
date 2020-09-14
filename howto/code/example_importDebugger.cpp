@@ -9,60 +9,6 @@
 
 #include <libcellml>
 
-// START PRINT COMPONENT
-void printComponent(const libcellml::ComponentPtr &component, std::string &spacer) {
-    for(size_t v = 0; v < component->variableCount(); ++v){
-        auto variable = component->variable(v);
-        std::cout << spacer << "        - Variable: '"<<variable->name()<<"'";
-        if(variable->units()) {
-            std::cout << " has units '" << variable->units()->name() << "'" << std::endl;
-        }
-        else {
-            std::cout << " has no units" << std::endl;
-        }
-    }
-}
-// END PRINT COMPONENT
-
-// START IMPORT FUNCTION
-void printImportDependencies(const libcellml::ModelPtr &model, std::string &spacer) {
-
-    // Function to recursively iterate through the import dependencies in this model, and 
-    // print their URL and what they require to the terminal.
-
-    // If there are no imports, then print the concrete items.
-    if(model->hasUnresolvedImports() || (model->importSourceCount() == 0)) {
-        for(size_t u = 0; u < model->unitsCount(); ++u) {
-            std::cout << spacer << "    - Units: '"<<model->units(u)->name() << "'" << std::endl;
-        }
-        for(size_t c = 0; c < model->componentCount(); ++c) {
-            std::cout << spacer << "    - Component: '"<<model->component(c)->name() << "'" << std::endl;
-            printComponent(model->component(c), spacer);
-        }
-        return;
-    }
-
-    for(size_t i = 0; i < model->importSourceCount(); ++i) {
-        // Each import source should have its own model pointer attached now.
-        auto importSource = model->importSource(i);
-        for(size_t u = 0; u < importSource->unitsCount(); ++u){
-            std::cout << spacer << "    - Units: '"<<importSource->units(u)->name() 
-                      << "' imports '"<<importSource->units(u)->importReference()<<"' from "<<importSource->url()<<std::endl;
-        }
-        for(size_t c = 0; c < importSource->componentCount(); ++c){
-            auto component = importSource->component(c);
-            std::cout << spacer << "    - Component: '"<<component->name() 
-                      << "' imports '"<<component->importReference()<<"' from "<<importSource->url()<<std::endl;
-            printComponent(component, spacer);
-        }
-        std::string bigSpacer = spacer + "    ";
-
-        // Recursively process imports.
-        printImportDependencies(importSource->model(), bigSpacer);
-    }
-}
-// END IMPORT FUNCTION
-
 int main()
 {
     // STEP 1
@@ -84,21 +30,27 @@ int main()
     importer->resolveImports(originalModel, "resources/");
 
     // Check for issues.
+    std::cout << std::endl;
     std::cout << "The importer found "<<importer->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < importer->issueCount(); ++i) {
         auto issue = importer->issue(i);
         std::cout << issue->description() << std::endl;
     }
+    std::cout << std::endl;
 
     // STEP 3
     // The analysis tools - the Validator and Analyser - will read only the submitted
     // model; they do not look into any of the imported items, so they can't check them.
     // In order to retain the import structure but be able to use the diagnostic tools, 
-    // we can create a flattened copy of the model for testing.  This can be used to
-    // identify mistakes in the unflattened model too.  
+    // we can either:
+    //  - create a flattened copy of the model for testing, which can be used to
+    //    identify mistakes in the unflattened model too; or
+    //  - make use of the Importer's library to iterate through all of the model's 
+    //    imported dependencies, and check them individually.
 
     // Create a Validator and Analyser and submit the original, unflattened model.
-    // We don't expect either of these to report any issues.
+    // We don't expect either of these to report any issues because all of the mistakes are
+    // in imported models which are not read by these classes.
     auto validator = libcellml::Validator::create();
     validator->validateModel(originalModel);
 
@@ -115,49 +67,107 @@ int main()
         std::cout << "    - " << analyser->issue(i)->description() << std::endl;
     }
 
-    // Create a flattened version for diagnostics.
+    // Create a flattened version to demonstrate the diagnostics.
     auto flatModel = importer->flattenModel(originalModel);
 
-    // Repeat the validation and analysis above on the flattened model.
+    // Repeat the validation and analysis above on the flattened model, noting that the 
+    // flat model contains errors that were hidden in the original one.
     validator->validateModel(flatModel);
     std::cout << std::endl << "Investigating the flattened model:" << std::endl;
+    std::cout << "The validator found " << validator->issueCount() << " issues." << std::endl;
+    for(size_t i = 0; i < validator->issueCount(); ++i) {
+        std::cout << "    - " << validator->issue(i)->description() << std::endl;
+    }
+    analyser->analyseModel(flatModel);
+    std::cout << "The analyser found "<< analyser->issueCount() << " issues." << std::endl;
+    for(size_t i = 0; i < analyser->issueCount(); ++i) {
+        std::cout << "    - " << analyser->issue(i)->description() << std::endl;
+    }
+    std::cout << std::endl;
+
+    // STEP 4
+    // The Validator and Analyser classes process only the contents of concrete items (ie: not the contents of 
+    // imported items) of a model.
+    // After successfully resolving a model's imports using an importer, the importer will store instances
+    // of all of the dependencies of the resolved model.  These are accessible through the "library" function.
+    // We can ascertain that all of import dependencies meet the diagnostic checks of the Validator and the 
+    // Analyser individually by iterating through the importer's library.
+
+    // Loop through the importer library and call the validator for each model.  
+    for(size_t m = 0; m < importer->libraryCount(); ++m) {
+
+        // Retrieve the library model by index, m.
+        validator->validateModel(importer->library(m));
+
+        // Retrieve the key under which it's stored: this will be the URL at which the imported model was found.
+        std::cout << "The validator found "<<validator->issueCount() << " issues in " <<importer->key(m) << std::endl;
+        for(size_t i = 0; i < validator->issueCount(); ++i) {
+            std::cout << "    - " << validator->issue(i)->description() << std::endl;
+        }
+    }
+    std::cout << std::endl;
+
+    // STEP 5
+    // Fix the validation errors in the imported files.
+    // According to the printout above, we need to add units to the "iNeedUnits"
+    // variable, to be found inside the "importExample3.cellml" file.
+    // To fix this, we need to fix the model inside the "importExample3.cellml" file.
+    // When the originalModel's imports were resolved, this model was added to the
+    // library in the Importer.  We can retrieve the model from there for repair.
+
+    // Retrieve from the library by key.  Note the inclusion of the directory used to
+    // resolve imports for the original model is included in the key string.
+    auto importedModel1 = importer->library("resources/importExample3.cellml");
+
+    // Add units to the variable that needs them to fix the validation error.
+    importedModel1->component("importThisOneToo")->variable("iNeedUnits")->setUnits("dimensionless");
+
+    // Check that the issues have been fixed.
+    validator->validateModel(importedModel1);
+    std::cout << std::endl << "Investigating the repaired model:" << std::endl;
     std::cout << "The validator found "<<validator->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < validator->issueCount(); ++i) {
         std::cout << "    - " << validator->issue(i)->description() << std::endl;
     }
 
-    analyser->analyseModel(flatModel);
-    std::cout << "The analyser found "<<analyser->issueCount() << " issues." << std::endl;
+    // STEP 6
+    // Repeat steps 4 and 5 using the Analyser instead of the Validator.
+
+    // Loop through the importer library and call the analyser for each model.  
+    for(size_t m = 0; m < importer->libraryCount(); ++m) {
+
+        // Retrieve the library model by index, m.
+        analyser->analyseModel(importer->library(m));
+
+        // Retrieve the key under which it's stored: this will be the URL at which the imported model was found.
+        std::cout << "The analyser found " << analyser->issueCount() << " issues in " <<importer->key(m) << std::endl;
+        for(size_t i = 0; i < analyser->issueCount(); ++i) {
+            std::cout << "    - " << analyser->issue(i)->description() << std::endl;
+        }
+    }
+    std::cout << std::endl;
+
+    // Fix the error by adding a MathML block to the component named "concreteComponent" 
+    // in the "importExample2b.cellml" model.
+    auto importedModel2 = importer->library("resources/importExample2b.cellml");
+    std::string mathml = 
+        "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" xmlns:cellml=\"http://www.cellml.org/cellml/2.0#\">\n"
+        "  <apply>\n"
+        "    <eq/>\n"
+        "    <ci>iAmNotCalculated</ci>\n"
+        "    <cn cellml:units=\"dimensionless\">3</cn>\n"
+        "  </apply>\n"
+        "</math>\n";
+    importedModel2->component("concreteComponent")->setMath(mathml);
+
+    // Check that the issue has been fixed.
+    analyser->analyseModel(importedModel2);
+    std::cout << std::endl << "Investigating the repaired model:" << std::endl;
+    std::cout << "The analyser found " << analyser->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < analyser->issueCount(); ++i) {
         std::cout << "    - " << analyser->issue(i)->description() << std::endl;
     }
-
-    // STEP 4 
-    // The issues reported boil down to just one issue really: that there is a 
-    // variable named "i_need_units" that requires units to be defined.  
-    // Because of the import structure, this could be hidden inside the importing
-    // hierarchy.  We can use a recursive function to print information on the imported
-    // items within the unflattened hierarchy. 
-    std::cout << "The import dependency hierarchy is:" << std::endl;
-    std::string spacer = "";
-    printImportDependencies(originalModel, spacer);
-
-    // STEP 5
-    // Fix the error in the imported file, and remake the flattened model for checking.
-    // According to the printout above, we need to add units to the "i_need_units"
-    // variable, to be found inside the "importExample3.cellml" file.
-    // To fix this, we need to fix the model inside the "importExample3.cellml" file.
-    // When the originalModel's imports were resolved, this model was added to the
-    // library in the Importer.  We can retrieve the model from there for repair.
-    std::cout << "The importer library contains " <<importer->libraryCount() << " models:"<< std::endl;
-    for(size_t i = 0; i < importer->libraryCount(); ++i) {
-        std::cout << "  model " << i << ": " << importer->key(i) << std::endl;
-    }
-    // Retrieve from the library by key.
-    auto importedModel = importer->library("resources/importExample3.cellml");
-
-    // Add units to the variable that needs them.
-    importedModel->component("shared")->variable("i_need_units")->setUnits("dimensionless");
+    std::cout << std::endl;
 
     // Recreate the flattened model, and check it again.  This will use the updated model
     // in the importer library as its source.
@@ -176,20 +186,27 @@ int main()
         std::cout << "    - " << analyser->issue(i)->description() << std::endl;
     }
 
-    // STEP 6
+    // STEP 7
     // Print the collection of repaired import models to files.
-    // NOTE that this file should be named "importExample3.cellml" in order
-    // for the other files to find it.  It is not named that here so that this
-    // example code can be used more than once with the same outputs. 
-    auto printer = libcellml::Printer::create();
-    std::string serialisedModelString = printer->printModel(importedModel);
+    // To avoid over-writing existing files, we'll write the corrected files to a separate
+    // directory called "repaired/".  Note that the relationship between the files needs
+    // to be maintained, so even files that have not been changed need to be written
+    // to the new location.
 
-    // Write the serialised string to a file.
-    std::string outFileName = "resources/importExample3_repaired.cellml";
-    std::ofstream outFile(outFileName);
-    outFile << serialisedModelString;
+    // Write the original model to a file. 
+    auto printer = libcellml::Printer::create();
+    std::ofstream outFile("repaired/resources/importExample1.cellml");
+    outFile << printer->printModel(originalModel);
     outFile.close();
-    std::cout << "The corrected model has been written to " << outFileName << std::endl;
+
+    // Write the dependency models in the importer library to files.
+    for(size_t m = 0; m < importer->libraryCount(); ++m) {
+        outFile.open("repaired/" + importer->key(m));
+        outFile << printer->printModel(importer->library(m));
+        outFile.close();
+    }
+
+    std::cout << "The corrected models has been written to the 'repaired/resources/' directory" << std::endl;
 
     // END
 }

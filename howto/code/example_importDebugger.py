@@ -1,54 +1,5 @@
 from libcellml import Analyser, Importer, Model, Parser, Printer, Validator
 
-# START PRINT COMPONENT
-def print_component(component, spacer):
-    for v in range(0, component.variableCount()):
-        variable = component.variable(v)
-        if(variable.units()):
-            print("{}        - Variable: '{}' has units '{}'.".format(spacer, variable.name(), variable.units().name()))
-        else:
-            print("{}        - Variable: '{}' has no units.".format(spacer, variable.name()))
-
-# END PRINT COMPONENT
-
-# START IMPORT FUNCTION
-def print_import_dependencies(model, spacer):
-    # Function to recursively iterate through the import dependencies in this model, and 
-    # print their URL and what they require to the terminal.
-
-    # If there are no imports, then print the concrete items.
-    if model.hasUnresolvedImports() or (model.importSourceCount() == 0):
-        for u in range(0, model.unitsCount()):
-            print("{}    - Units: '{}'".format(spacer, model.units(u).name()))
-        for c in range(0, model.componentCount()):
-            print("{}    - Component: '{}'".format(spacer, model.component(c).name()))
-        return
-    
-    for i in range(0, model.importSourceCount()):
-        # Each import source should have its own model pointer attached now.
-        import_source = model.importSource(i)
-        for u in range(0, import_source.unitsCount()):
-            print("{}    - Units: '{}' imports '{}' from '{}'".format(
-                spacer, 
-                import_source.units(u).name(), 
-                import_source.units(u).importReference(), 
-                import_source.url()))
-        
-        for c in range(0, import_source.componentCount()):
-            component = import_source.component(c)
-            print("{}    - Component: '{}' imports '{}' from '{}'".format(
-                spacer, 
-                component.name(), 
-                component.importReference(), 
-                import_source.url()))
-            print_component(component, spacer)
-
-        big_spacer = spacer + "    "
-        # Recursively process imports.
-        print_import_dependencies(import_source.model(), big_spacer)
-
-# END IMPORT FUNCTION
-
 if __name__ == '__main__':
     # STEP 1
     # Parse an existing CellML model from a file.
@@ -109,63 +60,122 @@ if __name__ == '__main__':
         print('    - {}'.format(analyser.issue(i).description()))
     print()
 
-    # STEP 4 
-    # The issues reported boil down to just one issue really: that there is a 
-    # variable named 'i_need_units' that requires units to be defined.  
-    # Because of the import structure, this could be hidden inside the importing
-    # hierarchy.  We can use a recursive function to print information on the imported
-    # items within the unflattened hierarchy. 
-    print('The import dependency hierarchy is:')
-    spacer = ''
-    print_import_dependencies(original_model, spacer)
+    # STEP 4
+    # The Validator and Analyser classes process only the contents of concrete items (ie: not the contents of 
+    # imported items) of a model.
+    # After successfully resolving a model's imports using an importer, the importer will store instances
+    # of all of the dependencies of the resolved model.  These are accessible through the "library" function.
+    # We can ascertain that all of import dependencies meet the diagnostic checks of the Validator and the 
+    # Analyser individually by iterating through the importer's library.
+
+    # Loop through the importer library and call the validator for each model.  
+    for m in range(0, importer.libraryCount()):
+
+        # Retrieve the library model by index, m.
+        validator.validateModel(importer.library(m))
+
+        # Retrieve the key under which it's stored: this will be the URL at which the imported model was found.
+        print("The validator found {} issues in {}.".format(validator.issueCount(),importer.key(m)))
+        for i in range(0, validator.issueCount()):
+            print("    - {}".format(validator.issue(i).description()))
+
     print()
 
     # STEP 5
-    # Fix the error in the imported file, and remake the flattened model for checking.
-    # According to the printout above, we need to add units to the 'i_need_units'
-    # variable, to be found inside the 'importExample3.cellml' file.
-    # To fix this, we need to fix the model inside the 'importExample3.cellml' file.
+    # Fix the validation errors in the imported files.
+    # According to the printout above, we need to add units to the "iNeedUnits"
+    # variable, to be found inside the "importExample3.cellml" file.
+    # To fix this, we need to fix the model inside the "importExample3.cellml" file.
     # When the original_model's imports were resolved, this model was added to the
     # library in the Importer.  We can retrieve the model from there for repair.
-    print('The importer contains {} models:'.format(importer.libraryCount()))
-    for i in range(0, importer.libraryCount()):
-        print('  - model {}: {}'.format(i, importer.key(i)))
+
+    # Retrieve from the library by key.  Note the inclusion of the directory used to
+    # resolve imports for the original model is included in the key string.
+    imported_model1 = importer.library('resources/importExample3.cellml')
+
+    # Add units to the variable that needs them to fix the validation error.
+    imported_model1.component('importThisOneToo').variable('iNeedUnits').setUnits('dimensionless')
+
+    # Check that the issues have been fixed.
+    validator.validateModel(imported_model1)
+    print('\nInvestigating the repaired model:')
+    print('The validator found {} issues.'.format(validator.issueCount()))
+
+    for i in range(0, validator.issueCount()):
+        print('    - {}'.format(validator.issue(i).description()))
     print()
 
-    # Retrieve from the library by key.
-    imported_model = importer.library('resources/importExample3.cellml')
+    # STEP 6
+    # Repeat steps 4 and 5 using the Analyser instead of the Validator.
 
-    # Add units to the variable that needs them.
-    imported_model.component('shared').variable('i_need_units').setUnits('dimensionless')
+    # Loop through the importer library and call the analyser for each model.  
+    for m in range(0, importer.libraryCount()):
+
+        # Retrieve the library model by index, m.
+        analyser.analyseModel(importer.library(m))
+
+        # Retrieve the key under which it's stored: this will be the URL at which the imported model was found.
+        print('The analyser found {} issues in {}.'.format(analyser.issueCount(),importer.key(m)))
+        for i in range(0, analyser.issueCount()):
+            print('    - {}'.format(analyser.issue(i).description()))
+    
+    print()
+
+    # Fix the error by adding a MathML block to the component named "concreteComponent" 
+    # in the "importExample2b.cellml" model.
+    imported_model2 = importer.library("resources/importExample2b.cellml")
+    mathml = \
+        '<math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">\n'\
+        '  <apply>\n'\
+        '    <eq/>\n'\
+        '    <ci>iAmNotCalculated</ci>\n'\
+        '    <cn cellml:units="dimensionless">3</cn>\n'\
+        '  </apply>\n'\
+        '</math>'
+    imported_model2.component('concreteComponent').setMath(mathml)
+
+    # Check that the issue has been fixed.
+    analyser.analyseModel(imported_model2)
+    print('\nInvestigating the repaired model:')
+    print('The analyser found {} issues.'.format(analyser.issueCount()))
+    for i in range(0,analyser.issueCount()):
+        print('    - {}'.format(analyser.issue(i).description()))
+    print()
 
     # Recreate the flattened model, and check it again.  This will use the updated model
     # in the importer library as its source.
     flat_model = importer.flattenModel(original_model)
 
-    print('Testing the re-flattened model:')
     validator.validateModel(flat_model)
-    print(' - the validator found {} issues'.format(validator.issueCount()))
+    print('\nInvestigating the flattened model:')
+    print('The validator found {} issues.'.format(validator.issueCount()))
     for i in range(0, validator.issueCount()):
-        print('    - {}'.format(validator.issue(i).description()))
-    
-    analyser.analyseModel(original_model)
-    print(' - the analyser found {} issues'.format(analyser.issueCount()))
+        print('    - '.format(validator.issue(i).description()))
+
+    analyser.analyseModel(flat_model)
+    print('The analyser found {} issues.'.format(analyser.issueCount()))
     for i in range(0, analyser.issueCount()):
-        print('    - {}'.format(analyser.issue(i).description()))
-    print()
+        print('    - '.format(analyser.issue(i).description()))
 
-    # STEP 6
+    # STEP 7
     # Print the collection of repaired import models to files.
-    # NOTE that this file should be named 'importExample3.cellml' in order
-    # for the other files to find it.  It is not named that here so that this
-    # example code can be used more than once with the same outputs. 
+    # To avoid over-writing existing files, we'll write the corrected files to a separate
+    # directory called "repaired/".  Note that the relationship between the files needs
+    # to be maintained, so even files that have not been changed need to be written
+    # to the new location.
+
+    # Write the original model to a file.
     printer = Printer()
-    model_string = printer.printModel(imported_model)
-
-    # Write the serialised string to a file.
-    write_file = open("importExample3_repaired.cellml", "w")
+    model_string = printer.printModel(original_model)
+    write_file = open("repaired/resources/importExample1.cellml", "w")
     write_file.write(model_string)
+    
+    # Write the dependency models in the importer library to files.
+    for m in range(0, importer.libraryCount()):
+        write_file = open("repaired/"+importer.key(m), "w")
+        model_string = printer.printModel(importer.library(m))
+        write_file.write(model_string)
+    
+    print('The corrected models has been written to the \'repaired/resources/\' directory') 
 
-    print("The corrected model has been written to 'importExample3_repaired.cellml'.")
-    print()
     # END
