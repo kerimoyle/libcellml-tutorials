@@ -41,6 +41,7 @@ Common user pathways
 
     user_profiles/users_package_dev.rst
     user_profiles/users_model_debugger.rst
+    user_profiles/users_import_debugger.rst
     user_profiles/users_annotation_tool_dev.rst
     user_profiles/users_simulation_tool_dev.rst
     user_profiles/users_solver.rst
