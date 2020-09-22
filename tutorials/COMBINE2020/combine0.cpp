@@ -159,8 +159,8 @@ int main()
     //  3.c Create a component which will store the hard-coded values for initialisation.
     //      Name it "gateParameters", and add it to the top-level gate component as a sibling
     //      of the gateEquations component.
-    auto parameters = libcellml::Component::create("gateParameters");
-    gate->addComponent(parameters);
+    auto gateParameters = libcellml::Component::create("gateParameters");
+    gate->addComponent(gateParameters);
 
     //  3.d Create appropriate variables in this component, and set their units.
     //      Use the setInitialValue function to initialise them.
@@ -168,24 +168,24 @@ int main()
         auto X = libcellml::Variable::create("X");
         X->setUnits("dimensionless");
         X->setInitialValue(0);
-        parameters->addVariable(X);
+        gateParameters->addVariable(X);
 
         auto alpha = libcellml::Variable::create("alpha");
         alpha->setUnits(per_ms);
         alpha->setInitialValue(0.1);
-        parameters->addVariable(alpha);
+        gateParameters->addVariable(alpha);
 
         auto beta = libcellml::Variable::create("beta");
         beta->setUnits(per_ms);
         beta->setInitialValue(0.5);
-        parameters->addVariable(beta);
+        gateParameters->addVariable(beta);
     }
    
     //  3.e Specify a variable equivalence between the gateEquations variables and the parameter variables.
     //      Validate the model again, expecting errors related to the variable interface types.
-    libcellml::Variable::addEquivalence(gateEquations->variable("X"), parameters->variable("X"));
-    libcellml::Variable::addEquivalence(gateEquations->variable("alpha_X"), parameters->variable("alpha"));
-    libcellml::Variable::addEquivalence(gateEquations->variable("beta_X"), parameters->variable("beta"));
+    libcellml::Variable::addEquivalence(gateEquations->variable("X"), gateParameters->variable("X"));
+    libcellml::Variable::addEquivalence(gateEquations->variable("alpha_X"), gateParameters->variable("alpha"));
+    libcellml::Variable::addEquivalence(gateEquations->variable("beta_X"), gateParameters->variable("beta"));
 
     validator->validateModel(model);
     std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
@@ -195,15 +195,10 @@ int main()
     std::cout << std::endl;
 
     //  3.f Set the variable interface type according to the recommendation from the validator.
+    //      This can either be done individually using the Variable::setInterfaceType() function, or 
+    //      en masse for all the model's interfaces using the Model::fixVariableInterfaces() function.
     //      Validate and analyse again, expecting no errors. 
     model->fixVariableInterfaces();
-
-    // gateEquations->variable("alpha_X")->setInterfaceType("public");
-    // gateEquations->variable("beta_X")->setInterfaceType("public");
-    // gateEquations->variable("X")->setInterfaceType("public");
-    // parameters->variable("alpha")->setInterfaceType("public");
-    // parameters->variable("beta")->setInterfaceType("public");
-    // parameters->variable("X")->setInterfaceType("public");
 
     validator->validateModel(model);
     std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
@@ -218,6 +213,15 @@ int main()
         std::cout << analyser->issue(i)->description() << std::endl;
     }
     std::cout << std::endl;
+
+    //  3.g  GOTCHA! Even though both the Analyser and Validator have given their approval
+    //       to the model as it stands, in order for this to be reusable by other models in 
+    //       the future, we need to be able to connect to the time variable.  By default the
+    //       interface type given to a variable is "none", which prevents connection.  Thus,
+    //       we need to over-ride the "fixed" interface type for the time variable and set it
+    //       to "public".
+    //       Set the time variable in the gate equations component to have a public interface.
+    gateEquations->variable("t")->setInterfaceType("public");
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 4: Serialise and output the model" << std::endl;

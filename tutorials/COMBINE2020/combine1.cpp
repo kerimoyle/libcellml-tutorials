@@ -26,7 +26,6 @@ int main()
     std::string mathHeader = "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" xmlns:cellml=\"http://www.cellml.org/cellml/2.0#\">\n";
     std::string mathFooter = "</math>";
 
-
     // Overall the model structure will be:
     // model: PotassiumChannelModel
     //     component: controller <-- imported from PotassiumChannelController.cellml
@@ -47,7 +46,6 @@ int main()
 
     //  1.c Add the component to the model.
     model->addComponent(kChannel);
-
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 2: Define the potassium channel equations component " << std::endl;
@@ -311,21 +309,21 @@ int main()
     //      - the name of the item to import.  This is called the "import reference" and 
     //        is stored by the destination item.
 
-    //  3.a Create an ImportSource item and set its URL to be "GateModel.cellml".
+    //  4.a Create an ImportSource item and set its URL to be "GateModel.cellml".
     auto gateModelImportSource = libcellml::ImportSource::create();
     gateModelImportSource->setUrl("GateModel.cellml");
 
-    //  3.b Create a destination component for the imported gate component, and add this to 
+    //  4.b Create a destination component for the imported gate component, and add this to 
     //      the nGateEquations component. 
     auto importedGate = libcellml::Component::create("importedGate");
     nGateEquations->addComponent(importedGate);
 
-    //  3.c Set the import reference on the component you just created to be the name
+    //  4.c Set the import reference on the component you just created to be the name
     //      of the component in the GateModel.cellml file that you want to use.  In this
     //      example, it is "gateEquations".
     importedGate->setImportReference("gateEquations");
 
-    //  3.d Associate the import source with the component using the setImportSource function.
+    //  4.d Associate the import source with the component using the setImportSource function.
     //      Note that this step also makes the import source available to other items through the 
     //      Model::importSource(index) function.  This way the same model file can be used as a 
     //      source for more than one item.
@@ -334,7 +332,7 @@ int main()
     // Note that we are deliberately not importing the parameters component in the GateModel.cellml
     // file, since we will be setting our own values of its variables.
 
-    //  3.e Validate the model and confirm that there are no issues.
+    //  4.e Validate the model and confirm that there are no issues.
     validator->validateModel(model);
     std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < validator->issueCount(); ++i) {
@@ -343,23 +341,24 @@ int main()
     std::cout << std::endl;
 
     std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 4: Specify imports for the controller component " << std::endl;
+    std::cout << "   STEP 5: Specify imports for the controller component " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    //  STEP ??: Repeat Step 4 to import a controller component.  This should be 
-    //           at the top of the encapsulation hierarchy, and should import the component
-    //           named "controller" from the file "PotassiumChannelController.cellml".
+    //  STEP 5: Repeat Step 4 to import a controller component.  This should be 
+    //          at the top of the encapsulation hierarchy, and should import the component
+    //          named "controller" from the file "PotassiumChannelController.cellml".
 
+    //  5.a Repeat steps 4.a-d for the controller component.  Put it at the top level of
+    //      the encapsulation hierarchy.
     auto controllerImportSource = libcellml::ImportSource::create();
     controllerImportSource->setUrl("PotassiumChannelController.cellml");
 
     auto controller = libcellml::Component::create("controller");
-    model->addComponent(controller);
-
     controller->setImportReference("controller");
     controller->setImportSource(controllerImportSource);
+    model->addComponent(controller);
 
-    //  3.e Validate the model and confirm that there are no issues.
+    //  5.b Validate the model and confirm that there are no issues.
     validator->validateModel(model);
     std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < validator->issueCount(); ++i) {
@@ -372,10 +371,10 @@ int main()
     //  is valid (using the Validator) and solvable (using the Analyser).
     
     std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 5: Analyse the model " << std::endl;
+    std::cout << "   STEP 6: Analyse the model " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 5: We will introduce the Analyser class here so that its use as a debugging 
+    // STEP 6: We will introduce the Analyser class here so that its use as a debugging 
     //         tool can be demonstrated.  Of course, we know ahead of time that there
     //         is still a lot of connections to be created between the components, but
     //         an analyser can help us to find them.
@@ -386,11 +385,11 @@ int main()
     // A utility function printModelToTerminal() has been provided to help you to see what's going 
     // on inside your model.
 
-    //  7.a Create an Analyser item and pass it the model for checking with the analyseModel function.
+    //  6.a Create an Analyser item and pass it the model for checking with the analyseModel function.
     auto analyser = libcellml::Analyser::create();
     analyser->analyseModel(model);
 
-    //  7.b The analyser is similar to the Validator and keeps a record of issues it encounters.
+    //  6.b The analyser is similar to the Validator and keeps a record of issues it encounters.
     //      Retrieve these and print to the terminal, just as you've done for the validator.
     //      Expect messages related to un-computed variables.
     std::cout << "The analyser has found " << analyser->issueCount() << " issues." << std::endl;
@@ -402,46 +401,53 @@ int main()
     //  Even though all of the messages we see are "variable not calculated" errors, we can divide
     //  them into different categories:
     //  - those variables which are constants whose value has not been set yet;
+    //  - those variables whose calculation depends on as-yet un-calculated variables;
     //  - those variables which need to be connected to where their calculation happens; and
-    //  - those variables which actually haven't been calculated anywhere.
+    //  - those variables which aren't present in any equation.
 
     std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 6: Define the constants " << std::endl;
+    std::cout << "   STEP 7: Define the constants " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    //  7.c Let's fill in the missing constants first.  Use the printModelToTerminal() function to show 
-    //      your current model contents. This should
+    // STEP 7: Define the variables which will have a constant value in the simulation.
+
+    //  7.a Use the printModelToTerminal() function to show your current model contents. This should
     //      show that we hve currently got variables only in the nGateEquations and potassiumChannelEquations
     //      components.  These need to have sibling parameters components created to hold any hard-coded
     //      values or initial conditions that are required.
-    printModelToTerminal(model, true);
+    // printModelToTerminal(model, true);
 
-    //  Create parameters siblings components for the equations components, and add the variables that 
-    //  they will require.  These are:
+    //  7.b Create parameters siblings components for the equations components, and add the variables that 
+    //      they will require.  These are:
     //      - potassium channel parameters
     //          - ??, E_K (-85)
-    //          - conductance, g_K ()
+    //          - conductance, g_K (??)
     //      - nGate parameters
     //          - initial value for n (dimensionless)
+    //      You can either do this by creating the variables from scratch (as in Step 3.d) but
+    //      because these are intended to be duplicates of existing variables, but in another 
+    //      component, we can simply add a cloned variable to the parameters component.
+    //      Create parameters components for the equations components, and add cloned versions of
+    //      any variables which need to be given a value into the new parameters components.
     auto kChannelParameters = libcellml::Component::create("potassiumChannelParameters");
     kChannel->addComponent(kChannelParameters);
     kChannelParameters->addVariable(kChannelEquations->variable("E_K")->clone());
     kChannelParameters->addVariable(kChannelEquations->variable("g_K")->clone());
-    kChannelParameters->addVariable(kChannelEquations->variable("n")->clone());
+    // kChannelParameters->addVariable(kChannelEquations->variable("n")->clone());
 
     auto nGateParameters = libcellml::Component::create("nGateParameters");
     nGate->addComponent(nGateParameters);
     nGateParameters->addVariable(nGateEquations->variable("n")->clone());
 
-    // In order for other encapsulating components to access these variables, they also need to have
-    // intermediate variables in the nGate or potassium channel components too.  This is only true
-    // of variables that you want to be available to the outside.  In this example, we need to add
-    // the variable "n" to the nGate in order that its parent (the potassium channel equations) can 
-    // access it.
+    //  7.c In order for other encapsulating components to access these variables, they also need to have
+    //      intermediate variables in the nGate or potassium channel components too.  This is only true
+    //      of variables that you want to be available to the outside.  In this example, we need to add
+    //      the variable "n" to the nGate in order that its parent (the potassium channel equations) can 
+    //      access it.
     nGate->addVariable(nGateEquations->variable("n")->clone());
 
-    // Create variable connections between these variables and their counterparts in the equations
-    // components.  Validate, expecting errors related to missing or incorrect interface types.
+    //  7.d Create variable connections between these variables and their counterparts in the equations
+    //      components.  Validate, expecting errors related to missing or incorrect interface types.
     libcellml::Variable::addEquivalence(kChannelParameters->variable("E_K"), kChannelEquations->variable("E_K"));
     libcellml::Variable::addEquivalence(kChannelParameters->variable("g_K"), kChannelEquations->variable("g_K"));
     libcellml::Variable::addEquivalence(nGate->variable("n"), nGateEquations->variable("n"));
@@ -453,9 +459,9 @@ int main()
     }
     std::cout << std::endl;
 
-    // Set the required interface types as listed by the validator.  This can be done manually using the 
-    // Variable::setInterfaceType() function, or automatically using the Model::fixVariableInterfaces()
-    // function.  Validate again, expecting no validation errors.
+    //  7.e Set the required interface types as listed by the validator.  This can be done individually using the 
+    //      Variable::setInterfaceType() function, or automatically using the Model::fixVariableInterfaces()
+    //      function.  Validate again, expecting no validation errors.
     model->fixVariableInterfaces();
 
     validator->validateModel(model);
@@ -465,14 +471,16 @@ int main()
     }
     std::cout << std::endl;
     
-    //  If we were to analyse the model again now we would we still have the same set of errors 
-    //  as earlier as we haven't given a value to any of our parameters.  Use the Variable::setInitialValue()
-    //  function to give these values to the following variables in the parameters components:
-    //  - potassium channel parameters:
-    //      - E_K = -85 mV
-    //      - g_K = 36 milliS_per_cm2
-    //  Analyse the model again, expecting that the calculation errors related to these constants have 
-    //  been solved.
+    //  7.f If we were to analyse the model again now we would we still have the same set of errors 
+    //      as earlier as we haven't given a value to any of our parameters.  Use the Variable::setInitialValue()
+    //      function to give these values to the following variables in the parameters components:
+    //      - potassium channel parameters:
+    //          - E_K = -85 [mV]
+    //          - g_K = 36 [milliS_per_cm2]
+    //      - nGate parameters
+    //          - n = 0.325 []
+    //      Analyse the model again, expecting that the calculation errors related to these constants have 
+    //      been solved.
     kChannelParameters->variable("E_K")->setInitialValue(-85);
     kChannelParameters->variable("g_K")->setInitialValue(36);
     nGateParameters->variable("n")->setInitialValue(0.325);
@@ -485,31 +493,31 @@ int main()
     std::cout << std::endl;
 
     std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 5: Connect the 'input' variables " << std::endl;
+    std::cout << "   STEP 8: Connect the 'input' variables " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    //  Looking at the variables listed we can see that some of our "external" or "input"
+    // STEP 8: Looking at the variables listed we can see that some of our "external" or "input"
     //  variables are listed more than once.  These are the voltage V and time t.  Time
     //  is needed in every equations component, including the imported gate component.
     //  Voltage is needed by the potassium channel and nGate equations components.
 
-    //  Print the model to the terminal and notice the components which contain V and t 
-    //  variables.  Connections between the variables in any two components are only possible
-    //  when those components are in a sibling or parent/child relationship.  We can see from
-    //  the printed structure that the top-level potassiumChannel component doesn't have any 
-    //  variables, and neither does the nGate component.  We'll need to create intermediate
-    //  variables in those components to allow connections to be made through them.  We'll
-    //  also need to add voltage to the potassium channel parameters component so that
-    //  its value can be set (in the absence of an external stimulus voltage).
+    //  8.a Print the model to the terminal and notice the components which contain V and t 
+    //      variables.  Connections between the variables in any two components are only possible
+    //      when those components are in a sibling-sibling or parent-child relationship.  We can see from
+    //      the printed structure that the top-level potassiumChannel component doesn't have any 
+    //      variables, and neither does the nGate component.  We'll need to create intermediate
+    //      variables in those components to allow connections to be made through them.  
+    printModelToTerminal(model);
 
-    //  5.a Create dummy variables for time and voltage using the cloning technique described earlier.
+    //  8.b Create dummy variables for time and voltage using the cloning technique described in 
+    //      Step 7.b, and add a clone to each appropriate component.
     kChannel->addVariable(kChannelEquations->variable("t")->clone());
     kChannel->addVariable(kChannelEquations->variable("V")->clone());
     nGate->addVariable(kChannelEquations->variable("t")->clone());
     nGate->addVariable(kChannelEquations->variable("V")->clone());
     kChannelParameters->addVariable(kChannelEquations->variable("V")->clone());
 
-    //  5.b Connect these variables to their counterparts as needed.
+    //  8.c Connect these variables to their counterparts as needed.
     libcellml::Variable::addEquivalence(nGate->variable("t"), nGateEquations->variable("t"));
     libcellml::Variable::addEquivalence(nGate->variable("V"), nGateEquations->variable("V"));
     libcellml::Variable::addEquivalence(nGate->variable("t"), kChannelEquations->variable("t"));
@@ -518,8 +526,9 @@ int main()
     libcellml::Variable::addEquivalence(kChannel->variable("V"), kChannelEquations->variable("V"));
     libcellml::Variable::addEquivalence(kChannelParameters->variable("V"), kChannelEquations->variable("V"));
 
-    //  5.c Fix the variable interfaces and validate the model, expecting no errors.
+    //  8.d Fix the variable interfaces and validate the model, expecting no errors.
     model->fixVariableInterfaces();
+
     validator->validateModel(model);
     std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < validator->issueCount(); ++i) {
@@ -527,23 +536,9 @@ int main()
     }
     std::cout << std::endl;
 
-    printModelToTerminal(model);
-
-    std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 5: Connect the 'calculated' variables " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
-
-    libcellml::Variable::addEquivalence(kChannelParameters->variable("n"), kChannelEquations->variable("n"));
-    libcellml::Variable::addEquivalence(nGateParameters->variable("n"), nGateEquations->variable("n"));
-    libcellml::Variable::addEquivalence(kChannelEquations->variable("n"), nGate->variable("n"));
-    libcellml::Variable::addEquivalence(nGate->variable("n"), nGateEquations->variable("n"));
-
-    model->fixVariableInterfaces();
-
-    std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 6: Connect to imported components " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
-
+    //  8.e Analyse the model and expect that errors related to voltage and time now occur only in the
+    //      top-level potassium channel component.  Because this needs to be connected to the imported
+    //      controller component, they'll be addressed later in Step 10.
     analyser->analyseModel(model);
     std::cout << "The analyser has found " << analyser->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < analyser->issueCount(); ++i) {
@@ -551,30 +546,71 @@ int main()
     }
     std::cout << std::endl;
 
-    //  STEP ??:
-    //  At this point, we have made all the connections we can between existing variables and components. 
+
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 9: Connect the 'calculated' variables " << std::endl;
+    std::cout << "----------------------------------------------------------" << std::endl;
+
+    // STEP 9: Now we need to make sure that all of the calculated variables can move through
+    //         the model properly.  In this example, the only calculated variable is n, the gate
+    //         status.  This is calculated by solving the ODE in the nGate equations component,
+    //         but needs to be initialised by the nGate parameters component, and its value
+    //         passed back to the potassium channel equations component. 
+
+    //  9.a Make the required variable connections as described above.
+    libcellml::Variable::addEquivalence(nGateParameters->variable("n"), nGateEquations->variable("n"));
+    libcellml::Variable::addEquivalence(kChannelEquations->variable("n"), nGate->variable("n"));
+    libcellml::Variable::addEquivalence(nGate->variable("n"), nGateEquations->variable("n"));
+
+    //  9.b Fix the variable interfaces for the model, and validate, expecting no errors.
+    model->fixVariableInterfaces();
+
+    validator->validateModel(model);
+    std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
+    for(size_t i = 0; i < validator->issueCount(); ++i) {
+        std::cout << validator->issue(i)->description() << std::endl;
+    }
+    std::cout << std::endl;
+
+    //  9.c Analyse the model, expecting that the errors related to the n variable have been resolved.
+    analyser->analyseModel(model);
+    std::cout << "The analyser has found " << analyser->issueCount() << " issues." << std::endl;
+    for(size_t i = 0; i < analyser->issueCount(); ++i) {
+        std::cout << analyser->issue(i)->description() << std::endl;
+    }
+    std::cout << std::endl;
+
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 10: Connect to imported components " << std::endl;
+    std::cout << "----------------------------------------------------------" << std::endl;
+
+    //  STEP 10:
+    //  At this point, we have made all the connections we can between existing variables and components.
+    //  (You can verify this for yourself by printing your model to the terminal again if you like.) 
     //  Now the problem we have is that we need to connect to variables inside imported components, 
-    //  but these don't exist in our model yet: the import sources that we created in steps ?? and ??
+    //  but these don't exist in our model yet: the import sources that we created in Steps 4 and 5
     //  are simply a recipe; they don't actually create anything.
+    printModelToTerminal(model);
 
     //  In order to connect to variables in imported components, we can create dummy variables inside them.
     //  These will be overwritten when the imports are resolved and the model flattened, at which time
     //  the imported variables will replace the dummy ones.  As with other steps, we have a choice here.
-    //  We can manually create variables, or clone existing ones, into the destination components we have.
-    //  Alternatively we can make use of the Importer class to help us manage these.
+    //  We can manually create variables or clone existing ones into the destination components we have
+    //  already created; or we can make use of the Importer class to help us manage these. We're going to 
+    //  do the latter now.
 
-    //  5.a Create an Importer item.
+    //  10.a Create an Importer item.
     auto importer = libcellml::Importer::create();
 
-    //  5.b Pass the model and the path to the GateModel.cellml file into the Importer::resolveImports
+    //  10.b Pass the model and the path to the GateModel.cellml file into the Importer::resolveImports
     //      function.  This triggers the importer to go searching for all of the information required
     //      by this model's imports, even through multiple generations of import layers.
     //      It also instantiates each of those requirements into its own library.
     //      You could use the Model::hasUnresolvedImports() function to test whether the operation was
-    //      successful or not.
+    //      successful or not; expecting it to be true before resolution, and false afterwards.
     importer->resolveImports(model, "");
 
-    //  5.c The Importer class contains a logger (just like the Validator), so needs to be checked for 
+    //  10.c The Importer class contains a logger (just like the Validator), so needs to be checked for 
     //      issues.  
     //      Check for issues and print any found to the terminal - we do not expect any at this stage.
     std::cout << "The importer has found " << importer->issueCount() << " issues." << std::endl;
@@ -583,12 +619,12 @@ int main()
     }
     std::cout << std::endl;
 
-    //  5.d The components that we want to reuse from the GateModel.cellml and PotassiumChannelController.cellml
-    //      are now available to us in two ways:
-    //      - through the model() function of the destination component's ImportSource item; or
-    //      - as an item in the importer's library.  The library items can be retrieved either by index
-    //        or by key, where the key is the name of the file that was resolved.  
-    //      (optional) Iterate through the items in the library (Importer::libraryCount() will give you
+    //  10.d The components that we want to reuse from the GateModel.cellml and PotassiumChannelController.cellml
+    //       are now available to us in two ways:
+    //       - through the model() function of the destination component's ImportSource item; or
+    //       - as an item in the importer's library.  The library items can be retrieved either by index
+    //         or by key, where the key is the name of the file that was resolved.  
+    //       (optional) Iterate through the items in the library (Importer::libraryCount() will give you
     //                 the total), and print its keys to the terminal.  The keys can be retrieved as a 
     //                 string from the Importer::key(index) function.  This should contain one model.
     std::cout << "The importer has " << importer->libraryCount() << " models in the library." << std::endl;
@@ -597,18 +633,19 @@ int main()
     }
     std::cout << std::endl;
 
-    //  5.e We can simply use a clone of the imported components to define dummy variables in the 
-    //      destination component.
-    //      Create dummy components from the resolved imported components. You can get these from the 
-    //      library or from the import source's model (or one of each, to prove it works either way!).
+    //  10.e We can simply use a clone of the imported components to define dummy variables in the 
+    //       destination component.
+    //       Create dummy components from the resolved imported components. You can get these from the 
+    //       library or from the import source's model (or one of each, to prove to yourself that it works
+    //       either way!).
     auto dummyGate = importedGate->importSource()->model()->component(importedGate->importReference())->clone();
     auto dummyController = importer->library("PotassiumChannelController.cellml")->component(controller->importReference())->clone();
 
-    //  5.f Iterate through the variables in the dummy component, and add each to the destination
-    //      component.     
-    //      GOTCHA: Note that when an item is added to a new parent, it is automatically removed from 
+    //  10.f Iterate through the variables in each dummy component, and add a clone of each variable 
+    //       to the destination component.     
+    //       GOTCHA: Note that when an item is added to a new parent, it is automatically removed from 
     //         its original parent.  Iterating through a set of children is best done in descending
-    //         index order or using a while loop so that child items are not skipped.
+    //         index order or using a while loop so that child items are not skipped as the indices change.
     while(dummyGate->variableCount()) {
         importedGate->addVariable(dummyGate->variable(0));
     }
@@ -616,16 +653,16 @@ int main()
         controller->addVariable(dummyController->variable(0));
     }
 
-    //  5.g Connect all the variables in the nGateEquations component to the dummy variables
-    //      in the imported gate component.
-    //      These connections should be:
-    //      - (nGateEquations component : importedGate component)
+    //  10.g Connect all the variables in the nGate equations component to the dummy variables
+    //       in the imported gate component.
+    //       These connections should be:
+    //       - (nGate equations component : imported gate component)
     //          - n : X
     //          - alpha_n : alpha_X
     //          - beta_n : beta_X
     //          - t : t
-    //      Repeat for the controller component and the potassium channel component.
-    //      Fix the variable interfaces and validate the model, expecting there to be no errors.
+    //       Repeat for the controller component and the potassium channel component.
+    //       Fix the variable interfaces and validate the model, expecting there to be no errors.
     libcellml::Variable::addEquivalence(nGateEquations->variable("n"), importedGate->variable("X"));
     libcellml::Variable::addEquivalence(nGateEquations->variable("alpha_n"), importedGate->variable("alpha_X"));
     libcellml::Variable::addEquivalence(nGateEquations->variable("beta_n"), importedGate->variable("beta_X"));
@@ -657,17 +694,16 @@ int main()
     // but that's totally fine.
 
     std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 7: Output the model " << std::endl;
+    std::cout << "   STEP 11: Output the model " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    //  7.a Create a Printer instance and use it to serialise the model.  This creates a string
-    //      containing the CellML-formatted version of the model.  Write this to a file called
-    //     "PotassiumChannelModel.cellml".
+    //  11.a Create a Printer instance and use it to serialise the model.  This creates a string
+    //       containing the CellML-formatted version of the model.  Write this to a file called
+    //      "PotassiumChannelModel.cellml".
     auto printer = libcellml::Printer::create();
     std::ofstream outFile("PotassiumChannelModel.cellml");
     outFile << printer->printModel(model);
     outFile.close();
 
     std::cout << "The created model has been written to PotassiumChannelModel.cellml" << std::endl;
-
 }
