@@ -628,7 +628,7 @@ int main()
     //                 the total), and print its keys to the terminal.  The keys can be retrieved as a 
     //                 string from the Importer::key(index) function.  This should contain one model.
     std::cout << "The importer has " << importer->libraryCount() << " models in the library." << std::endl;
-    for(size_t i = 0; i < importer->libraryCount(); ++i){
+    for(size_t i = 0; i < importer->libraryCount(); ++i) {
         std::cout << " library("<<i<<") = " << importer->key(i) << std::endl;
     }
     std::cout << std::endl;
@@ -670,7 +670,17 @@ int main()
     libcellml::Variable::addEquivalence(controller->variable("t"), kChannel->variable("t"));
     libcellml::Variable::addEquivalence(controller->variable("V"), kChannel->variable("V"));
 
+    //  10.h Make sure that the output variable from this component - the potassium current - 
+    //       is available at the top level, and with a public interface.  You'll need to create
+    //       a dummy variable in the potassium channel component and link it appropriately.
+    kChannel->addVariable(kChannelEquations->variable("i_K")->clone());
+    libcellml::Variable::addEquivalence(kChannelEquations->variable("i_K"), kChannel->variable("i_K"));
+
     model->fixVariableInterfaces();
+
+    // KRM TODO
+    kChannel->variable("i_K")->setInterfaceType("public_and_private");
+
     validator->validateModel(model);
     std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < validator->issueCount(); ++i) {
@@ -704,6 +714,8 @@ int main()
     std::ofstream outFile("PotassiumChannelModel.cellml");
     outFile << printer->printModel(model);
     outFile.close();
+
+    printModelToTerminal(model);
 
     std::cout << "The created model has been written to PotassiumChannelModel.cellml" << std::endl;
 }

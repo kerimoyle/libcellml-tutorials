@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<model xmlns="http://www.cellml.org/cellml/2.0#" name="Controller">
-  <units name="microA_per_cm2">
-    <unit prefix="micro" units="ampere"/>
-    <unit exponent="-2" prefix="centi" units="metre"/>
-  </units>
+<model xmlns="http://www.cellml.org/cellml/2.0#" name="PotassiumChannelController">
   <units name="ms">
     <unit prefix="milli" units="second"/>
   </units>
+  <units name="mV">
+    <unit prefix="milli" units="volt"/>
+  </units>
+  <units name="milliS_per_cm2">
+    <unit prefix="milli" units="siemens"/>
+    <unit exponent="-2" prefix="centi" units="metre"/>
+  </units>
   <component name="controller">
-    <variable name="i_stim" units="microA_per_cm2" interface="public_and_private"/>
     <variable name="t" units="ms" interface="public_and_private"/>
+    <variable name="V" units="mV" interface="public_and_private"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML"
       xmlns:cellml="http://www.cellml.org/cellml/2.0#">
       <apply>
         <eq/>
-        <ci>i_stim</ci>
+        <ci>V</ci>
         <piecewise>
           <piece>
-            <cn cellml:units="microA_per_cm2">0</cn>
+            <cn cellml:units="mV">0</cn>
             <apply>
               <lt/>
               <ci>t</ci>
-              <cn cellml:units="ms">1</cn>
+              <cn cellml:units="ms">5</cn>
             </apply>
           </piece>
           <piece>
-            <cn cellml:units="microA_per_cm2">0</cn>
+            <cn cellml:units="mV">0</cn>
             <apply>
               <gt/>
               <ci>t</ci>
-              <cn cellml:units="ms">1.2</cn>
+              <cn cellml:units="ms">15</cn>
             </apply>
           </piece>
           <otherwise>
-            <cn cellml:units="microA_per_cm2">100</cn>
+            <cn cellml:units="mV">-85</cn>
           </otherwise>
         </piecewise>
       </apply>
