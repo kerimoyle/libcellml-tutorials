@@ -1,11 +1,12 @@
 /**
- * COMBINE2020: Creating a generic gate model
+ * COMBINE2020 libCellML Tutorial 1: Creating a generic gate model
  *
  *  By the time you have worked through this tutorial you will be able to:
  *      - Assemble a model using the API; 
- *      - Use the diagnostic Validator class to identify errors in the model's syntax; 
- *      - Use the diagnostic Analyser class to identify errors in the model's 
- *        mathematical construction; and
+ *      - Use the diagnostic Validator class to identify errors in the 
+ *        model's syntax; 
+ *      - Use the diagnostic Analyser class to identify errors in the 
+ *        model's mathematical construction; and
  *      - Serialise the model to CellML format for output.
  */
 
@@ -24,7 +25,7 @@ int main()
     std::cout << "   STEP 1: Setup the model  " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 1: Create a Model item
+    // STEP 1: Create a Model item.
 
     //  1.a The first step is to create a Model item which will later contain the component and 
     //      the units it needs.  
@@ -48,7 +49,7 @@ int main()
     model->addComponent(gate);
 
     std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 2: Create the gateEquations component  " << std::endl;
+    std::cout << "   STEP 2: Create the gateEquations component             " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
     //  STEP 2: Create the gateEquations component
@@ -92,7 +93,7 @@ int main()
         std::cout << validator->issue(i)->description() << std::endl;
     }
 
-    //  2.c Add the missing variables to the gateEquations component, and validate again.
+    //  2.d Add the missing variables to the gateEquations component, and validate again.
     //      Expect errors relating to missing units.
     gateEquations->addVariable(libcellml::Variable::create("t"));
     gateEquations->addVariable(libcellml::Variable::create("alpha_X"));
@@ -105,7 +106,7 @@ int main()
         std::cout << validator->issue(i)->description() << std::endl;
     }
 
-    //  2.d Create the units which will be needed by your variables and add them to the model.
+    //  2.e Create the units which will be needed by your variables and add them to the model.
     //      Use the setUnits function to associate them with the appropriate variables.  
     //      Validate again, and expect no errors.
     auto ms = libcellml::Units::create("ms");
@@ -140,7 +141,7 @@ int main()
 
     //  3.b Just like the Validator class, the Analyser class keeps track of issues. 
     //      Retrieve these and print to the terminal. Expect errors related to 
-    //      un-computed variables and missing inital values.
+    //      un-computed variables and missing initial values.
     std::cout << "The analyser has found " << analyser->issueCount() << " issues." << std::endl;
     for(size_t i = 0; i < analyser->issueCount(); ++i) {
         std::cout << analyser->issue(i)->description() << std::endl;
