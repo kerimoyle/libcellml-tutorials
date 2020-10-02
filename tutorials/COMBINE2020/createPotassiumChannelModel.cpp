@@ -47,9 +47,9 @@ int main()
     //  1.c Add the component to the model.
     model->addComponent(kChannel);
 
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
     std::cout << "   STEP 2: Define the potassium channel equations component " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     //  2.a Create a Component instance for the equations and name it "potassiumChannelEquations".  
     //      Add it to the wrapper component you created above.
@@ -170,9 +170,9 @@ int main()
     }
     std::cout << std::endl;
 
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
     std::cout << "   STEP 3: Create the nGate and nGateEquations components  " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     //  STEP 3: Create the nGate and its child components:
     //          - The nGateEquations has some of the working of a generic gate 
@@ -288,9 +288,9 @@ int main()
     }
     std::cout << std::endl;
 
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
     std::cout << "   STEP 4: Specify imports for the generic gate component " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     // STEP 4: Import the generic gate component.
     //      The generic gate model (in GateModel.cellml) has two components: 
@@ -340,9 +340,9 @@ int main()
     }
     std::cout << std::endl;
 
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
     std::cout << "   STEP 5: Specify imports for the controller component " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     //  STEP 5: Repeat Step 4 to import a controller component.  This should be 
     //          at the top of the encapsulation hierarchy, and should import the component
@@ -370,9 +370,9 @@ int main()
     //  From here on, our goal is to make sure that the CellML representation of these equations
     //  is valid (using the Validator) and solvable (using the Analyser).
     
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
     std::cout << "   STEP 6: Analyse the model " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     // STEP 6: We will introduce the Analyser class here so that its use as a debugging 
     //         tool can be demonstrated.  Of course, we know ahead of time that there
@@ -405,9 +405,9 @@ int main()
     //  - those variables which need to be connected to where their calculation happens; and
     //  - those variables which aren't present in any equation.
 
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
     std::cout << "   STEP 7: Define the constants " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     // STEP 7: Define the variables which will have a constant value in the simulation.
 
@@ -492,9 +492,9 @@ int main()
     }
     std::cout << std::endl;
 
-    std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 8: Connect the 'input' variables " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 8: Connect the 'input' variables                    " << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     // STEP 8: Looking at the variables listed we can see that some of our "external" or "input"
     //  variables are listed more than once.  These are the voltage V and time t.  Time
@@ -547,9 +547,9 @@ int main()
     std::cout << std::endl;
 
 
-    std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 9: Connect the 'calculated' variables " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 9: Connect the 'calculated' variables               " << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     // STEP 9: Now we need to make sure that all of the calculated variables can move through
     //         the model properly.  In this example, the only calculated variable is n, the gate
@@ -580,9 +580,9 @@ int main()
     }
     std::cout << std::endl;
 
-    std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 10: Connect to imported components " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 10: Connect to imported components                  " << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     //  STEP 10:
     //  At this point, we have made all the connections we can between existing variables and components.
@@ -703,9 +703,9 @@ int main()
     // Note that at this point an analysis of the unflattened model will still show errors,
     // but that's totally fine.
 
-    std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 11: Output the model " << std::endl;
-    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 11: Output the model                                " << std::endl;
+    std::cout << "------------------------------------------------------------" << std::endl;
 
     //  11.a Create a Printer instance and use it to serialise the model.  This creates a string
     //       containing the CellML-formatted version of the model.  Write this to a file called
