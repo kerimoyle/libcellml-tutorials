@@ -4,6 +4,7 @@ Tutorial 2: Creating a model using imports
 ==========================================
 
 By the time you have worked through this tutorial you will be able to:
+
 - Assemble a multi-component model using the API; 
 - Import items from existing models and reuse them here;
 - Inter-connect the components using the equivalent variables functionality;
@@ -58,6 +59,8 @@ The final structure of this model is shown in the diagram below.
     **1.c** Add the component to the model.
 
         model->addComponent(kChannel);
+
+Step 2: Create a potassium channel equations component
 
 .. container:: dothis
 

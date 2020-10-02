@@ -1,8 +1,9 @@
+..  _combine_debugSodiumChannelModel:
 
-
-
-
+Tutorial 3: Debugging a model
+=============================
 By the time you have worked through this part of the tutorial you will be able to:
+
 - Parse an existing CellML file and deserialise it into a model instance;
 - Use the diagnostic Validator class to identify issues in the model's definition; 
 - Use the std::any_cast to retrieve items which need repair from validator Issue items;
