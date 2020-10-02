@@ -15,6 +15,29 @@ This tutorial assumes you're already comfortable with:
     - Using the :code:`Analyser` class to check for mathematical issues in the model. 
     - Writing to files. 
 
+**Requirements (C++)**
+
+- :download:`CMakeLists.txt` The CMake file for building this tutorial;
+- :download:`generateMembraneModel.cpp` Either the skeleton code, or ..
+- :download:`generateMembraneModel_completed.cpp` the completed tutorial code;
+- :download:`GateModel.cellml` the generic gate model (from Tutorial 1);
+- :download:`PotassiumChannelModel.cpp` the potassium channel model (from Tutorial 2);
+- :download:`SodiumChannelModel.cpp` the sodium channel model (from Tutorial 3);
+- :download:`LeakageModel.cellml` an import dependency representing current leakage; 
+- :download:`MembraneController.cellml` an import dependency for the membrane model controller; and
+- :download:`MembraneModel.cellml` the file to parse.
+
+**Requirements (Python)**
+- :download:`generateMembraneModel.py` Either the skeleton code, or ..
+- :download:`generateMembraneModel_completed.py` the completed tutorial code;
+- :download:`GateModel.cellml` the generic gate model (from Tutorial 1);
+- :download:`PotassiumChannelModel.cpp` the potassium channel model (from Tutorial 2);
+- :download:`SodiumChannelModel.cpp` the sodium channel model (from Tutorial 3);
+- :download:`LeakageModel.cellml` an import dependency representing current leakage; 
+- :download:`MembraneController.cellml` an import dependency for the membrane model controller; and
+- :download:`MembraneModel.cellml` the file to parse.
+
+
 .. contents::
     :local:
 
@@ -30,29 +53,36 @@ Step 1: Parse the existing membrane model
 
     Parse the model in the "MembraneModel.cellml" file provided and print its contents to the terminal.
 
-.. tabs::
+.. container:: toggle
 
-    .. code-tab:: text
+  .. container:: header
 
-        Open the other tabs for the code.
+    Show C++
 
-    .. code-tab:: c++
+  .. code-block:: cpp
 
-        // Read the string from the file.
-        std::ifstream inFile("MembraneModel.cellml");
-        std::stringstream inFileContents;
-        inFileContents << inFile.rdbuf();
+		// Read the string from the file.
+		std::ifstream inFile("MembraneModel.cellml");
+		std::stringstream inFileContents;
+		inFileContents << inFile.rdbuf();
 
-        //  Create a Parser and use it to create a model.
-        auto parser = libcellml::Parser::create();
-        auto model = parser->parseModel(inFileContents.str());
+		//  Create a Parser and use it to create a model.
+		auto parser = libcellml::Parser::create();
+		auto model = parser->parseModel(inFileContents.str());
 
-        //  Print the model to the terminal.
-        printModel(model, false);
+		//  Print the model to the terminal.
+		printModel(model, false);
 
-    .. code-tab:: python
 
-        # Python goes here.
+.. container:: toggle
+
+  .. container:: header
+
+    Show Python
+
+  .. code-block:: python
+
+    # Python goes here.
 
 
 .. code-block:: terminal
@@ -138,66 +168,79 @@ This time, we need to keep the flattened version and will use this as input to t
 Resolve the imports, and create a flattened version of the model.
 We do not expect any issues to be reported by the importer.
 
-.. tabs::
+.. container:: toggle
 
-    .. code-tab:: text
+  .. container:: header
 
-        Open the other tabs for the code.
+    Show C++
 
-    .. code-tab:: c++
+  .. code-block:: cpp
 
-        // Resolve the imports in this model using a new Importer instance.
-        auto importer = libcellml::Importer::create();
-        importer->resolveImports(model, "");
-        printIssues(importer);
+		// Resolve the imports in this model using a new Importer instance.
+		auto importer = libcellml::Importer::create();
+		importer->resolveImports(model, "");
+		printIssues(importer);
 
-        // Create a flattened version of the model.
-        auto flatModel = importer->flattenModel(model);
+		// Create a flattened version of the model.
+		auto flatModel = importer->flattenModel(model);
 
-    .. code-tab:: python
 
-        # Resolve the imports in this model using a new Importer instance.
-        importer = Importer()
-        importer.resolveImports(model, '')
-        print_issues(importer)
+.. container:: toggle
 
-        # Create a flattened version of the model.
-        flat_model = importer.flattenModel(model)
+  .. container:: header
 
+    Show Python
+
+  .. code-block:: python
+
+		# Resolve the imports in this model using a new Importer instance.
+		importer = Importer()
+		importer.resolveImports(model, '')
+		print_issues(importer)
+
+		# Create a flattened version of the model.
+		flat_model = importer.flattenModel(model)
 
 Step 3: Validate and analyse the flattened model
 ------------------------------------------------
 You know what to do ... we do not expect any issues to be raised by either the validator or the analyser.
 
-.. tabs::
+.. container:: toggle
 
-    .. code-tab:: text
+  .. container:: header
 
-        Open the other tabs for the code.
+    Show C++
 
-    .. code-tab:: c++
+  .. code-block:: cpp
 
-        // Create a Validator and use it to check the flattened model.
-        auto validator = libcellml::Validator::create();
-        validator->validateModel(flatModel);
-        printIssues(validator);
+		// Create a Validator and use it to check the flattened model.
+		auto validator = libcellml::Validator::create();
+		validator->validateModel(flatModel);
+		printIssues(validator);
 
-        // Create an Analyser and use it to check the flattened model.
-        auto analyser = libcellml::Analyser::create();
-        analyser->analyseModel(flatModel); 
-        printIssues(analyser);
+		// Create an Analyser and use it to check the flattened model.
+		auto analyser = libcellml::Analyser::create();
+		analyser->analyseModel(flatModel); 
+		printIssues(analyser);
     
-    .. code-tab:: python
 
-        # Create a Validator and use it to check the flattened model.
-        validator = Validator()
-        validator.validateModel(flat_model)
-        print_issues(validator)
+.. container:: toggle
 
-        # Create an Analyser and use it to check the flattened model.
-        analyser = Analyser()
-        analyser.analyseModel(flat_model)
-        print_issues(analyser)
+  .. container:: header
+
+    Show Python
+
+  .. code-block:: python
+
+		# Create a Validator and use it to check the flattened model.
+		validator = Validator()
+		validator.validateModel(flat_model)
+		print_issues(validator)
+
+		# Create an Analyser and use it to check the flattened model.
+		analyser = Analyser()
+		analyser.analyseModel(flat_model)
+		print_issues(analyser)
 
 
 Step 4: Generate code and output
@@ -217,24 +260,30 @@ Step 4: Generate code and output
 
     **4.c** Use the generator's setProfile function to pass in the profile item you just created.
 
-.. tabs::
+.. container:: toggle
 
-    .. code-tab:: text
+  .. container:: header
 
-        Open the other tabs for the code.
+    Show C++
 
-    .. code-tab:: c++
+  .. code-block:: cpp
 
         auto generator = libcellml::Generator::create();
         auto profile = libcellml::GeneratorProfile::create(libcellml::GeneratorProfile::Profile::C);
         generator->setProfile(profile);
 
-    .. code-tab:: python
+
+.. container:: toggle
+
+  .. container:: header
+
+    Show Python
+
+  .. code-block:: python
 
         generator = Generator()
         profile = GeneratorProfile(GeneratorProfile.Profile.PYTHON)
         generator.setProfile(profile)
-
 
 Instead of submitting a :code:`Model` item (as we do for all other classes), the :code:`Generator` class will work from something which has already been processed by the :code:`Analyser` class: an :code:`AnalyserModel` object.
     
@@ -268,31 +317,37 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
     Use the Generator::interfaceCode() function to return interface code as a string and write it to a *.h header file.This needs to be the same filename as you specified in step 4.e above.
 
 
-.. tabs::
+.. container:: toggle
 
-    .. code-tab:: text
+  .. container:: header
 
-        Open the other tabs for the code.
+    Show C++
 
-    .. code-tab:: c++
+  .. code-block:: cpp
 
-        generator->setModel(analyser->model());
+		generator->setModel(analyser->model());
 
-        profile->setInterfaceFileNameString("HodgkinHuxleyModel.h");
+		profile->setInterfaceFileNameString("HodgkinHuxleyModel.h");
 
-        std::ofstream outFile("HodgkinHuxleyModel.c");
-        outFile << generator->implementationCode();
-        outFile.close();
+		std::ofstream outFile("HodgkinHuxleyModel.c");
+		outFile << generator->implementationCode();
+		outFile.close();
 
-        outFile.open("HodgkinHuxleyModel.h");
-        outFile << generator->interfaceCode();
-        outFile.close();
+		outFile.open("HodgkinHuxleyModel.h");
+		outFile << generator->interfaceCode();
+		outFile.close();
     
-    .. code-tab:: python
+.. container:: toggle
 
-        generator.setModel(analyser.model())
+  .. container:: header
 
-        write_file = open('MembraneModel.py', 'w')
-        write_file.write(generator.implementationCode())
-        write_file.close()
+    Show Python
+
+  .. code-block:: python
+
+		generator.setModel(analyser.model())
+
+		write_file = open('MembraneModel.py', 'w')
+		write_file.write(generator.implementationCode())
+		write_file.close()
 
