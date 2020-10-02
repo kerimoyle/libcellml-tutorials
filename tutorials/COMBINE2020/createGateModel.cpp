@@ -1,10 +1,9 @@
 /**
- * COMBINE2020 TUTORIAL 0: Creating a generic gate model
+ * COMBINE2020: Creating a generic gate model
  *
  *  By the time you have worked through this tutorial you will be able to:
  *      - Assemble a model using the API; 
- *      - Use the diagnostic Validator class to identify errors in
- *        the model's syntax; 
+ *      - Use the diagnostic Validator class to identify errors in the model's syntax; 
  *      - Use the diagnostic Analyser class to identify errors in the model's 
  *        mathematical construction; and
  *      - Serialise the model to CellML format for output.
@@ -216,10 +215,11 @@ int main()
 
     //  3.g  GOTCHA! Even though both the Analyser and Validator have given their approval
     //       to the model as it stands, in order for this to be reusable by other models in 
-    //       the future, we need to be able to connect to the time variable.  By default the
-    //       interface type given to a variable is "none", which prevents connection.  Thus,
-    //       we need to over-ride the "fixed" interface type for the time variable and set it
-    //       to "public".
+    //       the future, we need to be able to connect to variables in the top-level component(s).
+    //       By default the interface type given to a variable is "none", which prevents connection.
+    //       Thus, we need to over-ride the "fixed" interface type for the time variable and set it
+    //       to "public". It's worth checking that your top-level components are accessible as a
+    //       matter of course.
     //       Set the time variable in the gate equations component to have a public interface.
     gateEquations->variable("t")->setInterfaceType("public");
 
