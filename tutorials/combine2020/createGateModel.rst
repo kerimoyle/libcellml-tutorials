@@ -90,22 +90,6 @@ All other components will then need to be added to this component, rather than t
 
     **1.d** Add the component to the model using the :code:`addComponent` function.
 
-.. tabs::
-
-    .. tab:: C++ snippet
-
-        .. literalinclude:: ../combine2020/code/createGateModel.cpp
-            :language: c++
-            :start-after: // STEP 1
-            :end-before: // END STEP 1 
-
-    .. tab:: Python snippet
-
-        .. literalinclude:: ../combine2020/code/createGateModel.py
-            :language: python
-            :start-after: # STEP 1
-            :end-before: # END STEP 1
-
 .. container:: toggle
 
     .. container:: header
@@ -114,9 +98,8 @@ All other components will then need to be added to this component, rather than t
 
     .. literalinclude:: ../combine2020/code/createGateModel.cpp
         :language: c++
-        :start-after: // STEP 1
-        :end-before: // END STEP 1 
-
+        :start-at: //  1.a
+        :end-at: //  1.d 
 
 .. container:: toggle
 
@@ -128,34 +111,6 @@ All other components will then need to be added to this component, rather than t
         :language: python
         :start-after: # STEP 1
         :end-before: # END STEP 1
-
-
-
-
-
-
-
-.. container:: toggle
-
-  .. container:: header
-
-    Show C++ code
-
-
-
-
-.. container:: toggle
-
-  .. container:: header
-
-    Show Python code
-
-  .. code-block:: python
-
-        model = Model()
-        model.setName('GateModel')
-        gate = Component('gate')
-        model.addComponent(gate)
 
 Step 2: Create the gateEquations component
 ------------------------------------------
@@ -174,26 +129,23 @@ In this step we'll construct the equations component.
 
     .. container:: header
 
-        Show C++ code
+        Show C++ snippet
 
-    .. code-block:: c++
-
-        // Create a new component using the overloaded constructor.
-        auto gateEquations = libcellml::Component::create("gateEquations");
-
-        // Add the new component to the existing gate component.
-        gate->addComponent(gateEquations);
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+        :language: c++
+        :start-at: // STEP 2
+        :end-at: // END STEP 1 
 
 .. container:: toggle
 
     .. container:: header
 
-        Show Python code
+        Show Python snippet
 
-    .. code-block:: python
-
-        gate_equations = Component('gateEquations')
-        gate.addComponent(gate_equations)
+    .. literalinclude:: ../combine2020/code/createGateModel.py
+        :language: python
+        :start-after: # STEP 1
+        :end-before: # END STEP 1
 
 Since this is an *equations*-flavoured component, it should contain the bulk of the calculations and mathematics for the gate.
 Maths is added using MathML2 (no other levels are supported) strings.  

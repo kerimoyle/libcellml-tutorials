@@ -90,22 +90,24 @@ int main()
     gateEquations->appendMath(equation);
     gateEquations->appendMath(mathFooter);
 
-    // END STEP 2
+    // END 2
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 3: Validate the model                            " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 3
-
     //  Once the mathematics has been added to the component, and the component to the 
     //  model, we can make use of the diagnostic messages within the Validator class
     //  to tell us what else needs to be done.  
+
+    // STEP 3
 
     //  3.a Create a Validator instance, and pass it your model for processing using the 
     //      validateModel function.  
     auto validator = libcellml::Validator::create();
     validator->validateModel(model);
+
+    // END 3a
 
     //  Calling the validator does not return anything: we have to go looking for issues 
     //  that it found during processing.  When a problem is found, an Issue item is created
@@ -122,6 +124,8 @@ int main()
     //  enumerated values to the terminal.  These are:
     //      - getIssueLevelFromEnum; and
     //      - getItemTypeAsString. 
+
+    // 3B
 
     //  3.b Retrieve the number of issues encountered using the validator->issueCount() function,
     //      then retrieve the issue items from the validator using their index and the validator->issue(index)
@@ -169,6 +173,8 @@ int main()
 
     validator->validateModel(model);
     printIssues(validator);
+
+    //  end 3
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 4: Analyse the model  " << std::endl;
