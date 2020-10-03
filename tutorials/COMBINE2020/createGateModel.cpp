@@ -25,7 +25,7 @@ int main()
     std::cout << "   STEP 1: Setup the model  " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 1
+// STEP 1
 
     //  1.a The first step is to create a Model item which will later contain the component and 
     //      the units it needs.  
@@ -52,7 +52,7 @@ int main()
     std::cout << "   STEP 2: Create the gateEquations component             " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 2
+// STEP 2
 
     //  2.a Create a gateEquations component, name it "gateEquations" and add it to the model.
     auto gateEquations = libcellml::Component::create("gateEquations");
@@ -91,7 +91,7 @@ int main()
     std::cout << "   STEP 3: Validate the model                            " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 3
+// STEP 3
 
     //  Once the mathematics has been added to the component, and the component to the 
     //  model, we can make use of the diagnostic messages within the Validator class
@@ -170,7 +170,7 @@ int main()
     std::cout << "   STEP 3: Analyse the model  " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 4
+// STEP 4
 
     //  3.a Create an Analyser item and submit the model for processing. 
     auto analyser = libcellml::Analyser::create();
@@ -247,7 +247,7 @@ int main()
     std::cout << "   STEP 4: Serialise and output the model" << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 5
+// STEP 5
 
     //  4.a Create a Printer instance and use it to serialise the model.  This creates a string
     //      containing the CellML-formatted version of the model.  Write this to a file called
@@ -259,5 +259,5 @@ int main()
 
     std::cout << "The created model has been written to GateModel.cellml" << std::endl;
 
-    // END
+// END
 }

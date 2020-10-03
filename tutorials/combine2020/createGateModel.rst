@@ -88,7 +88,7 @@ All other components will then need to be added to this component, rather than t
 
 .. container:: dothis
 
-    **1.d** Add the component to the model using the Model::addComponent() function.
+    **1.d** Add the component to the model using the :code:`addComponent` function.
 
 .. container:: toggle
 
