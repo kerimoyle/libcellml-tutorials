@@ -96,10 +96,10 @@ All other components will then need to be added to this component, rather than t
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.cpp
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  1.a
-        :end-at: //  1.d 
+        :end-at: // end 1
 
 .. container:: toggle
 
@@ -107,10 +107,10 @@ All other components will then need to be added to this component, rather than t
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-after: # STEP 1
-        :end-before: # END STEP 1
+        :start-after: #  1.a
+        :end-before: # end 1
 
 Step 2: Create the gateEquations component
 ------------------------------------------
@@ -133,8 +133,8 @@ In this step we'll construct the equations component.
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
-        :start-at: // STEP 2
-        :end-at: // END STEP 1 
+        :start-at: //  2.a
+        :end-at: //  2.c
 
 .. container:: toggle
 
@@ -142,10 +142,10 @@ In this step we'll construct the equations component.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-after: # STEP 1
-        :end-before: # END STEP 1
+        :start-after: #  2.a
+        :end-before: #  2.c
 
 Since this is an *equations*-flavoured component, it should contain the bulk of the calculations and mathematics for the gate.
 Maths is added using MathML2 (no other levels are supported) strings.  
@@ -176,59 +176,124 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
     .. container:: header
 
-        Show C++ code
-    
-    .. code-block:: c++
+        Show C++ snippet
 
-        std::string mathHeader = "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" xmlns:cellml=\"http://www.cellml.org/cellml/2.0#\">\n";
-        std::string mathFooter = "</math>";
-        std::string equationX =
-            "  <apply><eq/>\n"
-            "    <apply><diff/>\n"
-            "      <bvar><ci>t</ci></bvar>\n"
-            "      <ci>X</ci>\n"
-            "    </apply>\n" 
-            "    <apply><minus/>\n"
-            "      <apply><times/>\n"
-            "        <ci>alpha_X</ci>\n"
-            "        <apply><minus/>\n"
-            "          <cn cellml:units=\"dimensionless\">1</cn>\n"
-            "          <ci>X</ci>\n"
-            "        </apply>\n" 
-            "      </apply>\n" 
-            "      <apply><times/>\n"
-            "        <ci>beta_X</ci>\n"
-            "        <ci>X</ci>\n"
-            "      </apply>\n" 
-            "    </apply>\n" 
-            "  </apply>\n"; 
-
-        gateEquations->setMath(mathHeader);
-        gateEquations->appendMath(equation);
-        gateEquations->appendMath(mathFooter);
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+        :language: c++
+        :start-at: //  2.c
+        :end-at: // end 2
 
 .. container:: toggle
 
     .. container:: header
 
-        Show Python code
-    
-    .. code-block:: python
+        Show Python snippet
 
-        # Python code here TODO
+    .. literalinclude:: ../combine2020/code/createGateModel.py
+        :language: python
+        :start-after: #  2.c
+        :end-before: # end 2
 
+Step 3: Validate the model
+--------------------------
+Once the mathematics has been added to the component, and the component to the model, we can make use of the diagnostic messages within the :code:`Validator` class to tell us what else needs to be done.
 
+.. container:: useful
 
-auto validator = libcellml::Validator::create();
-validator->validateModel(model);
-std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
-for(size_t i = 0; i < validator->issueCount(); ++i) {
-    std::cout << validator->issue(i)->description() << std::endl;
-}
+    **Useful functions**
+
+    :api:`Validator class<Validator>`
+    - create
+    - validateModel
+    - issueCount
+    - issue
+
+    :api:`Issue class<Issue>`
+    - description
+    - url
+    - referenceHeading
+    - level
+    - itemType
 
 .. container:: dothis
 
-    **2.d** Add the missing variables to the gateEquations component, and validate again.
+    **3.a** Create a Validator instance, and pass it your model for processing using the :code:`validateModel` function.
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+        :language: c++
+        :start-at: //  3.a
+        :end-at: // end 3.a
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createGateModel.py
+        :language: python
+        :start-after: #  3.a
+        :end-before: # end 3.a
+
+Calling the validator does not return anything: we have to go looking for issues that it found during processing.
+
+.. container:: shortlist
+
+    When a problem is found, an :code:`Issue` item is created containing:
+    - a description string explaining the problem;
+    - a URL at which more information is available;
+    - an std::any item relevant to the problem, if available;
+    - a level indicator; and
+    - a cause indicator relevant to the stored item.
+
+We can use these issues as we need to.
+The simplest way is to print the descriptions to the terminal.
+
+Two helper functions have been provided for this tutorial that will help printing enumerated values to the terminal.  These are:
+
+.. container:: shortlist
+
+    - getIssueLevelFromEnum; and
+    - getItemTypeAsString. 
+
+.. container:: dothis
+
+    **3.b** Retrieve the number of issues encountered using the :code:`validator->issueCount()` function, then retrieve the issue items from the validator using their index and the validator->issue(index)function.
+    Print the information from each issue to the terminal.
+    
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+        :language: c++
+        :start-at: //  3.b
+        :end-at: //  3.c
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createGateModel.py
+        :language: python
+        :start-after: #  3.b
+        :end-before: #  3.c
+
+
+.. container:: dothis
+
+    **3.c** Add the missing variables to the gateEquations component, and validate again.
+    Note that you can use the 
     Expect errors relating to missing units.
 
 gateEquations->addVariable(libcellml::Variable::create("t"));
