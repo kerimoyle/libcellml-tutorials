@@ -43,7 +43,6 @@ The basic structure of this model highlights that too.
 .. container:: shortlist
 
     We will create a model with three components:
-
     - An *equations* component, which contains all of the working pieces and mathematics specific to the model;
     - A *parameters* component, which contains any hard-coded parameters or values specific to this model; and
     - A wrapper component, which is the parent of the other two.
@@ -56,14 +55,14 @@ Step 1: Set up the model
 
 .. container:: useful
 
-    - :api:`Model class<Model>`
-        - :code:`create` 
-        - :code:`setName`
-        - :code:`addComponent`
-    - :api:`Component class<Component>`
-        - :code:`create` 
-        - :code:`setName`
-        - :code:`addComponent`
+  :api:`Model class<Model>`
+    - :code:`create` 
+    - :code:`setName`
+    - :code:`addComponent`
+  :api:`Component class<Component>`
+    - :code:`create` 
+    - :code:`setName`
+    - :code:`addComponent`
 
 .. container:: dothis
 
