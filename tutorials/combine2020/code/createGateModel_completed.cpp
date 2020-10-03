@@ -197,7 +197,7 @@ int main()
     //      un-computed variables and missing initial values.
     printIssues(analyser);
 
-    // end 4.b
+    //  end 4.b
     //  In order to avoid hard-coding values here, we will need to connect to external 
     //  values to initialise the X variable and provide the value for alpha_X and beta_X.
     //  This means that:
@@ -254,7 +254,7 @@ int main()
     analyser->analyseModel(model);
     printIssues(analyser);
 
-    // end 4.f
+    //  end 4.f
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 5: Sanity check" << std::endl;
@@ -294,7 +294,7 @@ int main()
     analyser->analyseModel(model);
     printIssues(analyser);
 
-    // end 5
+    //  end 5
     
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 6: Serialise and output the model" << std::endl;
@@ -311,5 +311,5 @@ int main()
 
     std::cout << "The created model has been written to GateModel.cellml" << std::endl;
 
-    // end 6
+    //  end 6
 }
