@@ -47,55 +47,119 @@ The final structure of this model is shown in the diagram below.
 .. container:: dothis
 
     **1.a** Create a Model and name it appropriately.
-        auto model = libcellml::Model::create("PotassiumChannelModel");
+
+       
 
 .. container:: dothis
 
     **1.b** Create a wrapping component and name it "potassiumChannel".
-        auto kChannel = libcellml::Component::create("potassiumChannel");
+
+        
 
 .. container:: dothis
 
     **1.c** Add the component to the model.
 
-        model->addComponent(kChannel);
+        
+.. container:: toggle
+
+  .. container:: header
+
+    Show C++
+
+  .. code-block:: cpp
+
+    auto model = libcellml::Model::create("PotassiumChannelModel");
+    auto kChannel = libcellml::Component::create("potassiumChannel");
+    model->addComponent(kChannel);
+
+.. container:: toggle
+
+  .. container:: header
+
+    Show Python
+
+  .. code-block:: python
+
+    model = Model('PotassiumChannelModel')
+    k_channel = Component('potassiumChannel')
+    model.addComponent(k_channel)
 
 Step 2: Create a potassium channel equations component
+------------------------------------------------------
 
 .. container:: dothis
 
     **2.a** Create a Component instance for the equations and name it "potassiumChannelEquations".  
     Add it to the wrapper component you created above.
 
-        auto kChannelEquations = libcellml::Component::create("potassiumChannelEquations");
-        kChannel->addComponent(kChannelEquations);
-
 .. container:: dothis
 
     **2.b** Define the maths inside the potassiumChannelEquations component.
     This is a MathML 2 string (NB: higher versions of MathML are not supported), and is added to the component using :code:`setMath()` and :code:`appendMath()` functions.
     Your string needs to contain the namespaces for MathML and for CellML: these have been provided for you in the mathHeader string above.
-
-        std::string equationIK =
-            "  <apply><eq/>\n"
-            "    <ci>i_K</ci>\n"
-            "    <apply><times/>\n"
-            "       <apply><power/>\n"
-            "           <ci>n</ci>\n"
-            "           <cn cellml:units=\"dimensionless\">4</cn>\n"
-            "       </apply>\n"
-            "       <ci>g_K</ci>\n"
-            "       <apply><minus/>\n"
-            "           <ci>V</ci>\n"
-            "           <ci>E_K</ci>\n"
-            "       </apply>\n"
-            "    </apply>\n"
-            "  </apply>\n";
-
-        kChannelEquations->setMath(mathHeader);
-        kChannelEquations->appendMath(equationIK);
-        kChannelEquations->appendMath(mathFooter);
         
+.. container:: toggle
+
+  .. container:: header
+
+    Show C++
+
+  .. code-block:: cpp
+
+    auto kChannelEquations = libcellml::Component::create("potassiumChannelEquations");
+    kChannel->addComponent(kChannelEquations);
+
+    std::string equationIK =
+        "  <apply><eq/>\n"
+        "    <ci>i_K</ci>\n"
+        "    <apply><times/>\n"
+        "       <apply><power/>\n"
+        "           <ci>n</ci>\n"
+        "           <cn cellml:units=\"dimensionless\">4</cn>\n"
+        "       </apply>\n"
+        "       <ci>g_K</ci>\n"
+        "       <apply><minus/>\n"
+        "           <ci>V</ci>\n"
+        "           <ci>E_K</ci>\n"
+        "       </apply>\n"
+        "    </apply>\n"
+        "  </apply>\n";
+
+    kChannelEquations->setMath(mathHeader);
+    kChannelEquations->appendMath(equationIK);
+    kChannelEquations->appendMath(mathFooter);
+
+.. container:: toggle
+
+  .. container:: header
+
+    Show Python
+
+  .. code-block:: python
+    
+    k_channel_equations = Component('potassiumChannelEquations')
+    k_channel.addComponent(k_channel_equations)
+        equation_iK =
+        '  <apply><eq/>\n'
+        '    <ci>i_K</ci>\n'
+        '    <apply><times/>\n'
+        '       <apply><power/>\n'
+        '           <ci>n</ci>\n'
+        '           <cn cellml:units="dimensionless">4</cn>\n'
+        '       </apply>\n'
+        '       <ci>g_K</ci>\n'
+        '       <apply><minus/>\n'
+        '           <ci>V</ci>\n'
+        '           <ci>E_K</ci>\n'
+        '       </apply>\n'
+        '    </apply>\n'
+        '  </apply>\n'
+
+    k_channel_equations.setMath(math_header)
+    k_channel_equations.appendMath(equation_iK)
+    k_channel_equations.appendMath(math_footer)
+
 Once the mathematics has been added to the component, and the component to the model, we can make use of the diagnostic messages within the :code:`Validator` class to tell us what else needs to be done.
 
 .. container:: dothis

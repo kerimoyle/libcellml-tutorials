@@ -28,6 +28,7 @@ This tutorial assumes you're already comfortable with:
 - :download:`MembraneModel.cellml` the file to parse.
 
 **Requirements (Python)**
+
 - :download:`generateMembraneModel.py` Either the skeleton code, or ..
 - :download:`generateMembraneModel_completed.py` the completed tutorial code;
 - :download:`GateModel.cellml` the generic gate model (from Tutorial 1);
@@ -37,10 +38,10 @@ This tutorial assumes you're already comfortable with:
 - :download:`MembraneController.cellml` an import dependency for the membrane model controller; and
 - :download:`MembraneModel.cellml` the file to parse.
 
+**Contents**
 
 .. contents::
     :local:
-
 
 All of the ingredients have been assembled for us to parse a membrane model so that it can be turned into runnable code using the code generation functionality.
 We will parse the model, resolve its imports, flatten into an import-free model, validate, analyse, and generate.
@@ -57,7 +58,7 @@ Step 1: Parse the existing membrane model
 
   .. container:: header
 
-    Show C++
+    Show C++ code
 
   .. code-block:: cpp
 
@@ -73,12 +74,11 @@ Step 1: Parse the existing membrane model
 		//  Print the model to the terminal.
 		printModel(model, false);
 
-
 .. container:: toggle
 
   .. container:: header
 
-    Show Python
+    Show Python code
 
   .. code-block:: python
 
@@ -172,7 +172,7 @@ We do not expect any issues to be reported by the importer.
 
   .. container:: header
 
-    Show C++
+    Show C++ code
 
   .. code-block:: cpp
 
@@ -189,7 +189,7 @@ We do not expect any issues to be reported by the importer.
 
   .. container:: header
 
-    Show Python
+    Show Python code
 
   .. code-block:: python
 
@@ -209,7 +209,7 @@ You know what to do ... we do not expect any issues to be raised by either the v
 
   .. container:: header
 
-    Show C++
+    Show C++ code
 
   .. code-block:: cpp
 
@@ -223,12 +223,11 @@ You know what to do ... we do not expect any issues to be raised by either the v
 		analyser->analyseModel(flatModel); 
 		printIssues(analyser);
     
-
 .. container:: toggle
 
   .. container:: header
 
-    Show Python
+    Show Python code
 
   .. code-block:: python
 
@@ -245,7 +244,9 @@ You know what to do ... we do not expect any issues to be raised by either the v
 
 Step 4: Generate code and output
 --------------------------------
-**TODO**
+The :code:`Generator` is a translator class that will change the CellML model and its MathML equations into a representation in another language.
+This is done using a :code:`GeneratorProfile` to specify a dictionary of mathematical operations.
+Two profiles are already defined; for C++ and for Python.
 
 .. container:: dothis
 
@@ -253,37 +254,58 @@ Step 4: Generate code and output
 
 .. container:: dothis
 
-    **4.b** The generator uses a GeneratorProfile item to set up a translation between the model stored as CellML and the language of your choice (currently C or Python).
-    Create a GeneratorProfile object, and use the constructor argument of the libcellml::GeneratorProfile::Profile enum for the language you want (C or PYTHON).
+    **4.b** Create a GeneratorProfile object, and use the constructor argument of the libcellml::GeneratorProfile::Profile enum for the language you want (C or PYTHON).
 
 .. container:: dothis
 
-    **4.c** Use the generator's setProfile function to pass in the profile item you just created.
+    **4.c** Use the generator's :code:`setProfile` function to pass in the profile item you just created.
+
+.. container:: infospec
+
+	**Useful functions**
+
+	:api:`GeneratorProfile class<GeneratorProfile>`
+
+		- :code:`create`
+	
+	:api:`Generator class<Generator>`
+
+		- :code:`create`
+		- :code:`setProfile`
 
 .. container:: toggle
 
   .. container:: header
 
-    Show C++
+    Show C++ code
 
   .. code-block:: cpp
 
-        auto generator = libcellml::Generator::create();
-        auto profile = libcellml::GeneratorProfile::create(libcellml::GeneratorProfile::Profile::C);
-        generator->setProfile(profile);
+    // Create the Generator item.
+    auto generator = libcellml::Generator::create();
 
+    // Create a GeneratorProfile using the C profile in the constructor.
+    auto profile = libcellml::GeneratorProfile::create(libcellml::GeneratorProfile::Profile::C);
+
+    // Set the generator's profile.
+    generator->setProfile(profile);
 
 .. container:: toggle
 
   .. container:: header
 
-    Show Python
+    Show Python code
 
   .. code-block:: python
 
-        generator = Generator()
-        profile = GeneratorProfile(GeneratorProfile.Profile.PYTHON)
-        generator.setProfile(profile)
+    # Create the Generator item.
+    generator = Generator()
+
+    # Create a GeneratorProfile using the C profile in the constructor.
+    profile = GeneratorProfile(GeneratorProfile.Profile.PYTHON)
+
+    # Set the generator's profile.
+    generator.setProfile(profile)
 
 Instead of submitting a :code:`Model` item (as we do for all other classes), the :code:`Generator` class will work from something which has already been processed by the :code:`Analyser` class: an :code:`AnalyserModel` object.
     
@@ -293,35 +315,47 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
 
 .. container:: infospec
 
-    **Useful functions**
+	**Useful functions**
 
-    Analyser::model 
-    Generator::setModel
+	:api:`Analyser class<GeneratorProfile>`
 
-.. container:: dothis
+	- :code:`model`
+	
+	:api:`Generator class<Generator>`
 
-    **4.e** (C only) If you're using the C profile then you have the option at this stage to specify the file name of the interface file you'll create in the next step.  
-    This means that the two files will be prepared to link to one another without manual editing later.
-    You can do this by specifying the header file name in the :code:`GeneratorProfile` item using the setInterfaceFileNameString("yourHeaderFileNameHere.h") function.
-    This will need to be the same as the file which you write to in step 4.g below.
+	- :code:`setModel`
+  - :code:`implementationCode`
+  - :code:`interfaceCode`
 
-.. container:: dothis
+  :api:`GeneratorProfile class<GeneratorProfile>`
 
-    **4.f** Implementation code is the bulk of the model, and contains all the equations, variables, units etc.
-    This is needed for both of the available profiles, and would normally be stored in a *.cpp or *.py file.  
-    Use the Generator::implementationCode() function to return the implementation code as a string, and write it to a file with the appropriate extension.
+  - :code:`setInterfaceFileNameString`
 
 .. container:: dothis
 
-    **4.g** (C only) Interface code is the header needed by the C profile to define data types.
-    Use the Generator::interfaceCode() function to return interface code as a string and write it to a *.h header file.This needs to be the same filename as you specified in step 4.e above.
+  **4.e** (C only) If you're using the C profile then you have the option at this stage to specify the file name of the interface file you'll create in the next step.  
+  This means that the two files will be prepared to link to one another without manual editing later.
+  You can do this by specifying the header file name in the :code:`GeneratorProfile` item using the setInterfaceFileNameString("yourHeaderFileNameHere.h") function.
+  This will need to be the same as the file which you write to in step 4.g below.
+
+.. container:: dothis
+
+  **4.f** Implementation code is the bulk of the model, and contains all the equations, variables, units etc.
+  This is needed for both of the available profiles, and would normally be stored in a *.cpp or *.py file.  
+  Use the :code:`implementationCode` function to return the implementation code as a string, and write it to a file with the appropriate extension.
+
+.. container:: dothis
+
+  **4.g** (C only) Interface code is the header needed by the C profile to define data types.
+  Use the :code:`interfaceCode` function to return interface code as a string and write it to a *.h header file.
+  This needs to be the same filename as you specified in step 4.e above.
 
 
 .. container:: toggle
 
   .. container:: header
 
-    Show C++
+    Show C++ code
 
   .. code-block:: cpp
 
@@ -341,7 +375,7 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
 
   .. container:: header
 
-    Show Python
+    Show Python code
 
   .. code-block:: python
 
@@ -350,4 +384,3 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
 		write_file = open('MembraneModel.py', 'w')
 		write_file.write(generator.implementationCode())
 		write_file.close()
-
