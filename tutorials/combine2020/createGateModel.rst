@@ -16,16 +16,16 @@ Tutorial 1: Creating a model using the API
 
     **Requirements (C++)**
 
-    - :download:`CMakeLists.txt` The CMake file for building this tutorial;
-    - :download:`createGateModel.cpp` Either the skeleton code, or ..
-    - :download:`createGateModel_completed.cpp` the completed tutorial code.
+    - :download:`CMakeLists.txt<CMakeLists_GateModel.txt>` The CMake file for building this tutorial;
+    - :download:`createGateModel.cpp<createGateModel.cpp>` Either the skeleton code, or ..
+    - :download:`createGateModel_completed.cpp<createGateModel_completed.cpp>` the completed tutorial code.
 
 .. container:: shortlist
 
     **Requirements (Python)**
 
-    - :download:`createGateModel.py` Either the skeleton code, or ..
-    - :download:`createGateModel_completed.py` the completed tutorial code.
+    - :download:`createGateModel.py<createGateModel.py>` Either the skeleton code, or ..
+    - :download:`createGateModel_completed.py<createGateModel_completed.py>` the completed tutorial code.
 
 .. contents:: Contents
     :local:
