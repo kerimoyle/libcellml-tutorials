@@ -55,11 +55,16 @@ Step 1: Set up the model
 
 .. container:: useful
 
-  :api:`Model class<Model>`
+    **Useful functions**
+
+    :api:`Model class<Model>`
+
     - create
     - setName
     - addComponent
-  :api:`Component class<Component>`
+
+    :api:`Component class<Component>`
+
     - create
     - setName
     - addComponent
@@ -99,7 +104,7 @@ All other components will then need to be added to this component, rather than t
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  1.a
-        :end-at: // end 1
+        :end-before: // end 1
 
 .. container:: toggle
 
@@ -109,7 +114,7 @@ All other components will then need to be added to this component, rather than t
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-after: #  1.a
+        :start-at: #  1.a
         :end-before: # end 1
 
 Step 2: Create the gateEquations component
@@ -134,7 +139,7 @@ In this step we'll construct the equations component.
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  2.a
-        :end-at: //  2.c
+        :end-before: //  2.c
 
 .. container:: toggle
 
@@ -144,7 +149,7 @@ In this step we'll construct the equations component.
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-after: #  2.a
+        :start-at: #  2.a
         :end-before: #  2.c
 
 Since this is an *equations*-flavoured component, it should contain the bulk of the calculations and mathematics for the gate.
@@ -181,7 +186,7 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  2.c
-        :end-at: // end 2
+        :end-before: // end 2
 
 .. container:: toggle
 
@@ -191,7 +196,7 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  2.c
+        :start-at: #  2.c
         :end-before: # end 2
 
 Step 3: Validate the model
@@ -203,12 +208,14 @@ Once the mathematics has been added to the component, and the component to the m
     **Useful functions**
 
     :api:`Validator class<Validator>`
+
     - create
     - validateModel
     - issueCount
     - issue
 
     :api:`Issue class<Issue>`
+
     - description
     - url
     - referenceHeading
@@ -228,7 +235,7 @@ Once the mathematics has been added to the component, and the component to the m
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  3.a
-        :end-at: // end 3.a
+        :end-before: // end 3.a
 
 .. container:: toggle
 
@@ -238,7 +245,7 @@ Once the mathematics has been added to the component, and the component to the m
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  3.a
+        :start-at: #  3.a
         :end-before: # end 3.a
 
 Calling the validator does not return anything: we have to go looking for issues that it found during processing.
@@ -276,7 +283,7 @@ Two helper functions have been provided for this tutorial that will help printin
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  3.b
-        :end-at: //  3.c
+        :end-before: //  3.c
 
 .. container:: toggle
 
@@ -286,7 +293,7 @@ Two helper functions have been provided for this tutorial that will help printin
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  3.b
+        :start-at: #  3.b
         :end-before: #  3.c
 
 .. container:: dothis
@@ -304,7 +311,7 @@ Two helper functions have been provided for this tutorial that will help printin
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  3.c
-        :end-at: //  3.d
+        :end-before: //  3.d
 
 .. container:: toggle
 
@@ -314,7 +321,7 @@ Two helper functions have been provided for this tutorial that will help printin
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  3.c
+        :start-at: #  3.c
         :end-before: #  3.d
 
 .. container:: dothis
@@ -332,7 +339,7 @@ Two helper functions have been provided for this tutorial that will help printin
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  3.d
-        :end-at: //  end 3
+        :end-before: //  end 3
 
 .. container:: toggle
 
@@ -342,7 +349,7 @@ Two helper functions have been provided for this tutorial that will help printin
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  3.d
+        :start-at: #  3.d
         :end-before: #  end 3
 
 Step 4: Analyse the mathematical construction of the model
@@ -378,7 +385,7 @@ Step 4: Analyse the mathematical construction of the model
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.a
-        :end-at: //  end 4.b
+        :end-before: //  end 4.b
 
 .. container:: toggle
 
@@ -388,7 +395,7 @@ Step 4: Analyse the mathematical construction of the model
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  4.b
+        :start-at: #  4.b
         :end-before: #  end 4.b
 
 .. code-block:: terminal
@@ -439,7 +446,7 @@ In order to avoid hard-coding values here, we will need to connect to external v
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.c
-        :end-at: //  4.e
+        :end-before: //  4.e
 
 .. container:: toggle
 
@@ -449,7 +456,7 @@ In order to avoid hard-coding values here, we will need to connect to external v
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  4.c
+        :start-at: #  4.c
         :end-before: #  4.e
 
 .. container:: dothis
@@ -466,7 +473,7 @@ In order to avoid hard-coding values here, we will need to connect to external v
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.e
-        :end-at: //  4.f
+        :end-before: //  4.f
 
 .. container:: toggle
 
@@ -476,7 +483,7 @@ In order to avoid hard-coding values here, we will need to connect to external v
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  4.e
+        :start-at: #  4.e
         :end-before: #  4.f
 
 .. code-block:: terminal
@@ -506,7 +513,7 @@ In order to avoid hard-coding values here, we will need to connect to external v
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.e
-        :end-at: //  end 4.f
+        :end-before: //  end 4.f
 
 .. container:: toggle
 
@@ -516,7 +523,7 @@ In order to avoid hard-coding values here, we will need to connect to external v
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  4.e
+        :start-at: #  4.e
         :end-before: #  end 4.f
 
 Step 5: Sanity check
@@ -557,7 +564,7 @@ We need to make sure that any input and output variables are also connected into
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  5.b
-        :end-at: //  5.c
+        :end-before: //  5.c
 
 .. container:: toggle
 
@@ -567,7 +574,7 @@ We need to make sure that any input and output variables are also connected into
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  5.b
+        :start-at: #  5.b
         :end-before: #  5.c
 
 .. container:: dothis
@@ -583,7 +590,7 @@ We need to make sure that any input and output variables are also connected into
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  5.c
-        :end-at: //  end 5
+        :end-before: //  end 5
 
 .. container:: toggle
 
@@ -593,7 +600,7 @@ We need to make sure that any input and output variables are also connected into
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  5.c
+        :start-at: #  5.c
         :end-before: #  end 5
 
 Step 6: Serialise and output the model
@@ -616,7 +623,7 @@ This creates a string containing the CellML-formatted version of the model.
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
         :start-at: //  6.a
-        :end-at: //  end 6
+        :end-before: //  end 6
 
 .. container:: toggle
 
@@ -626,6 +633,6 @@ This creates a string containing the CellML-formatted version of the model.
 
     .. literalinclude:: ../combine2020/code/createGateModel.py
         :language: python
-        :start-after: #  6.a
+        :start-at: #  6.a
         :end-before: #  end 6
 
