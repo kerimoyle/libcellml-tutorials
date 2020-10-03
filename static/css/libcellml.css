@@ -151,14 +151,13 @@ div[class^="issue"], div[class*=" issue"] > ol {
     padding: 10px;
 
     margin-top:0px;
-    margin-bottom:15px;
+    margin-bottom:10px;
     margin-left:0;
     margin-right:0;
 
-    line-height: 24px;
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
 }
-.useful * {
+.useful > * {
     margin-bottom: 2px;
     list-style-type: '- ';
 }

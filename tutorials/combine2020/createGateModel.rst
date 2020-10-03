@@ -12,7 +12,7 @@ Tutorial 1: Creating a model using the API
     - Use the diagnostic Analyser class to identify errors in the model's mathematical construction; and
     - Serialise the model to CellML format for output.
 
-.. contianer:: shortlist
+.. container:: shortlist
 
     **Requirements (C++)**
 
@@ -56,13 +56,13 @@ Step 1: Set up the model
 .. container:: useful
 
   :api:`Model class<Model>`
-    - :code:`create` 
-    - :code:`setName`
-    - :code:`addComponent`
+    - create
+    - setName
+    - addComponent
   :api:`Component class<Component>`
-    - :code:`create` 
-    - :code:`setName`
-    - :code:`addComponent`
+    - create
+    - setName
+    - addComponent
 
 .. container:: dothis
 
