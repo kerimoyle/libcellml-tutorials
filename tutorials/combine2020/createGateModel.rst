@@ -94,14 +94,14 @@ All other components will then need to be added to this component, rather than t
 
     .. tab:: C++ snippet
 
-        .. literalinclude:: ../howto/code/example_annotationToolDev.cpp
+        .. literalinclude:: ../../howto/code/example_annotationToolDev.cpp
         :language: c++
         :start-after: // STEP 1
         :end-before: // STEP 2
 
     .. tab:: Python snippet
 
-        .. literalinclude:: ../howto/code/example_annotationToolDev.py
+        .. literalinclude:: ../../howto/code/example_annotationToolDev.py
         :language: python
         :start-after: # STEP 1
         :end-before: # STEP 2
