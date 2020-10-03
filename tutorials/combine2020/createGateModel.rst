@@ -96,10 +96,10 @@ All other components will then need to be added to this component, rather than t
 
     Show C++ code
 
-  .. literalinclude:: createGateModel.cpp
+  .. literalinclude:: ./createGateModel.cpp
     :language: c++
     :start-after: // STEP 1
-    :end-before: // STEP 2    
+    :end-before: // STEP 2
   
 .. container:: toggle
 
@@ -107,10 +107,10 @@ All other components will then need to be added to this component, rather than t
 
     Show Python code
 
-  .. literalinclude:: createGateModel.py
+  .. literalinclude:: ./createGateModel.py
     :language: python
     :start-after: # STEP 1
-    :end-before: # STEP 2   
+    :end-before: # STEP 2
 
 
 
