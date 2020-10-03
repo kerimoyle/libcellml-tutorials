@@ -3,102 +3,238 @@
 Tutorial 1: Creating a model using the API
 ==========================================
 
-By the time you have worked through this tutorial you will be able to:
-- Assemble a model using the API; 
-- Use the diagnostic Validator class to identify errors in the model's syntax; 
-- Use the diagnostic Analyser class to identify errors in the model's mathematical construction; and
-- Serialise the model to CellML format for output.
+.. container:: shortlist
 
-**Requirements (C++)**
+    By the time you have worked through this tutorial you will be able to:
 
-- :download:`CMakeLists.txt` The CMake file for building this tutorial;
-- :download:`createGateModel.cpp` Either the skeleton code, or ..
-- :download:`createGateModel_completed.cpp` the completed tutorial code.
+    - Assemble a model using the API; 
+    - Use the diagnostic Validator class to identify errors in the model's syntax; 
+    - Use the diagnostic Analyser class to identify errors in the model's mathematical construction; and
+    - Serialise the model to CellML format for output.
 
-**Requirements (Python)**
+.. contianer:: shortlist
 
-- :download:`createGateModel.py` Either the skeleton code, or ..
-- :download:`createGateModel_completed.py` the completed tutorial code.
+    **Requirements (C++)**
+
+    - :download:`CMakeLists.txt` The CMake file for building this tutorial;
+    - :download:`createGateModel.cpp` Either the skeleton code, or ..
+    - :download:`createGateModel_completed.cpp` the completed tutorial code.
+
+.. container:: shortlist
+
+    **Requirements (Python)**
+
+    - :download:`createGateModel.py` Either the skeleton code, or ..
+    - :download:`createGateModel_completed.py` the completed tutorial code.
 
 .. contents:: Contents
-:local:
+    :local:
+
+Overview
+--------
+This is the first tutorial in a series designed to walk the user through some of libCellML's functionality available in the API.
+Its goal is to create from scratch a voltage-independent ion gate model.
+The theory of this kind of gate can be found on the :ref:`Ion Gate theory page<theory_iongates>`.
+
+One of the goals of the CellML format (which must be supported by libCellML) is the construction of models that are reusable.
+Throughout these tutorials we will create entities in such a way as to enable their reuse as easily as possible.  
+The basic structure of this model highlights that too.
+
+.. container:: shortlist
+
+    We will create a model with three components:
+
+    - An *equations* component, which contains all of the working pieces and mathematics specific to the model;
+    - A *parameters* component, which contains any hard-coded parameters or values specific to this model; and
+    - A wrapper component, which is the parent of the other two.
+
+This arrangement means that it's simple to import this model into others, as well as to locate or over-ride parameter values or reuse equations.
+Each of the components created throughout this series of tutorials will follow this same structure.
 
 Step 1: Set up the model
 ------------------------
 
+.. container:: useful
+
+    - :api:`Model class<Model>`
+        - :code:`create` 
+        - :code:`setName`
+        - :code:`addComponent`
+    - :api:`Component class<Component>`
+        - :code:`create` 
+        - :code:`setName`
+        - :code:`addComponent`
+
 .. container:: dothis
 
     **1.a** The first step is to create a `Model` item which will later contain the component and the units it needs.
-
-      
-auto model = libcellml::Model::create();
+    Use the :code:`Model` create function to make a new instance.
 
 .. container:: dothis
 
-    **1.b** Each CellML element must have a name, which is set using the setName() function.
-    model->setName("GateModel");
+    **1.b** Each CellML element must have a name, which is set using the :code:`setName` function.
+    Set the name of the model to be "GateModel".
+    
+We'll create a wrapper component whose only job is to encapsulate the other components.
+This makes is a lot easier for this model to be reused, as the connections between components internal to this one won't need to be re-established.
+Note that the constructor for all named CellML entities is overloaded, so you can pass it the name string at the time of creation.
 
 .. container:: dothis
 
-    **1.c** We'll create a wrapper component whose only job is to encapsulate the other components.
-    This makes is a lot easier for this model to be reused, as the connections between components internal to this one won't need to be re-established.
-    Note that the constructor for all named CellML entities is overloaded, so you can pass it the name string at the time of creation.
-    Create a component named "gate".
+    **1.c** Create a new :code:`Component` item named "gate" using the overloaded constructor.
 
-auto gate = libcellml::Component::create("gate");
+Finally we need to add the component to the model.  
+This sets it at the top-level of the component encapsulation hierarchy.
+All other components will then need to be added to this component, rather than to the model.
 
 .. container:: dothis
 
-    **1.d** Finally we need to add the component to the model.  
-    This sets it at the top-level of the components' encapsulation hierarchy.
-    All other components need to be added to this component, rather than the model.
-    Add the component to the model using the Model::addComponent() function.
+    **1.d** Add the component to the model using the Model::addComponent() function.
 
-model->addComponent(gate);
+.. container:: toggle
+
+  .. container:: header
+
+    Show C++ code
+
+  .. literalinclude:: createGateModel.cpp
+    :language: c++
+    :start-after: // STEP 1
+    :end-before: // STEP 2    
+  
+.. container:: toggle
+
+  .. container:: header
+
+    Show Python code
+
+  .. literalinclude:: createGateModel.py
+    :language: python
+    :start-after: # STEP 1
+    :end-before: # STEP 2   
+
+.. container:: toggle
+
+  .. container:: header
+
+    Show Python code
+
+  .. code-block:: python
+
+        model = Model()
+        model.setName('GateModel')
+        gate = Component('gate')
+        model.addComponent(gate)
 
 Step 2: Create the gateEquations component
 ------------------------------------------
+Inside the wrapper component you created in Step 1 we need to create two more: an equations component, and a parameters component.
+In this step we'll construct the equations component.
 
 .. container:: dothis
 
-    **2.a** Create a gateEquations component, name it "gateEquations" and add it to the model.
-
-auto gateEquations = libcellml::Component::create("gateEquations");
+    **2.a** Create a new equations component named "gateEquations".
 
 .. container:: dothis
 
     **2.b** Add the new gateEquations component to the gate component.
 
-gate->addComponent(gateEquations);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ code
+
+    .. code-block:: c++
+
+        // Create a new component using the overloaded constructor.
+        auto gateEquations = libcellml::Component::create("gateEquations");
+
+        // Add the new component to the existing gate component.
+        gate->addComponent(gateEquations);
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python code
+
+    .. code-block:: python
+
+        gate_equations = Component('gateEquations')
+        gate.addComponent(gate_equations)
+
+Since this is an *equations*-flavoured component, it should contain the bulk of the calculations and mathematics for the gate.
+Maths is added using MathML2 (no other levels are supported) strings.  
+
+In this example we need to represent just one equation:
+
+.. math::
+
+    \frac{dX}{dt} = \alpha_{X}\left( 1 - X \right) - \beta_{X}.X
+
+If you're happy to write your own MathML2 string then please go ahead, but if you'd rather not you can use the code provided under the code toggles further down the page.
+
+.. container:: useful
+
+    - :api:`Component class<Component>`
+        - :code:`setMath`
+        - :code:`appendMath`
+        - :code:`math`
 
 .. container:: dothis
 
-    **2.c** Add the mathematics to the gateEquations component.
+    **2.c** Construct a string representing the MathML of the equation above.
+    You will need to enclose the string with the appropriate header and footer.
+    These are provided for you in the skeleton code, or simply copy them from below.
+    Use the :code:`setMath` and :code:`appendMath` functions to add your strings to the equations component.
 
-std::string equation =
-    "  <apply><eq/>\n"
-    "    <apply><diff/>\n"
-    "      <bvar><ci>t</ci></bvar>\n"
-    "      <ci>X</ci>\n"
-    "    </apply>\n" 
-    "    <apply><minus/>\n"
-    "      <apply><times/>\n"
-    "        <ci>alpha_X</ci>\n"
-    "        <apply><minus/>\n"
-    "          <cn cellml:units=\"dimensionless\">1</cn>\n"
-    "          <ci>X</ci>\n"
-    "        </apply>\n" 
-    "      </apply>\n" 
-    "      <apply><times/>\n"
-    "        <ci>beta_X</ci>\n"
-    "        <ci>X</ci>\n"
-    "      </apply>\n" 
-    "    </apply>\n" 
-    "  </apply>\n"; 
+.. container:: toggle
 
-gateEquations->setMath(mathHeader);
-gateEquations->appendMath(equation);
-gateEquations->appendMath(mathFooter);
+    .. container:: header
+
+        Show C++ code
+    
+    .. code-block:: c++
+
+        std::string mathHeader = "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" xmlns:cellml=\"http://www.cellml.org/cellml/2.0#\">\n";
+        std::string mathFooter = "</math>";
+        std::string equationX =
+            "  <apply><eq/>\n"
+            "    <apply><diff/>\n"
+            "      <bvar><ci>t</ci></bvar>\n"
+            "      <ci>X</ci>\n"
+            "    </apply>\n" 
+            "    <apply><minus/>\n"
+            "      <apply><times/>\n"
+            "        <ci>alpha_X</ci>\n"
+            "        <apply><minus/>\n"
+            "          <cn cellml:units=\"dimensionless\">1</cn>\n"
+            "          <ci>X</ci>\n"
+            "        </apply>\n" 
+            "      </apply>\n" 
+            "      <apply><times/>\n"
+            "        <ci>beta_X</ci>\n"
+            "        <ci>X</ci>\n"
+            "      </apply>\n" 
+            "    </apply>\n" 
+            "  </apply>\n"; 
+
+        gateEquations->setMath(mathHeader);
+        gateEquations->appendMath(equation);
+        gateEquations->appendMath(mathFooter);
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python code
+    
+    .. code-block:: python
+
+        # Python code here TODO
+
+
 
 auto validator = libcellml::Validator::create();
 validator->validateModel(model);

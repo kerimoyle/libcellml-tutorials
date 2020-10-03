@@ -145,6 +145,28 @@ div[class^="issue"], div[class*=" issue"] > ol {
     margin-bottom:0;
 }
 
+.useful {
+    background:#e1eaf0;
+    color: #444444;
+    padding: 10px;
+
+    margin-top:0px;
+    margin-bottom:15px;
+    margin-left:0;
+    margin-right:0;
+
+    line-height: 24px;
+    font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
+}
+.useful * {
+    margin-bottom: 2px;
+    list-style-type: '- ';
+}
+
+.gotcha > p {
+    margin-bottom:0;
+}
+
 .heading2 {
     color: #444444;
     font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;

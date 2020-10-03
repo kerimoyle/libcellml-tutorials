@@ -25,7 +25,7 @@ int main()
     std::cout << "   STEP 1: Setup the model  " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 1: Create a Model item.
+    // STEP 1
 
     //  1.a The first step is to create a Model item which will later contain the component and 
     //      the units it needs.  
@@ -52,7 +52,7 @@ int main()
     std::cout << "   STEP 2: Create the gateEquations component             " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    //  STEP 2: Create the gateEquations component
+    // STEP 2
 
     //  2.a Create a gateEquations component, name it "gateEquations" and add it to the model.
     auto gateEquations = libcellml::Component::create("gateEquations");
@@ -60,6 +60,7 @@ int main()
     //  2.b Add the new gateEquations component to the gate component.
     gate->addComponent(gateEquations);
 
+    // STEP 2c
     //  2.c Add the mathematics to the gateEquations component.
     std::string equation =
         "  <apply><eq/>\n"
@@ -86,14 +87,54 @@ int main()
     gateEquations->appendMath(equation);
     gateEquations->appendMath(mathFooter);
 
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 3: Validate the model                            " << std::endl;
+    std::cout << "----------------------------------------------------------" << std::endl;
+
+    //  STEP 3
+
+    //  Once the mathematics has been added to the component, and the component to the 
+    //  model, we can make use of the diagnostic messages within the Validator class
+    //  to tell us what else needs to be done.  
+
+    //  3.a Create a Validator instance, and pass it your model for processing using the 
+    //      validateModel function.  
     auto validator = libcellml::Validator::create();
     validator->validateModel(model);
+
+    //  Calling the validator does not return anything: we have to go looking for issues 
+    //  that it found during processing.  When a problem is found, an Issue item is created
+    //  containing:
+    //      - a description string explaining the problem;
+    //      - a URL at which more information is available;
+    //      - an std::any item relevant to the problem, if available;
+    //      - a level indicator; and
+    //      - a cause indicator relevant to the stored item.
+    //  We can use these issues as we need to.  The simplest way is to print the descriptions
+    //  to the terminal.
+
+    //  Two helper functions have been provided for this tutorial that will help printing 
+    //  enumerated values to the terminal.  These are:
+    //      - getIssueLevelFromEnum; and
+    //      - getItemTypeAsString. 
+
+    //  3.b Retrieve the number of issues encountered using the validator->issueCount() function,
+    //      then retrieve the issue items from the validator using their index and the validator->issue(index)
+    //      function.  Print the information from each issue to the terminal.
     std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
-    for(size_t i = 0; i < validator->issueCount(); ++i) {
-        std::cout << validator->issue(i)->description() << std::endl;
+    for (size_t i = 0; i < num; ++i) {
+        auto issue = item->issue(i);
+        auto ref = issue->referenceHeading();
+        std::cout << "Issue [" << i << "] is " << getIssueLevelFromEnum(issue->level()) << ":" << std::endl;
+        std::cout << "    description: " << issue->description() << std::endl;
+        if (ref != "") {
+            std::cout << "    see section " << ref
+                        << " in the CellML specification." << std::endl;
+        }
+        std::cout << "    stored item type: " << getItemTypeAsString(issue->itemType()) << std::endl;
     }
 
-    //  2.d Add the missing variables to the gateEquations component, and validate again.
+    //  3.c Add the missing variables to the gateEquations component, and validate again.
     //      Expect errors relating to missing units.
     gateEquations->addVariable(libcellml::Variable::create("t"));
     gateEquations->addVariable(libcellml::Variable::create("alpha_X"));
@@ -106,7 +147,7 @@ int main()
         std::cout << validator->issue(i)->description() << std::endl;
     }
 
-    //  2.e Create the units which will be needed by your variables and add them to the model.
+    //  3.d Create the units which will be needed by your variables and add them to the model.
     //      Use the setUnits function to associate them with the appropriate variables.  
     //      Validate again, and expect no errors.
     auto ms = libcellml::Units::create("ms");
@@ -123,17 +164,13 @@ int main()
     gateEquations->variable("X")->setUnits("dimensionless");
 
     validator->validateModel(model);
-    std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
-    for(size_t i = 0; i < validator->issueCount(); ++i) {
-        std::cout << validator->issue(i)->description() << std::endl;
-    }
-    std::cout << std::endl;
+    printIssues(validator);
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 3: Analyse the model  " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 3: Analyse the mathematical construction of the model.
+    // STEP 3
 
     //  3.a Create an Analyser item and submit the model for processing. 
     auto analyser = libcellml::Analyser::create();
@@ -142,11 +179,7 @@ int main()
     //  3.b Just like the Validator class, the Analyser class keeps track of issues. 
     //      Retrieve these and print to the terminal. Expect errors related to 
     //      un-computed variables and missing initial values.
-    std::cout << "The analyser has found " << analyser->issueCount() << " issues." << std::endl;
-    for(size_t i = 0; i < analyser->issueCount(); ++i) {
-        std::cout << analyser->issue(i)->description() << std::endl;
-    }
-    std::cout << std::endl;
+    printIssues(analyser);
 
     //  In order to avoid hard-coding values here, we will need to connect to external 
     //  values to initialise the X variable and provide the value for alpha_X and beta_X.
@@ -164,23 +197,21 @@ int main()
 
     //  3.d Create appropriate variables in this component, and set their units.
     //      Use the setInitialValue function to initialise them.
-    {
-        auto X = libcellml::Variable::create("X");
-        X->setUnits("dimensionless");
-        X->setInitialValue(0);
-        gateParameters->addVariable(X);
+    auto X = libcellml::Variable::create("X");
+    X->setUnits("dimensionless");
+    X->setInitialValue(0);
+    gateParameters->addVariable(X);
 
-        auto alpha = libcellml::Variable::create("alpha");
-        alpha->setUnits(per_ms);
-        alpha->setInitialValue(0.1);
-        gateParameters->addVariable(alpha);
+    auto alpha = libcellml::Variable::create("alpha");
+    alpha->setUnits(per_ms);
+    alpha->setInitialValue(0.1);
+    gateParameters->addVariable(alpha);
 
-        auto beta = libcellml::Variable::create("beta");
-        beta->setUnits(per_ms);
-        beta->setInitialValue(0.5);
-        gateParameters->addVariable(beta);
-    }
-   
+    auto beta = libcellml::Variable::create("beta");
+    beta->setUnits(per_ms);
+    beta->setInitialValue(0.5);
+    gateParameters->addVariable(beta);
+    
     //  3.e Specify a variable equivalence between the gateEquations variables and the parameter variables.
     //      Validate the model again, expecting errors related to the variable interface types.
     libcellml::Variable::addEquivalence(gateEquations->variable("X"), gateParameters->variable("X"));
@@ -188,11 +219,7 @@ int main()
     libcellml::Variable::addEquivalence(gateEquations->variable("beta_X"), gateParameters->variable("beta"));
 
     validator->validateModel(model);
-    std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
-    for(size_t i = 0; i < validator->issueCount(); ++i) {
-        std::cout << validator->issue(i)->description() << std::endl;
-    }
-    std::cout << std::endl;
+    printIssues(validator);
 
     //  3.f Set the variable interface type according to the recommendation from the validator.
     //      This can either be done individually using the Variable::setInterfaceType() function, or 
@@ -201,18 +228,10 @@ int main()
     model->fixVariableInterfaces();
 
     validator->validateModel(model);
-    std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
-    for(size_t i = 0; i < validator->issueCount(); ++i) {
-        std::cout << validator->issue(i)->description() << std::endl;
-    }
-    std::cout << std::endl;
+    printIssues(validator);
 
     analyser->analyseModel(model);
-    std::cout << "The analyser has found " << analyser->issueCount() << " issues." << std::endl;
-    for(size_t i = 0; i < analyser->issueCount(); ++i) {
-        std::cout << analyser->issue(i)->description() << std::endl;
-    }
-    std::cout << std::endl;
+    printIssues(analyser);
 
     //  3.g  GOTCHA! Even though both the Analyser and Validator have given their approval
     //       to the model as it stands, in order for this to be reusable by other models in 
@@ -228,6 +247,8 @@ int main()
     std::cout << "   STEP 4: Serialise and output the model" << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
+    // STEP 4
+
     //  4.a Create a Printer instance and use it to serialise the model.  This creates a string
     //      containing the CellML-formatted version of the model.  Write this to a file called
     //     "GateModel.cellml".
@@ -237,4 +258,6 @@ int main()
     outFile.close();
 
     std::cout << "The created model has been written to GateModel.cellml" << std::endl;
+
+    // END
 }
