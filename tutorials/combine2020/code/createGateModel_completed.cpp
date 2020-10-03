@@ -48,7 +48,7 @@ int main()
     auto gate = libcellml::Component::create("gate");
 
     //  1.d Finally we need to add the component to the model.  This sets it at the top-level of 
-    //      the components' encapsulation heirarchy.  All other components need to be added 
+    //      the components' encapsulation hierarchy.  All other components need to be added 
     //      to this component, rather than the model.
     //      Add the component to the model using the Model::addComponent() function.
     model->addComponent(gate);
