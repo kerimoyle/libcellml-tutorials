@@ -90,27 +90,23 @@ All other components will then need to be added to this component, rather than t
 
     **1.d** Add the component to the model using the :code:`addComponent` function.
 
-.. container:: toggle
+.. tabs::
 
-  .. container:: header
+    .. tab:: C++ snippet
 
-    Show C++ code
+      .. literalinclude:: ../combine2020/createGateModel.cpp
+        :language: c++
+        :start-after: // STEP 1
+        :end-before: // STEP 2
 
-  .. literalinclude:: ./createGateModel.cpp
-    :language: c++
-    :start-after: // STEP 1
-    :end-before: // STEP 2
-  
-.. container:: toggle
+    .. tab:: Python snippet
 
-  .. container:: header
+      .. literalinclude:: ../combine2020/createGateModel.py
+        :language: python
+        :start-after: # STEP 1
+        :end-before: # STEP 2
 
-    Show Python code
 
-  .. literalinclude:: ./createGateModel.py
-    :language: python
-    :start-after: # STEP 1
-    :end-before: # STEP 2
 
 
 
