@@ -1,7 +1,8 @@
+.. _aside_units:
+
 ..container:: heading3
 
     Understanding units
-
 
 Some basic units have been defined and built into libCellML, others you can define by combining the built-in ones using scaling factors and exponents, or you can define your own from scratch if need be.
 

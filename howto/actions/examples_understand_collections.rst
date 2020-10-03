@@ -4,7 +4,6 @@
 Understand collections of items
 ===============================
 
-
 Where an item can contain more than one child item (for example, more than one :code:`Variable` in a :code:`Component`, more than one :code:`Units` item in a :code:`Model`, etc) the processes for curating that collection follow the patterns outlined below.
 
 **NB:** All of this explanation uses "thing" in place of the specific type of item (component, variable etc).
@@ -170,4 +169,9 @@ For practical information about how they are used, please see the :ref:`Viewing 
 
   .. container:: gotcha
 
-      Note that these **only** operate on collections of items; that is, the collections of :code:`Units` and :code:`Component` items in a :code:`Model`, and encapsulated child :code:`Component` items in a parent :code:`Component`.
+      Note that these **only** operate on collections of items.  That is:
+      - the collections of :code:`Units`, :code:`Component` and :code:`ImportSource` items in a parent :code:`Model`;
+      - the encapsulated child :code:`Component`, :code:`Reset` or :code:`Variable` items in a parent :code:`Component`; 
+      - the child :code:`Unit` items in a parent :code:`Units` item;
+      - the imported :code:`Units` or :code:`Component` items in a parent :code:`ImportSource`; and
+      - the added :code:`Model` items in an :code:`Importer` instance.

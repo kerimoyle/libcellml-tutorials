@@ -24,7 +24,7 @@ Tutorial 1: Creating a model using the API
 
     **Requirements (Python)**
 
-    - :download:`createGateModel.py<createGateModel.py>` Either the skeleton code, or ..
+    - :download:`createGateModel_completed.py<createGateModel_completed.py>` Either the skeleton code, or ..
     - :download:`createGateModel_completed.py<createGateModel_completed.py>` the completed tutorial code.
 
 .. contents:: Contents
@@ -165,10 +165,13 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
 .. container:: useful
 
-    - :api:`Component class<Component>`
-        - :code:`setMath`
-        - :code:`appendMath`
-        - :code:`math`
+    **Useful functions**
+
+    :api:`Component class<Component>`
+
+    - :code:`setMath`
+    - :code:`appendMath`
+    - :code:`math`
 
 .. container:: dothis
 
@@ -194,7 +197,7 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
         :start-at: #  2.c
         :end-before: # end 2
@@ -243,7 +246,7 @@ Once the mathematics has been added to the component, and the component to the m
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
         :start-at: #  3.a
         :end-before: # end 3.a
@@ -291,14 +294,88 @@ Two helper functions have been provided for this tutorial that will help printin
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
         :start-at: #  3.b
         :end-before: #  3.c
 
+.. code-block:: terminal
+
+    The validator has found 6 issues.
+    Issue [0] is an ERROR:
+        description: MathML ci element has the child text 't' which does not correspond with any variable names present in component 'gateEquations'.
+        see section 2.12.3 in the CellML specification.
+        stored item type: MATHML
+    Issue [1] is an ERROR:
+        description: MathML ci element has the child text 'X' which does not correspond with any variable names present in component 'gateEquations'.
+        see section 2.12.3 in the CellML specification.
+        stored item type: MATHML
+    Issue [2] is an ERROR:
+        description: MathML ci element has the child text 'alpha_X' which does not correspond with any variable names present in component 'gateEquations'.
+        see section 2.12.3 in the CellML specification.
+        stored item type: MATHML
+    Issue [3] is an ERROR:
+        description: MathML ci element has the child text 'X' which does not correspond with any variable names present in component 'gateEquations'.
+        see section 2.12.3 in the CellML specification.
+        stored item type: MATHML
+    Issue [4] is an ERROR:
+        description: MathML ci element has the child text 'beta_X' which does not correspond with any variable names present in component 'gateEquations'.
+        see section 2.12.3 in the CellML specification.
+        stored item type: MATHML
+    Issue [5] is an ERROR:
+        description: MathML ci element has the child text 'X' which does not correspond with any variable names present in component 'gateEquations'.
+        see section 2.12.3 in the CellML specification.
+        stored item type: MATHML
+
+Step 4: Add the variables
+-------------------------
+The issues reported by the validator are related to the MathML string that we entered in Step 2 requiring variables which don't yet exist.
+These must be created, named, and added to their parent component.
+
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`Variable class<Variable>`
+
+    - create
+    - setName
+    - setUnits
+
+    :api:`Component class<Component>`
+
+    - addVariable
+
 .. container:: dothis
 
-    **3.c** Add the missing variables to the gateEquations component, and validate again.
+    **4.a** Create :code:`Variable` items whose names match those listed above.  
+    Add these missing variables to the equations component.
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+        :language: c++
+        :start-at: //  4.a 
+        :end-before: //  4.b
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+        :language: python
+        :start-at: #  4.a
+        :end-before: #  4.b
+
+.. container:: dothis
+
+    **4.b** Validate the model again.
     Note that you can use the helper function :code:`printIssues` with the validator as the argument to save repeating the code from 3.b each time.
     Expect errors relating to missing units.
 
@@ -310,8 +387,8 @@ Two helper functions have been provided for this tutorial that will help printin
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
-        :start-at: //  3.c
-        :end-before: //  3.d
+        :start-at: //  4.b 
+        :end-before: //  end 4
 
 .. container:: toggle
 
@@ -319,16 +396,95 @@ Two helper functions have been provided for this tutorial that will help printin
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-at: #  3.c
-        :end-before: #  3.d
+        :start-at: #  4.b
+        :end-before: #  end 4
+
+.. code-block:: terminal
+
+    Issue [0] is an ERROR:
+        description: CellML identifiers must contain one or more basic Latin alphabetic characters.
+        see section 1.3.1.1 in the CellML specification.
+        stored item type: UNDEFINED
+    Issue [1] is an ERROR:
+        description: Variable 't' in component 'gateEquations' does not have a valid units attribute. The attribute given is ''.
+        see section 2.8.1.2 in the CellML specification.
+        stored item type: VARIABLE
+    ... etc ...
+
+Step 5: Add the units
+---------------------
+The validator has reported that the four variables are missing units attributes.  
+In this example none of the units exist yet, so we need to create all of them. 
+
+.. container:: shortlist
+
+The variables' units should be:
+
+- t, time has units of *milliseconds*
+- X, gate status has units of *dimensionless*
+- alpha_X and beta_X, rates, have units of *per millisecond*.
+
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`Units class<Units>`
+
+    - create
+    - setName
+    - addUnit
+    - name
+
+    :api:`Model class<Model>`
+
+    - addUnits
+
+    :api:`Variable class<Variable>`
+
+    - setUnits
+    - units
 
 .. container:: dothis
 
-    **3.d** Create the units which will be needed by your variables and add them to the model.
-    Use the setUnits function to associate them with the appropriate variables.  
-    Validate again, and expect no errors.
+    **5.a** Create two new :code:`Units` items with names of "ms" and "per_ms".
+    These will represent units of milliseconds and per millisecond respectively.
+    
+Some basic units have been defined and built into libCellML, others you can define by combining the built-in ones using scaling factors and exponents, or you can define your own from scratch if need be.
+Please read the :ref:`Understanding units<aside_units>` page for more detailed information, but for now let's look at a simple example that defines a :code:`Units` item representing millivolts.
+
+.. tabs::
+
+    .. code-tab:: c++
+
+        // Declare, name, and define a millivolt units item.
+        auto mV = libcellml::Units::create("mV");
+
+        // The manner of specification here is agnostic: all three definitions are identical.
+        mV->addUnit("volt", "milli");  // reference unit, built-in prefix string
+        // OR
+        mV->addUnit("volt", -3);       // reference unit, prefix as an integer
+        // OR
+        mV->addUnit("volt", 1.0, 1, 0.001);  // reference unit, prefix, exponent, multiplier
+
+    .. code-block:: py
+
+        from libcellml import Units
+
+        # Declare, name, and define a millivolt units item.
+        mV = Units("mV")
+
+        # The manner of specification here is agnostic: all three definitions are identical.
+        mV.addUnit("second", "milli")   # reference unit and built-in prefix
+        # OR
+        mV.addUnit("second", -3)        # reference unit, prefix
+        # OR
+        mV.addUnit("second", 1, 1.0, 0.001)   # reference unit, prefix, exponent, multiplier
+
+.. container:: dothis
+
+    **5.b** Following the example above, define the units of millisecond and per millisecond by adding the appropriate unit items.
 
 .. container:: toggle
 
@@ -338,8 +494,8 @@ Two helper functions have been provided for this tutorial that will help printin
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
-        :start-at: //  3.d
-        :end-before: //  end 3
+        :start-at: //  5.a 
+        :end-before: //  5.c
 
 .. container:: toggle
 
@@ -347,12 +503,46 @@ Two helper functions have been provided for this tutorial that will help printin
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-at: #  3.d
-        :end-before: #  end 3
+        :start-at: #  5.a
+        :end-before: #  5.c
 
-Step 4: Analyse the mathematical construction of the model
+.. container:: dothis
+
+    **5.c** Add the units to the model (not the component) so that other components can make use of them too.
+
+.. container:: dothis
+
+    **5.d** Use the :code:`setUnits` function to associate the units you've created with the appropriate variables.
+
+.. container:: dothis
+
+    **5.e** Validate again, and expect no errors.
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+        :language: c++
+        :start-at: //  5.c
+        :end-before: //  end 5
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+        :language: python
+        :start-at: #  5.c
+        :end-before: #  end 5
+
+Step 6: Analyse the mathematical construction of the model
 ----------------------------------------------------------
 
 .. container:: useful
@@ -368,11 +558,11 @@ Step 4: Analyse the mathematical construction of the model
 
 .. container:: dothis
 
-    **4.a** Create an :code:`Analyser` item and submit the model for processing. 
+    **6.a** Create an :code:`Analyser` item and submit the model for processing. 
 
 .. container:: dothis
 
-    **4.b** Just like the Validator class, the Analyser class keeps track of issues. 
+    **6.b** Just like the Validator class, the Analyser class keeps track of issues. 
     Retrieve these and print to the terminal using the same helper function as earlier.
     Expect errors related to un-computed variables and missing initial values.
 
@@ -384,8 +574,8 @@ Step 4: Analyse the mathematical construction of the model
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
-        :start-at: //  4.a
-        :end-before: //  end 4.b
+        :start-at: //  6.a
+        :end-before: //  end 6.b
 
 .. container:: toggle
 
@@ -393,14 +583,23 @@ Step 4: Analyse the mathematical construction of the model
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-at: #  4.b
-        :end-before: #  end 4.b
+        :start-at: #  6.a
+        :end-before: #  end 6.b
 
 .. code-block:: terminal
 
-    TODO
+    Recorded 3 issues:
+    Issue [0] is an ERROR:
+        description: Variable 'X' in component 'gateEquations' is used in an ODE, but it is not initialised.
+        stored item type: VARIABLE
+    Issue [1] is an ERROR:
+        description: Variable 'alpha_X' in component 'gateEquations' is not computed.
+        stored item type: VARIABLE
+    Issue [2] is an ERROR:
+        description: Variable 'beta_X' in component 'gateEquations' is not computed.
+        stored item type: VARIABLE
 
 In order to avoid hard-coding values here, we will need to connect to external values to initialise the "X" variable and provide the value for "alpha_X" and "beta_X".
 
@@ -412,30 +611,35 @@ In order to avoid hard-coding values here, we will need to connect to external v
     - we need to specify the connections between variables; and
     - we need to permit external connections on the variables.
 
+This is the reason for the second internal component, the *parameters* component.
+
+.. container:: dothis
+
+    **6.c** Create a component which will store the hard-coded values for initialisation.
+    Name it "gateParameters", and add it to the top-level gate component as a sibling of the gateEquations component.
+
 .. container:: useful
 
     **Useful functions**
 
-    :api:`Component class<Component>`
-
-    - addVariable
-
     :api:`Variable class<Variable>`
 
-    - create
-    - setUnits
     - setInitialValue
     - addEquivalence
 
+    :api:`Component class<Component>`
+
+    - variable
+
+    :api:`Model class<Model>`
+
+    - component
+
 .. container:: dothis
 
-    **3.c** Create a component which will store the hard-coded values for initialisation.
-    Name it "gateParameters", and add it to the top-level gate component as a sibling of the gateEquations component.
-
-.. container:: dothis
-
-    **3.d** Create appropriate variables in this component, and set their units.
-    Use the :code:`setInitialValue` function to initialise them.
+    **6.d** Create appropriate variables in this component, and set their units.
+    Use the :code:`setInitialValue` function to initialise the variables.
+    **TODO** What values to give?
 
 .. container:: toggle
 
@@ -454,14 +658,45 @@ In order to avoid hard-coding values here, we will need to connect to external v
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
         :start-at: #  4.c
         :end-before: #  4.e
 
+So far in this tutorial we've only been creating items, defining them, and adding to their parent items.
+Now for the first time we will need to retrieve a child item from its parent.
+This can be done in one of two ways: either by the child's index or by its name.
+There is more information about interacting with collections of items on the :ref:`Understanding collections of items<examples_understand_collections>` page.
+
+Two particularly useful idioms are shown below.
+
+.. tabs::
+
+    .. code-tab:: c++
+
+        // Retrieve Units named "myUnits" from a model and set as the units for a variable named "myVariable".
+        myVariable->setUnits(myModel->units("myUnits"));
+
+        // Retrieve a great-grandchild component by following the hierarchy of the encapsulation structure:
+        auto grandson = model->component("grandfather")->component("daddy")->component("son");
+
+        // Short-cut to retrieve the component with the given name from anywhere in the encapsulation hierarchy:
+        auto granddaughter = model->component("granddaughter", true);
+
+    .. code-tab:: py
+
+        # Retrieve Units named "myUnits" from a model and set as the units for a variable named "myVariable".
+        myVariable.setUnits(myModel.units('myUnits'))
+
+        # Retrieve a great-grandchild component by following the hierarchy of the encapsulation structure:
+        grandson = model->component('grandfather')->component('daddy')->component('son');
+
+        # Short-cut to retrieve the component with the given name from anywhere in the encapsulation hierarchy:
+        granddaughter = model->component('granddaughter', true)
+
 .. container:: dothis
 
-    **3.e** Specify a variable equivalence between the gate equations variables and the parameter variables.
+    **6.e** Specify a variable equivalence between the gate equations variables and the parameter variables of the same name.
     Validate the model again, expecting errors related to the variable interface types.
 
 .. container:: toggle
@@ -481,14 +716,19 @@ In order to avoid hard-coding values here, we will need to connect to external v
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
         :start-at: #  4.e
         :end-before: #  4.f
 
 .. code-block:: terminal
 
-    TODO
+    Recorded 6 issues:
+    Issue [0] is an ERROR:
+        description: Variable 'alpha_X' in component 'gateEquations' has no interface type set. The interface type required is 'public'.
+        see section 3.10.8 in the CellML specification.
+        stored item type: VARIABLE
+    ... etc ...
 
 .. container:: useful
 
@@ -498,10 +738,14 @@ In order to avoid hard-coding values here, we will need to connect to external v
 
     - fixVariableInterfaces
 
+    :api:`Variable class<Variable>`
+
+    - setInterfaceType
+
 .. container:: dothis
 
-    **3.f** Set the variable interface type according to the recommendation from the validator.
-    This can either be done individually using the :code:`setInterfaceType` function, or en masse for all the model's interfaces using the Model::fixVariableInterfaces() function.
+    **6.f** Set the variable interface type according to the recommendation from the validator.
+    This can either be done individually using the :code:`setInterfaceType` function on each variable, or en masse for all the model's variable interfaces using its :code:`fixVariableInterfaces` function.
     Validate and analyse again, expecting no errors. 
 
 .. container:: toggle
@@ -512,8 +756,8 @@ In order to avoid hard-coding values here, we will need to connect to external v
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
-        :start-at: //  4.e
-        :end-before: //  end 4.f
+        :start-at: //  6.e
+        :end-before: //  end 6.f
 
 .. container:: toggle
 
@@ -521,12 +765,12 @@ In order to avoid hard-coding values here, we will need to connect to external v
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-at: #  4.e
-        :end-before: #  end 4.f
+        :start-at: #  6.e
+        :end-before: #  end 6.f
 
-Step 5: Sanity check
+Step 7: Sanity check
 --------------------
 
 .. container:: useful
@@ -539,21 +783,45 @@ Step 5: Sanity check
 
 .. container:: dothis
 
-    **5.a** Print the model to the terminal using the helper function :code:`printModel`.
+    **7.a** Print the model to the terminal using the helper function :code:`printModel`.
 
 .. code-block:: terminal
 
-    TODO
+    MODEL: 'GateModel'
+    UNITS: 2 custom units
+        [0]: ms
+        [1]: per_ms
+    COMPONENTS: 1 components
+        [0]: gate
+            VARIABLES: 0 variables
+            COMPONENT gate has 2 child components:
+                [0]: gateEquations
+                    VARIABLES: 4 variables
+                        [0]: t [ms]
+                        [1]: alpha_X [per_ms]
+                              └──> gateParameters:alpha [per_ms]
+                        [2]: beta_X [per_ms]
+                              └──> gateParameters:beta [per_ms]
+                        [3]: X [dimensionless]
+                              └──> gateParameters:X [dimensionless]
+                [1]: gateParameters
+                    VARIABLES: 3 variables
+                        [0]: X [dimensionless], initial = 0
+                              └──> gateEquations:X [dimensionless]
+                        [1]: alpha [per_ms], initial = 0.1
+                              └──> gateEquations:alpha_X [per_ms]
+                        [2]: beta [per_ms], initial = 0.5
+                              └──> gateEquations:beta_X [per_ms]
 
-Looking at the printout we see that the top-level component has no variables.  
-Even though this is clearly a valid situation (as proved by 4.f), it's not
+Looking at the printout we see that the top-level component named "gate" has no variables.  
+Even though this is clearly a valid situation (as proved by 6.f), it's not
 going to make this model easy to reuse.
 We need to make sure that any input and output variables are also connected into the top level gate component.  
 
 .. container:: dothis
 
-    **5.b** Create intermediate variables for time t and gate status X in the gate component, and ensure they have a public and private interface to enable two-way connection.
-    You may also need to set a public and private connection onto t and X in the equations component too.
+    **7.b** Create intermediate variables for time t and gate status X in the gate component, and ensure they have a public and private interface to enable two-way connection.
+    You will also need to set a public and private connection onto t and X in the equations component too, or repeat the call to fix the model's interfaces as in step 6.f.
 
 .. container:: toggle
 
@@ -563,8 +831,8 @@ We need to make sure that any input and output variables are also connected into
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
-        :start-at: //  5.b
-        :end-before: //  5.c
+        :start-at: //  7.b
+        :end-before: //  7.c
 
 .. container:: toggle
 
@@ -572,14 +840,14 @@ We need to make sure that any input and output variables are also connected into
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-at: #  5.b
-        :end-before: #  5.c
+        :start-at: #  7.b
+        :end-before: #  7.c
 
 .. container:: dothis
 
-    **5.c** Connect the intermediate variables to their respective partners in the equations component, and recheck the model.
+    **7.c** Connect the intermediate variables to their respective partners in the equations component, and recheck the model.
 
 .. container:: toggle
 
@@ -589,8 +857,8 @@ We need to make sure that any input and output variables are also connected into
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
-        :start-at: //  5.c
-        :end-before: //  end 5
+        :start-at: //  7.c
+        :end-before: //  end 7
 
 .. container:: toggle
 
@@ -598,21 +866,19 @@ We need to make sure that any input and output variables are also connected into
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-at: #  5.c
-        :end-before: #  end 5
+        :start-at: #  7.c
+        :end-before: #  end 7
 
-Step 6: Serialise and output the model
+Step 8: Serialise and output the model
 --------------------------------------
-
-TODO
-This creates a string containing the CellML-formatted version of the model.
+The :code:`Printer` class in libCellML takes the stored instance of a :code:`Model` item and creates a string representing its serialisation into CellML code.  
 
 .. container:: dothis
 
-    **4.a** Create a :code:`Printer` instance and use it to serialise the model.
-    Write this to a file called "GateModel.cellml".
+    **8.a** Create a :code:`Printer` instance and use it to serialise the model into a string.
+    Write this string to a file called "GateModel.cellml".
 
 .. container:: toggle
 
@@ -622,8 +888,8 @@ This creates a string containing the CellML-formatted version of the model.
 
     .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
         :language: c++
-        :start-at: //  6.a
-        :end-before: //  end 6
+        :start-at: //  8.a
+        :end-before: //  end 8
 
 .. container:: toggle
 
@@ -631,8 +897,8 @@ This creates a string containing the CellML-formatted version of the model.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel.py
+    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
         :language: python
-        :start-at: #  6.a
-        :end-before: #  end 6
+        :start-at: #  8.a
+        :end-before: #  end 8
 
