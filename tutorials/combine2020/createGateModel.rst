@@ -95,16 +95,16 @@ All other components will then need to be added to this component, rather than t
     .. tab:: C++ snippet
 
         .. literalinclude:: ../combine2020/code/createGateModel.cpp
-        :language: c++
-        :start-after: // STEP 1
-        :end-before: // STEP 2
+            :language: c++
+            :start-after: // STEP 1
+            :end-before: // STEP 2
 
     .. tab:: Python snippet
 
         .. literalinclude:: ../combine2020/code/example_annotationToolDev.py
-        :language: python
-        :start-after: # STEP 1
-        :end-before: # STEP 2
+            :language: python
+            :start-after: # STEP 1
+            :end-before: # STEP 2
 
 
 
