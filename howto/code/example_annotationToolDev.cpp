@@ -31,9 +31,10 @@ int main()
     auto dictionary = annotator->dictionary();
     std::cout << "Existing id strings are:"<<std::endl;
     for(auto const &i : dictionary){
-        std::cout << " " << i.first <<" = " << annotator->typeAsString(i.second) << std::endl;
+        std::cout << " " << i.first << " = " << annotator->typeAsString(i.second) << std::endl;
     }
     std::cout << std::endl;
+
     // STEP 3
     // Retrieve items by their id where the item type is known.
 

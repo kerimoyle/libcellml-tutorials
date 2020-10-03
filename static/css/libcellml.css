@@ -148,19 +148,23 @@ div[class^="issue"], div[class*=" issue"] > ol {
 .useful {
     background:#e1eaf0;
     color: #444444;
-    padding: 10px;
-
-    margin-top:0px;
-    margin-bottom:10px;
-    margin-left:0;
-    margin-right:0;
-
+    padding: 3px 3px 5px 8px;
+    margin-top:20px;
+    margin-bottom:20px;
+    line-height: 24px;
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
 }
 
-.useful > * {
-    margin-bottom: 2px;
-    list-style-type: '- ';
+.useful > .guilabel {
+    color: rgb(30, 46, 0);
+}
+
+.useful > .highlight-console {
+    margin: 6px 6px 6px 0;
+}
+
+.useful > p {
+    margin-bottom:0;
 }
 
 .gotcha > p {

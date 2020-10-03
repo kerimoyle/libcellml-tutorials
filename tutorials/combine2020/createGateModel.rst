@@ -90,48 +90,34 @@ All other components will then need to be added to this component, rather than t
 
     **1.d** Add the component to the model using the :code:`addComponent` function.
 
+.. tabs::
+
+    .. tab:: C++ snippet
+
+        .. literalinclude:: ../howto/code/example_annotationToolDev.cpp
+        :language: c++
+        :start-after: // STEP 1
+        :end-before: // STEP 2
+
+    .. tab:: Python snippet
+
+        .. literalinclude:: ../howto/code/example_annotationToolDev.py
+        :language: python
+        :start-after: # STEP 1
+        :end-before: # STEP 2
+
+
+
+
+
+
 .. container:: toggle
 
   .. container:: header
 
     Show C++ code
 
-  .. literalinclude:: createGateModel.cpp
-    :language: c++
 
-  
-.. container:: toggle
-
-  .. container:: header
-
-    Show Python code
-
-  .. literalinclude:: createGateModel.py
-    :language: python
-
-
-
-.. tabs::
-
-  .. tab:: C++ snippet
-
-    .. literalinclude:: ../combine2020/createGateModel.cpp
-      :language: c++
-      :start-after: // STEP 1
-      :end-before: // STEP 2
-
-  .. tab:: Python snippet
-
-    .. literalinclude:: ../combine2020/createGateModel.py
-      :language: python
-      :start-after: # STEP 1
-      :end-before: # STEP 2
-
-
-
-
-
-stop here KRM
 
 
 .. container:: toggle
