@@ -50,6 +50,8 @@ int main()
     //      Add the component to the model using the Model::addComponent() function.
     model->addComponent(gate);
 
+    // END STEP 1
+
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 2: Create the gateEquations component             " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
@@ -87,6 +89,8 @@ int main()
     gateEquations->setMath(mathHeader);
     gateEquations->appendMath(equation);
     gateEquations->appendMath(mathFooter);
+
+    // END STEP 2
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 3: Validate the model                            " << std::endl;
