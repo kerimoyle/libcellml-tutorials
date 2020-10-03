@@ -91,7 +91,7 @@ int main()
     std::cout << "   STEP 3: Validate the model                            " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    //  STEP 3
+    // STEP 3
 
     //  Once the mathematics has been added to the component, and the component to the 
     //  model, we can make use of the diagnostic messages within the Validator class
@@ -170,7 +170,7 @@ int main()
     std::cout << "   STEP 3: Analyse the model  " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 3
+    // STEP 4
 
     //  3.a Create an Analyser item and submit the model for processing. 
     auto analyser = libcellml::Analyser::create();
@@ -247,7 +247,7 @@ int main()
     std::cout << "   STEP 4: Serialise and output the model" << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 4
+    // STEP 5
 
     //  4.a Create a Printer instance and use it to serialise the model.  This creates a string
     //      containing the CellML-formatted version of the model.  Write this to a file called
