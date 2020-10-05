@@ -1,4 +1,4 @@
-
+"""
  COMBINE2020 TUTORIAL 1: Creating a potassium channel model
 
   By the time you have worked through this tutorial you will be able to:
@@ -11,6 +11,7 @@
       - Use the diagnostic Analyser class to identify errors in the 
         model's mathematical formulation and
       - Serialise the model to CellML format for output.
+"""
 
 from libcellml import Analyser, Component, Importer, ImportSource, Model, Printer, Units, Validator, Variable
 
@@ -19,7 +20,7 @@ from tutorial_utilities import print_issues, print_model, get_item_type_from_enu
 if __name__ == '__main__':
 
     #  Setup useful things.
-    mathHeader = '<math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">\n'
+    math_header = '<math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">\n'
     mathFooter = '</math>'
 
     # Overall the model structure will be:
@@ -27,10 +28,10 @@ if __name__ == '__main__':
     #     component: controller <-- imported from PotassiumChannelController.cellml
     #     component: potassiumChannel
     #         component: potassiumChannelEquations
-    #                 component: nGateEquations
+    #                 component: n_gate_equations
     #                     component: gateEquations <-- imported from GateModel.cellml, component gateEquations
-    #                 component: nGateParameters <-- created here so that the parameters are specific to the nGateEquations.
-    #         component: kChannelParameters
+    #                 component: n_gate_parameters <-- created here so that the parameters are specific to the n_gate_equations.
+    #         component: k_channel_parameters
 
     print('------------------------------------------------------------')
     print('   STEP 1: Define the model setup                           ')
@@ -42,11 +43,11 @@ if __name__ == '__main__':
 
     #  1.b 
     #      Create a wrapping component and name it 'potassiumChannel'.
-    kChannel = Component('potassiumChannel')
+    k_channel = Component('potassiumChannel')
 
     #  1.c 
     #      Add the component to the model.
-    model.addComponent(kChannel)
+    model.addComponent(k_channel)
 
     #  end 1
 
@@ -57,19 +58,19 @@ if __name__ == '__main__':
     #  2.a 
     #      Create a Component instance for the equations and name it 'potassiumChannelEquations'.  
     #      Add it to the wrapper component you created above.
-    kChannelEquations = Component('potassiumChannelEquations')
-    kChannel.addComponent(kChannelEquations)
+    k_channel_equations = Component('potassiumChannelEquations')
+    k_channel.addComponent(k_channel_equations)
 
     #  end 2.a
     #      The mathematics of a component is specified as a MathML 2 string (NB: higher versions 
     #      of MathML are not supported), and is added to the component using setMath() and 
     #      appendMath() functions.  
     #      Your string needs to contain the namespaces for MathML and for CellML: these have been
-    #      provided for you in the mathHeader string above.
+    #      provided for you in the math_header string above.
 
     #  2.b 
     #      Define the maths inside the potassiumChannelEquations component.
-    equationIK = \
+    equation_iK = \
         '  <apply><eq/>\n'\
         '    <ci>i_K</ci>\n'\
         '    <apply><times/>\n'\
@@ -85,9 +86,9 @@ if __name__ == '__main__':
         '    </apply>\n'\
         '  </apply>\n'
 
-    kChannelEquations.setMath(mathHeader)
-    kChannelEquations.appendMath(equationIK)
-    kChannelEquations.appendMath(mathFooter)
+    k_channel_equations.setMath(math_header)
+    k_channel_equations.appendMath(equation_iK)
+    k_channel_equations.appendMath(mathFooter)
      
     #  2.c 
     #      Once the mathematics has been added to the component, and the component to the 
@@ -123,15 +124,15 @@ if __name__ == '__main__':
     #  2.e 
     #      Create the variables needed and add them to the potassium channel component.
     #      Revalidate and expect errors related to variables without units.
-    kChannelEquations.addVariable(Variable('E_K'))
-    kChannelEquations.addVariable(Variable('i_K'))
-    kChannelEquations.addVariable(Variable('g_K'))
-    kChannelEquations.addVariable(Variable('V'))
-    kChannelEquations.addVariable(Variable('t'))
-    kChannelEquations.addVariable(Variable('n'))
+    k_channel_equations.addVariable(Variable('E_K'))
+    k_channel_equations.addVariable(Variable('i_K'))
+    k_channel_equations.addVariable(Variable('g_K'))
+    k_channel_equations.addVariable(Variable('V'))
+    k_channel_equations.addVariable(Variable('t'))
+    k_channel_equations.addVariable(Variable('n'))
 
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  2.f 
     #      Create the missing Units items and add them to the model. These are:
@@ -167,43 +168,43 @@ if __name__ == '__main__':
     #  2.g 
     #      Set the units on each of the variables.  
     #      Call the validator again, and expect there to be no errors.
-    kChannelEquations.variable('E_K').setUnits(mV)
-    kChannelEquations.variable('i_K').setUnits(microA_per_cm2)
-    kChannelEquations.variable('g_K').setUnits(mS_per_cm2)
-    kChannelEquations.variable('V').setUnits(mV)
-    kChannelEquations.variable('t').setUnits(ms)
-    kChannelEquations.variable('n').setUnits('dimensionless')
+    k_channel_equations.variable('E_K').setUnits(mV)
+    k_channel_equations.variable('i_K').setUnits(microA_per_cm2)
+    k_channel_equations.variable('g_K').setUnits(mS_per_cm2)
+    k_channel_equations.variable('V').setUnits(mV)
+    k_channel_equations.variable('t').setUnits(ms)
+    k_channel_equations.variable('n').setUnits('dimensionless')
 
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  end 2
 
     print('------------------------------------------------------------')
-    print('   STEP 3: Create the nGate and nGateEquations components   ')
+    print('   STEP 3: Create the n_gate and n_gate_equations components   ')
     print('------------------------------------------------------------')
 
-    #  STEP 3: Create the nGate and its child components:
-    #          - The nGateEquations has some of the working of a generic gate 
+    #  STEP 3: Create the n_gate and its child components:
+    #          - The n_gate_equations has some of the working of a generic gate 
     #            (which we'll import from GateModel.cellml), but instead of constant values for alpha and beta, 
     #            we'll introduce a voltage dependence.
-    #          - the nGateParameters component allows us to specify those parameters specific to the movement
+    #          - the n_gate_parameters component allows us to specify those parameters specific to the movement
     #            of potassium.
 
     #  3.a 
     #      Create a component, name it 'nGate', and add it to the equations component.
-    nGate = Component('nGate')
-    kChannelEquations.addComponent(nGate)
+    n_gate = Component('nGate')
+    k_channel_equations.addComponent(n_gate)
 
     #  3.b 
-    #      Create a component, name it 'nGateEquations' and add it to the nGate component.
-    nGateEquations = Component('nGateEquations')
-    nGate.addComponent(nGateEquations)
+    #      Create a component, name it 'nGateEquations' and add it to the n_gate component.
+    n_gate_equations = Component('nGateEquations')
+    n_gate.addComponent(n_gate_equations)
 
     #  3.c 
-    #      Add the mathematics to the nGateEquations component and validate the model.
+    #      Add the mathematics to the n_gate_equations component and validate the model.
     #      Expect errors relating to missing variables.
-    equationAlphaN =
+    equation_alpha_n = \
         '  <apply><eq/>\n'\
         '    <ci>alpha_n</ci>\n'\
         '    <apply><divide/>\n'\
@@ -229,7 +230,7 @@ if __name__ == '__main__':
         '    </apply>\n'\
         '  </apply>\n'
 
-    equationBetaN = \
+    equation_beta_n = \
         '  <apply><eq/>\n'\
         '    <ci>beta_n</ci>\n'\
         '    <apply><times/>\n'\
@@ -243,25 +244,25 @@ if __name__ == '__main__':
         '    </apply>\n'\
         '  </apply>\n'
 
-    nGateEquations.setMath(mathHeader)
-    nGateEquations.appendMath(equationAlphaN)
-    nGateEquations.appendMath(equationBetaN)
-    nGateEquations.appendMath(mathFooter)
+    n_gate_equations.setMath(math_header)
+    n_gate_equations.appendMath(equation_alpha_n)
+    n_gate_equations.appendMath(equation_beta_n)
+    n_gate_equations.appendMath(mathFooter)
     
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  3.d 
-    #      Add the missing variables to the nGateEquations component, and validate again.
+    #      Add the missing variables to the n_gate_equations component, and validate again.
     #      Expect errors relating to units missing from the variables.
-    nGateEquations.addVariable(Variable('t'))
-    nGateEquations.addVariable(Variable('V'))
-    nGateEquations.addVariable(Variable('alpha_n'))
-    nGateEquations.addVariable(Variable('beta_n'))
-    nGateEquations.addVariable(Variable('n'))
+    n_gate_equations.addVariable(Variable('t'))
+    n_gate_equations.addVariable(Variable('V'))
+    n_gate_equations.addVariable(Variable('alpha_n'))
+    n_gate_equations.addVariable(Variable('beta_n'))
+    n_gate_equations.addVariable(Variable('n'))
     
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  end 3.d
 
@@ -285,14 +286,14 @@ if __name__ == '__main__':
     #  3.f
     #      Associate the correct units items with the variables which need them.
     #      Revalidate the model, expecting there to be no errors reported.
-    nGateEquations.variable('t').setUnits(ms)
-    nGateEquations.variable('V').setUnits(mV)
-    nGateEquations.variable('alpha_n').setUnits(per_ms)
-    nGateEquations.variable('beta_n').setUnits(per_ms)
-    nGateEquations.variable('n').setUnits('dimensionless')
+    n_gate_equations.variable('t').setUnits(ms)
+    n_gate_equations.variable('V').setUnits(mV)
+    n_gate_equations.variable('alpha_n').setUnits(per_ms)
+    n_gate_equations.variable('beta_n').setUnits(per_ms)
+    n_gate_equations.variable('n').setUnits('dimensionless')
 
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  end 3
 
@@ -305,9 +306,9 @@ if __name__ == '__main__':
     #          - 'gateEquations' which solves an ODE for the gate status parameter, X
     #          - 'gateParameters' which sets the values of alpha, beta, and initialises X
     #      We will import only the 'gateEquations' component and set it to be a child 
-    #      of the nGateEquations component.  This means we can introduce the voltage
+    #      of the n_gate_equations component.  This means we can introduce the voltage
     #      dependence for the alpha and beta, and using a specified initial value for 
-    #      the gate's status.  Note that the variable 'n' in the nGateEquations is 
+    #      the gate's status.  Note that the variable 'n' in the n_gate_equations is 
     #      equivalent to the generic gate's variable 'X'.
 
     #  Imports require three things:
@@ -319,32 +320,32 @@ if __name__ == '__main__':
 
     #  4.a 
     #      Create an ImportSource item and set its URL to be 'GateModel.cellml'.
-    gateModelImportSource = ImportSource()
-    gateModelImportSource.setUrl('GateModel.cellml')
+    gate_import_source = ImportSource()
+    gate_import_source.setUrl('GateModel.cellml')
 
     #  4.b 
     #      Create a destination component for the imported gate component, and add this to 
-    #      the nGateEquations component. 
-    importedGate = Component('importedGate')
-    nGateEquations.addComponent(importedGate)
+    #      the n_gate_equations component. 
+    imported_gate = Component('importedGate')
+    n_gate_equations.addComponent(imported_gate)
 
     #  4.c 
     #      Set the import reference on the component you just created to be the name
     #      of the component in the GateModel.cellml file that you want to use.  In this
     #      example, it is 'gateEquations'.
-    importedGate.setImportReference('gateEquations')
+    imported_gate.setImportReference('gateEquations')
 
     #  4.d 
     #      Associate the import source with the component using the setImportSource function.
     #      Note that this step also makes the import source available to other items through the 
     #      Model.importSource(index) function.  This way the same model file can be used as a 
     #      source for more than one item.
-    importedGate.setImportSource(gateModelImportSource)
+    imported_gate.setImportSource(gate_import_source)
 
     #  4.e 
     #      Validate the model and confirm that there are no issues.
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  end 4
 
@@ -369,7 +370,7 @@ if __name__ == '__main__':
 
     #  5.b Validate the model and confirm that there are no issues.
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  end 5
 
@@ -389,7 +390,7 @@ if __name__ == '__main__':
     # A reminder: we're aiming for a potassium channel component which can accept two external
     # parameters - time, t (ms) and voltage, V (mV) - and use them to calculate a potassium 
     # current, i_K (microA_per_cm2). 
-    # A utility function printModel() has been provided to help you to see what's going 
+    # A utility function print_model has been provided to help you to see what's going 
     # on inside your model.
 
     #  6.a 
@@ -401,7 +402,7 @@ if __name__ == '__main__':
     #      The analyser is similar to the Validator and keeps a record of issues it encounters.
     #      Retrieve these and print to the terminal, just as you've done for the validator.
     #      Expect messages related to un-computed variables.
-    printIssues(analyser)
+    print_issues(analyser)
 
     #  end 6
 
@@ -416,13 +417,13 @@ if __name__ == '__main__':
     print('   STEP 7: Define the constants                             ')
     print('------------------------------------------------------------')
 
-    #      Use the printModel() function to show your current model contents. This should
-    #      show that we have currently got variables only in the nGateEquations and potassiumChannelEquations
+    #      Use the print_model() function to show your current model contents. This should
+    #      show that we have currently got variables only in the n_gate_equations and potassiumChannelEquations
     #      components.  These need to have sibling parameters components created to hold any hard-coded
     #      values or initial conditions that are required.
     #  7.a 
     #      Print the model to the terminal.
-    printModel(model, true)
+    print_model(model, True)
 
     #  end 7.a 
     #      Create parameters siblings components for the equations components, and add the variables that 
@@ -430,7 +431,7 @@ if __name__ == '__main__':
     #      - potassium channel parameters
     #          - ??, E_K (-85)
     #          - conductance, g_K (??)
-    #      - nGate parameters
+    #      - n_gate parameters
     #          - initial value for n (dimensionless)
     #      You can either do this by creating the variables from scratch (as in Step 3.d) but
     #      because these are intended to be duplicates of existing variables, but in another 
@@ -438,32 +439,32 @@ if __name__ == '__main__':
     #  7.b
     #      Create parameters components for the equations components, and add cloned versions of
     #      any variables which need to be given a value into the new parameters components.
-    kChannelParameters = Component('potassiumChannelParameters')
-    kChannel.addComponent(kChannelParameters)
-    kChannelParameters.addVariable(kChannelEquations.variable('E_K').clone())
-    kChannelParameters.addVariable(kChannelEquations.variable('g_K').clone())
+    k_channel_parameters = Component('potassiumChannelParameters')
+    k_channel.addComponent(k_channel_parameters)
+    k_channel_parameters.addVariable(k_channel_equations.variable('E_K').clone())
+    k_channel_parameters.addVariable(k_channel_equations.variable('g_K').clone())
 
-    nGateParameters = Component('nGateParameters')
-    nGate.addComponent(nGateParameters)
-    nGateParameters.addVariable(nGateEquations.variable('n').clone())
+    n_gate_parameters = Component('nGateParameters')
+    n_gate.addComponent(n_gate_parameters)
+    n_gate_parameters.addVariable(n_gate_equations.variable('n').clone())
 
     #  7.c 
     #      In order for other encapsulating components to access these variables, they also need to have
-    #      intermediate variables in the nGate or potassium channel components too.  This is only true
+    #      intermediate variables in the n_gate or potassium channel components too.  This is only true
     #      of variables that you want to be available to the outside.  In this example, we need to add
-    #      the variable 'n' to the nGate in order that its parent (the potassium channel equations) can 
+    #      the variable 'n' to the n_gate in order that its parent (the potassium channel equations) can 
     #      access it.
-    nGate.addVariable(nGateEquations.variable('n').clone())
+    n_gate.addVariable(n_gate_equations.variable('n').clone())
 
     #  7.d 
     #      Create variable connections between these variables and their counterparts in the equations
     #      components.  Validate, expecting errors related to missing or incorrect interface types.
-    Variable.addEquivalence(kChannelParameters.variable('E_K'), kChannelEquations.variable('E_K'))
-    Variable.addEquivalence(kChannelParameters.variable('g_K'), kChannelEquations.variable('g_K'))
-    Variable.addEquivalence(nGate.variable('n'), nGateEquations.variable('n'))
+    Variable.addEquivalence(k_channel_parameters.variable('E_K'), k_channel_equations.variable('E_K'))
+    Variable.addEquivalence(k_channel_parameters.variable('g_K'), k_channel_equations.variable('g_K'))
+    Variable.addEquivalence(n_gate.variable('n'), n_gate_equations.variable('n'))
 
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  7.e 
     #      Set the required interface types as listed by the validator.  This can be done individually using the 
@@ -472,7 +473,7 @@ if __name__ == '__main__':
     model.fixVariableInterfaces()
 
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
     
     #  end 7.e 
     #      If we were to analyse the model again now we would we still have the same set of errors 
@@ -482,101 +483,100 @@ if __name__ == '__main__':
     #      - potassium channel parameters:
     #          - E_K = -85 [mV]
     #          - g_K = 36 [milliS_per_cm2]
-    #      - nGate parameters
+    #      - n_gate parameters
     #          - n = 0.325 [dimensionless]
     #  7.f
     #      Set the constant values on the variables.  Analyse the model again, expecting 
     #      that the calculation errors related to these constants have been solved.
-    kChannelParameters.variable('E_K').setInitialValue(-85)
-    kChannelParameters.variable('g_K').setInitialValue(36)
-    nGateParameters.variable('n').setInitialValue(0.325)
+    k_channel_parameters.variable('E_K').setInitialValue(-85)
+    k_channel_parameters.variable('g_K').setInitialValue(36)
+    n_gate_parameters.variable('n').setInitialValue(0.325)
 
     analyser.analyseModel(model)
-    printIssues(analyser)
+    print_issues(analyser)
 
     #  end 7
 
     print('------------------------------------------------------------')
-    print('   STEP 8: Connect the 'input' variables                    ')
+    print('   STEP 8: Connect the input variables                      ')
     print('------------------------------------------------------------')
 
     # STEP 8: Looking at the variables listed we can see that some of our 'external' or 'input'
     #  variables are listed more than once.  These are the voltage, V, and time, t.  Time
     #  is needed in every equations component, including the imported gate component.
-    #  Voltage is needed by the potassium channel and nGate equations components.
+    #  Voltage is needed by the potassium channel and n_gate equations components.
 
     #      Printing the model to the terminal we'll notice the components which contain V and t 
     #      variables.  Connections between the variables in any two components are only possible
     #      when those components are in a sibling-sibling or parent-child relationship.  We can see
     #      from the printed structure that the top-level potassiumChannel component doesn't have any 
-    #      variables, and neither does the nGate component.  We'll need to create intermediate
+    #      variables, and neither does the n_gate component.  We'll need to create intermediate
     #      variables in those components to allow connections to be made through them.  
     #  8.a
-    #      Use the printModel function to print your model to the terminal.
-    printModel(model)
+    #      Use the print_model function to print your model to the terminal.
+    print_model(model)
 
     #  8.b 
     #      Create dummy variables for time and voltage using the cloning technique described in 
     #      Step 7.b, and add a clone to each appropriate component.
-    kChannel.addVariable(kChannelEquations.variable('t').clone())
-    kChannel.addVariable(kChannelEquations.variable('V').clone())
-    nGate.addVariable(kChannelEquations.variable('t').clone())
-    nGate.addVariable(kChannelEquations.variable('V').clone())
-    kChannelParameters.addVariable(kChannelEquations.variable('V').clone())
+    k_channel.addVariable(k_channel_equations.variable('t').clone())
+    k_channel.addVariable(k_channel_equations.variable('V').clone())
+    n_gate.addVariable(k_channel_equations.variable('t').clone())
+    n_gate.addVariable(k_channel_equations.variable('V').clone())
+    k_channel_parameters.addVariable(k_channel_equations.variable('V').clone())
 
     #  8.c 
     #      Connect these variables to their counterparts as needed.
-    Variable.addEquivalence(nGate.variable('t'), nGateEquations.variable('t'))
-    Variable.addEquivalence(nGate.variable('V'), nGateEquations.variable('V'))
-    Variable.addEquivalence(nGate.variable('t'), kChannelEquations.variable('t'))
-    Variable.addEquivalence(nGate.variable('V'), kChannelEquations.variable('V'))
-    Variable.addEquivalence(kChannel.variable('t'), kChannelEquations.variable('t'))
-    Variable.addEquivalence(kChannel.variable('V'), kChannelEquations.variable('V'))
-    Variable.addEquivalence(kChannelParameters.variable('V'), kChannelEquations.variable('V'))
+    Variable.addEquivalence(n_gate.variable('t'), n_gate_equations.variable('t'))
+    Variable.addEquivalence(n_gate.variable('V'), n_gate_equations.variable('V'))
+    Variable.addEquivalence(n_gate.variable('t'), k_channel_equations.variable('t'))
+    Variable.addEquivalence(n_gate.variable('V'), k_channel_equations.variable('V'))
+    Variable.addEquivalence(k_channel.variable('t'), k_channel_equations.variable('t'))
+    Variable.addEquivalence(k_channel.variable('V'), k_channel_equations.variable('V'))
+    Variable.addEquivalence(k_channel_parameters.variable('V'), k_channel_equations.variable('V'))
 
     #  8.d 
     #      Fix the variable interfaces and validate the model, expecting no errors.
     model.fixVariableInterfaces()
 
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  8.e 
     #      Analyse the model and expect that errors related to voltage and time now occur only in the
     #      top-level potassium channel component.  Because this needs to be connected to the imported
     #      controller component, they'll be addressed later in Step 10.
     analyser.analyseModel(model)
-    printIssues(analyser)
+    print_issues(analyser)
 
     # end 8
 
     print('------------------------------------------------------------')
-    print('   STEP 9: Connect the 'calculated' variables               ')
+    print('   STEP 9: Connect the calculated variables                 ')
     print('------------------------------------------------------------')
 
     # STEP 9: Now we need to make sure that all of the calculated variables can move through
     #         the model properly.  In this example, the only calculated variable is n, the gate
-    #         status.  This is calculated by solving the ODE in the nGate equations component,
-    #         but needs to be initialised by the nGate parameters component, and its value
+    #         status.  This is calculated by solving the ODE in the n_gate equations component,
+    #         but needs to be initialised by the n_gate parameters component, and its value
     #         passed back to the potassium channel equations component. 
 
     #  9.a 
     #      Make the required variable connections as described above.
-    Variable.addEquivalence(nGateParameters.variable('n'), nGateEquations.variable('n'))
-    Variable.addEquivalence(kChannelEquations.variable('n'), nGate.variable('n'))
-    Variable.addEquivalence(nGate.variable('n'), nGateEquations.variable('n'))
+    Variable.addEquivalence(n_gate_parameters.variable('n'), n_gate_equations.variable('n'))
+    Variable.addEquivalence(k_channel_equations.variable('n'), n_gate.variable('n'))
+    Variable.addEquivalence(n_gate.variable('n'), n_gate_equations.variable('n'))
 
     #  9.b 
     #      Fix the variable interfaces for the model, and validate, expecting no errors.
     model.fixVariableInterfaces()
-
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  9.c 
     #      Analyse the model, expecting that the errors related to the n variable have been resolved.
     analyser.analyseModel(model)
-    printIssues(analyser)
+    print_issues(analyser)
 
     #  end 9
 
@@ -590,7 +590,7 @@ if __name__ == '__main__':
     #  Now the problem we have is that we need to connect to variables inside imported components, 
     #  but these don't exist in our model yet: the import sources that we created in Steps 4 and 5
     #  are simply a recipe they don't actually create anything.
-    printModel(model)
+    print_model(model)
 
     #  In order to connect to variables in imported components, we can create dummy variables inside them.
     #  These will be overwritten when the imports are resolved and the model flattened, at which time
@@ -616,7 +616,7 @@ if __name__ == '__main__':
     importer.resolveImports(model, '')
 
     #  10.c  Check the Importer for issues and print any found to the terminal - we do not expect any at this stage.
-    printIssues(importer)
+    print_issues(importer)
 
     #  end 10.c
     #       The components that we want to reuse from the GateModel.cellml and PotassiumChannelController.cellml
@@ -629,7 +629,7 @@ if __name__ == '__main__':
     #       the total), and print its keys to the terminal.  The keys can be retrieved as a 
     #       string from the Importer.key(index) function.  At this stage we expect only one model in the library.
     print('The importer has {} models in the library.'.format(importer.libraryCount()))
-    for i in range(0, importer.libraryCount())):
+    for i in range(0, importer.libraryCount()):
         print(' library({}) = {}'.format(i, importer.key(i)))
     print()
 
@@ -639,8 +639,8 @@ if __name__ == '__main__':
     #      Create dummy components from the resolved imported components. You can get these from the 
     #      library or from the import source's model (or one of each, to prove to yourself that it works
     #      either way!).
-    dummyGate = importedGate.importSource().model().component(importedGate.importReference()).clone()
-    dummyController = importer.library('PotassiumChannelController.cellml').component(controller.importReference()).clone()
+    dummy_gate = imported_gate.importSource().model().component(imported_gate.importReference()).clone()
+    dummy_controller = importer.library('PotassiumChannelController.cellml').component(controller.importReference()).clone()
     
     #      GOTCHA: Note that when an item is added to a new parent, it is automatically removed from 
     #         its original parent.  Iterating through a set of children is best done in descending
@@ -648,42 +648,42 @@ if __name__ == '__main__':
     #  10.f
     #      Iterate through the variables in each dummy component, and add a clone of each variable 
     #      to the destination component. 
-    while(dummyGate.variableCount()):
-        importedGate.addVariable(dummyGate.variable(0))
+    while(dummy_gate.variableCount()):
+        imported_gate.addVariable(dummy_gate.variable(0))
     
-    while(dummyController.variableCount()):
-        controller.addVariable(dummyController.variable(0))
+    while(dummy_controller.variableCount()):
+        controller.addVariable(dummy_controller.variable(0))
 
     #      More connections are needed.  These should include:
-    #          - (nGate equations component : imported gate component)
+    #          - (n_gate equations component : imported gate component)
     #          - n : X
     #          - alpha_n : alpha_X
     #          - beta_n : beta_X
     #          - t : t
 
     #  10.g
-    #      Connect all the variables in the nGate equations component to the dummy variables
+    #      Connect all the variables in the n_gate equations component to the dummy variables
     #      in the imported gate component.
     #      Repeat for the controller component and the potassium channel component.
     #      Fix the variable interfaces and validate the model, expecting there to be no errors.
-    Variable.addEquivalence(nGateEquations.variable('n'), importedGate.variable('X'))
-    Variable.addEquivalence(nGateEquations.variable('alpha_n'), importedGate.variable('alpha_X'))
-    Variable.addEquivalence(nGateEquations.variable('beta_n'), importedGate.variable('beta_X'))
-    Variable.addEquivalence(nGateEquations.variable('t'), importedGate.variable('t'))
-    Variable.addEquivalence(controller.variable('t'), kChannel.variable('t'))
-    Variable.addEquivalence(controller.variable('V'), kChannel.variable('V'))
+    Variable.addEquivalence(n_gate_equations.variable('n'), imported_gate.variable('X'))
+    Variable.addEquivalence(n_gate_equations.variable('alpha_n'), imported_gate.variable('alpha_X'))
+    Variable.addEquivalence(n_gate_equations.variable('beta_n'), imported_gate.variable('beta_X'))
+    Variable.addEquivalence(n_gate_equations.variable('t'), imported_gate.variable('t'))
+    Variable.addEquivalence(controller.variable('t'), k_channel.variable('t'))
+    Variable.addEquivalence(controller.variable('V'), k_channel.variable('V'))
 
     #  10.h
     #      Make sure that the output variable from this component - the potassium current - 
     #      is available at the top level, and with a public interface.  You'll need to create
     #      a dummy variable in the potassium channel component and link it appropriately.
-    kChannel.addVariable(kChannelEquations.variable('i_K').clone())
-    Variable.addEquivalence(kChannelEquations.variable('i_K'), kChannel.variable('i_K'))
-    kChannel.variable('i_K').setInterfaceType('public_and_private')
+    k_channel.addVariable(k_channel_equations.variable('i_K').clone())
+    Variable.addEquivalence(k_channel_equations.variable('i_K'), k_channel.variable('i_K'))
+    k_channel.variable('i_K').setInterfaceType('public_and_private')
     model.fixVariableInterfaces()
 
     validator.validateModel(model)
-    printIssues(validator)
+    print_issues(validator)
 
     #  end 10.h
 
@@ -696,7 +696,7 @@ if __name__ == '__main__':
     #      function.  Run this through the analyser and expect there to be no issues reported.
     flatModel = importer.flattenModel(model)
     analyser.analyseModel(flatModel)
-    printIssues(analyser)
+    print_issues(analyser)
 
     #  end 10.i
     #  Note that at this point an analysis of the unflattened model will still show errors,
@@ -718,4 +718,3 @@ if __name__ == '__main__':
     # end
 
     print('The created model has been written to PotassiumChannelModel.cellml')
-}

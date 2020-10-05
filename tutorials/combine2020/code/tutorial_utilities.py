@@ -2,7 +2,7 @@ import string
 
 from libcellml import Issue, ItemType
 
-def print_model(model):
+def print_model(model, include_maths=False):
     print("The model name is: '{}'".format(model.name()))
     if model.id() != "":
         print("The model id is: '{}'".format(model.id()))
@@ -15,12 +15,12 @@ def print_model(model):
     for c in range(0, model.componentCount()):
         component = model.component(c)
         spacer = "  "
-        print_component_to_terminal(component, c, spacer)
+        print_component_to_terminal(component, c, spacer, include_maths)
 
     return
 
 
-def print_component_to_terminal(component, c, spacer):
+def print_component_to_terminal(component, c, spacer, include_maths=False):
     local = '    '
     # Print this component
     print("{s}Component[{c}] has name: '{n}'".format(
@@ -62,6 +62,8 @@ def print_component_to_terminal(component, c, spacer):
                 
                 con = ", "
             print()
+        if include_maths:
+            print(component.math())
 
     # Print the encapsulated components inside this one
     if component.componentCount() > 0:
@@ -82,6 +84,7 @@ levelAsString = {
     Issue.Level.HINT: "Hint",
     Issue.Level.MESSAGE: "Message"
 }
+
 
 def print_issues(item):
     number_of_issues = item.issueCount()
