@@ -141,7 +141,7 @@ Once the mathematics has been added to the component, and the component to the m
 
 .. container:: dothis
 
-    **2.c** Create a Validator instance, and pass it your model for processing using the :code:`validateModel`function.
+    **2.c** Create a :code:`Validator` instance, and pass it your model for processing using the :code:`validateModel` function.
 
 .. container:: toggle
 
@@ -232,11 +232,12 @@ The simplest way is to print the descriptions to the terminal.
 .. container:: dothis
 
     **2.f** Create the missing :code:`Units` items and add them to the model. These are:
+
     - milli-volts;
     - milli-seconds;
     - milli-moles;
     - micro-Amperes per square centimetre; and
-    - milli-Siemens per square centimetre;
+    - milli-Siemens per square centimetre.
 
 .. container:: toggle
 
@@ -297,15 +298,9 @@ The nGateParameters component allows us to specify those parameters specific to 
 
     **3.a** Create a component, name it "nGate", and add it to the equations component.
 
-        auto nGate = libcellml::Component::create("nGate");
-        kChannelEquations->addComponent(nGate);
-
 .. container:: dothis
 
     **3.b** Create a component, name it "nGateEquations" and add it to the nGate component.
-
-        auto nGateEquations = libcellml::Component::create("nGateEquations");
-        nGate->addComponent(nGateEquations);
 
 .. container:: toggle
 
@@ -387,6 +382,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
     **3.e** Create the missing units and add them to the model.
     The only two which aren't available are:
+
     - per millisecond; and 
     - per millivolt millisecond.
 
@@ -572,6 +568,7 @@ The analyser is similar to the :code:`Validator` class and keeps a record of iss
     Expect messages related to un-computed variables.
 
 Even though all of the messages we see are "variable not calculated" errors, we can divide them into different categories:
+
 - those variables which are constants whose value has not been set yet;
 - those variables whose calculation depends on as-yet un-calculated variables;
 - those variables which need to be connected to where their calculation happens; and
@@ -601,7 +598,8 @@ Even though all of the messages we see are "variable not calculated" errors, we 
 
 Step 7: Define the constants
 ----------------------------
-As we work through the next few steps we'll be defining and connecting all of the components and variables together.First we'll define the variables which will have a constant value in the simulation.
+As we work through the next few steps we'll be defining and connecting all of the components and variables together.
+First we'll define the variables which will have a constant value in the simulation.
 
 .. container:: dothis
 
@@ -633,11 +631,16 @@ As we work through the next few steps we'll be defining and connecting all of th
 
 Create parameters siblings components for the equations components, and add the variables that they will require.
 These are:
+
 - potassium channel parameters
+
     - ??, E_K (-85) **TODO**
     - conductance, g_K (??) **TODO**
+
 - nGate parameters
+
     - initial value for n (dimensionless)
+
 You can either do this by creating the variables from scratch (as in Step 3.d) but because these are intended to be duplicates of existing variables, but in another component, we can simply add a cloned variable to the parameters component.
 
 .. container:: dothis
@@ -1026,11 +1029,13 @@ The models which have the source components that we wanted to reuse from the Gat
 
     **10.g** Connect all the variables in the nGate equations component to the dummy variables in the imported gate component.
     These connections should be:
-    - (nGate equations component : imported gate component)
-        - n : X
-        - alpha_n : alpha_X
-        - beta_n : beta_X
-        - t : t
+
+    - *nGate equations component : imported gate component*
+    - n : X
+    - alpha_n : alpha_X
+    - beta_n : beta_X
+    - t : t
+    
     Repeat for the controller component and the potassium channel component.
     Fix the variable interfaces and validate the model, expecting there to be no errors.
 

@@ -715,6 +715,6 @@ if __name__ == '__main__':
     write_file.write(printer.printModel(model))
     write_file.close()
 
-    # end
+    #  end
 
     print('The created model has been written to PotassiumChannelModel.cellml')

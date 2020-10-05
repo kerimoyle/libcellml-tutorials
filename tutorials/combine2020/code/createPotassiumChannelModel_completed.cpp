@@ -722,7 +722,7 @@ int main()
     outFile << printer->printModel(model);
     outFile.close();
 
-    // end
+    //  end
 
     printModel(model);
     std::cout << "The created model has been written to PotassiumChannelModel.cellml" << std::endl;
