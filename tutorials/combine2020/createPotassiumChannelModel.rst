@@ -6,7 +6,7 @@ Tutorial 2: Creating a model using imports
 By the time you have worked through this tutorial you will be able to:
 
 - Assemble a multi-component model using the API; 
-- Import items from existing models and reuse them here;
+- Create a model which imports items from others;
 - Inter-connect the components using the equivalent variables functionality;
 - Use the diagnostic :code:`Validator` class to identify errors in the model's syntax; 
 - Use the diagnostic :code:`Analyser` class to identify errors in the model's mathematical formulation; and
@@ -46,44 +46,38 @@ The final structure of this model is shown in the diagram below.
 
 .. container:: dothis
 
-    **1.a** Create a Model and name it appropriately.
-
-       
+    **1.a** Create a :code:`Model` item and name it appropriately.
 
 .. container:: dothis
 
     **1.b** Create a wrapping component and name it "potassiumChannel".
 
-        
 
 .. container:: dothis
 
     **1.c** Add the component to the model.
 
-        
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show C++
+        Show C++ snippet
 
-  .. code-block:: cpp
-
-    auto model = libcellml::Model::create("PotassiumChannelModel");
-    auto kChannel = libcellml::Component::create("potassiumChannel");
-    model->addComponent(kChannel);
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  1.a
+        :end-before: //  end 1
 
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show Python
+        Show Python snippet
 
-  .. code-block:: python
-
-    model = Model('PotassiumChannelModel')
-    k_channel = Component('potassiumChannel')
-    model.addComponent(k_channel)
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  1.a
+        :end-before: #  end 1
 
 Step 2: Create a potassium channel equations component
 ------------------------------------------------------
@@ -93,6 +87,28 @@ Step 2: Create a potassium channel equations component
     **2.a** Create a Component instance for the equations and name it "potassiumChannelEquations".  
     Add it to the wrapper component you created above.
 
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  2.a
+        :end-before: //  end 2.a
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  2.a
+        :end-before: #  end 2.a
+
 .. container:: dothis
 
     **2.b** Define the maths inside the potassiumChannelEquations component.
@@ -101,73 +117,53 @@ Step 2: Create a potassium channel equations component
         
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show C++
+        Show C++ snippet
 
-  .. code-block:: cpp
-
-    auto kChannelEquations = libcellml::Component::create("potassiumChannelEquations");
-    kChannel->addComponent(kChannelEquations);
-
-    std::string equationIK =
-        "  <apply><eq/>\n"
-        "    <ci>i_K</ci>\n"
-        "    <apply><times/>\n"
-        "       <apply><power/>\n"
-        "           <ci>n</ci>\n"
-        "           <cn cellml:units=\"dimensionless\">4</cn>\n"
-        "       </apply>\n"
-        "       <ci>g_K</ci>\n"
-        "       <apply><minus/>\n"
-        "           <ci>V</ci>\n"
-        "           <ci>E_K</ci>\n"
-        "       </apply>\n"
-        "    </apply>\n"
-        "  </apply>\n";
-
-    kChannelEquations->setMath(mathHeader);
-    kChannelEquations->appendMath(equationIK);
-    kChannelEquations->appendMath(mathFooter);
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  2.b
+        :end-before: //  2.c
 
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show Python
+        Show Python snippet
 
-  .. code-block:: python
-    
-    k_channel_equations = Component('potassiumChannelEquations')
-    k_channel.addComponent(k_channel_equations)
-        equation_iK =
-        '  <apply><eq/>\n'
-        '    <ci>i_K</ci>\n'
-        '    <apply><times/>\n'
-        '       <apply><power/>\n'
-        '           <ci>n</ci>\n'
-        '           <cn cellml:units="dimensionless">4</cn>\n'
-        '       </apply>\n'
-        '       <ci>g_K</ci>\n'
-        '       <apply><minus/>\n'
-        '           <ci>V</ci>\n'
-        '           <ci>E_K</ci>\n'
-        '       </apply>\n'
-        '    </apply>\n'
-        '  </apply>\n'
-
-    k_channel_equations.setMath(math_header)
-    k_channel_equations.appendMath(equation_iK)
-    k_channel_equations.appendMath(math_footer)
-
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  2.b
+        :end-before: #  2.c
+        
 Once the mathematics has been added to the component, and the component to the model, we can make use of the diagnostic messages within the :code:`Validator` class to tell us what else needs to be done.
 
 .. container:: dothis
 
     **2.c** Create a Validator instance, and pass it your model for processing using the :code:`validateModel`function.
 
-        auto validator = libcellml::Validator::create();
-        validator->validateModel(model);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  2.c
+        :end-before: //  end 2.c
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  2.c
+        :end-before: #  end 2.c
 
 Calling the validator does not return anything: we have to go looking for issues that it found during processing.  
 When a problem is found, an :code:`Issue` item is created containing:
@@ -184,70 +180,112 @@ The simplest way is to print the descriptions to the terminal.
 
     **2.d** Retrieve the number of issues encountered using the :code:`issueCount()` function in the validator, then retrieve the issue items from the validator using their index and the :code:`Validator::issue(index)` function.
 
-        std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
-        for(size_t i = 0; i < validator->issueCount(); ++i) {
-            std::cout << validator->issue(i)->description() << std::endl;
-        }
-        std::cout << std::endl;
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  2.d
+        :end-before: //  2.e
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  2.d
+        :end-before: #  2.e
 
 .. container:: dothis
 
     **2.e** Create the variables needed and add them to the potassium channel component.
     Revalidate and expect errors related to variables without units.
 
-        kChannelEquations->addVariable(libcellml::Variable::create("E_K"));
-        kChannelEquations->addVariable(libcellml::Variable::create("i_K"));
-        kChannelEquations->addVariable(libcellml::Variable::create("g_K"));
-        kChannelEquations->addVariable(libcellml::Variable::create("V"));
-        kChannelEquations->addVariable(libcellml::Variable::create("t"));
-        kChannelEquations->addVariable(libcellml::Variable::create("n"));
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  2.e
+        :end-before: //  2.f
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  2.e
+        :end-before: #  2.f
 
 .. container:: dothis
 
-    **2.f** Create the missing Units items and add them to the model. These are:
+    **2.f** Create the missing :code:`Units` items and add them to the model. These are:
     - milli-volts;
     - milli-seconds;
     - milli-moles;
     - micro-Amperes per square centimetre; and
     - milli-Siemens per square centimetre;
 
-        auto mV = libcellml::Units::create("mV");
-        mV->addUnit("volt", "milli");
+.. container:: toggle
 
-        auto microA_per_cm2 = libcellml::Units::create("microA_per_cm2");
-        microA_per_cm2->addUnit("ampere", "micro");
-        microA_per_cm2->addUnit("metre", "centi", -2.0);
+    .. container:: header
 
-        auto mS_per_cm2 = libcellml::Units::create("milliS_per_cm2");
-        mS_per_cm2->addUnit("siemens", "milli");
-        mS_per_cm2->addUnit("metre", "centi", -2.0);
+        Show C++ snippet
 
-        auto ms = libcellml::Units::create("ms");
-        ms->addUnit("second", "milli");
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  2.f
+        :end-before: //  2.g
 
-        auto mM = libcellml::Units::create("mM");
-        mM->addUnit("mole", "milli");
+.. container:: toggle
 
-        model->addUnits(ms);
-        model->addUnits(mV);
-        model->addUnits(mM);
-        model->addUnits(microA_per_cm2);
-        model->addUnits(mS_per_cm2);
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  2.f
+        :end-before: #  2.g
 
 .. container:: dothis
 
     **2.g** Set the units on each of the variables.  
     Call the validator again, and expect there to be no errors.
 
-        kChannelEquations->variable("E_K")->setUnits(mV);
-        kChannelEquations->variable("i_K")->setUnits(microA_per_cm2);
-        kChannelEquations->variable("g_K")->setUnits(mS_per_cm2);
-        kChannelEquations->variable("V")->setUnits(mV);
-        kChannelEquations->variable("t")->setUnits(ms);
-        kChannelEquations->variable("n")->setUnits("dimensionless");
+.. container:: toggle
 
-        validator->validateModel(model);
-        printIssues(validator);
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  2.g
+        :end-before: //  end 2
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  2.g
+        :end-before: #  end 2
 
 Step 3: Create the nGate and its child components
 -------------------------------------------------
@@ -269,72 +307,81 @@ The nGateParameters component allows us to specify those parameters specific to 
         auto nGateEquations = libcellml::Component::create("nGateEquations");
         nGate->addComponent(nGateEquations);
 
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.a
+        :end-before: //  3.c
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.a
+        :end-before: #  3.c
+
 .. container:: dothis
 
     **3.c** Add the mathematics to the nGateEquations component and validate the model.
     Expect errors relating to missing variables.
 
-        std::string equationAlphaN =
-            "  <apply><eq/>\n"
-            "    <ci>alpha_n</ci>\n"
-            "    <apply><divide/>\n"
-            "      <apply><times/>\n"
-            "        <cn cellml:units=\"per_mV_ms\">0.01</cn>\n"
-            "        <apply><plus/>\n"
-            "          <ci>V</ci>\n"
-            "          <cn cellml:units=\"mV\">10</cn>\n"
-            "        </apply>\n" 
-            "      </apply>\n" 
-            "      <apply><minus/>\n"
-            "        <apply><exp/>\n"
-            "          <apply><divide/>\n"
-            "            <apply><plus/>\n"
-            "              <ci>V</ci>\n"
-            "              <cn cellml:units=\"mV\">10</cn>\n"
-            "            </apply>\n" 
-            "            <cn cellml:units=\"mV\">10</cn>\n"
-            "          </apply>\n" 
-            "        </apply>\n" 
-            "        <cn cellml:units=\"dimensionless\">1</cn>\n"
-            "      </apply>\n" 
-            "    </apply>\n" 
-            "  </apply>\n"; 
+.. container:: toggle
 
-        std::string equationBetaN =
-            "  <apply><eq/>\n"
-            "    <ci>beta_n</ci>\n"
-            "    <apply><times/>\n"
-            "      <cn cellml:units=\"per_ms\">0.125</cn>\n"
-            "      <apply><exp/>\n"
-            "        <apply><divide/>\n"
-            "          <ci>V</ci>\n"
-            "          <cn cellml:units=\"mV\">80</cn>\n"
-            "        </apply>\n" 
-            "      </apply>\n" 
-            "    </apply>\n" 
-            "  </apply>\n"; 
+    .. container:: header
 
-        nGateEquations->setMath(mathHeader);
-        nGateEquations->appendMath(equationAlphaN);
-        nGateEquations->appendMath(equationBetaN);
-        nGateEquations->appendMath(mathFooter);
-        
-        validator->validateModel(model);
-        printIssues(validator);
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.c
+        :end-before: //  3.d
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.c
+        :end-before: #  3.d
 
 .. container:: dothis
 
     **3.d** Add the missing variables to the nGateEquations component, and validate again.
     Expect errors relating to units missing from the variables.
 
-        nGateEquations->addVariable(libcellml::Variable::create("t"));
-        nGateEquations->addVariable(libcellml::Variable::create("V"));
-        nGateEquations->addVariable(libcellml::Variable::create("alpha_n"));
-        nGateEquations->addVariable(libcellml::Variable::create("beta_n"));
-        nGateEquations->addVariable(libcellml::Variable::create("n"));
-        
-        validator->validateModel(model);
-        printIssues(validator);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.d
+        :end-before: //  end 3.d
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.d
+        :end-before: #  end 3.d
 
 .. container:: dothis
 
@@ -346,28 +393,54 @@ The nGateParameters component allows us to specify those parameters specific to 
     Remember that you'll need to give these names that are the same as those needed by the  variables.
     In this case they are "per_ms" and "per_mV_ms".
 
-        auto per_ms = libcellml::Units::create("per_ms");
-        per_ms->addUnit("second", "milli", -1);
-        model->addUnits(per_ms);
+.. container:: toggle
 
-        auto per_mV_ms = libcellml::Units::create("per_mV_ms");
-        per_mV_ms->addUnit("second", "milli", -1);
-        per_mV_ms->addUnit("volt", "milli", -1);
-        model->addUnits(per_mV_ms);
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.e
+        :end-before: //  3.f
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.e
+        :end-before: #  3.f
 
 .. container:: dothis
 
     **3.f** Associate the correct units items with the variables which need them.
     Revalidate the model, expecting there to be no errors reported.
 
-        nGateEquations->variable("t")->setUnits(ms);
-        nGateEquations->variable("V")->setUnits(mV);
-        nGateEquations->variable("alpha_n")->setUnits(per_ms);
-        nGateEquations->variable("beta_n")->setUnits(per_ms);
-        nGateEquations->variable("n")->setUnits("dimensionless");
+.. container:: toggle
 
-        validator->validateModel(model);
-        printIssues(validator);
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.f
+        :end-before: //  end 3
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.f
+        :end-before: #  end 3
 
 Step 4: Specify imports for the generic gate components
 -------------------------------------------------------
@@ -391,22 +464,14 @@ Imports require three things:
 
     **4.a** Create an :code:`ImportSource` item and set its URL to be "GateModel.cellml".
 
-        auto gateModelImportSource = libcellml::ImportSource::create();
-        gateModelImportSource->setUrl("GateModel.cellml");
-
 .. container:: dothis
 
     **4.b** Create a destination component for the imported gate component, and add this to the nGateEquations component. 
-
-        auto importedGate = libcellml::Component::create("importedGate");
-        nGateEquations->addComponent(importedGate);
 
 .. container:: dothis
 
     **4.c** Set the import reference on the component you just created to be the nameof the component in the GateModel.cellml file that you want to use.
     In this example, it is "gateEquations".
-
-        importedGate->setImportReference("gateEquations");
 
 .. container:: dothis
 
@@ -414,16 +479,34 @@ Imports require three things:
     Note that this step also makes the import source available to other items through the :code:`Model::importSource(index)` function.
     This way the same model file can be used as a source for more than one item.
 
-        importedGate->setImportSource(gateModelImportSource);
-
 Note that we are deliberately not importing the parameters component in the GateModel.cellml file, since we will be setting our own values of its variables.
 
 .. container:: dothis
 
     **4.e** Validate the model and confirm that there are no issues.
 
-        validator->validateModel(model);
-        printIssues(validator);
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  4.a
+        :end-before: //  end 4
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  4.a
+        :end-before: #  end 4
 
 Step 5: Specify imports for the controller component
 ----------------------------------------------------
@@ -435,28 +518,40 @@ This should be at the top of the encapsulation hierarchy, and should import the 
     **5.a** Repeat steps 4.a-d for the controller component.
     Put it at the top level of the encapsulation hierarchy.
 
-        auto controllerImportSource = libcellml::ImportSource::create();
-        controllerImportSource->setUrl("PotassiumChannelController.cellml");
-
-        auto controller = libcellml::Component::create("controller");
-        controller->setImportReference("controller");
-        controller->setImportSource(controllerImportSource);
-        model->addComponent(controller);
-
 .. container:: dothis
 
     **5.b** Validate the model and confirm that there are no issues.
 
-        validator->validateModel(model);
-        printIssues(validator)
-
 At this point we've defined the equations that govern the potassium channel's operation.
 We've also confirmed that the CellML representation of these equations is valid (using the :code:`Validator`); now we need to check that it's also solvable (using the :code:`Analyser`).
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  5.a
+        :end-before: //  end 5
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  5.a
+        :end-before: #  end 5
         
 Step 6: Analyse the model
 -------------------------
 We will introduce the :code:`Analyser` class here so that its use as a debugging  tool can be demonstrated.
 Of course, we know ahead of time that there is still a lot of connections to be created between the components, but the analyser can help us to find them.
+The analyser is similar to the :code:`Validator` class and keeps a record of issues it encounters.
 
 .. container:: nb 
 
@@ -468,17 +563,10 @@ Of course, we know ahead of time that there is still a lot of connections to be 
 
     **6.a** Create an :code:`Analyser` item and pass it the model for checking using its :code:`analyseModel` function.
 
-        auto analyser = libcellml::Analyser::create();
-        analyser->analyseModel(model);
-
-The analyser is similar to the :code:`Validator` class and keeps a record of issues it encounters.
-
 .. container:: dothis
 
     **6.b** Retrieve the analyser's issues and print them to the terminal, just as you've done for the validator.
     Expect messages related to un-computed variables.
-
-        printIssues(analyser);
 
 Even though all of the messages we see are "variable not calculated" errors, we can divide them into different categories:
 - those variables which are constants whose value has not been set yet;
@@ -486,6 +574,27 @@ Even though all of the messages we see are "variable not calculated" errors, we 
 - those variables which need to be connected to where their calculation happens; and
 - those variables which aren't present in any equation.
 
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  6.a
+        :end-before: //  end 6
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  6.a
+        :end-before: #  end 6
 
 Step 7: Define the constants
 ----------------------------
@@ -497,13 +606,33 @@ As we work through the next few steps we'll be defining and connecting all of th
     This should show that we hve currently got variables only in the nGateEquations and potassiumChannelEquations components.
     These need to have sibling parameters components created to hold any hard-coded values or initial conditions that are required.
 
-         printModel(model, true);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  7.a
+        :end-before: //  end 7.a
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  7.a
+        :end-before: #  end 7.a
 
 Create parameters siblings components for the equations components, and add the variables that they will require.
 These are:
 - potassium channel parameters
-    - ??, E_K (-85)
-    - conductance, g_K (??)
+    - ??, E_K (-85) **TODO**
+    - conductance, g_K (??) **TODO**
 - nGate parameters
     - initial value for n (dimensionless)
 You can either do this by creating the variables from scratch (as in Step 3.d) but because these are intended to be duplicates of existing variables, but in another component, we can simply add a cloned variable to the parameters component.
@@ -512,15 +641,27 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
 
     **7.b** Create parameters components for the equations components, and add cloned versions of ny variables which need to be given a value into the new parameters components.
 
-        auto kChannelParameters = libcellml::Component::create("potassiumChannelParameters");
-        kChannel->addComponent(kChannelParameters);
-        kChannelParameters->addVariable(kChannelEquations->variable("E_K")->clone());
-        kChannelParameters->addVariable(kChannelEquations->variable("g_K")->clone());
-         kChannelParameters->addVariable(kChannelEquations->variable("n")->clone());
+.. container:: toggle
 
-        auto nGateParameters = libcellml::Component::create("nGateParameters");
-        nGate->addComponent(nGateParameters);
-        nGateParameters->addVariable(nGateEquations->variable("n")->clone());
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  7.b
+        :end-before: //  7.c
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  7.b
+        :end-before: #  7.c
 
 .. container:: dothis
 
@@ -528,18 +669,9 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
     This is only true of variables that you want to be available to the outside.
     In this example, we need to add the variable "n" to the nGate in order that its parent (the potassium channel equations) can access it.
 
-        nGate->addVariable(nGateEquations->variable("n")->clone());
-
 .. container:: dothis
 
     **7.d** Create variable connections between these variables and their counterparts in the equations components.  Validate, expecting errors related to missing or incorrect interface types.
-
-        libcellml::Variable::addEquivalence(kChannelParameters->variable("E_K"), kChannelEquations->variable("E_K"));
-        libcellml::Variable::addEquivalence(kChannelParameters->variable("g_K"), kChannelEquations->variable("g_K"));
-        libcellml::Variable::addEquivalence(nGate->variable("n"), nGateEquations->variable("n"));
-
-        validator->validateModel(model);
-        printIssues(validator);
 
 .. container:: dothis
 
@@ -547,11 +679,28 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
     This can be done individually using the :code:`Variable::setInterfaceType()` function, or automatically using the :code:`Model::fixVariableInterfaces()` function.
     Validate again, expecting no validation errors.
 
-        model->fixVariableInterfaces();
+.. container:: toggle
 
-        validator->validateModel(model);
-        printIssues(validator);
-        
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  7.c
+        :end-before: //  end 7.e
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  7.c
+        :end-before: #  end 7.e
+
 If we were to analyse the model again now we would we still have the same set of errors as earlier as we haven't given a value to any of our parameters.
 These values should be:
 
@@ -563,15 +712,30 @@ These values should be:
 
 .. container:: dothis
 
-    **7.f** Use the :code:`Variable::setInitialValue()` function to set these parameter values.
+    **7.f** Use the :code:`setInitialValue()` function to set these parameter values.
     Analyse the model again, expecting that the calculation errors related to these constants have been solved.
 
-        kChannelParameters->variable("E_K")->setInitialValue(-85);
-        kChannelParameters->variable("g_K")->setInitialValue(36);
-        nGateParameters->variable("n")->setInitialValue(0.325);
+.. container:: toggle
 
-        analyser->analyseModel(model);
-        printIssues(analyser);
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  7.f
+        :end-before: //  end 7
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  7.f
+        :end-before: #  end 7
 
 Step 8: Connect the input variables
 -----------------------------------
@@ -583,7 +747,6 @@ Voltage is needed by the potassium channel and nGate equations components.
 .. container:: dothis
 
     **8.a** Print the model to the terminal and notice the components which contain V and t variables.  
-        printModel(model);
 
 Connections between the variables in any two components are only possible when those components are in a sibling-sibling or parent-child relationship.
 We can see from the printed structure that the top-level potassium channel component doesn't have any variables, and neither does the nGate component.
@@ -593,40 +756,62 @@ We'll need to create intermediate variables in those components to allow connect
 
     **8.b** Create dummy variables for time and voltage using the cloning technique described in Step 7.b, and add a clone to each appropriate component.
 
-        kChannel->addVariable(kChannelEquations->variable("t")->clone());
-        kChannel->addVariable(kChannelEquations->variable("V")->clone());
-        nGate->addVariable(kChannelEquations->variable("t")->clone());
-        nGate->addVariable(kChannelEquations->variable("V")->clone());
-        kChannelParameters->addVariable(kChannelEquations->variable("V")->clone());
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  8.a
+        :end-before: //  8.c
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  8.a
+        :end-before: #  8.c
 
 .. container:: dothis
 
     **8.c** Connect these variables to their counterparts as needed.
 
-        libcellml::Variable::addEquivalence(nGate->variable("t"), nGateEquations->variable("t"));
-        libcellml::Variable::addEquivalence(nGate->variable("V"), nGateEquations->variable("V"));
-        libcellml::Variable::addEquivalence(nGate->variable("t"), kChannelEquations->variable("t"));
-        libcellml::Variable::addEquivalence(nGate->variable("V"), kChannelEquations->variable("V"));
-        libcellml::Variable::addEquivalence(kChannel->variable("t"), kChannelEquations->variable("t"));
-        libcellml::Variable::addEquivalence(kChannel->variable("V"), kChannelEquations->variable("V"));
-        libcellml::Variable::addEquivalence(kChannelParameters->variable("V"), kChannelEquations->variable("V"));
-
 .. container:: dothis
 
     **8.d** Fix the variable interfaces and validate the model, expecting no errors.
-
-        model->fixVariableInterfaces();
-
-        validator->validateModel(model);
-        printIssues(validator);
 
 .. container:: dothis
 
     **8.e** Analyse the model and expect that errors related to voltage and time now occur only in the top-level potassium channel component.
     Because this needs to be connected to the imported controller component, they'll be addressed later in Step 10.
 
-        analyser->analyseModel(model);
-        printIssues(analyser);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  8.c
+        :end-before: //  end 8
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  8.c
+        :end-before: #  end 8
 
 Step 9: Connect the calculated variables
 ----------------------------------------
@@ -638,34 +823,41 @@ This is calculated by solving the ODE in the nGate equations component, but need
 
     **9.a** Make the required variable connections as described above.
 
-        libcellml::Variable::addEquivalence(nGateParameters->variable("n"), nGateEquations->variable("n"));
-        libcellml::Variable::addEquivalence(kChannelEquations->variable("n"), nGate->variable("n"));
-        libcellml::Variable::addEquivalence(nGate->variable("n"), nGateEquations->variable("n"));
-
 .. container:: dothis
 
     **9.b** Fix the variable interfaces for the model, and validate, expecting no errors.
-
-        model->fixVariableInterfaces();
-
-        validator->validateModel(model);
-        printIssues(validator);
 
 .. container:: dothis
 
     **9.c** Analyse the model, expecting that the errors related to the n variable have been resolved.
 
-        analyser->analyseModel(model);
-        printIssues(analyser);
+.. container:: toggle
 
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  9.a
+        :end-before: //  end 9
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  9.a
+        :end-before: #  end 9
 
 Step 10: Connect to imported components
 ---------------------------------------
 At this point, we have made all the connections we can between existing variables and components.
 (You can verify this for yourself by printing your model to the terminal again if you like.) 
 Now the problem we have is that we need to connect to variables inside imported components, but these don't exist in our model yet: the import sources that we created in Steps 4 and 5 are simply a recipe; they don't actually create anything here.
-
-        printModel(model);
 
 In order to connect to variables in imported components, we can create dummy variables inside them.
 These will be overwritten when the imports are resolved and the model flattened, at which time the imported variables will replace the dummy ones.
@@ -677,7 +869,27 @@ We're going to do the latter now.
 
     **10.a** Create an :code:`Importer` item.
 
-        auto importer = libcellml::Importer::create();
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  10.a
+        :end-before: //  end 10.a
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  10.a
+        :end-before: #  end 10.a
 
 Resolving the imports in a model triggers the importer to go searching for all of the information required by this model's imports, even through multiple generations of import layers.
 It also instantiates each of those requirements into its own library.
@@ -687,15 +899,33 @@ You could use the :code:`Model::hasUnresolvedImports()` function to test whether
 
     **10.b** Pass the model and the path to the GateModel.cellml file into the :code:`Importer::resolveImports` function. 
 
-        importer->resolveImports(model, "");
-
 The Importer class contains a logger (just like the Validator), so needs to be checked for issues.
 
 .. container:: dothis
 
     **10.c** Check for issues and print any found to the terminal - we do not expect any at this stage.
 
-        printIssues(importer);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  10.b
+        :end-before: //  end 10.c
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  10.b
+        :end-before: #  end 10.c
 
 The models which have the source components that we wanted to reuse from the GateModel.cellml and PotassiumChannelController.cellml files are now available to us in two ways:
 - through the :code:`model()` function of the destination component's :code:`ImportSource` item; or
@@ -708,11 +938,27 @@ The models which have the source components that we wanted to reuse from the Gat
     The keys can be retrieved as a string from the :code:`Importer::key(index)` function.  
     This should contain one model.
 
-        std::cout << "The importer has " << importer->libraryCount() << " models in the library." << std::endl;
-        for(size_t i = 0; i < importer->libraryCount(); ++i) {
-            std::cout << " library("<<i<<") = " << importer->key(i) << std::endl;
-        }
-        std::cout << std::endl;
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  10.d
+        :end-before: //  10.e
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  10.d
+        :end-before: #  10.e
 
 .. container:: dothis
 
@@ -720,8 +966,27 @@ The models which have the source components that we wanted to reuse from the Gat
     Create dummy components from the resolved imported components.
     You can get these from the library or from the import source's model (or one of each, to prove to yourself that it works either way!).
 
-        auto dummyGate = importedGate->importSource()->model()->component(importedGate->importReference())->clone();
-        auto dummyController = importer->library("PotassiumChannelController.cellml")->component(controller->importReference())->clone();
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  10.e
+        :end-before: //  10.f
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  10.e
+        :end-before: #  10.f 
 
 .. container:: gotcha
 
@@ -732,12 +997,27 @@ The models which have the source components that we wanted to reuse from the Gat
 
     **10.f** Iterate through the variables in each dummy component, and add a clone of each variable to the destination component.     
                
-        while(dummyGate->variableCount()) {
-            importedGate->addVariable(dummyGate->variable(0));
-        }
-        while(dummyController->variableCount()) {
-            controller->addVariable(dummyController->variable(0));
-        }
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  10.f
+        :end-before: //  10.g
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  10.f
+        :end-before: #  10.g
 
 .. container:: dothis
 
@@ -751,26 +1031,55 @@ The models which have the source components that we wanted to reuse from the Gat
     Repeat for the controller component and the potassium channel component.
     Fix the variable interfaces and validate the model, expecting there to be no errors.
 
-        libcellml::Variable::addEquivalence(nGateEquations->variable("n"), importedGate->variable("X"));
-        libcellml::Variable::addEquivalence(nGateEquations->variable("alpha_n"), importedGate->variable("alpha_X"));
-        libcellml::Variable::addEquivalence(nGateEquations->variable("beta_n"), importedGate->variable("beta_X"));
-        libcellml::Variable::addEquivalence(nGateEquations->variable("t"), importedGate->variable("t"));
-        libcellml::Variable::addEquivalence(controller->variable("t"), kChannel->variable("t"));
-        libcellml::Variable::addEquivalence(controller->variable("V"), kChannel->variable("V"));
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  10.g
+        :end-before: //  10.h
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  10.g
+        :end-before: #  10.h
 
 .. container:: dothis
 
     **10.h** Make sure that the output variable from this component - the potassium current - is available at the top level, and with a public and private interface.
     You'll need to create a dummy variable in the potassium channel component and link it appropriately.
+    Validate your model and expect no errors.
 
-        kChannel->addVariable(kChannelEquations->variable("i_K")->clone());
-        kChannel->variable("i_K")->setInterfaceType("public_and_private");
-        libcellml::Variable::addEquivalence(kChannelEquations->variable("i_K"), kChannel->variable("i_K"));
+.. container:: toggle
 
-        model->fixVariableInterfaces();
+    .. container:: header
 
-        validator->validateModel(model);
-        printIssues(validator);
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  10.h
+        :end-before: //  end 10.h
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  10.h
+        :end-before: #  end 10.h
 
 The :code:`Analyser` class can only operate on a flat (ie: import-free) model.
 In order to do the final check before serialising our model for output, we will use the importer to create a flattened version of the model to submit for analysis.
@@ -779,9 +1088,27 @@ In order to do the final check before serialising our model for output, we will 
 
     **10.i** Create a flat version of the model and submit it for analysis.  Print the errors
 
-        auto flatModel = importer->flattenModel(model);
-        analyser->analyseModel(flatModel);
-        printIssues(analyser);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  10.i
+        :end-before: //  end 10.i
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  10.i
+        :end-before: #  end 10.i
 
 .. container:: nb
 
@@ -796,7 +1123,24 @@ Step 11: Output the model
     This creates a string containing the CellML-formatted version of the model.
     Write this to a file called "PotassiumChannelModel.cellml".
 
-        auto printer = libcellml::Printer::create();
-        std::ofstream outFile("PotassiumChannelModel.cellml");
-        outFile << printer->printModel(model);
-        outFile.close();
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  11.a
+        :end-before: //  end
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+        :language: python
+        :start-at: #  11.a
+        :end-before: #  end
