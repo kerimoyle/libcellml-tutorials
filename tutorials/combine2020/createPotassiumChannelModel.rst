@@ -444,15 +444,18 @@ The nGateParameters component allows us to specify those parameters specific to 
 
 Step 4: Specify imports for the generic gate components
 -------------------------------------------------------
+
 The generic gate model (in GateModel.cellml) has two components: 
-    - "gateEquations" which solves an ODE for the gate status parameter, X; and
-    - "gateParameters" which sets the values of alpha, beta, and initialises X.
+
+- "gateEquations" which solves an ODE for the gate status parameter, X; and
+- "gateParameters" which sets the values of alpha, beta, and initialises X.
 
 We will import only the "gateEquations" component and set it to be a child of the nGateEquations component.
 This means we can introduce the voltage dependence for the alpha and beta, and using a specified initial value for the gate's status.
 Note that the variable "n" in the nGateEquations is equivalent to the generic gate's variable "X".
 
 Imports require three things:
+
 - A destination for the imported item. 
   This could be a :code:`Component` or :code:`Units` item.
 - A model to import for the imported item from.
@@ -470,7 +473,7 @@ Imports require three things:
 
 .. container:: dothis
 
-    **4.c** Set the import reference on the component you just created to be the nameof the component in the GateModel.cellml file that you want to use.
+    **4.c** Set the import reference on the component you just created to be the name of the component in the GateModel.cellml file that you want to use.
     In this example, it is "gateEquations".
 
 .. container:: dothis
