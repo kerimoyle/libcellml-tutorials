@@ -27,8 +27,6 @@ int main()
     std::cout << "   STEP 1: Setup the model  " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 1
-
     //  1.a 
     //      The first step is to create a Model item which will later contain the component and 
     //      the units it needs.  
@@ -39,7 +37,7 @@ int main()
     model->setName("GateModel");
 
     //  1.c 
-    //       We'll create a wrapper component whose only job is to encapsulate the other components.
+    //      We'll create a wrapper component whose only job is to encapsulate the other components.
     //      This makes is a lot easier for this model to be reused, as the connections between
     //      components internal to this one won't need to be re-established.
     //      Note that the constructor for all named CellML entities is overloaded, so 
@@ -47,7 +45,8 @@ int main()
     //      Create a component named "gate".
     auto gate = libcellml::Component::create("gate");
 
-    //  1.d Finally we need to add the component to the model.  This sets it at the top-level of 
+    //  1.d 
+    //      Finally we need to add the component to the model.  This sets it at the top-level of 
     //      the components' encapsulation hierarchy.  All other components need to be added 
     //      to this component, rather than the model.
     //      Add the component to the model using the Model::addComponent() function.
@@ -59,18 +58,16 @@ int main()
     std::cout << "   STEP 2: Create the gateEquations component             " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
-    // STEP 2
-
     //  2.a 
-    //  Create a gateEquations component, name it "gateEquations" and add it to the model.
+    //      Create a gateEquations component, name it "gateEquations" and add it to the model.
     auto gateEquations = libcellml::Component::create("gateEquations");
 
     //  2.b 
-    //  Add the new gateEquations component to the gate component.
+    //      Add the new gateEquations component to the gate component.
     gate->addComponent(gateEquations);
 
     //  2.c 
-    //  Add the mathematics to the gateEquations component.
+    //      Add the mathematics to the gateEquations component.
     std::string equation =
         "  <apply><eq/>\n"
         "    <apply><diff/>\n"
@@ -135,16 +132,13 @@ int main()
     //      then retrieve the issue items from the validator using their index and the validator->issue(index)
     //      function.  Print the information from each issue to the terminal.
     std::cout << "The validator has found " << validator->issueCount() << " issues." << std::endl;
-    for (size_t i = 0; i < validator->issueCount(); ++i) {
+    for(size_t i = 0; i < validator->issueCount(); ++i) {
         auto issue = validator->issue(i);
-        auto ref = issue->referenceHeading();
-        std::cout << "Issue [" << i << "] is " << getIssueLevelFromEnum(issue->level()) << ":" << std::endl;
-        std::cout << "    description: " << issue->description() << std::endl;
-        if (ref != "") {
-            std::cout << "    see section " << ref
-                        << " in the CellML specification." << std::endl;
-        }
-        std::cout << "    stored item type: " << getItemTypeAsString(issue->itemType()) << std::endl;
+        std::cout << "Issue " << i << ": " << issue->description() << std::endl;
+        std::cout << "  reference: "<< issue->referenceHeading() << std::endl;
+        std::cout << "  see: " << issue->url() << std::endl;
+        std::cout << "  stored item type: " << getItemTypeAsString(issue->itemType()) << std::endl;
+        std::cout << std::endl;
     }
 
     std::cout << "----------------------------------------------------------" << std::endl;

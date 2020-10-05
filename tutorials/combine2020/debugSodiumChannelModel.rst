@@ -5,11 +5,10 @@ Tutorial 3: Debugging a model
 By the time you have worked through this part of the tutorial you will be able to:
 
 - Parse an existing CellML file and deserialise it into a model instance;
-- Use the diagnostic Validator class to identify issues in the model's definition; 
-- Use the std::any_cast to retrieve items which need repair from validator Issue items;
-- Use the Importer class to resolve imports and identify issues; and
-- Use the diagnostic Analyser class to identify issues in the model's mathematical formulation.
-
+- Use the diagnostic :code:`Validator` class to identify issues in the model's definition; 
+- Use the :code:`std::any_cast` to retrieve items which need repair from :code:`Issue` items;
+- Use the :code:`Importer` class to resolve imports and identify issues; and
+- Use the diagnostic :code:`Analyser` class to identify issues in the model's mathematical formulation.
 
 **Requirements (C++)**
 
@@ -35,6 +34,10 @@ By the time you have worked through this part of the tutorial you will be able t
 .. contents:: Contents
     :local:
 
+Overview
+--------
+**TODO**
+
 Step 1: Parse the existing sodium channel model
 -----------------------------------------------
 The :code:`Parser` class is used to deserialise a CellML string into a :code:`Model` instance.
@@ -45,41 +48,71 @@ The parser will then read that string and return a model.
 
     **1.a** Read a CellML file into a std::string.
 
-std::ifstream inFile("sodiumChannelModel_broken.cellml");
-std::stringstream inFileContents;
-inFileContents << inFile.rdbuf();
-
 .. container:: dothis
 
     **1.b** Create a :code:`Parser` item. 
-
-auto parser = libcellml::Parser::create();
 
 .. container:: dothis
 
     **1.c** Use the parser to deserialise the contents of the string you've read and return the model.
 
-auto model = parser->parseModel(inFileContents.str());
-
 .. container:: dothis
 
     **1.d** Print the parsed model to the terminal for viewing.
 
-printModel(model, false);
+.. container:: toggle
 
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  1.a
+        :end-before: //  end 1
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  1.a
+        :end-before: #  end 1
 
 Step 2: Validate the parsed model
 ---------------------------------
-Create a Validator item and use it to validate the model you've just read.
+Create a :code:`Validator` item and use it to validate the model you've just read.
 
 .. container:: dothis
 
     **2.a** Create a :code:`Validator` item and validate the model.
 
-auto validator = libcellml::Validator::create();
-validator->validateModel(model);
+.. container:: toggle
 
-Each :code:`Validator` issue contains:
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  2.a
+        :end-before: //  end 2.a
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  2.a
+        :end-before: #  end 2.a
+
+Each :code:`Issue` contains:
 - a description of the problem;
 - the reference heading in the normative specification which affects this issue;
 - a URL at which the informative specification notes can be found;
@@ -90,15 +123,27 @@ Each :code:`Validator` issue contains:
 
     **2.b** Retrieve any issues from the validator and print their descriptions and help URL to the terminal.
 
-std::cout << "The validator found " << validator->issueCount() << " issues." << std::endl;
-for(size_t i = 0; i < validator->issueCount(); ++i) {
-    auto issue = validator->issue(i);
-    std::cout << "Issue " << i << ": " << issue->description() << std::endl;
-    std::cout << "  reference: "<< issue->referenceHeading() << std::endl;
-    std::cout << "  see: " << issue->url() << std::endl;
-    std::cout << "  stored item type: " << getItemTypeAsString(issue->itemType()) << std::endl;
-    std::cout << std::endl;
-}
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  2.b
+        :end-before: //  end 2
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  2.b
+        :end-before: #  end 2
 
 Step 3: Repair the parsed model
 -------------------------------
@@ -122,7 +167,27 @@ In some situations more than one :code:`Issue` will be generated from a single c
     Note that when finding a :code:`Component` item, setting an optional second argument to :code:`true` will search the entire encapsulation hierarchy for a component with that name, and not only the direct children of the model.
     You can follow the URL for information about what makes a valid name, and use the :code:`setName` function to fix it.
 
-model->component("mGateEquations!", true)->setName("mGateEquations");
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.a
+        :end-before: //  end 3.a
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.a
+        :end-before: #  end 3.a
 
 .. code-block:: terminal
 
@@ -141,10 +206,27 @@ model->component("mGateEquations!", true)->setName("mGateEquations");
     **3.b** The messages above indicate that we're missing a Units item named "mS_per_cm2". 
     Create an appropriate Units item (note that S stands for "siemens"), and add it to your model.
 
-auto mS_per_cm2 = libcellml::Units::create("mS_per_cm2");
-mS_per_cm2->addUnit("siemens", "milli");
-mS_per_cm2->addUnit("metre", "centi", -2);
-model->addUnits(mS_per_cm2);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.b
+        :end-before: //  end 3.b
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.b
+        :end-before: #  end 3.b
 
 .. code-block:: terminal
 
@@ -158,27 +240,44 @@ model->addUnits(mS_per_cm2);
         reference: 
         see: 
 
-.. container:: dothis
-
-    **3.c** As with 3.a, here we have more than one issue generated from the same cause: in this case, we haven't specified units for a variable.
+As with 3.a, here we have more than one issue generated from the same cause: in this case, we haven't specified units for a variable.
     
 Each issue generated contains a pointer to the item to which it refers. 
 We can retrieve the affected item directly from the issue in one of two ways:
-     - retrieving an :code:`AnyItem` struct (whose "first" attribute is an enum of the :code:`ItemType`; 
+     - retrieving an :code:`AnyItem` structure (whose "first" attribute is an enum of the :code:`ItemType`; 
        and "second" attribute is an std::any cast of the item itself); and casting it appropriately, or
      - since we know that the type of item in this error is a :code:`VARIABLE`, we can call the convenience method Issue::variable() to return the variable which needs attention.
  (Of course you could retrieve it using the name of its parent component and its name too - this is just another way!)
 
+.. container:: dothis
 
-Check that the item to be returned from the issue is in fact an ItemType::VARIABLE by calling the Issue::type() function.
-Retrieve the variable missing units from the issue.
-Set its units to be millivolts.
+    **3.c** Check that the item to be returned from the issue is in fact an :code:`ItemType::VARIABLE` by calling the :code:`type()` function.
+    Retrieve the variable missing units from the issue.
+    Set its units to be millivolts.
 
-auto issue6 = validator->issue(6);
-assert(issue6->itemType() == libcellml::ItemType::VARIABLE);
-issue6->variable()->setUnits(model->units("mV"));
+.. container:: toggle
 
-The error below indicates that a child Unit references something which can't be found.
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.c
+        :end-before: //  end 3.c
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.c
+        :end-before: #  end 3.c
+
+The error below indicates that a child :code:`Unit` references something which can't be found.
 
 .. code-block:: terminal
 
@@ -202,33 +301,37 @@ You have a few different options for how to fix this one.
     **3.d** Choose your preferred method and use it to retrieve the problem unit attributes and print them all to the terminal.
     Then fix the issue.
 
-Useful functions are:
-     - Units::unitAttributes(const std::string &reference, std::string &prefix, double &exponent, double &multiplier, std::string &id);
-     - Units::removeUnit(const std::string &reference) or Units::removeUnit(size_t index); and
-     - Units::addUnit( ... ) as used previously.
+.. container:: useful
+    
+    **Useful functions**
 
-std::string prefix;
-std::string id;
-double exponent;
-double multiplier;
-auto mV = model->units("mV");
-mV->unitAttributes("i_dont_exist", prefix, exponent, multiplier, id);
-std::cout << "The units 'mV' child has attributes: base units = 'i_dont_exist', prefix = '"<< prefix << "', exponent = "<<exponent<<", and multiplier = "<<multiplier <<std::endl;
+    :api:`Units class<Units>`
 
-Method 1:
-mV->removeUnit("i_dont_exist");
-mV->addUnit("volt", "milli");
+    - unitAttributes
+    - removeUnit
+    - addUnit
 
-Method 2:
-auto issue7 = validator->issue(7);
-assert(issue7->itemType() == libcellml::ItemType::UNIT);
-auto issue7item = issue7->unit().first->removeUnit(issue7->unit().second);
-issue7->unit().first->addUnit("volt", "milli");
+.. container:: toggle
 
-Method 3:
-auto missingUnits = libcellml::Units::create("i_dont_exist");
-missingUnits->addUnit("volt", "milli");
-model->addUnits(missingUnits); 
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.d
+        :end-before: //  end 3.d
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.d
+        :end-before: #  end 3.d
 
 The final validator issue refers to the fact that we need to explicitly specify how other components can access each of the variables in this component.
 
@@ -242,72 +345,133 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
     **3.e** Retrieve the variable either using the issue pointer method, or using the name method, and set its interface to be the required type.
 
-auto issue9 = validator->issue(9);
-assert(issue9->itemType() == libcellml::ItemType::VARIABLE);
-issue9->variable()->setInterfaceType("public_and_private");
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.e
+        :end-before: //  3.f
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.e
+        :end-before: #  3.f
 
 .. container:: dothis
 
     **3.f** Revalidate the model and confirm that the errors have gone.
-
-validator->validateModel(model);
-printIssues(validator);
 
 .. container:: dothis
 
     **3.g** Even though the model is free from validation errors, we still need to make sure it represents what we want it to.
     Print the model to the terminal and check its structure.
 
-    Useful functions: printModel(Model);
+.. container:: useful
 
-printModel(model);
+    Useful functions: printModel(Model);  **TODO**
 
 .. container:: dothis
 
     **3.h** Use the addComponent functions to rearrange the components as needed until you have the required structure.Validate the model again.
 
-    Useful functions: 
-         - Model::component("componentName", true) will search for the component's name in the whole of the encapsulation hierarchy.
-         - Component::addComponent(Component) will move the argument to be a child of the parent.
-         - printEncapsulation(Model) will print the components' encapsulation hierarchy.
+.. container:: useful
 
-auto importedGateM = model->component("importedGateM", true);
-auto mGateEquations = model->component("mGateEquations", true);
-auto mGate = model->component("mGate", true);
-mGateEquations->addComponent(importedGateM);
-mGate->addComponent(mGateEquations);
+    **Useful functions**
 
-validator->validateModel(model);
-printIssues(validator);
-printEncapsulation(model);
+    :api:`Model class<Model>`
+
+    - component("componentName", true) will search for the component's name in the whole of the encapsulation hierarchy.
+
+    :api:`Component class<Component>`
+
+    - Component::addComponent(Component) will move the argument to be a child of the parent.
+
+    Tutorial functions
+
+    - printEncapsulation(Model) will print the components' encapsulation hierarchy.
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  3.g
+        :end-before: //  end 3
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  3.g
+        :end-before: #  end 3
 
 Step 4: Resolve the model's imports
 -----------------------------------
 It's important to remember that the imports are merely instructions for how components or units items should be located: only their syntax is checked by the validator, not that the files exist or contain the required information.  To debug the imported aspects of the model, we need to use an :code:`Importer` class.
-
 
 To resolve the imports, we need a path to a base location against which any relative file addresses can be resolved.  
 For this tutorial, the files are in the same directory as the code, so simply using an empty string is sufficient.
 
 .. container:: nb 
 
-    If they're another directory, make sure to end your path with a slash, "/".
+    If they're another directory, make sure to end your path with a slash, "/".  If they're in your working directory, enter an empty string.
+
+.. container:: useful
+
+    **Useful functions**
+    
+    :api:`Importer class<Importer>`
+    
+    - create
+    - resolveImports
 
 .. container:: dothis
 
     **4.a** Create an :code:`Importer` instance and use it to resolve the model.
-
-    Useful fuctions: Importer::resolveImports(ModelPtr &model, const std::string &path).
-
-auto importer = libcellml::Importer::create();
-importer->resolveImports(model, "");
 
 .. container:: dothis
 
     **4.b** Similarly to the validator, the importer will log any issues it encounters.
     Retrieve these and print to the terminal (you can do this manually or using the convenience function as before).
 
-printIssues(importer);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  4.a
+        :end-before: //  end 4.b
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  4.a
+        :end-before: #  end 4.b
 
 .. code-block:: terminal
 
@@ -321,10 +485,36 @@ printIssues(importer);
     This needs to be an iterative process as more files become available to the importer.
     We need to change the import reference for the component to be "gateEquations" instead of "i_dont_exist".
     You can either retrieve the component using its name or directly from the issue.
-    Useful functions: Component::setImportReference()
 
-auto issue0 = importer->issue(0);
-issue0->component()->setImportReference("gateEquations");
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`Component class<Component>`
+
+    - setImportReference
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  4.c
+        :end-before: //  end 4.c
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  4.c
+        :end-before: #  end 4.c
 
 .. code-block:: terminal
 
@@ -349,59 +539,118 @@ It's included here to highlight the fact that the :code:`Importer` class opens a
 
     **4.d** In this example we can change the import of the controller component to have url of 'SodiumChannelController.cellml'.
 
-model->component("controller", true)->importSource()->setUrl("SodiumChannelController.cellml");
-
 .. container:: dothis
 
     **4.e** Resolve the imports again and check that there are no further issues.
 
-importer->resolveImports(model, "");
-printIssues(importer);
+.. container:: toggle
 
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  4.d
+        :end-before: //  end 4
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  4.d
+        :end-before: #  end 4
 
 Step 5: Validate the imported dependencies
 ------------------------------------------
 At this stage we've validated the local model, and we've used the :code:`Importer` class to retrieve all of its import dependencies.
 These dependencies are stored in the importer's library, and have not yet been validated or analysed.  
 
-Useful functions:
-         - Importer::libraryCount() returns the number of stored models;
-         - Importer::library(index) returns the model at the given index;
-         - Importer::key(index) returns a key string that could be used to retrieve the model too;
-         - Importer::library(keystring) returns the model at the given key.
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`Importer class<Importer>`
+
+         - libraryCount returns the number of stored models;
+         - library returns the model at the given index or given key string;
+         - key returns a key string at the given index;
 
 .. container:: dothis
 
     **5.a** Use a simple loop to validate each of the models stored in the importer's library.
 
-for(size_t i = 0; i < importer->libraryCount(); ++i) {
-    std::cout << "Imported model at key: " << importer->key(i) << std::endl;
-    validator->validateModel(importer->library(i));
-    printIssues(validator);
-}
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  5.a
+        :end-before: //  end 5.a
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  5.a
+        :end-before: #  end 5.a
 
 Note that the two files creating the circular import in 4.a are still in the library. 
 To limit ourselves to only those models which are still relevant as the import dependencies of our repaired model, we can iterate through our model's :code:`ImportSource` items instead.  
 As soon as the model's imports have been resolved, all these will point to instantiated models within the importer.
 
-Useful functions:
-    - Model::importSourceCount();
-    - Model::importSource(size_t index); and
-    - ImportSource::model();
-    - ImportSource::url();
+.. container:: useful 
+
+    **Useful functions**
+
+    :api:`Model class<Model>`
+
+    - importSourceCount
+    - importSource
+
+    :api:`ImportSource class<ImportSource>`
+
+    - model
+    - url
 
 .. container:: dothis
 
-    **5.b** Loop through the model's import source items and print their urls to the terminal.
+    **5.b** Loop through the model's import source items and print their URLs to the terminal.
     You'll notice that these have been used as the keys in the importer library.
     Check that the importer library's models are the same as that attached to the import source item.
 
-for(size_t i = 0; i < model->importSourceCount(); ++i) {
-    std::cout << "Import source [" << i << "]:" << std::endl;
-    std::cout << "     url = " << model->importSource(i)->url() << std::endl;
-    std::cout << "     model = " << model->importSource(i)->model() << std::endl;
-    std::cout << "     library[url] = " << importer->library(model->importSource(i)->url()) << std::endl;
-}
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  5.b
+        :end-before: //  end 5
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  5.b
+        :end-before: #  end 5
 
 Step 6: Analyse the model(s)
 ----------------------------
@@ -411,39 +660,59 @@ Since this model uses imports, the real mathematical model is hidden from the :c
 The way around this is to use the :code:`Importer` class to create a flat (ie: import-free) version of the same model.
 If the flat model meets the analyser's checks, then the importing version will too.
 
+
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`Analyser class<Analyser>`
+
+    - analyseModel
+    - flattenModel
+
 .. container:: dothis
 
     **6.a** Create an Analyser instance and pass in the model for analysis.
-
-Useful functions: Analyser::analyseModel(Model)
-
-auto analyser = libcellml::Analyser::create();
-analyser->analyseModel(model);
 
 .. container:: dothis
 
     **6.b** Retrieve and print the issues from the analysis to the screen.
     We expect to see messages related to un-computed variables, since anything which is imported is missing from this model.
 
-printIssues(analyser);
+.. code-block:: terminal
+
+    **TODO**
 
 .. container:: dothis
 
     **6.c** Create a flattened version of the model print it to the screen.
     Notice that any comments indicating that a component was an import have been removed as these components have been instantiated in the flattened model.
 
-Useful functions:
-        - Importer::flattenModel(Model) will return a flattened copy.
-
-auto flatModel = importer->flattenModel(model);
-printModel(flatModel);
-
 .. container:: dothis
 
     **6.d** Analyse the flattened model and print the issues to the screen.
 
-analyser->analyseModel(flatModel);
-printIssues(analyser);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  6.a
+        :end-before: //  end 6.d
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  6.a
+        :end-before: #  end 6.d
 
 .. code-block:: terminal
 
@@ -456,24 +725,44 @@ The issue returned from the analyser says that we're trying to use two different
 It's still valid CellML though!
 In this example, the real problem is that these two variables are talking about the same thing, but haven't been connected to one another yet.
 
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`Variable class<Variable>`
+
+    - addEquivalence
+
 .. container:: dothis
 
     **6.e** Create any necessary variable equivalences so that these two variables are connected.
     You can refer to your printout of the model's structure to help if need be, and remember that only variables in a sibling or parent/child relationship can be connected. 
 
-Useful function: Variable::addEquivalence(v1, v2) will create an equivalence between the variables v1 and v2.
-
-libcellml::Variable::addEquivalence(model->component("importedGateM", true)->variable("t"), 
-                                    model->component("mGateEquations", true)->variable("t"));
-libcellml::Variable::addEquivalence(model->component("mGate", true)->variable("t"), 
-                                    model->component("mGateEquations", true)->variable("t"));
-
 .. container:: dothis
 
     **6.f** Re-flatten and re-analyse the model and print the issues to the terminal.
 
-analyser->analyseModel(importer->flattenModel(model));
-printIssues(analyser);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  6.e
+        :end-before: //  end 6.f
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  6.e
+        :end-before: #  end 6.f
 
 Now we see the importance of checking iteratively for issues in the analyser class!  
 The nature of this class means that frequently it is unable to continue processing when an issue is encountered.
@@ -486,16 +775,27 @@ Looking at the model printout we can see that this is because the integrated var
     **6.g** Create all required connections needed to connect these variables.
     Re-flatten, re-analyse and print the issues to the terminal.
 
-libcellml::Variable::addEquivalence(model->component("importedGateM", true)->variable("X"), 
-                                    model->component("mGateEquations", true)->variable("m"));
-libcellml::Variable::addEquivalence(model->component("mGateParameters", true)->variable("m"), 
-                                    model->component("mGateEquations", true)->variable("m"));
-libcellml::Variable::addEquivalence(model->component("importedGateH", true)->variable("X"), 
-                                    model->component("hGateEquations", true)->variable("h"));
-libcellml::Variable::addEquivalence(model->component("hGateParameters", true)->variable("h"), 
-                                    model->component("hGateEquations", true)->variable("h");
-analyser->analyseModel(importer->flattenModel(model));
-printIssues(analyser);
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  6.g
+        :end-before: //  end 6.g
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  6.g
+        :end-before: #  end 6.g
 
 The nice thing about issues in this class is that frequently a few issues refer to the same single problem.
 The remainder of the issues reported deal with variables that are not computed.
@@ -521,23 +821,27 @@ Hints:
     **6.h** From the printout of your model and the issues listed, determine what needs to happen in order to make the model viable, and do it.
     Check that your final analysis contains no issues.
 
-// Connect the mGate to its surroundings.
-libcellml::Variable::addEquivalence(model->component("importedGateM", true)->variable("alpha_X"), 
-                                    model->component("mGateEquations", true)->variable("alpha_m"));
-libcellml::Variable::addEquivalence(model->component("importedGateM", true)->variable("beta_X"), 
-                                    model->component("mGateEquations", true)->variable("beta_m"));
-libcellml::Variable::addEquivalence(model->component("mGate", true)->variable("V"), 
-                                    model->component("mGateEquations", true)->variable("V"));
-libcellml::Variable::addEquivalence(model->component("mGate", true)->variable("m"), 
-                                    model->component("mGateEquations", true)->variable("m"));
-// E_Na in sodiumChannelParameters needs to be initialised to 35.
-model->component("sodiumChannelParameters", true)->variable("E_Na")->setInitialValue(35);
-// i_am_redundant in mGateParameters is not required.
-model->component("mGateParameters", true)->removeVariable("i_am_redundant");
+.. container:: toggle
 
-analyser->analyseModel(importer->flattenModel(model));
-printIssues(analyser);
+    .. container:: header
 
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  6.h
+        :end-before: //  end 6
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  6.h
+        :end-before: #  end 6
 
 Step 7: Serialise and print the repaired model
 ----------------------------------------------
@@ -554,7 +858,24 @@ auto modelString = printer->printModel(model);
 
     **7.b** Write the string to a file named "SodiumChannelModel.cellml".
 
-std::ofstream outFile("SodiumChannelModel.cellml");
-outFile << modelString;
-outFile.close();
+.. container:: toggle
 
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+        :language: c++
+        :start-at: //  7.a
+        :end-before: //  end
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+        :language: python
+        :start-at: #  7.a
+        :end-before: #  end
