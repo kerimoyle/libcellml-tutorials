@@ -21,7 +21,7 @@ if __name__ == '__main__':
 
     #  Setup useful things.
     math_header = '<math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">\n'
-    mathFooter = '</math>'
+    math_footer = '</math>'
 
     # Overall the model structure will be:
     # model: PotassiumChannelModel
@@ -88,7 +88,7 @@ if __name__ == '__main__':
 
     k_channel_equations.setMath(math_header)
     k_channel_equations.appendMath(equation_iK)
-    k_channel_equations.appendMath(mathFooter)
+    k_channel_equations.appendMath(math_footer)
      
     #  2.c 
     #      Once the mathematics has been added to the component, and the component to the 
@@ -247,7 +247,7 @@ if __name__ == '__main__':
     n_gate_equations.setMath(math_header)
     n_gate_equations.appendMath(equation_alpha_n)
     n_gate_equations.appendMath(equation_beta_n)
-    n_gate_equations.appendMath(mathFooter)
+    n_gate_equations.appendMath(math_footer)
     
     validator.validateModel(model)
     print_issues(validator)

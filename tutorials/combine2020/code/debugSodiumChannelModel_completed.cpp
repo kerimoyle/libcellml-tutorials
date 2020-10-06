@@ -308,7 +308,9 @@ int main()
     model->component("controller", true)->importSource()->setUrl("SodiumChannelController.cellml");
 
     //  4.e 
+    //      Clear the current issues from the importer using the removeAllIssues function.
     //      Resolve the imports again and check that there are no further issues.
+    importer->removeAllIssues();
     importer->resolveImports(model, "");
     printIssues(importer);
 

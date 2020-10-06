@@ -12,24 +12,24 @@ By the time you have worked through this part of the tutorial you will be able t
 
 **Requirements (C++)**
 
-- :download:`CMakeLists.txt` The CMake file for building this tutorial;
-- :download:`debugSodiumChannelModel.cpp` Either the skeleton code, or ..
-- :download:`debugSodiumChannelModel_completed.cpp` the completed tutorial code;
-- :download:`GateModel.cellml` the generic gate model created in Tutorial 1;
-- :download:`SodiumChannelModel_broken.cellml` a sodium channel model that needs debugging;
-- :download:`CircularControllerReference.cellml` import file;
-- :download:`CircularControllerReference2.cellml` import file; and
-- :download:`SodiumChannelModelController.cellml` import file;
+- :download:`CMakeLists.txt<code/CMakeLists_sodium.txt>` The CMake file for building this tutorial;
+- :download:`debugSodiumChannelModel.cpp<code/debugSodiumChannelModel.cpp>` Either the skeleton code, or ..
+- :download:`debugSodiumChannelModel_completed.cpp<code/debugSodiumChannelModel_completed.cpp>` the completed tutorial code;
+- :download:`GateModel.cellml<code/GateModel.cellml>` the generic gate model created in Tutorial 1;
+- :download:`SodiumChannelModel_broken.cellml<code/SodiumChannelModel_broken.cellml>` a sodium channel model that needs debugging;
+- :download:`CircularControllerReference.cellml<code/CircularControllerReference.cellml>` import file;
+- :download:`CircularControllerReference2.cellml<code/CircularControllerReference2.cellml>` import file; and
+- :download:`SodiumChannelModelController.cellml<code/SodiumChannelModelController.cellml>` import file;
 
 **Requirements (Python)**
 
-- :download:`debugSodiumChannelModel.py` Either the skeleton code, or ..
-- :download:`debugSodiumChannelModel_completed.py` the completed tutorial code; and
-- :download:`GateModel.cellml` the generic gate model created in Tutorial 1;
-- :download:`SodiumChannelModel_broken.cellml` a sodium channel model that needs debugging;
-- :download:`CircularControllerReference.cellml` import file;
-- :download:`CircularControllerReference2.cellml` import file; and
-- :download:`SodiumChannelModelController.cellml` import file;
+- :download:`debugSodiumChannelModel.py<code/debugSodiumChannelModel.py>` Either the skeleton code, or ..
+- :download:`debugSodiumChannelModel_completed.py<code/debugSodiumChannelModel_completed.py>` the completed tutorial code; and
+- :download:`GateModel.cellml<code/GateModel.cellml>` the generic gate model created in Tutorial 1;
+- :download:`SodiumChannelModel_broken.cellml<code/SodiumChannelModel_broken.cellml>` a sodium channel model that needs debugging;
+- :download:`CircularControllerReference.cellml<code/CircularControllerReference.cellml>` import file;
+- :download:`CircularControllerReference2.cellml<code/CircularControllerReference2.cellml>` import file; and
+- :download:`SodiumChannelModelController.cellml<code/SodiumChannelModelController.cellml>` import file;
 
 .. contents:: Contents
     :local:
@@ -46,7 +46,7 @@ The parser will then read that string and return a model.
 
 .. container:: dothis
 
-    **1.a** Read a CellML file into a std::string.
+    **1.a** Read a CellML file into a string.
 
 .. container:: dothis
 
@@ -54,7 +54,7 @@ The parser will then read that string and return a model.
 
 .. container:: dothis
 
-    **1.c** Use the parser to deserialise the contents of the string you've read and return the model.
+    **1.c** Use the parser to deserialise the contents of the string you've read into a model.
 
 .. container:: dothis
 
@@ -286,6 +286,7 @@ The error below indicates that a child :code:`Unit` references something which c
         see: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB06.html?issue=2.6.1
 
 You have a few different options for how to fix this one. 
+
 1) The manual way.  
    The issue description tells us the name of the :code:`Units` where the issue is, and the name of the units required by one of its children.
    We can locate both items using these names, remove the problem child, and replace it with a correct one.  
@@ -296,11 +297,6 @@ You have a few different options for how to fix this one.
 3) The roundabout option.
    Since the error is saying that units named "i_dont_exist" are missing, we could simply provide them by creating a :code:`Units` item and adding it to the model.
  
-.. container:: dothis
-
-    **3.d** Choose your preferred method and use it to retrieve the problem unit attributes and print them all to the terminal.
-    Then fix the issue.
-
 .. container:: useful
     
     **Useful functions**
@@ -310,6 +306,11 @@ You have a few different options for how to fix this one.
     - unitAttributes
     - removeUnit
     - addUnit
+
+.. container:: dothis
+
+    **3.d** Choose your preferred method and use it to retrieve the problem unit attributes and print them all to the terminal.
+    Then fix the issue.
 
 .. container:: toggle
 
@@ -394,11 +395,11 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
     :api:`Component class<Component>`
 
-    - Component::addComponent(Component) will move the argument to be a child of the parent.
+    - addComponent
 
     Tutorial functions
 
-    - printEncapsulation(Model) will print the components' encapsulation hierarchy.
+    - printEncapsulation **TODO**
 
 .. container:: toggle
 
@@ -801,11 +802,10 @@ The nice thing about issues in this class is that frequently a few issues refer 
 The remainder of the issues reported deal with variables that are not computed.
 This could mean any one of:
 
-1- the variable is not included in any equations (it's completely unused);
-2- the variable is included in an equation, but the equation can't be evaluated 
-(contains some other un-computed variable(s));
-3- the variable is a constant that should have a value assigned; or
-4- the variable hasn't been connected to the rest of its definition (usually it's this one!).
+1) the variable is not included in any equations (it's completely unused);
+2) the variable is included in an equation, but the equation can't be evaluated (contains some other un-computed variable(s));
+3) the variable is a constant that should have a value assigned; or
+4) the variable hasn't been connected to the rest of its definition (usually it's this one!).
 
 Because the "is not computed" errors are cascading by nature, frequently fixing just one will resolve many others. 
 Hints: 

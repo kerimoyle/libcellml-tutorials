@@ -34,7 +34,7 @@ if __name__ == '__main__':
     model.setName('GateModel')
 
     #  1.c 
-    #       We'll create a wrapper component whose only job is to encapsulate the other components.
+    #      We'll create a wrapper component whose only job is to encapsulate the other components.
     #      This makes is a lot easier for this model to be reused, as the connections between
     #      components internal to this one won't need to be re-established.
     #      Note that the constructor for all named CellML entities is overloaded, so 
@@ -55,7 +55,7 @@ if __name__ == '__main__':
     print('----------------------------------------------------------')
 
     #  2.a 
-    #  Create a gateEquations component, name it 'gateEquations' and add it to the model.
+    #  Create a gateEquations component and name it 'gateEquations'.
     gateEquations = Component('gateEquations')
 
     #  2.b 

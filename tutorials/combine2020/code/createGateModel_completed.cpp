@@ -59,7 +59,7 @@ int main()
     std::cout << "----------------------------------------------------------" << std::endl;
 
     //  2.a 
-    //      Create a gateEquations component, name it "gateEquations" and add it to the model.
+    //      Create a gateEquations component and name it "gateEquations" .
     auto gateEquations = libcellml::Component::create("gateEquations");
 
     //  2.b 
