@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model xmlns="http://www.cellml.org/cellml/2.0#" name="MysteryModel" >
+  <import xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="AnotherMysteryModel.cellml">
+    <component component_ref="whoAmI" name="whoAmI" id="whoAmIAndWhereDidIComeFrom"/>
+  </import>
   <units name="u1" id="polo">
     <unit prefix="milli" units="second" id="someOtherDuplicatedId"/>
   </units>

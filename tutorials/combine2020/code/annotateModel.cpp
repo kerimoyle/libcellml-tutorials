@@ -177,7 +177,7 @@ int main()
     //  end 3.f
 
     std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 4: See who else is lurking in the pool            " << std::endl;
+    std::cout << "   STEP 4: See who else is lurking in this pool            " << std::endl;
     std::cout << "----------------------------------------------------------"<< std::endl;
 
     //  Now that we've found Marco and fixed the duplicates of Polo, we'd like to know
@@ -223,7 +223,36 @@ int main()
         std::cout << "  - '" << model->component(i)->id() << "'" <<std::endl;
     }
 
-    //  4.d
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 5: See who else is lurking around the corner      " << std::endl;
+    std::cout << "----------------------------------------------------------"<< std::endl;
+
+    // Retrieve id "whoAmI"
+    // it's an imported component
+    // want to get the id and URL of the place it came from so can check there 
+    // for annotations.
+
+    auto whoAmIAndWhereDidIComeFrom = annotator->item("whoAmIAndWhereDidIComeFrom");
+
+    std::cout << "The item with ID 'whoAmIAndWhereDidIComeFrom' is a " << getItemTypeAsString(whoAmIAndWhereDidIComeFrom.first) << std::endl;
+    auto component = std::any_cast<libcellml::ComponentPtr>(whoAmIAndWhereDidIComeFrom.second);
+
+    // Check whether it's imported
+    if(component->isImport()) {
+        auto importer = libcellml::Importer::create();
+        importer->resolveImports(model, "");
+        printIssues(importer);
+        // Want to get the URL and id of the source component.
+
+        auto url = component->importSource()->url();
+        auto reference = component->importReference();
+        auto importedId = component->importSource()->model()->component(reference)->id();
+
+        std::cout << "The component with id 'whoAmIAndWhereDidIComeFrom' came from:" << std::endl;
+        std::cout << "  - url: " << url << std::endl;
+        std::cout << "  - id: " << importedId << std::endl;
+    }
+    //  6.d
     //      Finally, we decide that it's too cold for swimming, and get out of the pool.
     //      Use the clearAllIds function to remove all id strings from the model.  Check
     //      that they have gone by repeating step 4.a.
