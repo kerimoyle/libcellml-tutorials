@@ -19,7 +19,7 @@ Tutorial 5: Annotation tools
 
     - :download:`CMakeLists.txt<code/CMakeLists_AnnotateModel.txt>` The CMake file for building this tutorial;
     - :download:`annotateModel.cpp<code/annotateModel.cpp>` Either the skeleton code, or ..
-    - :download:`createGateModel_completed.cpp<code/annotateModel_completed.cpp>` the completed tutorial code;
+    - :download:`annotateModel_completed.cpp<code/annotateModel_completed.cpp>` the completed tutorial code;
     - :download:`MysteryModel.cellml<code/MysteryModel.cellml>` file to read; and
     - :download:`AnotherMysteryModel.cellml<code/AnotherMysteryModel.cellml>` import dependency.
 
@@ -27,8 +27,8 @@ Tutorial 5: Annotation tools
 
     **Requirements (Python)**
 
-    - :download:`createGateModel.py<createGateModel.py>` Either the skeleton code, or ..
-    - :download:`createGateModel_completed.py<createGateModel_completed.py>` the completed tutorial code;
+    - :download:`annotateModel.py<annotateModel.py>` Either the skeleton code, or ..
+    - :download:`annotateModel_completed.py<annotateModel_completed.py>` the completed tutorial code;
     - :download:`MysteryModel.cellml<code/MysteryModel.cellml>` file to read; and
     - :download:`AnotherMysteryModel.cellml<code/AnotherMysteryModel.cellml>` import dependency.
 
