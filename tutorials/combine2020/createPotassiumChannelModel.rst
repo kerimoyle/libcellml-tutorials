@@ -44,6 +44,22 @@ The final structure of this model is shown in the diagram below.
             component: kChannelParameters
 
 
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`Model class<Model>`
+
+    - create
+    - setName
+    - addComponent
+
+    :api:`Component class<Component>`
+
+    - create
+    - setName
+    - addComponent
+
 .. container:: dothis
 
     **1.a** Create a :code:`Model` item and name it appropriately.
@@ -51,7 +67,6 @@ The final structure of this model is shown in the diagram below.
 .. container:: dothis
 
     **1.b** Create a wrapping component and name it "potassiumChannel".
-
 
 .. container:: dothis
 
@@ -82,9 +97,20 @@ The final structure of this model is shown in the diagram below.
 Step 2: Create a potassium channel equations component
 ------------------------------------------------------
 
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`Component class<Component>`
+
+    - create
+    - setName
+    - setMath
+    - appendMath
+
 .. container:: dothis
 
-    **2.a** Create a Component instance for the equations and name it "potassiumChannelEquations".  
+    **2.a** Create a :code:`Component` instance for the equations and name it "potassiumChannelEquations".  
     Add it to the wrapper component you created above.
 
 .. container:: toggle
@@ -112,7 +138,7 @@ Step 2: Create a potassium channel equations component
 .. container:: dothis
 
     **2.b** Define the maths inside the potassiumChannelEquations component.
-    This is a MathML 2 string (NB: higher versions of MathML are not supported), and is added to the component using :code:`setMath()` and :code:`appendMath()` functions.
+    This is a MathML 2 string (NB: higher versions of MathML are not supported), and is added to the component using :code:`setMath` and :code:`appendMath` functions.
     Your string needs to contain the namespaces for MathML and for CellML: these have been provided for you in the mathHeader string above.
         
 .. container:: toggle
@@ -138,6 +164,18 @@ Step 2: Create a potassium channel equations component
         :end-before: #  2.c
         
 Once the mathematics has been added to the component, and the component to the model, we can make use of the diagnostic messages within the :code:`Validator` class to tell us what else needs to be done.
+
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`Validator class<Validator>`
+
+    - create
+    - validateModel
+    - issueCount
+    - issue
+
 
 .. container:: dothis
 
@@ -178,7 +216,7 @@ The simplest way is to print the descriptions to the terminal.
 
 .. container:: dothis
 
-    **2.d** Retrieve the number of issues encountered using the :code:`issueCount()` function in the validator, then retrieve the issue items from the validator using their index and the :code:`Validator::issue(index)` function.
+    **2.d** Retrieve the number of issues encountered using the :code:`issueCount` function in the validator, then retrieve the issue items from the validator using their index and the :code:`issue(index)` function.
 
 .. container:: toggle
 
@@ -201,6 +239,27 @@ The simplest way is to print the descriptions to the terminal.
         :language: python
         :start-at: #  2.d
         :end-before: #  2.e
+
+.. container:: useful
+
+    :api:`Variable class<Variable>`
+
+    - create
+    - setUnits
+
+    :api:`Component class<Component>`
+
+    - addVariable
+
+    :api:`Model class<Model>`
+
+    - addUnits
+
+    :api:`Units class<Units>`
+
+    - create
+    - setName
+    - addUnit
 
 .. container:: dothis
 
@@ -459,6 +518,24 @@ Imports require three things:
 - The name of the item to import.
   This is called the "import reference" and is stored by the destination :code:`Component` or :code:`Units` item.
 
+.. container:: useful
+
+    **Useful functions**
+
+    :api:`ImportSource class<ImportSource>`
+
+    - create
+    - setUrl
+
+    :api:`Model class<Model>`
+
+    - addImportSource
+
+    :api:`ImportedEntity class<ImportedEntity>` (applies to components and units)
+
+    - setImportSource
+    - setImportReference
+
 .. container:: dothis
 
     **4.a** Create an :code:`ImportSource` item and set its URL to be "GateModel.cellml".
@@ -475,15 +552,14 @@ Imports require three things:
 .. container:: dothis
 
     **4.d** Associate the import source with the component using the setImportSource function.
-    Note that this step also makes the import source available to other items through the :code:`Model::importSource(index)` function.
-    This way the same model file can be used as a source for more than one item.
+    Note that this step also makes the import source available to other items through the :code:`importSource(index)` function on the model.
+    This way the same imported model file can be used as a source for more than one item.
 
 Note that we are deliberately not importing the parameters component in the GateModel.cellml file, since we will be setting our own values of its variables.
 
 .. container:: dothis
 
     **4.e** Validate the model and confirm that there are no issues.
-
 
 .. container:: toggle
 
@@ -677,7 +753,8 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
 
 .. container:: dothis
 
-    **7.d** Create variable connections between these variables and their counterparts in the equations components.  Validate, expecting errors related to missing or incorrect interface types.
+    **7.d** Create variable connections between these variables and their counterparts in the equations components.
+    Validate, expecting errors related to missing or incorrect interface types.
 
 .. container:: dothis
 
@@ -708,17 +785,23 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
         :end-before: #  end 7.e
 
 If we were to analyse the model again now we would we still have the same set of errors as earlier as we haven't given a value to any of our parameters.
-These values should be:
 
-- Potassium channel parameters:
-    - E_K = -85 [mV]
-    - g_K = 36 [milliS_per_cm2]
-- nGate parameters:
-    - n = 0.325 []
+.. container:: shortlist
+
+    These values should be:
+
+    - Potassium channel parameters:
+
+        - E_K = -85 [mV]
+        - g_K = 36 [milliS_per_cm2]
+
+    - nGate parameters:
+
+        - n = 0.325 [dimensionless]
 
 .. container:: dothis
 
-    **7.f** Use the :code:`setInitialValue()` function to set these parameter values.
+    **7.f** Use the :code:`setInitialValue` function to set these parameter values.
     Analyse the model again, expecting that the calculation errors related to these constants have been solved.
 
 .. container:: toggle
@@ -899,7 +982,7 @@ We're going to do the latter now.
 
 Resolving the imports in a model triggers the importer to go searching for all of the information required by this model's imports, even through multiple generations of import layers.
 It also instantiates each of those requirements into its own library.
-You could use the :code:`Model::hasUnresolvedImports()` function to test whether the operation was successful or not; expecting it to be true before resolution, and false afterwards.
+You could use the model's :code:`hasUnresolvedImports` function to test whether the operation was successful or not; expecting it to be true before resolution, and false afterwards.
 
 .. container:: dothis
 
@@ -934,14 +1017,14 @@ The Importer class contains a logger (just like the Validator), so needs to be c
         :end-before: #  end 10.c
 
 The models which have the source components that we wanted to reuse from the GateModel.cellml and PotassiumChannelController.cellml files are now available to us in two ways:
-- through the :code:`model()` function of the destination component's :code:`ImportSource` item; or
+- through the :code:`model` function of the destination component's :code:`ImportSource` item; or
 - as an item in the importer's library.  
   The library items can be retrieved either by index or by key, where the key is the name of the file that was resolved.
 
 .. container:: dothis
 
-    **10.d** Iterate through the items in the library (:code:`Importer::libraryCount()` will give you the total), and print its keys to the terminal.
-    The keys can be retrieved as a string from the :code:`Importer::key(index)` function.  
+    **10.d** Iterate through the items in the library (:code:`libraryCount` will give you the total), and print its keys to the terminal.
+    The keys can be retrieved as a string from the :code:`key(index)` function.  
     This should contain one model.
 
 .. container:: toggle
