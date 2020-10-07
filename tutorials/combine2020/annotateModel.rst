@@ -18,10 +18,10 @@ Tutorial 5: Annotation tools
     **Requirements (C++)**
 
     - :download:`CMakeLists.txt<code/CMakeLists_AnnotateModel.txt>` The CMake file for building this tutorial;
-    - :download:`annotateModel.c**pp<code/annotateModel.c**pp>` Either the skeleton code, or ..
-    - :download:`createGateModel_completed.c**pp<code/annotateModel_completed.c**pp>` the completed tutorial code;
-    - :download:`MysteryModel.c**ellml<code/MysteryModel.c**ellml>` file to read; and
-    - :download:`AnotherMysteryModel.c**ellml<code/AnotherMysteryModel.c**ellml>` import dependency.
+    - :download:`annotateModel.cpp<code/annotateModel.cpp>` Either the skeleton code, or ..
+    - :download:`createGateModel_completed.cpp<code/annotateModel_completed.cpp>` the completed tutorial code;
+    - :download:`MysteryModel.cellml<code/MysteryModel.cellml>` file to read; and
+    - :download:`AnotherMysteryModel.cellml<code/AnotherMysteryModel.cellml>` import dependency.
 
 .. container:: shortlist
 
@@ -29,13 +29,14 @@ Tutorial 5: Annotation tools
 
     - :download:`createGateModel.py<createGateModel.py>` Either the skeleton code, or ..
     - :download:`createGateModel_completed.py<createGateModel_completed.py>` the completed tutorial code;
-    - :download:`MysteryModel.c**ellml<code/MysteryModel.c**ellml>` file to read; and
-    - :download:`AnotherMysteryModel.c**ellml<code/AnotherMysteryModel.c**ellml>` import dependency.
+    - :download:`MysteryModel.cellml<code/MysteryModel.cellml>` file to read; and
+    - :download:`AnotherMysteryModel.cellml<code/AnotherMysteryModel.cellml>` import dependency.
 
 .. contents:: Contents
     :local:
 
-    Background:
+Background
+----------
 
 "Marco Polo" is a game played with many people in a swimming pool.
 One person calls "Marco" with their eyes closed.
@@ -85,8 +86,8 @@ Step 1: Parse the mystery model
         :end-before: #  end 1
 
 
-Step 2: Retrieve an item with a unique id (calling "marco")
------------------------------------------------------------
+Step 2: Retrieve an item with a unique id
+-----------------------------------------
 
 .. container:: useful
 
@@ -145,8 +146,8 @@ Step 2: Retrieve an item with a unique id (calling "marco")
         :end-before: #  end 2
 
 
-Step 3: Retrieve items whose id are not unique (finding "polo")
----------------------------------------------------------------
+Step 3: Retrieve items whose id are not unique
+----------------------------------------------
 
 .. container:: useful
 
