@@ -13,6 +13,7 @@ COMBINE2020 libCellML Tutorials
     combine2020/debugSodiumChannelModel.rst
     combine2020/generateMembraneModel.rst
     combine2020/solveGeneratedCode.rst
+    combine2020/annotateModel.rst
 
 ..     
     tutorial1/outline1
