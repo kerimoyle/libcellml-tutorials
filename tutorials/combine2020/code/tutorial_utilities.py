@@ -1,6 +1,6 @@
 import string
 
-from libcellml import Issue, ItemType
+from libcellml import Issue, CellMLElement
 
 def print_model(model, include_maths=False):
     print("The model name is: '{}'".format(model.name()))
@@ -234,52 +234,52 @@ def get_item_type_from_enum(my_cause):
 
     my_type_as_string = "dunno"
 
-    if my_cause == ItemType.COMPONENT:
+    if my_cause == CellMLElement.COMPONENT:
         my_type_as_string = "COMPONENT"
 
-    elif my_cause == ItemType.COMPONENT_REF:
+    elif my_cause == CellMLElement.COMPONENT_REF:
         my_type_as_string = "COMPONENT_REf"
 
-    elif my_cause == ItemType.CONNECTION:
+    elif my_cause == CellMLElement.CONNECTION:
         my_type_as_string = "CONNECTION"
 
-    elif my_cause == ItemType.ENCAPSULATION:
+    elif my_cause == CellMLElement.ENCAPSULATION:
         my_type_as_string = "ENCAPSULATION"
 
-    elif my_cause == ItemType.IMPORT:
+    elif my_cause == CellMLElement.IMPORT:
         my_type_as_string = "IMPORT"
 
-    elif my_cause == ItemType.MATHML:
+    elif my_cause == CellMLElement.MATHML:
         my_type_as_string = "MATHML"
 
-    elif my_cause == ItemType.MAP_VARIABLES:
+    elif my_cause == CellMLElement.MAP_VARIABLES:
         my_type_as_string = "MAP_VARIABLES"
 
-    elif my_cause == ItemType.MODEL:
+    elif my_cause == CellMLElement.MODEL:
         my_type_as_string = "MODEL"
 
-    elif my_cause == ItemType.RESET:
+    elif my_cause == CellMLElement.RESET:
         my_type_as_string = "RESET"
 
-    elif my_cause == ItemType.RESET_VALUE:
+    elif my_cause == CellMLElement.RESET_VALUE:
         my_type_as_string = "RESET_VALUE"
 
-    elif my_cause == ItemType.TEST_VALUE:
+    elif my_cause == CellMLElement.TEST_VALUE:
         my_type_as_string = "TEST_VALUE"
 
-    elif my_cause == ItemType.UNDEFINED:
+    elif my_cause == CellMLElement.UNDEFINED:
         my_type_as_string = "UNDEFINED"
 
-    elif my_cause == ItemType.UNIT:
+    elif my_cause == CellMLElement.UNIT:
         my_type_as_string = "UNIT"
 
-    elif my_cause == ItemType.UNITS:
+    elif my_cause == CellMLElement.UNITS:
         my_type_as_string = "UNITS"
 
-    elif my_cause == ItemType.VARIABLE:
+    elif my_cause == CellMLElement.VARIABLE:
         my_type_as_string = "VARIABLE"
 
-    elif my_cause == ItemType.XML:
+    elif my_cause == CellMLElement.XML:
         my_type_as_string = "XML"
 
     return my_type_as_string

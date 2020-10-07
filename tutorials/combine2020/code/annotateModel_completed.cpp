@@ -36,7 +36,7 @@ int main()
     std::cout << "----------------------------------------------------------" << std::endl;
 
     //  1.a 
-    //      Read the mystery file.
+    //      Read the mystery file, MysteryModel.cellml.
     std::ifstream inFile("MysteryModel.cellml");
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
@@ -53,6 +53,8 @@ int main()
     //  1.d 
     //      Check that the parser has not raised any issues.
     printIssues(parser);
+
+    //  end 1
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 2: Find 'marco'		                            " << std::endl;
@@ -76,15 +78,13 @@ int main()
     libcellml::AnyItem marcoItem = annotator->item("marco");
     std::cout << "The item with ID 'marco' is a " << getItemTypeAsString(marcoItem.first) << std::endl;
 
-    // The item with ID 'marco' is a VARIABLE
-
     //  2.c
     //      Check that the annotator has not reported any issues.
     printIssues(annotator);
 
     //  2.d
     //      Now that we know the marco item's type using its first attribute (it should
-    //      be a libcellml::CellMLElement::VARIABLE) we can cast it into a useable item
+    //      be a libcellml::CellMLElement::VARIABLE) we can cast it into a usable item
     //      using std::any_cast.  Cast the second attribute of the macro item into a
     //      libcellml::VariablePtr item.
     auto marcoVariable = std::any_cast<libcellml::VariablePtr>(marcoItem.second);
@@ -96,7 +96,7 @@ int main()
     std::cout << "----------------------------------------------------------"<< std::endl;
 
     //  3.a
-    //      Now try the same procedure to find the item with id pf "polo".
+    //      Now try the same procedure to find the item with id of "polo".
     //      Retrieve the item and print its type to the terminal.
     auto poloItem = annotator->item("polo");
     std::cout << "The type of item with ID 'polo' is " << getItemTypeAsString(poloItem.first) << std::endl;
@@ -107,25 +107,28 @@ int main()
     //      Retrieve the issues from the annotator and print to the terminal.
     printIssues(annotator);
 
+    //  end 3.b
+
     // Recorded 1 issues:
     // Issue [0] is a WARNING:
     //     description: The id 'polo' occurs 6 times in the model so a unique item cannot be located.
     //     stored item type: UNDEFINED
 
-    //  3.c
     //      Since the id is not unique, we need to retrieve a vector of all items 
     //      with that id to investigate them.
+
+    //  3.c
     //      Use the items function to retrieve the vector of items with id "polo", 
     //      and iterate through it printing the different types to the terminal.
     auto poloItems = annotator->items("polo");
     std::cout << "The items with an id of 'polo' have types of:" << std::endl;
     size_t index = 0;
-    for (auto &item : poloItems)
-    {
+    for (auto &item : poloItems) {
         std::cout << "  - [" << index << "] " << getItemTypeAsString(item.first) << std::endl;
         ++index; 
     }
 
+    //  end 3.c
     //     The items with an id of 'polo' have types of:
     //   - [0] UNITS
     //   - [1] UNITS
@@ -134,7 +137,6 @@ int main()
     //   - [4] RESET
     //   - [5] RESET_VALUE
 
-    //  end 3.c
     //      The item we want has type libcellml::CellMLElements::UNIT, and we'd like it
     //      to be unique.  We need to change the other items to have other (also unique)
     //      ids.  The Annotator class can create a unique id for an item using the assignId function.
@@ -170,12 +172,11 @@ int main()
     //      Retrieve the UnitItem with id polo without casting.
     auto poloUnit = annotator->unit("polo");
 
-    //  The UnitItem is another std::pair with:
+    //  end 3.f
+    //  The UnitItem is another std::pair with: **TODO**
     //      - first attribute is the libcellml::Units parent item; and
     //      - second attribute is the index of this Unit within the parent.
     
-    //  end 3.f
-
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 4: See who else is lurking in this pool            " << std::endl;
     std::cout << "----------------------------------------------------------"<< std::endl;
@@ -201,7 +202,7 @@ int main()
     std::cout << "Duplicated id strings are:" << std::endl;
     auto duplicatedIds = annotator->duplicateIds();
     for(auto &id :duplicatedIds) {
-        std::cout << "  - '" << id << "'" << std::endl;
+        std::cout << "  - '" << id << "' occurs " << annotator->duplicateCount(id) << "times." << std::endl;
     }
 
     //  4.c
@@ -210,14 +211,14 @@ int main()
     //      to give all of the items of that type a new unique id.  Print the ids again and
     //      notice that the blanks have been filled with automatically generated strings, 
     //      but existing ids are unchanged. 
-    std::cout << "The components have ids:" << std::endl;
+    std::cout << "Before automatic assigning the components have ids:" << std::endl;
     for(size_t i = 0; i < model->componentCount(); ++i) {
         std::cout << "  - '" << model->component(i)->id() << "'" << std::endl;
     }
 
     annotator->assignIds(libcellml::CellMLElement::COMPONENT);
 
-    std::cout << "The components have ids:" << std::endl;
+    std::cout << "After automatic assigning components have ids:" << std::endl;
     for(size_t i = 0; i < model->componentCount(); ++i) {
         std::cout << "  - '" << model->component(i)->id() << "'" <<std::endl;
     }
