@@ -26,7 +26,7 @@ Build and instal from source
 
   .. code-block:: console
 
-    git clone -b master --single-branch https://github.com/cellml/libcellml.git
+    git clone -b develop --single-branch https://github.com/cellml/libcellml.git
 
 Your folder structure is now:
 
@@ -168,8 +168,6 @@ If this is correct you should see an output ending similar to this:
     -- Configuring done
     -- Generating done
     -- Build files have been written to: path/to/your/current/directory
-
-If this isn't what you see then please see the Troubleshooting section **TODO**
 
 .. container:: dothis
 

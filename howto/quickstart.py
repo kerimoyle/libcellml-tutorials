@@ -46,7 +46,7 @@ if __name__ == "__main__":
         # Retrieve and print the reference heading number, if related to CellML2.0 specification and format.
         print(issue.referenceHeading())
 
-        # Retrieve and print the URL for more help and information about the issue. **TODO** after #604
+        # Retrieve and print the URL for more help and information about the issue. 
         print(issue.url())
 
         # Retrieve and print the cause - a libcellml::Issue::CAUSE enum - for the issue.

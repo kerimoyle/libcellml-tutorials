@@ -86,4 +86,4 @@ There are six ways to assign a value to a :code:`variable` element:
    This means that even though the reset variable's value can't be defined as a constant (as in point 1), it could still be part of an equation (as in point 2).
    It must not be a variable of integration (as in point 4) or a base variable (as in point 6).
 
-6. **By being a base variable:** **TODO** how to define where these get their value from??
+6. **By being a variable of integration:** These don't need to be given a value inside CellML as their value will be set during the simulation.

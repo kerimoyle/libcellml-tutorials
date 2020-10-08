@@ -52,11 +52,10 @@ For convenience libCellML gives a variety of options for defining such scaling f
    NB: using an integer string like :code:`prefix="-3"` gives the same result; and
 -  By defining the scaling factor directly, as a multiplier, eg: :code:`millisecond` is :code:`second` with :code:`multiplier=0.001`.
 
-The overloaded argument option list is shown below for each language:
+The overloaded argument option list is shown below for each language.
+Please check the :api:`API Units documentation<Units>` for details.
 
 .. code-block:: cpp
-
-    **TODO** Check that this is correct ... ??!!
 
     void addUnit(const std::string &reference, const std::string &prefix, double exponent = 1.0,
                  double multiplier = 1.0, const std::string &id = "");
