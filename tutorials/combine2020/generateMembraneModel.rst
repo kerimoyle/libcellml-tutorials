@@ -3,11 +3,13 @@
 Tutorial 4: Generating code from a model
 ========================================
 
-By the time you've worked through this tutorial you will be able to:
+.. container:: shortlist
+
+    By the time you've worked through this tutorial you will be able to:
 
     - Use the Generator class to create C or Python code representing a CellML model.
 
-This tutorial assumes you're already comfortable with:
+    This tutorial assumes you're already comfortable with:
 
     - Parsing an existing CellML file into a model instance;
     - Using the diagnostic :code:`Validator` class to check for syntactic issues; 
@@ -15,25 +17,32 @@ This tutorial assumes you're already comfortable with:
     - Using the :code:`Analyser` class to check for mathematical issues in the model. 
     - Writing to files. 
 
-**Code (C++)**
+.. container:: shortlist
 
-- :download:`CMakeLists.txt<code/tut4/CMakeLists.txt>` The CMake file for building this tutorial;
-- :download:`generateMembraneModel.cpp<code/tut4/generateMembraneModel.cpp>` Either the skeleton code, or ..
-- :download:`generateMembraneModel_completed.cpp<code/tut4/generateMembraneModel_completed.cpp>` the completed tutorial code;
+    **Code (C++)**
 
-**Code (Python)**
+    - :download:`CMakeLists.txt<code/tut4/CMakeLists.txt>` The CMake file for building this tutorial;
+    - :download:`generateMembraneModel.cpp<code/tut4/generateMembraneModel.cpp>` Either the skeleton code, or ..
+    - :download:`generateMembraneModel_completed.cpp<code/tut4/generateMembraneModel_completed.cpp>` the completed tutorial code; and
+    - :download:`tutorial_utilities.cpp<tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<tutorial_utilities.h>` Helper functions.
 
-- :download:`generateMembraneModel.py<code/tut4/generateMembraneModel.py>` Either the skeleton code, or ..
-- :download:`generateMembraneModel_completed.py<code/tut4/generateMembraneModel_completed.py>` the completed tutorial code;
+.. container:: shortlist
 
-**Resources**
+    **Code (Python)**
 
-- :download:`GateModel.cellml<code/resources/GateModel.cellml>` the generic gate model (from Tutorial 1);
-- :download:`PotassiumChannelModel.cellml<code/resources/PotassiumChannelModel.cellml>` the potassium channel model (from Tutorial 2);
-- :download:`SodiumChannelModel.cellml<code/resources/SodiumChannelModel.cellml>` the sodium channel model (from Tutorial 3);
-- :download:`LeakageModel.cellml<code/resources/LeakageModel.cellml>` an import dependency representing current leakage; 
-- :download:`MembraneController.cellml<code/resources/MembraneController.cellml>` an import dependency for the membrane model controller; and
-- :download:`MembraneModel.cellml<code/resources/MembraneModel.cellml>` the file to parse.
+    - :download:`generateMembraneModel.py<code/tut4/generateMembraneModel.py>` Either the skeleton code, or ..
+    - :download:`generateMembraneModel_completed.py<code/tut4/generateMembraneModel_completed.py>` the completed tutorial code;
+
+.. container:: shortlist
+
+    **Resources**
+
+    - :download:`GateModel.cellml<code/resources/GateModel.cellml>` the generic gate model (from Tutorial 1);
+    - :download:`PotassiumChannelModel.cellml<code/resources/PotassiumChannelModel.cellml>` the potassium channel model (from Tutorial 2);
+    - :download:`SodiumChannelModel.cellml<code/resources/SodiumChannelModel.cellml>` the sodium channel model (from Tutorial 3);
+    - :download:`LeakageModel.cellml<code/resources/LeakageModel.cellml>` an import dependency representing current leakage; 
+    - :download:`MembraneController.cellml<code/resources/MembraneController.cellml>` an import dependency for the membrane model controller; and
+    - :download:`MembraneModel.cellml<code/resources/MembraneModel.cellml>` the file to parse.
 
 **Contents**
 

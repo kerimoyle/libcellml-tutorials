@@ -2,34 +2,47 @@
 
 Tutorial 3: Debugging a model
 =============================
-By the time you have worked through this part of the tutorial you will be able to:
 
-- Parse an existing CellML file and deserialise it into a model instance;
-- Use the diagnostic :code:`Validator` class to identify issues in the model's definition; 
-- Use the :code:`std::any_cast` to retrieve items which need repair from :code:`Issue` items;
-- Use the :code:`Importer` class to resolve imports and identify issues; and
-- Use the diagnostic :code:`Analyser` class to identify issues in the model's mathematical formulation.
+.. container:: shortlist
 
-**Requirements (C++)**
+    By the time you have worked through this part of the tutorial you will be able to:
 
-- :download:`CMakeLists.txt<code/CMakeLists_sodium.txt>` The CMake file for building this tutorial;
-- :download:`debugSodiumChannelModel.cpp<code/debugSodiumChannelModel.cpp>` Either the skeleton code, or ..
-- :download:`debugSodiumChannelModel_completed.cpp<code/debugSodiumChannelModel_completed.cpp>` the completed tutorial code;
-- :download:`GateModel.cellml<code/GateModel.cellml>` the generic gate model created in Tutorial 1;
-- :download:`SodiumChannelModel_broken.cellml<code/SodiumChannelModel_broken.cellml>` a sodium channel model that needs debugging;
-- :download:`CircularControllerReference.cellml<code/CircularControllerReference.cellml>` import file;
-- :download:`CircularControllerReference2.cellml<code/CircularControllerReference2.cellml>` import file; and
-- :download:`SodiumChannelModelController.cellml<code/SodiumChannelModelController.cellml>` import file;
+    - Parse an existing CellML file and deserialise it into a model instance;
+    - Use the diagnostic :code:`Validator` class to identify issues in the model's definition; 
+    - Use the :code:`std::any_cast` to retrieve items which need repair from :code:`Issue` items;
+    - Use the :code:`Importer` class to resolve imports and identify issues; and
+    - Use the diagnostic :code:`Analyser` class to identify issues in the model's mathematical formulation.
 
-**Requirements (Python)**
 
-- :download:`debugSodiumChannelModel.py<code/debugSodiumChannelModel.py>` Either the skeleton code, or ..
-- :download:`debugSodiumChannelModel_completed.py<code/debugSodiumChannelModel_completed.py>` the completed tutorial code; and
-- :download:`GateModel.cellml<code/GateModel.cellml>` the generic gate model created in Tutorial 1;
-- :download:`SodiumChannelModel_broken.cellml<code/SodiumChannelModel_broken.cellml>` a sodium channel model that needs debugging;
-- :download:`CircularControllerReference.cellml<code/CircularControllerReference.cellml>` import file;
-- :download:`CircularControllerReference2.cellml<code/CircularControllerReference2.cellml>` import file; and
-- :download:`SodiumChannelModelController.cellml<code/SodiumChannelModelController.cellml>` import file;
+.. container:: shortlist
+
+    **Requirements (C++)**
+
+    - :download:`CMakeLists.txt<code/tut3/CMakeLists.txt>` The CMake file for building this tutorial;
+    - :download:`debugSodiumChannelModel.cpp<code/tut3/debugSodiumChannelModel.cpp>` Either the skeleton code, or ..
+    - :download:`debugSodiumChannelModel_completed.cpp<code/tut3/debugSodiumChannelModel_completed.cpp>` the completed tutorial code; and
+    - :download:`tutorial_utilities.cpp<tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<tutorial_utilities.h>` Helper functions.
+
+.. container:: shortlist
+
+    **Requirements (Python)**
+
+    - :download:`debugSodiumChannelModel.py<code/tut3/debugSodiumChannelModel.py>` Either the skeleton code, or ..
+    - :download:`debugSodiumChannelModel_completed.py<code/tut3/debugSodiumChannelModel_completed.py>` the completed tutorial code; and
+
+.. container:: shortlist
+
+    **Resources**
+
+    - :download:`GateModel.cellml<code/resources/GateModel.cellml>` the generic gate model created in Tutorial 1;
+    - :download:`SodiumChannelModel_broken.cellml<code/resources/SodiumChannelModel_broken.cellml>` a sodium channel model that needs debugging;
+    - :download:`CircularControllerReference.cellml<code/resources/CircularControllerReference.cellml>` import file;
+    - :download:`CircularControllerReference2.cellml<code/resources/CircularControllerReference2.cellml>` import file; and
+    - :download:`SodiumChannelModelController.cellml<code/resources/SodiumChannelModelController.cellml>` import file;
+
+
+
+
 
 .. contents:: Contents
     :local:

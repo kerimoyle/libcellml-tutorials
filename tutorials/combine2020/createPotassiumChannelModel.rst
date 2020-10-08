@@ -3,27 +3,39 @@
 Tutorial 2: Creating a model using imports
 ==========================================
 
-By the time you have worked through this tutorial you will be able to:
 
-- Assemble a multi-component model using the API; 
-- Create a model which imports items from others;
-- Inter-connect the components using the equivalent variables functionality;
-- Use the diagnostic :code:`Validator` class to identify errors in the model's syntax; 
-- Use the diagnostic :code:`Analyser` class to identify errors in the model's mathematical formulation; and
-- Serialise the model to CellML format for output.
+.. container:: shortlist
 
-**Requirements (C++)**
+    By the time you have worked through this tutorial you will be able to:
 
-- :download:`CMakeLists.txt` The CMake file for building this tutorial;
-- :download:`createPotassiumChannelModel.cpp` Either the skeleton code, or ..
-- :download:`createPotassiumChannelModel_completed.cpp` the completed tutorial code; and
-- :download:`GateModel.cellml` The generic gate model created in Tutorial 1.
+    - Assemble a multi-component model using the API; 
+    - Create a model which imports items from others;
+    - Inter-connect the components using the equivalent variables functionality;
+    - Use the diagnostic :code:`Validator` class to identify errors in the model's syntax; 
+    - Use the diagnostic :code:`Analyser` class to identify errors in the model's mathematical formulation; and
+    - Serialise the model to CellML format for output.
 
-**Requirements (Python)**
+.. container:: shortlist
 
-- :download:`createPotassiumChannelModel.py` Either the skeleton code, or ..
-- :download:`createPotassiumChannelModel_completed.py` the completed tutorial code; and
-- :download:`GateModel.cellml` The generic gate model created in Tutorial 1.
+    **Code (C++)**
+
+    - :download:`CMakeLists.txt<code/tut2/CMakeLists.txt>` The CMake file for building this tutorial;
+    - :download:`createPotassiumChannelModel.cpp<code/tut2/createPotassiumChannelModel.cpp>` Either the skeleton code, or ..
+    - :download:`createPotassiumChannelModel_completed.cpp<code/tut2/createPotassiumChannelModel_completed.cpp>` the completed tutorial code; and
+    - :download:`tutorial_utilities.cpp<tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<tutorial_utilities.h>` Helper functions.
+
+.. container:: shortlist
+
+    **Code (Python)**
+
+    - :download:`createPotassiumChannelModel.py<code/tut2/createPotassiumChannelModel.py>` Either the skeleton code, or ..
+    - :download:`createPotassiumChannelModel_completed.py<code/tut2/createPotassiumChannelModel_completed.py>` the completed tutorial code.
+
+.. container:: shortlist
+
+    **Resources**
+
+    - :download:`GateModel.cellml<code/resources/GateModel.cellml>` The generic gate model created in Tutorial 1.
 
 .. contents:: Contents
     :local:
