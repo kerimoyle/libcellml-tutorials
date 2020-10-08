@@ -4,6 +4,8 @@
 COMBINE2020 libCellML Tutorials
 ===============================
 
+Please follow the :ref:`Installation instructions<installation_index>` first to get yourself a copy of libCellML ahead of the tutorial session.
+
 .. toctree::
     :maxdepth: 2
     :titlesonly:

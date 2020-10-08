@@ -1,7 +1,7 @@
 ..  _build_from_source:
 
 ============================
-Build and instal from source
+Build and install from source
 ============================
 
 .. contents:: Contents
@@ -58,7 +58,7 @@ Your folder structure should now look like this:
       └─ source
           └─ ( ... contains the files you cloned )
 
-2: Build and instal the library
+2: Build and install the library
 ===============================
 
 .. container:: dothis
@@ -82,7 +82,7 @@ You should see output which runs through some checks (make sure they all pass), 
 
 .. container:: dothis
 
-  **2.b** From the same location, instal the library:
+  **2.b** From the same location, install the library:
 
   .. code-block:: console
 
@@ -114,7 +114,7 @@ Your directory structure should now look like:
 
 .. container:: dothis
 
-  **2.c (optional)** If you intend to use the Python bindings, you will need to instal the Python version of the local library using pip.
+  **2.c (optional)** If you intend to use the Python bindings, you will need to install the Python version of the local library using pip.
   Again, this expects that you are still in the :code:`build` directory.
 
   .. code-block:: console
@@ -122,10 +122,10 @@ Your directory structure should now look like:
     pip install -e src/bindings/python
 
 
-3: Test the instalation: C++
+3: Test the installation: C++
 ============================
 
-If you are intending to use the Python library only, please skip to :ref:`Test the instalation: Python<test_python_instalation>`.
+If you are intending to use the Python library only, please skip to :ref:`Test the installation: Python<test_python_installation>`.
 
 .. container:: dothis
 
@@ -188,7 +188,7 @@ You should see an output similar to this:
 
 .. container:: dothis
 
-    **3.d** Finally, run the program to output the welcome and version number of the linked libCellML instalation:
+    **3.d** Finally, run the program to output the welcome and version number of the linked libCellML installation:
 
   .. code-block:: console
 
@@ -203,9 +203,9 @@ You should see the output of:
       This version number is 0.2.0
   -----------------------------------------------
 
-.. _test_python_instalation:
+.. _test_python_installation:
 
-4: Test the instalation: Python
+4: Test the installation: Python
 ===============================
 
 .. container:: dothis
