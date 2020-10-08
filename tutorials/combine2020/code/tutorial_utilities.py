@@ -115,6 +115,7 @@ def print_issues(item):
             if url != "":
                 print("    More information is available at {url}".format(
                     url=url))
+            print("    Stored item type: {}".format(get_item_type_from_enum(i.cellmlElementType())))
     else:
         print("\nThe {t} has not found any issues!".format(
             t=type(item).__name__)
@@ -248,3 +249,55 @@ def get_item_type_from_enum(my_cause):
         my_type_as_string = "VARIABLE"
 
     return my_type_as_string
+
+
+def list_equivalent_variables(variable, variable_set):
+    if variable is None:
+        return
+    for i in range(0, variable.equivalentVariableCount()):
+        equivalent_variable = variable.equivalentVariable(i)
+        if equivalent_variable not in variable_set:
+            variable_set.push_back(equivalent_variable)
+            list_equivalent_variables(equivalent_variable, variable_set)
+
+
+def print_equivalent_variable_set(variable):
+
+    if variable is None:
+        print("None variable submitted to print_equivalent_variable_set.")
+        return
+
+    variable_set = set()
+    variable_set.add(variable)
+    list_equivalent_variables(variable, variable_set)
+
+    component = variable.parent()
+    print_me = ''
+    if component != None:
+        print_me += "Tracing: {c}.{v}".format(
+            c=component.name(), v=variable.name())
+        if variable.units() is not None:
+            print_me += " [{u}]".format(u=variable.units().name())
+
+        if variable.initialValue() != "":
+            print_me += ", initial = {i}".format(i=variable.initialValue())
+
+        print(print_me)
+
+    if len(variable_set) > 1:
+        for e in variable_set:
+            print_me = ''
+            component = e.parent()
+            if component is not None:
+                print_me += "    - {c}.{v}".format(
+                    c=component.name(), v=e.name())
+                if e.units() is not None:
+                    print_me += " [{u}]".format(u=e.units().name())
+                if e.initialValue() != "":
+                    print_me += ", initial = {i}".format(i=e.initialValue())
+                print(print_me)
+            else:
+                print(
+                    "Variable {v} does not have a parent component.".format(v=e.name()))
+        else:
+            print("    - Not connected to any equivalent variables.")

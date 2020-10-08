@@ -137,15 +137,18 @@ void printIssues(const libcellml::LoggerPtr &item) {
             libcellml::IssuePtr issue = item->issue(i);
             std::string errorReference = issue->referenceHeading();
 
-            std::cout << "Issue [" << i << "] is " << getIssueLevelFromEnum(issue->level()) << ":" << std::endl;
+            std::cout << "Issue " << i << " is " << getIssueLevelFromEnum(issue->level()) << ":" << std::endl;
             std::cout << "    description: " << issue->description() << std::endl;
             if (errorReference != "") {
                 std::cout << "    see section " << errorReference
                           << " in the CellML specification." << std::endl;
             }
+            if(!issue->url().empty()){
+                std::cout << "    more information at: " <<issue->url() << std::endl;
+            }
             std::cout << "    stored item type: " << getCellmlElementTypeFromEnum(issue->cellmlElementType()) << std::endl;
         }
-        std::cout << std::endl;
+        std::cout << std::endl << std::endl;
     }
     else {
         std::cout << "!" << std::endl << std::endl;
@@ -226,4 +229,92 @@ void printEncapsulation(libcellml::ModelPtr &model)
         auto child = model->component(c);
         printComponentOnlyToTerminal(child, spacer);
     }
+}
+
+void listEquivalentVariables(const libcellml::VariablePtr &variable, std::vector<libcellml::VariablePtr> &variableList)
+{
+    if (variable == nullptr) {
+        return;
+    }
+
+    for (size_t i = 0; i < variable->equivalentVariableCount(); ++i) {
+        libcellml::VariablePtr equivalentVariable = variable->equivalentVariable(i);
+
+        if (std::find(variableList.begin(), variableList.end(), equivalentVariable) == variableList.end()) {
+            variableList.push_back(equivalentVariable);
+            listEquivalentVariables(equivalentVariable, variableList);
+        }
+    }
+}
+
+void printEquivalentVariableSet(const libcellml::VariablePtr &variable)
+{
+    if (variable == nullptr) {
+        std::cout << "NULL variable submitted to printEquivalentVariableSet." << std::endl;
+        return;
+    }
+    std::vector<libcellml::VariablePtr> variableList;
+    variableList.push_back(variable);
+    listEquivalentVariables(variable, variableList);
+
+    libcellml::ComponentPtr component = std::dynamic_pointer_cast<libcellml::Component>(variable->parent());
+
+    if (component != nullptr) {
+        std::cout << "Tracing: " << component->name() << " -> "
+                  << variable->name();
+        if (variable->units() != nullptr) {
+            std::cout << " [" << variable->units()->name() << "]";
+        }
+        if (variable->initialValue() != "") {
+            std::cout << ", initial = " << variable->initialValue();
+        }
+        std::cout << std::endl;
+    }
+
+    if (variableList.size() > 1) {
+        for (auto &e : variableList) {
+            component = std::dynamic_pointer_cast<libcellml::Component>(e->parent());
+            if (component != nullptr) {
+                std::cout << "    - " << component->name() << " -> " << e->name();
+                if (e->units() != nullptr) {
+                    std::cout << " [" << e->units()->name() << "]";
+                }
+                if (e->initialValue() != "") {
+                    std::cout << ", initial = " << e->initialValue();
+                }
+                std::cout << std::endl;
+            } else {
+                std::cout << "Variable " << e->name() << " does not have a parent component." << std::endl;
+            }
+        }
+    } else {
+        std::cout << "    - Not connected to any equivalent variables." << std::endl;
+    }
+}
+
+void doPrintImportDependencies(const libcellml::ModelPtr &model, std::string &spacer) {
+    // Function to recursively iterate through the import dependencies in this model, and 
+    // print their URL and what they require to the terminal.
+    if(model->hasUnresolvedImports() || (model->importSourceCount() == 0)) {
+        return;
+    }
+    std::cout << spacer << "Model '" << model->name() << "' imports:" << std::endl;
+    for(size_t i = 0; i < model->importSourceCount(); ++i) {
+        // Each import source should have its own model pointer attached now.
+        auto importSource = model->importSource(i);
+        std::cout << spacer << "   From "<< importSource->url() << ":" << std::endl;
+        for(size_t u = 0; u < importSource->unitsCount(); ++u){
+            std::cout << spacer << "    - units "<<importSource->units(u)->name() << " <- "<<importSource->units(u)->importReference()<<std::endl;
+        }
+        for(size_t c = 0; c < importSource->componentCount(); ++c){
+            std::cout << spacer << "    - component "<<importSource->component(c)->name() << " <- "<<importSource->component(c)->importReference()<<std::endl;
+        }
+        std::string bigSpacer = spacer + "    ";
+        doPrintImportDependencies(importSource->model(), bigSpacer);
+    }
+}
+
+void printImportDependencies(const libcellml::ModelPtr &model){
+    std::string spacer = " ";
+    doPrintImportDependencies(model, spacer);
 }

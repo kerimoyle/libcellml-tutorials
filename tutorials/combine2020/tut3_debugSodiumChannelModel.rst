@@ -91,6 +91,117 @@ The parser will then read that string and return a model.
         :start-at: #  1.a
         :end-before: #  end 1
 
+.. code-block:: terminal
+
+    MODEL: 'SodiumChannelModel'
+        UNITS: 5 custom units
+            [0]: mV
+            [1]: ms
+            [2]: per_ms
+            [3]: per_mV_ms
+            [4]: microA_per_cm2
+        COMPONENTS: 4 components
+            [0]: controller <--- imported from: 'controller' in 'CircularControllerReference.cellml'
+                VARIABLES: 2 variables
+                    [0]: t
+                        └──> sodiumChannel:t [ms]
+                    [1]: V
+                        └──> sodiumChannel:V
+            [1]: mGateEquations!
+                VARIABLES: 5 variables
+                    [0]: alpha_m [per_ms]
+                    [1]: V [mV]
+                    [2]: beta_m [per_ms]
+                    [3]: m [dimensionless]
+                    [4]: t [ms]
+            [2]: importedGateM <--- imported from: 'gateEquations' in 'GateModel.cellml'
+                VARIABLES: 4 variables
+                    [0]: alpha_X
+                    [1]: beta_X
+                    [2]: X
+                    [3]: t
+            [3]: sodiumChannel
+                VARIABLES: 3 variables
+                    [0]: t [ms]
+                        └──> controller:t, sodiumChannelEquations:t [ms]
+                    [1]: V
+                        └──> controller:V, sodiumChannelEquations:V [mV]
+                    [2]: i_Na [microA_per_cm2]
+                        └──> sodiumChannelEquations:i_Na [microA_per_cm2]
+                COMPONENT sodiumChannel has 2 child components:
+                    [0]: sodiumChannelEquations
+                        VARIABLES: 8 variables
+                            [0]: Na_conductance [mS_per_cm2]
+                            [1]: g_Na [mS_per_cm2]
+                                └──> sodiumChannelParameters:g_Na [mS_per_cm2]
+                            [2]: h [dimensionless]
+                                └──> hGate:h [dimensionless]
+                            [3]: m [dimensionless]
+                                └──> mGate:m [dimensionless]
+                            [4]: i_Na [microA_per_cm2]
+                                └──> sodiumChannel:i_Na [microA_per_cm2]
+                            [5]: V [mV]
+                                └──> sodiumChannel:V, hGate:V [mV], mGate:V [mV]
+                            [6]: E_Na [mV]
+                                └──> sodiumChannelParameters:E_Na [mV]
+                            [7]: t [ms]
+                                └──> sodiumChannel:t [ms], hGate:t [ms], mGate:t [ms]
+                        COMPONENT sodiumChannelEquations has 2 child components:
+                            [0]: mGate
+                                VARIABLES: 3 variables
+                                    [0]: t [ms]
+                                        └──> sodiumChannelEquations:t [ms]
+                                    [1]: m [dimensionless]
+                                        └──> sodiumChannelEquations:m [dimensionless]
+                                    [2]: V [mV]
+                                        └──> sodiumChannelEquations:V [mV]
+                                COMPONENT mGate has 1 child components:
+                                    [0]: mGateParameters
+                                        VARIABLES: 2 variables
+                                            [0]: m [dimensionless], initial = 0.05
+                                            [1]: i_am_redundant [steradian]
+                            [1]: hGate
+                                VARIABLES: 3 variables
+                                    [0]: t [ms]
+                                        └──> sodiumChannelEquations:t [ms], hGateEquations:t [ms]
+                                    [1]: h [dimensionless]
+                                        └──> sodiumChannelEquations:h [dimensionless], hGateEquations:h [dimensionless]
+                                    [2]: V [mV]
+                                        └──> sodiumChannelEquations:V [mV], hGateEquations:V [mV]
+                                COMPONENT hGate has 2 child components:
+                                    [0]: hGateParameters
+                                        VARIABLES: 1 variables
+                                            [0]: h [dimensionless], initial = 0.6
+                                    [1]: hGateEquations
+                                        VARIABLES: 5 variables
+                                            [0]: alpha_h [per_ms]
+                                                └──> importedGateH:alpha_X
+                                            [1]: beta_h [per_ms]
+                                                └──> importedGateH:beta_X
+                                            [2]: V [mV]
+                                                └──> hGate:V [mV]
+                                            [3]: h [dimensionless]
+                                                └──> hGate:h [dimensionless], importedGateH:X
+                                            [4]: t [ms]
+                                                └──> hGate:t [ms], importedGateH:t
+                                        COMPONENT hGateEquations has 1 child components:
+                                            [0]: importedGateH <--- imported from: 'i_dont_exist' in 'GateModel.cellml'
+                                                VARIABLES: 4 variables
+                                                    [0]: alpha_X
+                                                        └──> hGateEquations:alpha_h [per_ms]
+                                                    [1]: beta_X
+                                                        └──> hGateEquations:beta_h [per_ms]
+                                                    [2]: X
+                                                        └──> hGateEquations:h [dimensionless]
+                                                    [3]: t
+                                                        └──> hGateEquations:t [ms]
+                    [1]: sodiumChannelParameters
+                        VARIABLES: 2 variables
+                            [0]: g_Na [mS_per_cm2], initial = 120
+                                └──> sodiumChannelEquations:g_Na [mS_per_cm2]
+                            [1]: E_Na [mV]
+                                └──> sodiumChannelEquations:E_Na [mV]
+
 Step 2: Validate the parsed model
 ---------------------------------
 Create a :code:`Validator` item and use it to validate the model you've just read.
@@ -124,6 +235,26 @@ Create a :code:`Validator` item and use it to validate the model you've just rea
 .. container:: dothis
 
     **2.b** Retrieve any issues from the validator and print them to the terminal.
+
+.. code-block:: container
+
+    The validator found 10 issues.
+    Issue 0: CellML identifiers must not contain any characters other than [a-zA-Z0-9_].
+    reference: 1.3.1.1
+    see: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specA03.html?issue=1.3.1.1
+    stored item type: UNDEFINED
+
+    Issue 1: Component 'mGateEquations!' does not have a valid name attribute.
+    reference: 2.7.1
+    see: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB07.html?issue=2.7.1
+    stored item type: COMPONENT
+
+    Issue 2: Variable 'Na_conductance' in component 'sodiumChannelEquations' has a units reference 'mS_per_cm2' which is neither standard nor defined in the parent model.
+    reference: 2.8.1.2
+    see: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+    stored item type: VARIABLE
+
+    ... etc ...
 
 .. container:: toggle
 
@@ -253,7 +384,7 @@ We can retrieve the affected item directly from the issue in one of two ways:
 
 .. container:: dothis
 
-    **3.c** Check that the item to be returned from the issue is in fact an :code:`CellmlElementType::VARIABLE` by calling the :code:`type()` function.
+    **3.c** Check that the item to be returned from the issue is in fact an :code:`CellmlElementType::VARIABLE` by calling its :code:`cellmlElementType()` function.
     Retrieve the variable missing units from the issue.
     Set its units to be millivolts.
 
@@ -374,19 +505,6 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
     **3.f** Revalidate the model and confirm that the errors have gone.
 
-.. container:: dothis
-
-    **3.g** Even though the model is free from validation errors, we still need to make sure it represents what we want it to.
-    Print the model to the terminal and check its structure.
-
-.. container:: useful
-
-    Useful functions: printModel(Model);  **TODO**
-
-.. container:: dothis
-
-    **3.h** Use the addComponent functions to rearrange the components as needed until you have the required structure.Validate the model again.
-
 .. container:: useful
 
     **Useful functions**
@@ -401,7 +519,17 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
     Tutorial functions
 
-    - printEncapsulation **TODO**
+    - printEncapsulation will output just the names of the components, nested in their encapsulation hierarchy.
+
+.. container:: dothis
+
+    **3.g** Even though the model is free from validation errors, we still need to make sure it represents what we want it to.
+    Print the model to the terminal and check its structure.
+
+.. container:: dothis
+
+    **3.h** Use the addComponent functions to rearrange the components as needed until you have the required structure.
+    Validate the model again.
 
 .. container:: toggle
 
@@ -425,6 +553,23 @@ The final validator issue refers to the fact that we need to explicitly specify 
         :start-at: #  3.g
         :end-before: #  end 3
 
+.. code-block:: terminal
+
+    Model 'SodiumChannelModel' has 2 components
+    - Component 'controller' has 0 child components
+    - Component 'sodiumChannel' has 2 child components
+        - Component 'sodiumChannelEquations' has 2 child components
+            - Component 'mGate' has 2 child components
+                - Component 'mGateParameters' has 0 child components
+                - Component 'mGateEquations' has 1 child components
+                    - Component 'importedGateM' has 0 child components
+            - Component 'hGate' has 2 child components
+                - Component 'hGateParameters' has 0 child components
+                - Component 'hGateEquations' has 1 child components
+                    - Component 'importedGateH' has 0 child components
+        - Component 'sodiumChannelParameters' has 0 child components
+
+
 Step 4: Resolve the model's imports
 -----------------------------------
 It's important to remember that the imports are merely instructions for how components or units items should be located: only their syntax is checked by the validator, not that the files exist or contain the required information.  To debug the imported aspects of the model, we need to use an :code:`Importer` class.
@@ -434,7 +579,8 @@ For this tutorial, the files are in the same directory as the code, so simply us
 
 .. container:: nb 
 
-    If they're another directory, make sure to end your path with a slash, "/".  If they're in your working directory, enter an empty string.
+    If they're another directory, make sure to end your path with a slash, "/".
+    If they're in your working directory, enter an empty string.
 
 .. container:: useful
 
@@ -478,16 +624,14 @@ For this tutorial, the files are in the same directory as the code, so simply us
 
 .. code-block:: terminal
 
-    Importer error[0]:
-        Description: Import of component 'importedGateH' from 'GateModel.cellml' requires 
-        component named 'i_dont_exist' which cannot be found.
+    Recorded 2 issues:
 
-.. container:: dothis
+    Issue [0] is an ERROR:
+        description: Import of component 'importedGateH' from 'GateModel.cellml' requires component named 'i_dont_exist' which cannot be found.
+        stored item type: COMPONENT
 
-    **4.c** Fix the issues reported by the importer.
-    This needs to be an iterative process as more files become available to the importer.
-    We need to change the import reference for the component to be "gateEquations" instead of "i_dont_exist".
-    You can either retrieve the component using its name or directly from the issue.
+Fix the issues reported by the importer.
+This needs to be an iterative process because as more files become available to the importer, the content of those files needs to be checked too.
 
 .. container:: useful
 
@@ -496,6 +640,12 @@ For this tutorial, the files are in the same directory as the code, so simply us
     :api:`Component class<Component>`
 
     - setImportReference
+
+.. container:: dothis
+
+    **4.c** 
+    We need to change the import reference for the component to be "gateEquations" instead of "i_dont_exist".
+    You can either retrieve the component using its name or directly from the item stored with the issue.
 
 .. container:: toggle
 
@@ -579,9 +729,9 @@ These dependencies are stored in the importer's library, and have not yet been v
 
     :api:`Importer class<Importer>`
 
-         - libraryCount returns the number of stored models;
-         - library returns the model at the given index or given key string;
-         - key returns a key string at the given index;
+    - libraryCount returns the number of stored models;
+    - library returns the model at the given index or given key string;
+    - key returns a key string at the given index;
 
 .. container:: dothis
 
@@ -608,6 +758,20 @@ These dependencies are stored in the importer's library, and have not yet been v
         :language: python
         :start-at: #  5.a
         :end-before: #  end 5.a
+
+.. code-block:: terminal
+
+    Imported model at key: CircularControllerReference.cellml
+    Recorded 0 issues!
+
+    Imported model at key: CircularControllerReference2.cellml
+    Recorded 0 issues!
+
+    Imported model at key: GateModel.cellml
+    Recorded 0 issues!
+
+    Imported model at key: SodiumChannelController.cellml
+    Recorded 0 issues!
 
 Note that the two files creating the circular import in 4.a are still in the library. 
 To limit ourselves to only those models which are still relevant as the import dependencies of our repaired model, we can iterate through our model's :code:`ImportSource` items instead.  
@@ -655,6 +819,19 @@ As soon as the model's imports have been resolved, all these will point to insta
         :start-at: #  5.b
         :end-before: #  end 5
 
+
+.. code-block:: terminal
+
+    Import source [0]:
+        url = GateModel.cellml
+        model = 0x7ff61265b3f0
+        library[url] = 0x7ff61265b3f0
+    Import source [1]:
+        url = SodiumChannelController.cellml
+        model = 0x7ff6141003c0
+        library[url] = 0x7ff6141003c0
+
+
 Step 6: Analyse the model(s)
 ----------------------------
 As with the validator, the :code:`Analyser` class is a diagnostic class which will check whether the mathematical representation is ready for simulation.
@@ -662,7 +839,6 @@ This involves making sure that variables are contained in equations, that integr
 Since this model uses imports, the real mathematical model is hidden from the :code:`Analyser` (just as it was from the :code:`Validator`).
 The way around this is to use the :code:`Importer` class to create a flat (ie: import-free) version of the same model.
 If the flat model meets the analyser's checks, then the importing version will too.
-
 
 .. container:: useful
 
@@ -675,7 +851,7 @@ If the flat model meets the analyser's checks, then the importing version will t
 
 .. container:: dothis
 
-    **6.a** Create an Analyser instance and pass in the model for analysis.
+    **6.a** Create an :code:`Analyser` instance and pass in the model for analysis.
 
 .. container:: dothis
 
@@ -684,7 +860,18 @@ If the flat model meets the analyser's checks, then the importing version will t
 
 .. code-block:: terminal
 
-    **TODO**
+    Recorded 19 issues:
+    Issue [0] is an ERROR:
+        description: Variable 'V' in component 'controller' is not computed.
+        stored item type: VARIABLE
+    Issue [1] is an ERROR:
+        description: Variable 't' in component 'controller' is not computed.
+        stored item type: VARIABLE
+    Issue [2] is an ERROR:
+        description: Variable 'alpha_h' in component 'hGateEquations' is not computed.
+        stored item type: VARIABLE
+
+    ... etc ...
 
 .. container:: dothis
 
@@ -767,7 +954,17 @@ In this example, the real problem is that these two variables are talking about 
         :start-at: #  6.e
         :end-before: #  end 6.f
 
-Now we see the importance of checking iteratively for issues in the analyser class!  
+.. code-block:: terminal
+
+    Recorded 13 issues:
+    Issue [0] is an ERROR:
+        description: Variable 'X' in component 'importedGateM' is used in an ODE, but it is not initialised.
+        stored item type: VARIABLE
+    Issue [1] is an ERROR:
+        description: Variable 'alpha_X' in component 'importedGateM' is not computed.
+        stored item type: VARIABLE
+
+Now we see the importance of checking iteratively for issues in the analyser class.  
 The nature of this class means that frequently it is unable to continue processing when an issue is encountered.
 It's not unusual to fix one issue only to find twenty more!
 Two of the errors reported deal with non-initialised variables.
@@ -810,13 +1007,21 @@ This could mean any one of:
 4) the variable hasn't been connected to the rest of its definition (usually it's this one!).
 
 Because the "is not computed" errors are cascading by nature, frequently fixing just one will resolve many others. 
-Hints: 
+
+.. container:: useful
+
+    **Useful functions**
+
+    - C++: printEquivalentVariableSet with the variable argument
+    - Python: print_equivalent_variable_set with the variable argument
+
+Hints for this tutorial: 
 
 - There is at least one of each kind of problem;
-- There's a convenience function provided which will print the equivalent variable set for a given variable.
-  You can use the item stored by each issue and this function to check for missing connections: printEquivalentVariableSet(variable);
-- the addEquivalence function returns a boolean indicating success or otherwise.
-  If you check this as you go it will alert you quickly if you're trying to make an illegal connection.
+- There's a convenience function provided (see below) which will print the equivalent variable set for a given variable.
+  You can use the item stored by each issue and this function to check for missing connections.
+- the :code:`addEquivalence` function returns a boolean indicating success or otherwise.
+  If you check this as you go it will alert you quickly if you're trying to connect to a variable that's not found.
 
 .. container:: dothis
 
@@ -853,12 +1058,9 @@ Step 7: Serialise and print the repaired model
     **7.a** Create a :code:`Printer` instance and use it to print the CellML-formatted version of the repaired model to a string.
     Remember we'll still be printing the original version of the model, not the flattened one!
 
-auto printer = libcellml::Printer::create();
-auto modelString = printer->printModel(model);
-
 .. container:: dothis
 
-    **7.b** Write the string to a file named "SodiumChannelModel.cellml".
+    **7.b** Write the string to a file named "SodiumChannelModel.cellml"; you will use this in :ref:`Tutorial 4<combine_generateMembraneModel>`.
 
 .. container:: toggle
 
