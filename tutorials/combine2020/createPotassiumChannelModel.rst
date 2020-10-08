@@ -22,7 +22,7 @@ Tutorial 2: Creating a model using imports
     - :download:`CMakeLists.txt<code/tut2/CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`createPotassiumChannelModel.cpp<code/tut2/createPotassiumChannelModel.cpp>` Either the skeleton code, or ..
     - :download:`createPotassiumChannelModel_completed.cpp<code/tut2/createPotassiumChannelModel_completed.cpp>` the completed tutorial code; and
-    - :download:`tutorial_utilities.cpp<tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<tutorial_utilities.h>` Helper functions.
+    - :download:`tutorial_utilities.cpp<code/tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<code/tutorial_utilities.h>` Helper functions.
 
 .. container:: shortlist
 
@@ -35,7 +35,7 @@ Tutorial 2: Creating a model using imports
 
     **Resources**
 
-    - :download:`GateModel.cellml<code/resources/GateModel.cellml>` The generic gate model created in Tutorial 1.
+    - :download:`GateModel.cellml<code/resources/GateModel.cellml>` The generic gate model created in :ref:`Tutorial 1<combine_createGateModel>`.
 
 .. contents:: Contents
     :local:
@@ -90,7 +90,7 @@ The final structure of this model is shown in the diagram below.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  1.a
         :end-before: //  end 1
@@ -101,7 +101,7 @@ The final structure of this model is shown in the diagram below.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  1.a
         :end-before: #  end 1
@@ -131,7 +131,7 @@ Step 2: Create a potassium channel equations component
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  2.a
         :end-before: //  end 2.a
@@ -142,7 +142,7 @@ Step 2: Create a potassium channel equations component
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  2.a
         :end-before: #  end 2.a
@@ -159,7 +159,7 @@ Step 2: Create a potassium channel equations component
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  2.b
         :end-before: //  2.c
@@ -170,7 +170,7 @@ Step 2: Create a potassium channel equations component
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  2.b
         :end-before: #  2.c
@@ -199,7 +199,7 @@ Once the mathematics has been added to the component, and the component to the m
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  2.c
         :end-before: //  end 2.c
@@ -210,18 +210,22 @@ Once the mathematics has been added to the component, and the component to the m
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  2.c
         :end-before: #  end 2.c
 
-Calling the validator does not return anything: we have to go looking for issues that it found during processing.  
-When a problem is found, an :code:`Issue` item is created containing:
-- a description string explaining the problem;
-- a URL at which more information is available;
-- an std::any item relevant to the problem, if available;
-- a level indicator; and
-- a cause indicator relevant to the stored item.
+Calling the validator does not return anything: we have to go looking for issues that it found during processing.
+
+.. container:: shortlist
+
+    When a problem is found, an :code:`Issue` item is created containing:
+
+    - a description string explaining the problem;
+    - a URL at which more information is available;
+    - an std::any item relevant to the problem, if available;
+    - a level indicator; and
+    - a cause indicator relevant to the stored item.
 
 We can use these issues as we need to.
 The simplest way is to print the descriptions to the terminal.
@@ -236,7 +240,7 @@ The simplest way is to print the descriptions to the terminal.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  2.d
         :end-before: //  2.e
@@ -247,12 +251,14 @@ The simplest way is to print the descriptions to the terminal.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  2.d
         :end-before: #  2.e
 
 .. container:: useful
+
+    **Useful functions**
 
     :api:`Variable class<Variable>`
 
@@ -284,7 +290,7 @@ The simplest way is to print the descriptions to the terminal.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  2.e
         :end-before: //  2.f
@@ -295,7 +301,7 @@ The simplest way is to print the descriptions to the terminal.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  2.e
         :end-before: #  2.f
@@ -316,7 +322,7 @@ The simplest way is to print the descriptions to the terminal.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  2.f
         :end-before: //  2.g
@@ -327,7 +333,7 @@ The simplest way is to print the descriptions to the terminal.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  2.f
         :end-before: #  2.g
@@ -343,7 +349,7 @@ The simplest way is to print the descriptions to the terminal.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  2.g
         :end-before: //  end 2
@@ -354,7 +360,7 @@ The simplest way is to print the descriptions to the terminal.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  2.g
         :end-before: #  end 2
@@ -379,7 +385,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.a
         :end-before: //  3.c
@@ -390,7 +396,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  3.a
         :end-before: #  3.c
@@ -406,7 +412,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.c
         :end-before: //  3.d
@@ -417,7 +423,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  3.c
         :end-before: #  3.d
@@ -433,7 +439,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.d
         :end-before: //  end 3.d
@@ -444,7 +450,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  3.d
         :end-before: #  end 3.d
@@ -466,7 +472,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.e
         :end-before: //  3.f
@@ -477,7 +483,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  3.e
         :end-before: #  3.f
@@ -493,7 +499,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.f
         :end-before: //  end 3
@@ -504,7 +510,7 @@ The nGateParameters component allows us to specify those parameters specific to 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  3.f
         :end-before: #  end 3
@@ -521,14 +527,16 @@ We will import only the "gateEquations" component and set it to be a child of th
 This means we can introduce the voltage dependence for the alpha and beta, and using a specified initial value for the gate's status.
 Note that the variable "n" in the nGateEquations is equivalent to the generic gate's variable "X".
 
+.. container::shortlist
+
 Imports require three things:
 
-- A destination for the imported item. 
-  This could be a :code:`Component` or :code:`Units` item.
-- A model to import for the imported item from.
-  This is stored in an :code:`ImportSource` item containing the URL of the model to read.
-- The name of the item to import.
-  This is called the "import reference" and is stored by the destination :code:`Component` or :code:`Units` item.
+    - A destination for the imported item. 
+    This could be a :code:`Component` or :code:`Units` item.
+    - A model to import for the imported item from.
+    This is stored in an :code:`ImportSource` item containing the URL of the model to read.
+    - The name of the item to import.
+    This is called the "import reference" and is stored by the destination :code:`Component` or :code:`Units` item.
 
 .. container:: useful
 
@@ -579,7 +587,7 @@ Note that we are deliberately not importing the parameters component in the Gate
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  4.a
         :end-before: //  end 4
@@ -590,7 +598,7 @@ Note that we are deliberately not importing the parameters component in the Gate
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  4.a
         :end-before: #  end 4
@@ -618,7 +626,7 @@ We've also confirmed that the CellML representation of these equations is valid 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  5.a
         :end-before: //  end 5
@@ -629,7 +637,7 @@ We've also confirmed that the CellML representation of these equations is valid 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  5.a
         :end-before: #  end 5
@@ -668,7 +676,7 @@ Even though all of the messages we see are "variable not calculated" errors, we 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  6.a
         :end-before: //  end 6
@@ -679,7 +687,7 @@ Even though all of the messages we see are "variable not calculated" errors, we 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  6.a
         :end-before: #  end 6
@@ -691,8 +699,8 @@ First we'll define the variables which will have a constant value in the simulat
 
 .. container:: dothis
 
-    **7.a** Use the :code:`printModel()` function to show your current model contents.
-    This should show that we hve currently got variables only in the nGateEquations and potassiumChannelEquations components.
+    **7.a** Use the print model helper function to show your current model contents.
+    This should show that we have currently got variables only in the nGateEquations and potassiumChannelEquations components.
     These need to have sibling parameters components created to hold any hard-coded values or initial conditions that are required.
 
 .. container:: toggle
@@ -701,7 +709,7 @@ First we'll define the variables which will have a constant value in the simulat
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  7.a
         :end-before: //  end 7.a
@@ -712,7 +720,7 @@ First we'll define the variables which will have a constant value in the simulat
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  7.a
         :end-before: #  end 7.a
@@ -741,7 +749,7 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  7.b
         :end-before: //  7.c
@@ -752,7 +760,7 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  7.b
         :end-before: #  7.c
@@ -771,7 +779,7 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
 .. container:: dothis
 
     **7.e** Set the required interface types as listed by the validator.
-    This can be done individually using the :code:`Variable::setInterfaceType()` function, or automatically using the :code:`Model::fixVariableInterfaces()` function.
+    This can be done individually using the :code:`setInterfaceType` function on each variable, or automatically using the :code:`fixVariableInterfaces` function on the entire model.
     Validate again, expecting no validation errors.
 
 .. container:: toggle
@@ -780,7 +788,7 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  7.c
         :end-before: //  end 7.e
@@ -791,7 +799,7 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  7.c
         :end-before: #  end 7.e
@@ -822,7 +830,7 @@ If we were to analyse the model again now we would we still have the same set of
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  7.f
         :end-before: //  end 7
@@ -833,7 +841,7 @@ If we were to analyse the model again now we would we still have the same set of
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  7.f
         :end-before: #  end 7
@@ -863,7 +871,7 @@ We'll need to create intermediate variables in those components to allow connect
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  8.a
         :end-before: //  8.c
@@ -874,7 +882,7 @@ We'll need to create intermediate variables in those components to allow connect
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  8.a
         :end-before: #  8.c
@@ -898,7 +906,7 @@ We'll need to create intermediate variables in those components to allow connect
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  8.c
         :end-before: //  end 8
@@ -909,7 +917,7 @@ We'll need to create intermediate variables in those components to allow connect
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  8.c
         :end-before: #  end 8
@@ -938,7 +946,7 @@ This is calculated by solving the ODE in the nGate equations component, but need
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  9.a
         :end-before: //  end 9
@@ -949,7 +957,7 @@ This is calculated by solving the ODE in the nGate equations component, but need
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  9.a
         :end-before: #  end 9
@@ -976,7 +984,7 @@ We're going to do the latter now.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  10.a
         :end-before: //  end 10.a
@@ -987,7 +995,7 @@ We're going to do the latter now.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  10.a
         :end-before: #  end 10.a
@@ -998,9 +1006,9 @@ You could use the model's :code:`hasUnresolvedImports` function to test whether 
 
 .. container:: dothis
 
-    **10.b** Pass the model and the path to the GateModel.cellml file into the :code:`Importer::resolveImports` function. 
+    **10.b** Pass the model and the path to the GateModel.cellml file into the importer's :code:`resolveImports` function. 
 
-The Importer class contains a logger (just like the Validator), so needs to be checked for issues.
+The :code:`Importer` class has a logger (just like the :code:`Validator`), so needs to be checked for issues.
 
 .. container:: dothis
 
@@ -1012,7 +1020,7 @@ The Importer class contains a logger (just like the Validator), so needs to be c
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  10.b
         :end-before: //  end 10.c
@@ -1023,12 +1031,13 @@ The Importer class contains a logger (just like the Validator), so needs to be c
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  10.b
         :end-before: #  end 10.c
 
 The models which have the source components that we wanted to reuse from the GateModel.cellml and PotassiumChannelController.cellml files are now available to us in two ways:
+
 - through the :code:`model` function of the destination component's :code:`ImportSource` item; or
 - as an item in the importer's library.  
   The library items can be retrieved either by index or by key, where the key is the name of the file that was resolved.
@@ -1045,7 +1054,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  10.d
         :end-before: //  10.e
@@ -1056,7 +1065,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  10.d
         :end-before: #  10.e
@@ -1073,7 +1082,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  10.e
         :end-before: //  10.f
@@ -1084,7 +1093,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  10.e
         :end-before: #  10.f 
@@ -1104,7 +1113,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  10.f
         :end-before: //  10.g
@@ -1115,7 +1124,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  10.f
         :end-before: #  10.g
@@ -1140,7 +1149,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  10.g
         :end-before: //  10.h
@@ -1151,7 +1160,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  10.g
         :end-before: #  10.h
@@ -1168,7 +1177,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  10.h
         :end-before: //  end 10.h
@@ -1179,7 +1188,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  10.h
         :end-before: #  end 10.h
@@ -1197,7 +1206,7 @@ In order to do the final check before serialising our model for output, we will 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  10.i
         :end-before: //  end 10.i
@@ -1208,7 +1217,7 @@ In order to do the final check before serialising our model for output, we will 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  10.i
         :end-before: #  end 10.i
@@ -1232,7 +1241,7 @@ Step 11: Output the model
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  11.a
         :end-before: //  end
@@ -1243,7 +1252,7 @@ Step 11: Output the model
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createPotassiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut2/createPotassiumChannelModel_completed.py
         :language: python
         :start-at: #  11.a
         :end-before: #  end
