@@ -19,7 +19,7 @@ Tutorial 1: Creating a model using the API
     - :download:`CMakeLists.txt<code/tut1/CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`createGateModel.cpp<code/tut1/createGateModel.cpp>` Either the skeleton code, or ..
     - :download:`createGateModel_completed.cpp<code/tut1/createGateModel_completed.cpp>` the completed tutorial code; and
-    - :download:`tutorial_utilities.cpp<tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<tutorial_utilities.h>` Helper functions.
+    - :download:`tutorial_utilities.cpp<code/tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<code/tutorial_utilities.h>` Helper functions.
 
 .. container:: shortlist
 
@@ -102,7 +102,7 @@ All other components will then need to be added to this component, rather than t
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  1.a
         :end-before: // end 1
@@ -113,7 +113,7 @@ All other components will then need to be added to this component, rather than t
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  1.a
         :end-before: # end 1
@@ -137,7 +137,7 @@ In this step we'll construct the equations component.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  2.a
         :end-before: //  2.c
@@ -148,7 +148,7 @@ In this step we'll construct the equations component.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  2.a
         :end-before: #  2.c
@@ -170,9 +170,9 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
     :api:`Component class<Component>`
 
-    - :code:`setMath`
-    - :code:`appendMath`
-    - :code:`math`
+    - setMath
+    - appendMath
+    - math
 
 .. container:: dothis
 
@@ -187,7 +187,7 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  2.c
         :end-before: // end 2
@@ -198,7 +198,7 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  2.c
         :end-before: # end 2
@@ -228,7 +228,7 @@ Once the mathematics has been added to the component, and the component to the m
 
 .. container:: dothis
 
-    **3.a** Create a Validator instance, and pass it your model for processing using the :code:`validateModel` function.
+    **3.a** Create a :code:`Validator` instance, and pass it your model for processing using the :code:`validateModel` function.
 
 .. container:: toggle
 
@@ -236,7 +236,7 @@ Once the mathematics has been added to the component, and the component to the m
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  3.a
         :end-before: // end 3.a
@@ -247,7 +247,7 @@ Once the mathematics has been added to the component, and the component to the m
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  3.a
         :end-before: # end 3.a
@@ -257,6 +257,7 @@ Calling the validator does not return anything: we have to go looking for issues
 .. container:: shortlist
 
     When a problem is found, an :code:`Issue` item is created containing:
+
     - a description string explaining the problem;
     - a URL at which more information is available;
     - an std::any item relevant to the problem, if available;
@@ -266,16 +267,24 @@ Calling the validator does not return anything: we have to go looking for issues
 We can use these issues as we need to.
 The simplest way is to print the descriptions to the terminal.
 
-Two helper functions have been provided for this tutorial that will help printing enumerated values to the terminal.  These are:
+Two helper functions have been provided for this tutorial that will help printing enumerated values to the terminal.  
+These are:
 
 .. container:: shortlist
+
+    **C++**
 
     - getIssueLevelFromEnum; and
     - getCellmlElementTypeFromEnum. 
 
+    **Python**
+
+    - get_issue_level_from_enum; and
+    - get_item_type_from_enum.
+
 .. container:: dothis
 
-    **3.b** Retrieve the number of issues encountered using the :code:`validator->issueCount()` function, then retrieve the issue items from the validator using their index and the validator->issue(index)function.
+    **3.b** Retrieve the number of issues encountered using the :code:`issueCount` function on the validator, then retrieve the issue items from the validator using their index and the :code:`issue(index)` function.
     Print the information from each issue to the terminal.
     
 .. container:: toggle
@@ -284,7 +293,7 @@ Two helper functions have been provided for this tutorial that will help printin
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  3.b
         :end-before: //  3.c
@@ -295,7 +304,7 @@ Two helper functions have been provided for this tutorial that will help printin
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  3.b
         :end-before: #  3.c
@@ -358,7 +367,7 @@ These must be created, named, and added to their parent component.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.a 
         :end-before: //  4.b
@@ -369,10 +378,19 @@ These must be created, named, and added to their parent component.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  4.a
         :end-before: #  4.b
+
+.. container:: useful
+
+    **Useful functions**
+
+    Helper functions for retrieving and printing any issues from any of the logger classes:
+
+    - printIssues (C++)
+    - print_issues (Python)
 
 .. container:: dothis
 
@@ -386,7 +404,7 @@ These must be created, named, and added to their parent component.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.b 
         :end-before: //  end 4
@@ -397,7 +415,7 @@ These must be created, named, and added to their parent component.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  4.b
         :end-before: #  end 4
@@ -469,7 +487,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
         // OR
         mV->addUnit("volt", 1.0, 1, 0.001);  // reference unit, prefix, exponent, multiplier
 
-    .. code-block:: py
+    .. code-tab:: py
 
         from libcellml import Units
 
@@ -493,7 +511,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  5.a 
         :end-before: //  5.c
@@ -504,7 +522,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  5.a
         :end-before: #  5.c
@@ -527,7 +545,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  5.c
         :end-before: //  end 5
@@ -538,7 +556,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  5.c
         :end-before: #  end 5
@@ -563,7 +581,7 @@ Step 6: Analyse the mathematical construction of the model
 
 .. container:: dothis
 
-    **6.b** Just like the Validator class, the Analyser class keeps track of issues. 
+    **6.b** Just like the :code:`Validator` class, the :code:`Analyser` class keeps track of issues. 
     Retrieve these and print to the terminal using the same helper function as earlier.
     Expect errors related to un-computed variables and missing initial values.
 
@@ -573,7 +591,7 @@ Step 6: Analyse the mathematical construction of the model
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  6.a
         :end-before: //  end 6.b
@@ -584,7 +602,7 @@ Step 6: Analyse the mathematical construction of the model
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  6.a
         :end-before: #  end 6.b
@@ -607,6 +625,7 @@ In order to avoid hard-coding values here, we will need to connect to external v
 .. container:: shortlist
 
     This means three things need to happen:
+
     - we need to create an external component to hold variable values;
     - we need to create external variables in that component; 
     - we need to specify the connections between variables; and
@@ -648,7 +667,7 @@ This is the reason for the second internal component, the *parameters* component
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.c
         :end-before: //  4.e
@@ -659,7 +678,7 @@ This is the reason for the second internal component, the *parameters* component
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  4.c
         :end-before: #  4.e
@@ -693,7 +712,7 @@ Two particularly useful idioms are shown below.
         grandson = model->component('grandfather')->component('daddy')->component('son');
 
         # Short-cut to retrieve the component with the given name from anywhere in the encapsulation hierarchy:
-        granddaughter = model->component('granddaughter', true)
+        granddaughter = model->component('granddaughter', True)
 
 .. container:: dothis
 
@@ -706,7 +725,7 @@ Two particularly useful idioms are shown below.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.e
         :end-before: //  4.f
@@ -717,7 +736,7 @@ Two particularly useful idioms are shown below.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  4.e
         :end-before: #  4.f
@@ -755,7 +774,7 @@ Two particularly useful idioms are shown below.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  6.e
         :end-before: //  end 6.f
@@ -766,7 +785,7 @@ Two particularly useful idioms are shown below.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  6.e
         :end-before: #  end 6.f
@@ -779,12 +798,12 @@ Step 7: Sanity check
     **Useful functions**
 
     There's a helper function provided for these tutorials which will print the model to the terminal.
-    Use :code:`printModel(Model, bool)` function to print the contents of the given :code:`Model`.
-    The second optional argument indicates whether or not to print the MathML strings in the components too.
+    Use :code:`printModel(Model, bool)` (in C++) or :code:`print_model` (in Python) function to print the contents of the given :code:`Model`.
+    The second (optional) argument indicates whether or not to print the MathML strings in the components too.
 
 .. container:: dothis
 
-    **7.a** Print the model to the terminal using the helper function :code:`printModel`.
+    **7.a** Print the model to the terminal using the helper function.
 
 .. code-block:: terminal
 
@@ -815,13 +834,12 @@ Step 7: Sanity check
                               └──> gateEquations:beta_X [per_ms]
 
 Looking at the printout we see that the top-level component named "gate" has no variables.  
-Even though this is clearly a valid situation (as proved by 6.f), it's not
-going to make this model easy to reuse.
-We need to make sure that any input and output variables are also connected into the top level gate component.  
+Even though this is clearly a valid situation (as proved by 6.f), it's not going to make this model easy to reuse.
+We need to make sure that any input and output variables are also connected into the top-level gate component.  
 
 .. container:: dothis
 
-    **7.b** Create intermediate variables for time t and gate status X in the gate component, and ensure they have a public and private interface to enable two-way connection.
+    **7.b** Create intermediate variables for time, t and gate status, X in the gate component, and ensure they have a public and private interface to enable two-way connection.
     You will also need to set a public and private connection onto t and X in the equations component too, or repeat the call to fix the model's interfaces as in step 6.f.
 
 .. container:: toggle
@@ -830,7 +848,7 @@ We need to make sure that any input and output variables are also connected into
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  7.b
         :end-before: //  7.c
@@ -841,7 +859,7 @@ We need to make sure that any input and output variables are also connected into
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  7.b
         :end-before: #  7.c
@@ -856,7 +874,7 @@ We need to make sure that any input and output variables are also connected into
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  7.c
         :end-before: //  end 7
@@ -867,7 +885,7 @@ We need to make sure that any input and output variables are also connected into
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  7.c
         :end-before: #  end 7
@@ -887,7 +905,7 @@ The :code:`Printer` class in libCellML takes the stored instance of a :code:`Mod
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  8.a
         :end-before: //  end 8
@@ -898,7 +916,7 @@ The :code:`Printer` class in libCellML takes the stored instance of a :code:`Mod
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/createGateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  8.a
         :end-before: #  end 8
