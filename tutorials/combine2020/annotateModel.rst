@@ -1,6 +1,6 @@
-..  _combine_createGateModel:
+..  _combine_annotateModel:
 
-Tutorial 5: Annotation tools
+Tutorial 6: Annotation tools
 ============================
 
 .. container:: shortlist

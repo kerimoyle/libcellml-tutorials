@@ -28,8 +28,8 @@ int main()
     std::cout << "   Step 1: Link to the generated code                      " << std::endl;
     std::cout << "-----------------------------------------------------------" << std::endl;
 
-    //  STEP 1: Include the generated code in this project.  Note that many of these
-    //          steps occur in other files.
+    //  Include the generated code in this project.  Note that many of these
+    //  steps occur in other files.
 
     //  1.a Enter the path to the generated header/interface *.h file in the #include block above.
 
@@ -52,7 +52,6 @@ int main()
     std::cout << "   Step 2: Access the variables in the generated files     " << std::endl;
     std::cout << "-----------------------------------------------------------" << std::endl;
 
-    // STEP 2: Accessing the contents of the generated files.
     //      Probably the best way to understand the contents of the generated files is
     //      to open them and look!  The implementation file (*.cpp) has two types of items:
     //      - information structures (in all-caps); and
@@ -61,7 +60,7 @@ int main()
     //  separate components: they are listed here with the variables only in order to give
     //  the correct context to the variable names.
 
-    //  2.a "Variables" are anything which does not require integration as part of the
+    //      "Variables" are anything which does not require integration as part of the
     //      solution, and could have types COMPUTED_CONSTANT (needs to be calculated
     //      but doesn't need integration), CONSTANT (no calculation needed), or
     //      ALGEBRAIC (TODO??) as defined in the VariableType enum.
@@ -71,6 +70,8 @@ int main()
     //          - units,
     //          - component, and
     //          - VariableType.
+
+    //  2.a
     //  Get the number of variables and iterate through the VARIABLE_INFO structure to
     //  retrieve and print each variable's information to the terminal.
 
@@ -83,12 +84,16 @@ int main()
         std::cout << "  type = " << VARIABLE_INFO[v].type << std::endl;
     }
 
-    //  2.b "State variables" are those which need integration.
+    //  end 2.a
+
+    //      "State variables" are those which need integration.
     //      They are stored in an array of VariableInfo structs called STATE_INFO which
     //      is STATE_COUNT long.  The VariableInfo struct contains:
     //          - name,
     //          - units, and
     //          - component.
+
+    //  2.b
     //  Get the number of state variables and iterate through the STATE_INFO structure to
     //  retrieve and print each state variable's information to the terminal.
     std::cout << std::endl;
@@ -100,7 +105,8 @@ int main()
         std::cout << "  component = " << STATE_INFO[s].component << std::endl;
     }
 
-    //  2.c Get the integration variable and print its information to the terminal. This
+    //  2.c 
+    //      Get the integration variable and print its information to the terminal. This
     //      is stored in a VariableInfo struct called VOI_INFO.
     std::cout << std::endl;
     std::cout << "VOI_INFO" << std::endl;
@@ -109,12 +115,13 @@ int main()
     std::cout << "  component = " << VOI_INFO.component << std::endl;
     std::cout << std::endl;
 
+    //  end 2
+
     std::cout << "-----------------------------------------------------------" << std::endl;
     std::cout << "   Step 3: Access the functions in the generated files     " << std::endl;
     std::cout << "-----------------------------------------------------------" << std::endl;
 
-    // STEP 3: Use the functions provided to create, populate, and calculate the 
-    //      solution and variable arrays. The generated code contains seven functions:
+    //   The generated code contains seven functions:
     //      - createStatesArray() to allocate an array of length STATE_COUNT.  This can be
     //        used to allocate the "rates" or gradient function array too as they're the 
     //        same length;
@@ -133,12 +140,14 @@ int main()
     //        process it only needs to be called whenever the values need to be output; not 
     //        necessarily each integration timestep.
 
-    //  3.a Create two arrays and use the functions to allocate them.  One will represent the
+    //  3.a 
+    //      Create two arrays and use the functions to allocate them.  One will represent the
     //      variables, and one will represent the state variables. 
     auto myVariables = createVariablesArray();
     auto myStateVariables = createStatesArray();
 
-    //  3.b Use the functions provided to initialise the arrays you created, then print them 
+    //  3.b 
+    //      Use the functions provided to initialise the arrays you created, then print them 
     //      to the screen for checking.
     initialiseStatesAndConstants(myStateVariables, myVariables);
 
@@ -154,7 +163,8 @@ int main()
     }
     std::cout << std::endl;
 
-    //  3.c Compute the computed constants and print them to the screen for checking.
+    //  3.c 
+    //      Compute the computed constants and print them to the screen for checking.
     std::cout << "The initial values including all computed constants are:" << std::endl;
     computeComputedConstants(myVariables);
     for (size_t v = 0; v < VARIABLE_COUNT; ++v) {
@@ -162,14 +172,17 @@ int main()
     }
     std::cout << std::endl;
 
+    //  end 3
+
     std::cout << "-----------------------------------------------------------" << std::endl;
     std::cout << "   Step 4: Iterate through the solution                    " << std::endl;
     std::cout << "-----------------------------------------------------------" << std::endl;
 
-    // STEP 4: This part will make use of a simple routine to step through the solution
-    //         iterations using the Euler method to update the state variables.
+    //  This part will make use of a simple routine to step through the solution
+    //  iterations using the Euler method to update the state variables.
 
-    //  4.a Create variables which control how the solution will run, representing:
+    //  4.a 
+    //      Create variables which control how the solution will run, representing:
     //      - variable of integration (time);
     //      - step size; and
     //      - the number of steps to take.
@@ -178,12 +191,14 @@ int main()
     int stepCount = 2000;
     int incr = (int)(stepCount/60) + 1;
 
-    //  4.b Create an array for the rates.  You can use the same createStatesArray() 
+    //  4.b 
+    //      Create an array for the rates.  You can use the same createStatesArray() 
     //      function to allocate this as the number of rates will always equal the 
     //      number of state variables.
     auto myRates = createStatesArray();
 
-    //  4.c Create a file for output and open it. You can use the information to name columns
+    //  4.c 
+    //      Create a file for output and open it. You can use the information to name columns
     //      with the variables, component, and units so you can keep track later.
     std::ofstream outFile("HodgkinHuxleyModelSolution.txt");
     outFile << "iteration";
@@ -196,7 +211,7 @@ int main()
     }
     outFile << std::endl;
    
-    //  4.d Iterate through the time domain and write the solution at each step.
+    //  end 4.c
     //      The Euler update method is: x[n+1] = x[n] + x'[n]*stepSize
     //      At each step you will need to:
     //          - Compute the variables; **
@@ -204,7 +219,10 @@ int main()
     //          - Compute the state variables using the update method above; and
     //          - Print to a file.
     //      ** We only need to compute these each timestep here because we're also 
-    //         writing the values to the file at each timestep.  
+    //         writing the values to the file at each timestep.
+
+    //  4.d 
+    //      Iterate through the time domain and write the solution at each step. 
     for (size_t step = 0; step < stepCount; ++step) {
         time = step * stepSize;
 
@@ -237,14 +255,19 @@ int main()
     std::cout << std::endl << "Finished!" << std::endl;
     outFile.close();
 
+    //  end 4
+
     std::cout << "-----------------------------------------------------------" << std::endl;
     std::cout << "   Step 5: Housekeeping                                    " << std::endl;
     std::cout << "-----------------------------------------------------------" << std::endl;
 
-    //  5.a Housekeeping - delete the allocated arrays.
+    //  5.a 
+    //  Housekeeping - delete the allocated arrays.
     deleteArray(myStateVariables);
     deleteArray(myVariables);
     deleteArray(myRates);
+
+    //  end 5
 
     std::cout << "The results have been written to 'HodgkinHuxleyModelSolution.txt'" << std::endl;
 }
