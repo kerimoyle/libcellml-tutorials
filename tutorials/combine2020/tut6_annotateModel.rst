@@ -162,10 +162,10 @@ Step 2: Retrieve an item with a unique id
 
         Show C++ snippet
 
-        .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
-            :language: c++
-            :start-at: //  2.b
-            :end-before: //  end 2
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
+        :language: c++
+        :start-at: //  2.b
+        :end-before: //  end 2
 
 .. container:: toggle
 
