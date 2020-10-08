@@ -1,7 +1,8 @@
+.. _aside_units:
+
 ..container:: heading3
 
     Understanding units
-
 
 Some basic units have been defined and built into libCellML, others you can define by combining the built-in ones using scaling factors and exponents, or you can define your own from scratch if need be.
 
@@ -51,11 +52,10 @@ For convenience libCellML gives a variety of options for defining such scaling f
    NB: using an integer string like :code:`prefix="-3"` gives the same result; and
 -  By defining the scaling factor directly, as a multiplier, eg: :code:`millisecond` is :code:`second` with :code:`multiplier=0.001`.
 
-The overloaded argument option list is shown below for each language:
+The overloaded argument option list is shown below for each language.
+Please check the :api:`API Units documentation<Units>` for details.
 
 .. code-block:: cpp
-
-    **TODO** Check that this is correct ... ??!!
 
     void addUnit(const std::string &reference, const std::string &prefix, double exponent = 1.0,
                  double multiplier = 1.0, const std::string &id = "");

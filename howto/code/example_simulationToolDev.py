@@ -55,10 +55,10 @@ if __name__ == '__main__':
     print_issues_to_terminal(validator)
 
     # STEP 4
-    # TODO Analyse a model: check for mathematical and modelling errors.
-    # analyser = Analyser()
-    # analyser.analyseModel(model)
-    # print_issues_to_terminal(analyser)
+    # Analyse a model: check for mathematical and modelling errors.
+    analyser = Analyser()
+    analyser.analyseModel(model)
+    print_issues_to_terminal(analyser)
 
     # STEP 5
     # Generate runnable code in other language formats for this model.
@@ -66,16 +66,16 @@ if __name__ == '__main__':
     # Create a Generator instance.  Note that by default this is the C language.
     generator = Generator()
 
-    # Pass the generator the model for processing.
-    generator.processModel(model)
+    # Pass the generator the analysed model for processing.
+    generator.processModel(analyser.model())
     print_issues_to_terminal(generator)
 
-    # Retrieve and write the interface code (*.h) and implementation code (*.c) to files.
+    # Retrieve and write the interface code (*.h) and implementation code (*.cpp) to files.
     write_file = open("sineComparisonExample.h", "w")
     write_file.write(generator.interfaceCode())
     write_file.close()
 
-    write_file = open("sineComparisonExample.c", "w")
+    write_file = open("sineComparisonExample.cpp", "w")
     write_file.write(generator.implementationCode())
     write_file.close()
 

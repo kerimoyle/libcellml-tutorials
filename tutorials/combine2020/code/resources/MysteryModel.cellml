@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.cellml.org/cellml/2.0#" name="MysteryModel" >
+  <import xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="AnotherMysteryModel.cellml">
+    <units units_ref="whoAmI" name="whoAmI" id="whoAmIAndWhereDidIComeFrom"/>
+  </import>
+  <units name="u1" id="polo">
+    <unit prefix="milli" units="second" id="someOtherDuplicatedId"/>
+  </units>
+  <units name="u2" id="polo">
+    <unit exponent="-1" prefix="milli" units="second" id="polo"/>
+  </units>
+  <component name="c1" id="i_am_a_component"/>
+  <component name="c2"/>
+  <component name="c3"/>
+  <component name="c4"/>
+  <component name="c5" id="me_too"/>
+  <component name="MysteryComponent">
+    <variable name="v1" units="u1" interface="public" id="polo"/>
+    <variable name="v2" units="u2" interface="public" id="someOtherId"/>
+    <variable name="v3" units="u2" interface="public" id="someOtherDuplicatedId"/>
+    <variable name="v4" units="dimensionless" interface="public" id="marco"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML"
+      xmlns:cellml="http://www.cellml.org/cellml/2.0#">
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>v1</ci>
+          </bvar>
+          <ci>v4</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <times/>
+            <ci>v2</ci>
+            <apply>
+              <minus/>
+              <cn cellml:units="dimensionless">1</cn>
+              <ci>v4</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <ci>v3</ci>
+            <ci>v4</ci>
+          </apply>
+        </apply>
+      </apply>
+    </math>
+    <reset id="polo" test_variable="v2" variable="v3" order="1">
+      <test_value id="someOtherDuplicatedId">
+        <math xmlns="http://www.w3.org/1998/Math/MathML"
+          xmlns:cellml="http://www.cellml.org/cellml/2.0#">
+          <cn cellml:units="u2">1.0</cn>
+        </math>
+      </test_value>
+      <reset_value id="polo">
+        <math xmlns="http://www.w3.org/1998/Math/MathML"
+          xmlns:cellml="http://www.cellml.org/cellml/2.0#">
+          <cn cellml:units="u2">1.0</cn>
+        </math>
+      </reset_value>
+    </reset>
+  </component>
+</model>

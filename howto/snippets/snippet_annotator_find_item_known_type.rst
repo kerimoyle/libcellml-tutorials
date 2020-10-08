@@ -43,7 +43,7 @@
       // equivalent by this mapping.
       auto myMappedVariables = annotator->mapVariables("myMapVariablesId");
 
-      // Unit items are returned as a UnitItem pair, where the first item is a pointer to
+      // Unit items are returned as a Unit pair, where the first item is a pointer to
       // the parent Units item, and the second is the index at which the child unit item's
       // attributes can be found.
       auto myUnitItem = annotator->unit("myUnitId");
@@ -106,7 +106,7 @@
       # equivalent by this mapping.
       my_mapped_variables = annotator.mapVariables("myMapVariablesId")
 
-      # Unit items are returned as a UnitItem pair, where the first item is a pointer to
+      # Unit items are returned as a Unit pair, where the first item is a pointer to
       # the parent Units item, and the second is the index at which the child unit item's
       # attributes can be found.
       my_unit_item = annotator.unit("myUnitId")

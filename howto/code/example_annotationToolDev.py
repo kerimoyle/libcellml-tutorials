@@ -1,4 +1,4 @@
-from libcellml import Annotator, CellMLElement, Parser
+from libcellml import Annotator, CellmlElementType, Parser
 
 if __name__ == "__main__":
 
@@ -62,7 +62,7 @@ if __name__ == "__main__":
         itemOfUnknownType = annotator.item('green')
 
     # Because these could be any kind of item, they are stored in an AnyItem
-    # type.  This is a tuple, where the first item is a CellMLElement enum 
+    # type.  This is a tuple, where the first item is a CellmlElementType enum 
     # indicating the item's type, and the second is the item itself. 
 
     # The type can be turned into a string using the Annotator.typeAsString 
@@ -88,14 +88,14 @@ if __name__ == "__main__":
 
     # A new id string which is automatically generated and unique can be
     # assigned to these items.
-    print('Before assigning automatic ids there are {} items with an id of "duplicateId1".'.format(annotator.duplicateCount('duplicateId1')))
+    print('Before assigning automatic ids there are {} items with an id of "duplicateId1".'.format(annotator.itemCount('duplicateId1')))
     for item in allItemsWithDuplicateId1:
         annotator.assignId(item)
     
     # Now there are no more items with the duplicated id 'duplicateId1'
     # remaining in the model.
     allItemsWithDuplicateId1 = annotator.items('duplicateId1')
-    print('After assigning automatic ids there are {} items with an id of "duplicateId1".'.format(annotator.duplicateCount('duplicateId1')))
+    print('After assigning automatic ids there are {} items with an id of "duplicateId1".'.format(annotator.itemCount('duplicateId1')))
 
     # It's straightforward to use a double loop to automatically assign new and unique ids to
     # any duplicated ids in the model.
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     print('  Component 4: {}'.format(model.component('component4').id()))
 
     # Assigns an automatic id string to all Component items which don't already have one.
-    annotator.assignIds(CellMLElement.COMPONENT)
+    annotator.assignIds(CellmlElementType.COMPONENT)
 
     print('After automatic ids are assigned to component items:')
     print('  Component 1: {}'.format(model.component('component1').id()))

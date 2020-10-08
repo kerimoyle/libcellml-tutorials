@@ -4,7 +4,7 @@
 Tutorial 6: Working with multiple components
 ============================================
 
-Getting started:  If you're reading this it's presumed that you're already comfortable with the serlialisation, manipulation, and debugging functionality available in the libCellML library, as well as using the API to create, debug and validate your model.
+Getting started:  If you're reading this it's presumed that you're already comfortable with the serialisation, manipulation, and debugging functionality available in the libCellML library, as well as using the API to create, debug and validate your model.
 This tutorial will build on work done in :ref:`Tutorial 5<tutorial5>`: if you are starting from here you can find the files which were created in that tutorial in the :code:`resources` folder.
 
 By the end of this tutorial you will be able to:

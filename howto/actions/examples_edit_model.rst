@@ -25,11 +25,11 @@ Editing attributes
 For any item type, each attribute :code:`xyz` may be edited using the general :code:`setXyz` function, whose arguments vary depending on the attribute.
 Note that this is distinct from editing collections of items, which is discussed below.
 
-Some example snippets are shown below:
+.. Some example snippets are shown below:
 
-.. include:: ../snippets/snippet_edit_names.rst
+.. include :: ../snippets/snippet_edit_names.rst  **TODO**
 
-.. include:: ../snippets/snippet_edit_mathml.rst
+.. include :: ../snippets/snippet_edit_mathml.rst
 
 Editing collections
 -------------------
@@ -107,19 +107,13 @@ Another variable :code:`vegetable` is equivalent to variables :code:`tomato`, :c
 At this time, there are two sets of equivalent variables: all of the fruit are equivalent to one another, and all of the vegetables are equivalent to one another.
 Adding a variable :code:`produce` with an equivalence to :code:`fruit` and to :code:`vegetable` effectively merges the two sets, so that now the variable :code:`peach` is equivalent to :code:`spinach`.
 
-**TODO** Need better examples and use cases here once the API issue #619 is clarified.
+.. **TODO** Need better examples and use cases here once the API issue #619 is clarified.
 
 Editing an encapsulation hierarchy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Components may be added to a model or another component to create an encapsulation hierarchy, but there are a few things to watch out for in this situation.
-Components must belong to only one parent.
-When adding a component from one location in the encapsulation to another ... **TODO** check behaviour of the addSomething functions vs any moveSomething function?
+Components must belong to only one parent, so when adding a component from one location in the encapsulation to another, it is removed from the original parent.
+
 This is shown in the code snippet below.
 
 .. include:: ../snippets/snippet_edit_encapsulation.rst
-
-Useful snippets for editing
-===========================
-
-**TODO**
-

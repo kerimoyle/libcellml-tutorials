@@ -59,7 +59,7 @@ Step 2: Parse the membrane model
 Parsing and importing can - in certain cases - result in the same situation (an instantiated model), but the have very different philosophies behind them.
 You can read more about that under the link below.
 
-.. include:: asides/import_vs_parse.rst
+.. include:: ../asides/import_vs_parse.rst
 
 Even though the membrane model is supplied, it will need to be changed to accommodate the new connections to the ion channel components.
 Each of these channels calculates a current (:code:`i_K`, :code:`i_Na`, and :code:`i_L`) which they supply to the membrane.

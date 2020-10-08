@@ -31,9 +31,10 @@ int main()
     auto dictionary = annotator->dictionary();
     std::cout << "Existing id strings are:"<<std::endl;
     for(auto const &i : dictionary){
-        std::cout << " " << i.first <<" = " << annotator->typeAsString(i.second) << std::endl;
+        std::cout << " " << i.first << " = " << annotator->typeAsString(i.second) << std::endl;
     }
     std::cout << std::endl;
+
     // STEP 3
     // Retrieve items by their id where the item type is known.
 
@@ -80,7 +81,7 @@ int main()
     }
 
     // Because these could be any kind of item, they are stored in an AnyItem
-    // type.  This is a pair, where the first item is a CellMLElement enum 
+    // type.  This is a pair, where the first item is a CellmlElementType enum 
     // indicating the item's type, and the second is a std::any cast containing the
     // item itself. 
 
@@ -88,48 +89,48 @@ int main()
     // outside of the switch (in this example we're using things we've declared earlier).
 
     switch(itemOfUnknownType.first) {
-        case libcellml::CellMLElement::COMPONENT:
+        case libcellml::CellmlElementType::COMPONENT:
             component = std::any_cast<libcellml::ComponentPtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::COMPONENT_REF:
+        case libcellml::CellmlElementType::COMPONENT_REF:
             componentRef = std::any_cast<libcellml::ComponentPtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::CONNECTION:
+        case libcellml::CellmlElementType::CONNECTION:
             connection = std::any_cast<libcellml::VariablePair>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::MAP_VARIABLES:
+        case libcellml::CellmlElementType::MAP_VARIABLES:
             mapVariables = std::any_cast<libcellml::VariablePair>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::IMPORT:
+        case libcellml::CellmlElementType::IMPORT:
             import = std::any_cast<libcellml::ImportSourcePtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::ENCAPSULATION:
+        case libcellml::CellmlElementType::ENCAPSULATION:
             encapsulation = std::any_cast<libcellml::ModelPtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::MATHML:
+        case libcellml::CellmlElementType::MATHML:
             break;
-        case libcellml::CellMLElement::MODEL:
+        case libcellml::CellmlElementType::MODEL:
             // model = std::any_cast<libcellml::ModelPtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::RESET:
+        case libcellml::CellmlElementType::RESET:
             reset = std::any_cast<libcellml::ResetPtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::RESET_VALUE:
+        case libcellml::CellmlElementType::RESET_VALUE:
             resetValue = std::any_cast<libcellml::ResetPtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::TEST_VALUE:
+        case libcellml::CellmlElementType::TEST_VALUE:
             testValue = std::any_cast<libcellml::ResetPtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::UNIT:
-            unit = std::any_cast<libcellml::UnitItem>(itemOfUnknownType.second);
+        case libcellml::CellmlElementType::UNIT:
+            unit = std::any_cast<libcellml::Unit>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::UNITS:
+        case libcellml::CellmlElementType::UNITS:
             units = std::any_cast<libcellml::UnitsPtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::VARIABLE:
+        case libcellml::CellmlElementType::VARIABLE:
             variable = std::any_cast<libcellml::VariablePtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellMLElement::UNDEFINED:
+        case libcellml::CellmlElementType::UNDEFINED:
             break;
     }
     std::cout << std::endl;
@@ -187,7 +188,7 @@ int main()
     std::cout << "  Component 4: "<< model->component("component4")->id() << std::endl;
 
     // Assigns an automatic id string to all Component items which don't already have one.
-    annotator->assignIds(libcellml::CellMLElement::COMPONENT);
+    annotator->assignIds(libcellml::CellmlElementType::COMPONENT);
 
     std::cout << "After automatic ids are assigned to component items:" << std::endl;
     std::cout << "  Component 1: "<< model->component("component1")->id() << std::endl;

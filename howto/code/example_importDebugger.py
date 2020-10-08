@@ -54,7 +54,7 @@ if __name__ == '__main__':
     for i in range(0, validator.issueCount()):
         print('    - {}'.format(validator.issue(i).description()))
     
-    analyser.analyseModel(original_model)
+    analyser.analyseModel(flat_model)
     print(' - the analyser found {} issues'.format(analyser.issueCount()))
     for i in range(0, analyser.issueCount()):
         print('    - {}'.format(analyser.issue(i).description()))

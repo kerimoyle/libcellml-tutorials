@@ -183,7 +183,7 @@ Of course, you can also set the id of these items manually too if you'd rather.
 Automatically assign unique IDs in bulk 
 ---------------------------------------
 In addition to using the automatic ID generation on individual items as shown above, you can also use it for all items of a certain type.
-The example below shows how calling the *assignIds* function for the :code:`CellMLElement COMPONENT` type fills in the missing ID from :code:`component2` without changing the IDs of the other components.
+The example below shows how calling the *assignIds* function for the :code:`CellmlElementType COMPONENT` type fills in the missing ID from :code:`component2` without changing the IDs of the other components.
 Finally, IDs for every item in a model can be set with the *assignAllIds* function, and cleared from every item using the *clearAllIds* function. 
 
 .. tabs::

@@ -1,8 +1,8 @@
 ..  _build_from_source:
 
-============================
-Build and instal from source
-============================
+=============================
+Build and install from source
+=============================
 
 .. contents:: Contents
     :local:
@@ -26,7 +26,7 @@ Build and instal from source
 
   .. code-block:: console
 
-    git clone -b master --single-branch https://github.com/cellml/libcellml.git
+    git clone -b develop --single-branch https://github.com/cellml/libcellml.git
 
 Your folder structure is now:
 
@@ -38,7 +38,7 @@ Your folder structure is now:
 
 .. container:: dothis
 
-  **1.c** Rename the cloned :code:`libcellml` folder to be :code:`source`, and create sibling folders called :code:`build`, :code:`install`, and :code:`tutorials`:
+  **1.c** Rename the cloned :code:`libcellml` folder to be :code:`source`, and create sibling folders called :code:`build` and :code:`install`:
 
   .. code-block:: console
 
@@ -58,7 +58,7 @@ Your folder structure should now look like this:
       └─ source
           └─ ( ... contains the files you cloned )
 
-2: Build and instal the library
+2: Build and install the library
 ===============================
 
 .. container:: dothis
@@ -68,7 +68,7 @@ Your folder structure should now look like this:
   .. code-block:: console
 
     cd build
-    cmake -DINSTALL_PREFIX=../install ../source
+    cmake -DINSTALL_PREFIX=../install ../source .
     make -j
 
 You should see output which runs through some checks (make sure they all pass), and finishes with a message like this:
@@ -82,7 +82,7 @@ You should see output which runs through some checks (make sure they all pass), 
 
 .. container:: dothis
 
-  **2.b** From the same location, instal the library:
+  **2.b** From the same location, install the library:
 
   .. code-block:: console
 
@@ -111,28 +111,35 @@ Your directory structure should now look like:
       └─ source
           └─ ( ... the files you cloned in step 1.b )
 
-
 .. container:: dothis
 
-  **2.c (optional)** If you intend to use the Python bindings, you will need to instal the Python version of the local library using pip.
+  **2.c (optional)** If you intend to use the Python bindings, you will need to install the Python version of the local library using pip3.
   Again, this expects that you are still in the :code:`build` directory.
 
   .. code-block:: console
 
-    pip install -e src/bindings/python
-
-
-3: Test the instalation: C++
-============================
-
-If you are intending to use the Python library only, please skip to :ref:`Test the instalation: Python<test_python_instalation>`.
+    pip3 install -e src/bindings/python
 
 .. container:: dothis
 
-  **3.a** Download the following files to a folder, and navigate there:
-  - For C++ users:
-    - :download:`CMakeLists.txt<CMakeLists.txt>` 
-    - :download:`test_install.cpp<test_install.cpp>` 
+  **2.d (optional)** Run the tests on the library from the :code:`build` directory.
+  Expect to see that all tests have passed.
+
+  .. code-block:: console
+
+    make test
+
+3: Test the installation: C++
+============================
+
+If you are intending to use the Python library only, please skip to :ref:`Test the installation: Python<test_python_installation>`.
+
+.. container:: dothis
+
+  **3.a** Download the following files to a folder, and navigate into it:
+
+  - :download:`CMakeLists.txt<CMakeLists.txt>` 
+  - :download:`test_install.cpp<test_install.cpp>` 
 
   .. code-block:: console
 
@@ -169,8 +176,6 @@ If this is correct you should see an output ending similar to this:
     -- Generating done
     -- Build files have been written to: path/to/your/current/directory
 
-If this isn't what you see then please see the Troubleshooting section **TODO**
-
 .. container:: dothis
 
   **3.c** Now build the :code:`test_install` example
@@ -190,7 +195,7 @@ You should see an output similar to this:
 
 .. container:: dothis
 
-    **3.d** Finally, run the program to output the welcome and version number of the linked libCellML instalation:
+    **3.d** Finally, run the program to output the welcome and version number of the linked libCellML installation:
 
   .. code-block:: console
 
@@ -205,20 +210,21 @@ You should see the output of:
       This version number is 0.2.0
   -----------------------------------------------
 
-.. _test_python_instalation:
+.. _test_python_installation:
 
-4: Test the instalation: Python
+4: Test the installation: Python
 ===============================
 
 .. container:: dothis
 
   **4.a** Download the file below and save it.
   Navigate to the directory where it is saved.
-    - :download:`test_install.py<test_install.py>` 
+  
+  - :download:`test_install.py<test_install.py>` 
 
   .. code-block:: console
 
-    cd wherever/you/downloaded/them
+    cd wherever/you/downloaded/it
 
 .. container:: dothis
 
