@@ -37,10 +37,6 @@ Tutorial 5: Interact with generated code
 .. contents:: Contents
     :local:
 
-Background
-----------
-
-
 Step 1: Link to the generated code
 ----------------------------------
 The first step in interacting with the output from the code generation is including the generated files in the project.       
@@ -56,7 +52,7 @@ There are necessarily big differences between C++ and Python for this tutorial!
 
         .. container:: dothis
         
-            **1.b** Add the name and path of the implementation *.cpp file in the CMakeLists.txt file,(or whatever your local toolchain requires).
+            **1.b** Add the name and path of the implementation *.cpp file in the CMakeLists.txt file, (or whatever your local toolchain requires).
 
         .. container:: dothis
         
@@ -69,9 +65,38 @@ There are necessarily big differences between C++ and Python for this tutorial!
             Call make -j to build the executable.
             Run the code so far to check that the libCellML versions match.
 
+        .. container:: toggle
+
+            .. container:: header
+
+                Show C++ snippet
+
+            .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.cpp
+                :language: c++
+                :start-at: //  1.a
+                :end-before: //  end 1
+
     .. tab:: Python instructions
 
-        **TODO**
+        .. container:: dothis
+
+            **1.a** Use the importlib functionality to open the generated code file.
+
+        .. container:: dothis
+
+            **1.b** Load into a module.
+        
+        .. container:: toggle
+
+            .. container:: header
+
+                Show Python snippet
+
+            .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.py
+                :language: python
+                :start-at: #  1.a
+                :end-before: #  end 1
+
 
 
 Step 2: Access the variables in the generated files
