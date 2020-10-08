@@ -28,21 +28,15 @@ if __name__ == '__main__':
 
     #  1.a 
     #       Read a CellML file into a std.string.
-    read_file = open('MembraneModel.cellml')
 
     #  1.b 
     #       Create a Parser item. 
-    parser = Parser()
 
     #  1.c 
     #       Use the parser to deserialise the contents of the string you've read and return the model.
-    model = parser.parseModel(read_file.read())
 
     #  1.d 
     #       Print the parsed model to the terminal for viewing.
-    print_model(model, False)
-
-    #  end 1
 
     print('----------------------------------------------------------')
     print('   STEP 2: Resolve the imports and flatten                ')
@@ -50,18 +44,12 @@ if __name__ == '__main__':
  
     #  2.a
     #      Create an Importer instance and use it to resolve the imports in your model.
-    importer = Importer()
-    importer.resolveImports(model, '')
 
     #  2.b
     #      Check that the importer has not raised any issues.
-    print_issues(importer)
 
     #  2.c
     #      Use the importer to create a flattened version of the model.
-    flatModel = importer.flattenModel(model)
-
-    #  end 2
 
     print('----------------------------------------------------------')
     print('   STEP 3: Validate and analyse the flattened model       ')
@@ -70,18 +58,10 @@ if __name__ == '__main__':
     #  3.a
     #      Create a Validator instance, pass in the flattened model, and check that
     #      there are no issues raised.
-    validator = Validator()
-    validator.validateModel(flatModel)
-    print_issues(validator)
 
     #  3.b
     #      Create an Analyser instance, pass in the flattened model, and check that
     #      there are no issues raised.
-    analyser = Analyser()
-    analyser.analyseModel(flatModel) 
-    print_issues(analyser)
-
-    #  end 3
 
     print('----------------------------------------------------------')
     print('   STEP 4: Generate code and output                       ')
@@ -89,18 +69,15 @@ if __name__ == '__main__':
 
     #  4.a 
     #       Create a Generator instance.  
-    generator = Generator()
 
     #  4.b 
     #       The generator uses a GeneratorProfile item to set up a translation between the
     #       model stored as CellML and the language of your choice (currently C or Python).
     #       Create a GeneratorProfile object, and use the constructor argument of the
     #       GeneratorProfile.Profile enum for the language you want (C or PYTHON).
-    profile = GeneratorProfile(GeneratorProfile.Profile.PYTHON)
 
     #  4.c 
     #       Use the generator's setProfile function to pass in the profile item you just created.
-    generator.setProfile(profile)
 
     #  4.d 
     #       Instead of submitting a Model item (as we do for all other classes), 
@@ -108,7 +85,6 @@ if __name__ == '__main__':
     #       by the Analyser class: an AnalyserModel object.  
     #       Retrieve the analysed model using the Analyser.model() function, and submit 
     #       to the generator using the Generator.setModel(analysedModel) function.
-    generator.setModel(analyser.model())
 
     #  4.e 
     #       (C profile only) If you're using the C profile then you have the option at this stage 
@@ -118,7 +94,6 @@ if __name__ == '__main__':
     #       header file name in the GeneratorProfile item using the 
     #       setInterfaceFileNameString('yourHeaderFileNameHere.h') function.  This will need
     #       to be the same as the file which you write to in step 4.g below.
-    # profile.setInterfaceFileNameString('HodgkinHuxleyModel.h')
 
     #  4.f 
     #       Implementation code is the bulk of the model, and contains all the equations, 
@@ -126,20 +101,9 @@ if __name__ == '__main__':
     #       would normally be stored in a.cpp or.py file.  
     #       Use the Generator.implementationCode() function to return the implementation 
     #       code as a string, and write it to a file with the appropriate extension.
-    write_file = open('HodgkinHuxleyModel.py', 'w')
-    write_file.write(generator.implementationCode())
-    write_file.close()
 
     #  4.g 
     #       (C profile only) Interface code is the header needed by the C profile to define data types.
     #       Use the Generator.interfaceCode() function to return interface code as a string
     #       and write it to a.h header file.  This needs to be the same filename as you 
     #       specified in step 4.e above.
-    # write_file = open('HodgkinHuxleyModel.h', 'w')
-    # write_file.write(generator.interfaceCode())
-    # write_file.close()
-
-    print('The generated model code has been written to HodgkinHuxleyModel.py') 
-
-    #  end 4  
-

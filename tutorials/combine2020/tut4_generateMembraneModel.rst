@@ -208,7 +208,7 @@ You know what to do ... we do not expect any issues to be raised by either the v
 
 .. container:: dothis
 
-    **3.b** Create an :code:`Analyser` instance,pass in the flattened model, and check that there are no issues raised.
+    **3.b** Create an :code:`Analyser` instance, pass in the flattened model, and check that there are no issues raised.
 
 .. container:: toggle
 
@@ -244,12 +244,12 @@ Two profiles are already defined; for C++ and for Python.
 
 	:api:`GeneratorProfile class<GeneratorProfile>`
 
-	- :code:`create`
+	- create
 	
 	:api:`Generator class<Generator>`
 
-	- :code:`create`
-	- :code:`setProfile`
+	- create
+	- setProfile
 
 .. container:: dothis
 
@@ -324,7 +324,7 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
 
     **4.e** (C only) If you're using the C profile then you have the option at this stage to specify the file name of the interface file you'll create in the next step.  
     This means that the two files will be prepared to link to one another without manual editing later.
-    You can do this by specifying the header file name in the :code:`GeneratorProfile` item using the setInterfaceFileNameString("yourHeaderFileNameHere.h") function.
+    You can do this by specifying the header file name in the :code:`GeneratorProfile` item using its :code:`setInterfaceFileNameString` function.
     This will need to be the same as the file which you write to in step 4.g below.
 
 .. container:: toggle
