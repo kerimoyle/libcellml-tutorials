@@ -104,15 +104,45 @@ Step 2: Retrieve an item with a unique id
     - issueCount
     - issue
 
+    Tutorial functions
+
+    - C++: getCellmlElementTypeFromEnum will return a string version of the CellmlElementType enumeration
+    - Python: get_item_type_from_enum
+
 .. container:: dothis
 
-    **2.a** Create an Annotator item and use its setModel function to pass in the parsed mystery model.
-    The :code:`item` function returns a :code:`libcellml::AnyItem`, a :code:`std::pair` whose first attribute is a libcellml::CellmlElementType enumeration; and second attribute is a :code:`std::any` cast of the item itself.
+    **2.a** Create an :code:`Annotator` item and use its :code:`setModel` function to pass in the parsed mystery model.
+
+    - In C++: The :code:`item` function returns a :code:`libcellml::AnyItem`, a :code:`std::pair` whose first attribute is a :code:`libcellml::CellmlElementType` enumeration; and second attribute is a :code:`std::any` cast of the item itself.
+    - In Python: The :code:`item` function returns a tuple.
+      The first item is a :code:`CellmlElementType` enumeration, the second is the item itself.
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
+        :language: c++
+        :start-at: //  2.a
+        :end-before: //  end 2.a
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
+        :language: python
+        :start-at: #  2.a
+        :end-before: #  end 2.a
 
 .. container:: dothis
 
     **2.b** Retrieve the item with an id of "marco".
-    Use the helper function :code:`getCellmlElementTypeFromEnum` or :code:`get_item_type_from_enum` to convert the enumeration of its type into a string, and print to the terminal.
+    Use the helper function to convert the enumeration of its type into a string, and print to the terminal.
     
 .. code-block:: terminal
 
@@ -126,7 +156,7 @@ Step 2: Retrieve an item with a unique id
 
     **2.d** (C++ only) Cast the second attribute of the macro item into a libcellml::VariablePtr item using :code:`std::any_cast`.
 
-.. container:: toggle
+    .. container:: toggle
 
     .. container:: header
 
@@ -134,7 +164,7 @@ Step 2: Retrieve an item with a unique id
 
     .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
-        :start-at: //  2.a
+        :start-at: //  2.b
         :end-before: //  end 2
 
 .. container:: toggle
@@ -145,9 +175,8 @@ Step 2: Retrieve an item with a unique id
 
     .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
-        :start-at: #  2.a
+        :start-at: #  2.b
         :end-before: #  end 2
-
 
 Step 3: Retrieve items whose id are not unique
 ----------------------------------------------
@@ -173,7 +202,7 @@ Step 3: Retrieve items whose id are not unique
 
 .. container:: dothis
 
-    **3.b** The item type returned is libcellml::CellmlElementType::UNDEFINED ... so we need to check what the annotator has to say about it. 
+    **3.b** The item type returned is :code:`UNDEFINED` ... so we need to check what the annotator has to say about it. 
     Retrieve the issues from the annotator and print them to the terminal.
 
 .. container:: toggle
@@ -234,7 +263,7 @@ Step 3: Retrieve items whose id are not unique
     
 .. code-block:: terminal
 
-        The items with an id of 'polo' have types of:
+    The items with an id of 'polo' have types of:
       - [0] UNITS
       - [1] UNITS
       - [2] UNIT
@@ -242,7 +271,7 @@ Step 3: Retrieve items whose id are not unique
       - [4] RESET
       - [5] RESET_VALUE
 
-The item we want has type :code:`libcellml::CellMLElements::UNIT`, and we'd like it to be unique so that we can annotate it properly.
+The item we want has type :code:`UNIT`, and we'd like it to be unique so that we can annotate it properly.
 We need to change the other items to have other (also unique) ids.
 The :code:`Annotator` class can create a unique id for an item using the :code:`assignId` function.
 
@@ -296,6 +325,11 @@ In circumstances where you know the type of the item with the id you're fetching
     - unit
     - units
     - variable
+
+    :api:`Unit class<Unit>`
+
+    - units
+    - index
 
 .. container:: dothis
 
