@@ -38,7 +38,7 @@ Your folder structure is now:
 
 .. container:: dothis
 
-  **1.c** Rename the cloned :code:`libcellml` folder to be :code:`source`, and create sibling folders called :code:`build`, :code:`install`, and :code:`tutorials`:
+  **1.c** Rename the cloned :code:`libcellml` folder to be :code:`source`, and create sibling folders called :code:`build` and :code:`install`:
 
   .. code-block:: console
 
@@ -68,7 +68,7 @@ Your folder structure should now look like this:
   .. code-block:: console
 
     cd build
-    cmake -DINSTALL_PREFIX=../install ../source
+    cmake -DINSTALL_PREFIX=../install ../source .
     make -j
 
 You should see output which runs through some checks (make sure they all pass), and finishes with a message like this:
@@ -129,10 +129,10 @@ If you are intending to use the Python library only, please skip to :ref:`Test t
 
 .. container:: dothis
 
-  **3.a** Download the following files to a folder, and navigate there:
-  - For C++ users:
-    - :download:`CMakeLists.txt<CMakeLists.txt>` 
-    - :download:`test_install.cpp<test_install.cpp>` 
+  **3.a** Download the following files to a folder, and navigate into it:
+
+  - :download:`CMakeLists.txt<CMakeLists.txt>` 
+  - :download:`test_install.cpp<test_install.cpp>` 
 
   .. code-block:: console
 
@@ -212,11 +212,12 @@ You should see the output of:
 
   **4.a** Download the file below and save it.
   Navigate to the directory where it is saved.
-    - :download:`test_install.py<test_install.py>` 
+  
+  - :download:`test_install.py<test_install.py>` 
 
   .. code-block:: console
 
-    cd wherever/you/downloaded/them
+    cd wherever/you/downloaded/it
 
 .. container:: dothis
 
