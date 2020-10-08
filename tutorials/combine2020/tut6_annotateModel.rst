@@ -156,16 +156,16 @@ Step 2: Retrieve an item with a unique id
 
     **2.d** (C++ only) Cast the second attribute of the macro item into a libcellml::VariablePtr item using :code:`std::any_cast`.
 
-    .. container:: toggle
+.. container:: toggle
 
     .. container:: header
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
-        :language: c++
-        :start-at: //  2.b
-        :end-before: //  end 2
+        .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
+            :language: c++
+            :start-at: //  2.b
+            :end-before: //  end 2
 
 .. container:: toggle
 

@@ -117,6 +117,3 @@ Components must belong to only one parent, so when adding a component from one l
 This is shown in the code snippet below.
 
 .. include:: ../snippets/snippet_edit_encapsulation.rst
-
-
-
