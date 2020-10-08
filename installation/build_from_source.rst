@@ -1,8 +1,8 @@
 ..  _build_from_source:
 
-============================
+=============================
 Build and install from source
-============================
+=============================
 
 .. contents:: Contents
     :local:
@@ -111,16 +111,23 @@ Your directory structure should now look like:
       └─ source
           └─ ( ... the files you cloned in step 1.b )
 
-
 .. container:: dothis
 
-  **2.c (optional)** If you intend to use the Python bindings, you will need to install the Python version of the local library using pip.
+  **2.c (optional)** If you intend to use the Python bindings, you will need to install the Python version of the local library using pip3.
   Again, this expects that you are still in the :code:`build` directory.
 
   .. code-block:: console
 
-    pip install -e src/bindings/python
+    pip3 install -e src/bindings/python
 
+.. container:: dothis
+
+  **2.d (optional)** Run the tests on the library from the :code:`build` directory.
+  Expect to see that all tests have passed.
+
+  .. code-block:: console
+
+    make test
 
 3: Test the installation: C++
 ============================
