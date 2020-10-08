@@ -44,6 +44,10 @@ if __name__ == '__main__':
     #      to this component, rather than the model.
     #      Add the component to the model using the Model::addComponent() function.
 
+    #  1.e
+    #      Print the model to the terminal using the print_model helper function and 
+    #      check it is what you'd expect.
+
     print('----------------------------------------------------------')
     print('   STEP 2: Create the gateEquations component             ')
     print('----------------------------------------------------------')
@@ -57,6 +61,11 @@ if __name__ == '__main__':
     #  2.c 
     #     Add the mathematics to the gateEquations component.
 
+    #  2.d
+    #      Print the model to the terminal using the print_model helper function and 
+    #      check it is what you'd expect.  Include the second argument as True so that 
+    #      the maths is included.
+    
     print('----------------------------------------------------------')
     print('   STEP 3: Validate the model                             ')
     print('----------------------------------------------------------')

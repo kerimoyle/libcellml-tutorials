@@ -96,6 +96,15 @@ All other components will then need to be added to this component, rather than t
 
     **1.d** Add the component to the model using the :code:`addComponent` function.
 
+.. container:: useful
+
+    A utility function :code:`printModel(Model, bool)` (C++) or :code:`print_model` (Python) has been provided to help you to see what's going  on inside your model.
+    Setting the second optional parameter to :code:`true` will also print the MathML content.
+
+.. container:: dothis
+
+    **1.e** Print your model to the terminal and check that the structure is what you'd expect.
+
 .. container:: toggle
 
     .. container:: header
@@ -117,6 +126,16 @@ All other components will then need to be added to this component, rather than t
         :language: python
         :start-at: #  1.a
         :end-before: # end 1
+
+.. code-block:: terminal
+
+    MODEL: 'GateModel'
+        UNITS: 0 custom units
+        COMPONENTS: 1 components
+            [0]: gate
+                VARIABLES: 0 variables
+
+
 
 Step 2: Create the gateEquations component
 ------------------------------------------
@@ -181,6 +200,10 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
     These are provided for you in the skeleton code, or simply copy them from below.
     Use the :code:`setMath` and :code:`appendMath` functions to add your strings to the equations component.
 
+.. container:: dothis
+
+    **2.d** Print the model to the terminal and include the optional second argument of :code:`true` to include the MathML.
+    
 .. container:: toggle
 
     .. container:: header
@@ -202,6 +225,39 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
         :language: python
         :start-at: #  2.c
         :end-before: # end 2
+
+.. code-block:: terminal
+
+    MODEL: 'GateModel'
+    UNITS: 0 custom units
+    COMPONENTS: 1 components
+        [0]: gate
+            VARIABLES: 0 variables
+            COMPONENT gate has 1 child components:
+                [0]: gateEquations
+                    VARIABLES: 0 variables
+                  Maths in the component is:
+                    <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">
+                        <apply><eq/>
+                            <apply><diff/>
+                            <bvar><ci>t</ci></bvar>
+                            <ci>X</ci>
+                            </apply>
+                            <apply><minus/>
+                            <apply><times/>
+                                <ci>alpha_X</ci>
+                                <apply><minus/>
+                                <cn cellml:units="dimensionless">1</cn>
+                                <ci>X</ci>
+                                </apply>
+                            </apply>
+                            <apply><times/>
+                                <ci>beta_X</ci>
+                                <ci>X</ci>
+                            </apply>
+                            </apply>
+                        </apply>
+                    </math>
 
 Step 3: Validate the model
 --------------------------
@@ -267,20 +323,22 @@ Calling the validator does not return anything: we have to go looking for issues
 We can use these issues as we need to.
 The simplest way is to print the descriptions to the terminal.
 
-Two helper functions have been provided for this tutorial that will help printing enumerated values to the terminal.  
-These are:
+.. container:: useful
 
-.. container:: shortlist
+    Two helper functions have been provided for this tutorial that will help printing the string equivalent of enumerated values to the terminal.
+    These are:
 
-    **C++**
+    .. container:: shortlist
 
-    - getIssueLevelFromEnum; and
-    - getCellmlElementTypeFromEnum. 
+        **C++**
 
-    **Python**
+        - getIssueLevelFromEnum; and
+        - getCellmlElementTypeFromEnum. 
 
-    - get_issue_level_from_enum; and
-    - get_item_type_from_enum.
+        **Python**
+
+        - get_issue_level_from_enum; and
+        - get_item_type_from_enum.
 
 .. container:: dothis
 
@@ -539,6 +597,10 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
 
     **5.e** Validate again, and expect no errors.
 
+.. container:: dothis
+
+    **5.f** Print the model to the terminal and check it's what you'd expect.
+
 .. container:: toggle
 
     .. container:: header
@@ -560,6 +622,23 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
         :language: python
         :start-at: #  5.c
         :end-before: #  end 5
+
+.. code-block:: terminal
+
+    MODEL: 'GateModel'
+    UNITS: 2 custom units
+        [0]: ms
+        [1]: per_ms
+    COMPONENTS: 1 components
+        [0]: gate
+            VARIABLES: 0 variables
+            COMPONENT gate has 1 child components:
+                [0]: gateEquations
+                    VARIABLES: 4 variables
+                        [0]: t [ms]
+                        [1]: alpha_X [per_ms]
+                        [2]: beta_X [per_ms]
+                        [3]: X [dimensionless]
 
 Step 6: Analyse the mathematical construction of the model
 ----------------------------------------------------------

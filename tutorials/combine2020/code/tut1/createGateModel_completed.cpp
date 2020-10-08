@@ -52,6 +52,11 @@ int main()
     //      Add the component to the model using the Model::addComponent() function.
     model->addComponent(gate);
 
+    //  1.e
+    //      Print the model to the terminal using the printModel helper function and 
+    //      check it is what you'd expect.
+    printModel(model);
+
     // end 1
 
     std::cout << "----------------------------------------------------------" << std::endl;
@@ -92,6 +97,11 @@ int main()
     gateEquations->setMath(mathHeader);
     gateEquations->appendMath(equation);
     gateEquations->appendMath(mathFooter);
+
+    //  2.d
+    //      Print the model to the terminal and include the optional second argument of true
+    //      to include the MathML.
+    printModel(model, true);
 
     // end 2
 
@@ -206,6 +216,11 @@ int main()
     //      Validate again, and expect no errors.
     validator->validateModel(model);
     printIssues(validator);
+
+    //  5.f
+    //      Print the model to the terminal and include the optional second argument of true
+    //      to include the MathML.
+    printModel(model, true);
 
     //  end 5
 

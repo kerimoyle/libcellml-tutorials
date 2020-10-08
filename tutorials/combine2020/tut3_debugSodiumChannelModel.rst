@@ -16,7 +16,7 @@ Tutorial 3: Debugging a model
 
 .. container:: shortlist
 
-    **Requirements (C++)**
+    **Code (C++)**
 
     - :download:`CMakeLists.txt<code/tut3/CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`debugSodiumChannelModel.cpp<code/tut3/debugSodiumChannelModel.cpp>` Either the skeleton code, or ..
@@ -25,7 +25,7 @@ Tutorial 3: Debugging a model
 
 .. container:: shortlist
 
-    **Requirements (Python)**
+    **Code (Python)**
 
     - :download:`debugSodiumChannelModel.py<code/tut3/debugSodiumChannelModel.py>` Either the skeleton code, or ..
     - :download:`debugSodiumChannelModel_completed.py<code/tut3/debugSodiumChannelModel_completed.py>` the completed tutorial code; and
@@ -38,18 +38,14 @@ Tutorial 3: Debugging a model
     - :download:`SodiumChannelModel_broken.cellml<code/resources/SodiumChannelModel_broken.cellml>` a sodium channel model that needs debugging;
     - :download:`CircularControllerReference.cellml<code/resources/CircularControllerReference.cellml>` import file;
     - :download:`CircularControllerReference2.cellml<code/resources/CircularControllerReference2.cellml>` import file; and
-    - :download:`SodiumChannelModelController.cellml<code/resources/SodiumChannelModelController.cellml>` import file;
-
-
-
-
+    - :download:`SodiumChannelController.cellml<code/resources/SodiumChannelController.cellml>` import file.
 
 .. contents:: Contents
     :local:
 
 Overview
 --------
-**TODO**
+This tutorial looks at how a "broken" model can be investigated and debugged using the diagnostic tools in the three special classes: the :code:`Importer`, the :code:`Analyser`, and the :code:`Validator`.
 
 Step 1: Parse the existing sodium channel model
 -----------------------------------------------
@@ -79,7 +75,7 @@ The parser will then read that string and return a model.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  1.a
         :end-before: //  end 1
@@ -90,7 +86,7 @@ The parser will then read that string and return a model.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  1.a
         :end-before: #  end 1
@@ -109,7 +105,7 @@ Create a :code:`Validator` item and use it to validate the model you've just rea
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  2.a
         :end-before: //  end 2.a
@@ -120,21 +116,14 @@ Create a :code:`Validator` item and use it to validate the model you've just rea
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  2.a
         :end-before: #  end 2.a
 
-Each :code:`Issue` contains:
-- a description of the problem;
-- the reference heading in the normative specification which affects this issue;
-- a URL at which the informative specification notes can be found;
-- an std::any item storing the CellML element most relevant to the issue; and
-- a level indication. 
-
 .. container:: dothis
 
-    **2.b** Retrieve any issues from the validator and print their descriptions and help URL to the terminal.
+    **2.b** Retrieve any issues from the validator and print them to the terminal.
 
 .. container:: toggle
 
@@ -142,7 +131,7 @@ Each :code:`Issue` contains:
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  2.b
         :end-before: //  end 2
@@ -153,7 +142,7 @@ Each :code:`Issue` contains:
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  2.b
         :end-before: #  end 2
@@ -186,7 +175,7 @@ In some situations more than one :code:`Issue` will be generated from a single c
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.a
         :end-before: //  end 3.a
@@ -197,7 +186,7 @@ In some situations more than one :code:`Issue` will be generated from a single c
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  3.a
         :end-before: #  end 3.a
@@ -225,7 +214,7 @@ In some situations more than one :code:`Issue` will be generated from a single c
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.b
         :end-before: //  end 3.b
@@ -236,7 +225,7 @@ In some situations more than one :code:`Issue` will be generated from a single c
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  3.b
         :end-before: #  end 3.b
@@ -274,7 +263,7 @@ We can retrieve the affected item directly from the issue in one of two ways:
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.c
         :end-before: //  end 3.c
@@ -285,7 +274,7 @@ We can retrieve the affected item directly from the issue in one of two ways:
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  3.c
         :end-before: #  end 3.c
@@ -331,7 +320,7 @@ You have a few different options for how to fix this one.
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.d
         :end-before: //  end 3.d
@@ -342,7 +331,7 @@ You have a few different options for how to fix this one.
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  3.d
         :end-before: #  end 3.d
@@ -365,7 +354,7 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.e
         :end-before: //  3.f
@@ -376,7 +365,7 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  3.e
         :end-before: #  3.f
@@ -420,7 +409,7 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  3.g
         :end-before: //  end 3
@@ -431,7 +420,7 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  3.g
         :end-before: #  end 3
@@ -471,7 +460,7 @@ For this tutorial, the files are in the same directory as the code, so simply us
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  4.a
         :end-before: //  end 4.b
@@ -482,7 +471,7 @@ For this tutorial, the files are in the same directory as the code, so simply us
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  4.a
         :end-before: #  end 4.b
@@ -514,7 +503,7 @@ For this tutorial, the files are in the same directory as the code, so simply us
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  4.c
         :end-before: //  end 4.c
@@ -525,7 +514,7 @@ For this tutorial, the files are in the same directory as the code, so simply us
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  4.c
         :end-before: #  end 4.c
@@ -563,7 +552,7 @@ It's included here to highlight the fact that the :code:`Importer` class opens a
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  4.d
         :end-before: //  end 4
@@ -574,7 +563,7 @@ It's included here to highlight the fact that the :code:`Importer` class opens a
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  4.d
         :end-before: #  end 4
@@ -604,7 +593,7 @@ These dependencies are stored in the importer's library, and have not yet been v
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  5.a
         :end-before: //  end 5.a
@@ -615,7 +604,7 @@ These dependencies are stored in the importer's library, and have not yet been v
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  5.a
         :end-before: #  end 5.a
@@ -650,7 +639,7 @@ As soon as the model's imports have been resolved, all these will point to insta
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  5.b
         :end-before: //  end 5
@@ -661,7 +650,7 @@ As soon as the model's imports have been resolved, all these will point to insta
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  5.b
         :end-before: #  end 5
@@ -712,7 +701,7 @@ If the flat model meets the analyser's checks, then the importing version will t
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  6.a
         :end-before: //  end 6.d
@@ -723,7 +712,7 @@ If the flat model meets the analyser's checks, then the importing version will t
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  6.a
         :end-before: #  end 6.d
@@ -762,7 +751,7 @@ In this example, the real problem is that these two variables are talking about 
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  6.e
         :end-before: //  end 6.f
@@ -773,7 +762,7 @@ In this example, the real problem is that these two variables are talking about 
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  6.e
         :end-before: #  end 6.f
@@ -795,7 +784,7 @@ Looking at the model printout we can see that this is because the integrated var
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  6.g
         :end-before: //  end 6.g
@@ -806,7 +795,7 @@ Looking at the model printout we can see that this is because the integrated var
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  6.g
         :end-before: #  end 6.g
@@ -840,7 +829,7 @@ Hints:
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  6.h
         :end-before: //  end 6
@@ -851,7 +840,7 @@ Hints:
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  6.h
         :end-before: #  end 6
@@ -877,7 +866,7 @@ auto modelString = printer->printModel(model);
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.cpp
         :language: c++
         :start-at: //  7.a
         :end-before: //  end
@@ -888,7 +877,7 @@ auto modelString = printer->printModel(model);
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/debugSodiumChannelModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut3/debugSodiumChannelModel_completed.py
         :language: python
         :start-at: #  7.a
         :end-before: #  end

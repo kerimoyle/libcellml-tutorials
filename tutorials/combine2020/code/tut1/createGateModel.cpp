@@ -48,6 +48,10 @@ int main()
     //      to this component, rather than the model.
     //      Add the component to the model using the Model::addComponent() function.
 
+    //  1.e
+    //      Print the model to the terminal using the printModel helper function and 
+    //      check it is what you'd expect.
+
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 2: Create the gateEquations component             " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
@@ -60,6 +64,11 @@ int main()
   
     //  2.c 
     //      Add the mathematics to the gateEquations component.
+
+    //  2.d
+    //      Print the model to the terminal and include the optional second argument of true
+    //      to include the MathML.
+    printModel(model, true);
    
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 3: Validate the model                            " << std::endl;

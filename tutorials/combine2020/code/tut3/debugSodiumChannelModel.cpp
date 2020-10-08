@@ -284,10 +284,6 @@ int main()
 
     //  6.d 
     //      Analyse the flattened model and print the issues to the screen.
-    analyser->analyseModel(flatModel);
-    printIssues(analyser);
-
-    //  end 6.d
 
     //      The issue returned from the analyser says that we're trying to use two different variables
     //      as the base variable of integration, and the CellML code generation facility (which the analyser

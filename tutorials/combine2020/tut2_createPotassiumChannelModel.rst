@@ -1,8 +1,7 @@
 ..  _combine_createPotassiumChannelModel:
 
-Tutorial 2: Creating a model using imports
-==========================================
-
+Tutorial 2: Creating a model which uses imports
+===============================================
 
 .. container:: shortlist
 
@@ -188,7 +187,6 @@ Once the mathematics has been added to the component, and the component to the m
     - issueCount
     - issue
 
-
 .. container:: dothis
 
     **2.c** Create a :code:`Validator` instance, and pass it your model for processing using the :code:`validateModel` function.
@@ -216,10 +214,9 @@ Once the mathematics has been added to the component, and the component to the m
         :end-before: #  end 2.c
 
 Calling the validator does not return anything: we have to go looking for issues that it found during processing.
+When a problem is found, an :code:`Issue` item is created containing:
 
 .. container:: shortlist
-
-    When a problem is found, an :code:`Issue` item is created containing:
 
     - a description string explaining the problem;
     - a URL at which more information is available;
@@ -233,6 +230,8 @@ The simplest way is to print the descriptions to the terminal.
 .. container:: dothis
 
     **2.d** Retrieve the number of issues encountered using the :code:`issueCount` function in the validator, then retrieve the issue items from the validator using their index and the :code:`issue(index)` function.
+    Print their information to the terminal.  
+    (Alternatively use the helper :code:`printIssues` or :code:`print_issues` function to do it for you).
 
 .. container:: toggle
 
@@ -255,6 +254,15 @@ The simplest way is to print the descriptions to the terminal.
         :language: python
         :start-at: #  2.d
         :end-before: #  2.e
+
+.. code-block:: terminal
+
+    The validator has found 5 issues.
+    MathML ci element has the child text 'i_K' which does not correspond with any variable names present in component 'potassiumChannelEquations'.
+    MathML ci element has the child text 'n' which does not correspond with any variable names present in component 'potassiumChannelEquations'.
+    MathML ci element has the child text 'g_K' which does not correspond with any variable names present in component 'potassiumChannelEquations'.
+    MathML ci element has the child text 'V' which does not correspond with any variable names present in component 'potassiumChannelEquations'.
+    MathML ci element has the child text 'E_K' which does not correspond with any variable names present in component 'potassiumChannelEquations'.
 
 .. container:: useful
 
@@ -305,6 +313,20 @@ The simplest way is to print the descriptions to the terminal.
         :language: python
         :start-at: #  2.e
         :end-before: #  2.f
+
+.. code-block:: terminal
+
+    Recorded 12 issues:
+    Issue [0] is an ERROR:
+        description: CellML identifiers must contain one or more basic Latin alphabetic characters.
+        see section 1.3.1.1 in the CellML specification.
+        stored item type: UNDEFINED
+    Issue [1] is an ERROR:
+        description: Variable 'E_K' in component 'potassiumChannelEquations' does not have a valid units attribute. The attribute given is ''.
+        see section 2.8.1.2 in the CellML specification.
+        stored item type: VARIABLE
+    
+    ... etc ...
 
 .. container:: dothis
 
@@ -367,7 +389,6 @@ The simplest way is to print the descriptions to the terminal.
 
 Step 3: Create the nGate and its child components
 -------------------------------------------------
-
 The nGateEquations has some of the working of a generic gate (which we'll import from GateModel.cellml), but instead of constant values for alpha and beta, we'll introduce a voltage dependence.
 The nGateParameters component allows us to specify those parameters specific to the movement of potassium.
 
@@ -428,6 +449,24 @@ The nGateParameters component allows us to specify those parameters specific to 
         :start-at: #  3.c
         :end-before: #  3.d
 
+.. code-block:: terminal
+
+    Recorded 7 issues:
+    Issue [0] is an ERROR:
+        description: MathML ci element has the child text 'alpha_n' which does not correspond with any variable names present in component 'nGateEquations'.
+        see section 2.12.3 in the CellML specification.
+        stored item type: MATH
+    Issue [1] is an ERROR:
+        description: Math has a cn element with a cellml:units attribute 'per_mV_ms' that is not a valid reference to units in the model 'PotassiumChannelModel' or a standard unit.
+        see section 2.13.4 in the CellML specification.
+        stored item type: MATH
+    Issue [2] is an ERROR:
+        description: MathML ci element has the child text 'V' which does not correspond with any variable names present in component 'nGateEquations'.
+        see section 2.12.3 in the CellML specification.
+        stored item type: MATH
+
+    ... etc ... 
+
 .. container:: dothis
 
     **3.d** Add the missing variables to the nGateEquations component, and validate again.
@@ -454,6 +493,28 @@ The nGateParameters component allows us to specify those parameters specific to 
         :language: python
         :start-at: #  3.d
         :end-before: #  end 3.d
+
+.. code-block:: terminal
+
+    Recorded 12 issues:
+    Issue [0] is an ERROR:
+        description: CellML identifiers must contain one or more basic Latin alphabetic characters.
+        see section 1.3.1.1 in the CellML specification.
+        stored item type: UNDEFINED
+    Issue [1] is an ERROR:
+        description: Variable 't' in component 'nGateEquations' does not have a valid units attribute. The attribute given is ''.
+        see section 2.8.1.2 in the CellML specification.
+        stored item type: VARIABLE
+    Issue [2] is an ERROR:
+        description: CellML identifiers must contain one or more basic Latin alphabetic characters.
+        see section 1.3.1.1 in the CellML specification.
+        stored item type: UNDEFINED
+    Issue [3] is an ERROR:
+        description: Variable 'V' in component 'nGateEquations' does not have a valid units attribute. The attribute given is ''.
+        see section 2.8.1.2 in the CellML specification.
+        stored item type: VARIABLE
+    
+    ... etc ...
 
 .. container:: dothis
 
@@ -663,6 +724,21 @@ The analyser is similar to the :code:`Validator` class and keeps a record of iss
     **6.b** Retrieve the analyser's issues and print them to the terminal, just as you've done for the validator.
     Expect messages related to un-computed variables.
 
+.. code-block:: terminal
+
+    Recorded 11 issues:
+    Issue [0] is an ERROR:
+        description: Variable 'V' in component 'nGateEquations' is not computed.
+        stored item type: VARIABLE
+    Issue [1] is an ERROR:
+        description: Variable 'alpha_n' in component 'nGateEquations' is not computed.
+        stored item type: VARIABLE
+    Issue [2] is an ERROR:
+        description: Variable 'beta_n' in component 'nGateEquations' is not computed.
+        stored item type: VARIABLE
+    
+    ... etc ...
+
 Even though all of the messages we see are "variable not calculated" errors, we can divide them into different categories:
 
 - those variables which are constants whose value has not been set yet;
@@ -741,7 +817,7 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
 
 .. container:: dothis
 
-    **7.b** Create parameters components for the equations components, and add cloned versions of ny variables which need to be given a value into the new parameters components.
+    **7.b** Create parameters components for the equations components, and add cloned versions of any variables which need to be given a value into the new parameters components.
 
 .. container:: toggle
 
@@ -775,6 +851,16 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
 
     **7.d** Create variable connections between these variables and their counterparts in the equations components.
     Validate, expecting errors related to missing or incorrect interface types.
+
+.. code-block:: terminal
+
+    Recorded 6 issues:
+    Issue [0] is an ERROR:
+        description: Variable 'E_K' in component 'potassiumChannelEquations' has no interface type set. The interface type required is 'public'.
+        see section 3.10.8 in the CellML specification.
+        stored item type: VARIABLE
+
+    ... etc ... 
 
 .. container:: dothis
 
@@ -856,6 +942,60 @@ Voltage is needed by the potassium channel and nGate equations components.
 .. container:: dothis
 
     **8.a** Print the model to the terminal and notice the components which contain V and t variables.  
+
+.. code-block:: terminal
+
+    MODEL: 'PotassiumChannelModel'
+        UNITS: 7 custom units
+            [0]: ms
+            [1]: mV
+            [2]: mM
+            [3]: microA_per_cm2
+            [4]: milliS_per_cm2
+            [5]: per_ms
+            [6]: per_mV_ms
+        COMPONENTS: 2 components
+            [0]: potassiumChannel
+                VARIABLES: 0 variables
+                COMPONENT potassiumChannel has 2 child components:
+                    [0]: potassiumChannelEquations
+                        VARIABLES: 6 variables
+                            [0]: E_K [mV]
+                                └──> potassiumChannelParameters:E_K [mV]
+                            [1]: i_K [microA_per_cm2]
+                            [2]: g_K [milliS_per_cm2]
+                                └──> potassiumChannelParameters:g_K [milliS_per_cm2]
+                            [3]: V [mV]
+                            [4]: t [ms]
+                            [5]: n [dimensionless]
+                        COMPONENT potassiumChannelEquations has 1 child components:
+                            [0]: nGate
+                                VARIABLES: 1 variables
+                                    [0]: n [dimensionless]
+                                        └──> nGateEquations:n [dimensionless]
+                                COMPONENT nGate has 2 child components:
+                                    [0]: nGateEquations
+                                        VARIABLES: 5 variables
+                                            [0]: t [ms]
+                                            [1]: V [mV]
+                                            [2]: alpha_n [per_ms]
+                                            [3]: beta_n [per_ms]
+                                            [4]: n [dimensionless]
+                                                └──> nGate:n [dimensionless]
+                                        COMPONENT nGateEquations has 1 child components:
+                                            [0]: importedGate <--- imported from: 'gateEquations' in 'GateModel.cellml'
+                                                VARIABLES: 0 variables
+                                    [1]: nGateParameters
+                                        VARIABLES: 1 variables
+                                            [0]: n [dimensionless], initial = 0.325
+                    [1]: potassiumChannelParameters
+                        VARIABLES: 2 variables
+                            [0]: E_K [mV], initial = -85
+                                └──> potassiumChannelEquations:E_K [mV]
+                            [1]: g_K [milliS_per_cm2], initial = 36
+                                └──> potassiumChannelEquations:g_K [milliS_per_cm2]
+            [1]: controller <--- imported from: 'controller' in 'PotassiumChannelController.cellml'
+                VARIABLES: 0 variables
 
 Connections between the variables in any two components are only possible when those components are in a sibling-sibling or parent-child relationship.
 We can see from the printed structure that the top-level potassium channel component doesn't have any variables, and neither does the nGate component.
@@ -1046,7 +1186,7 @@ The models which have the source components that we wanted to reuse from the Gat
 
     **10.d** Iterate through the items in the library (:code:`libraryCount` will give you the total), and print its keys to the terminal.
     The keys can be retrieved as a string from the :code:`key(index)` function.  
-    This should contain one model.
+    This should contain two models.
 
 .. container:: toggle
 
@@ -1069,6 +1209,12 @@ The models which have the source components that we wanted to reuse from the Gat
         :language: python
         :start-at: #  10.d
         :end-before: #  10.e
+
+.. code-block:: terminal
+
+    The importer has 2 models in the library.
+        library(0) = GateModel.cellml
+        library(1) = PotassiumChannelController.cellml
 
 .. container:: dothis
 
@@ -1233,7 +1379,7 @@ Step 11: Output the model
 
     **11.a** Create a :code:`Printer` instance and use it to serialise the model.
     This creates a string containing the CellML-formatted version of the model.
-    Write this to a file called "PotassiumChannelModel.cellml".
+    Write this to a file called "PotassiumChannelModel.cellml"; you will need this in :ref:`Tutorial 4<combine_generateMembraneModel>`.
 
 .. container:: toggle
 

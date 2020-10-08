@@ -8,12 +8,12 @@ COMBINE2020 libCellML Tutorials
     :maxdepth: 2
     :titlesonly:
 
-    combine2020/createGateModel.rst
-    combine2020/createPotassiumChannelModel.rst
-    combine2020/debugSodiumChannelModel.rst
-    combine2020/generateMembraneModel.rst
-    combine2020/solveGeneratedCode.rst
-    combine2020/annotateModel.rst
+    combine2020/tut1_createGateModel.rst
+    combine2020/tut2_createPotassiumChannelModel.rst
+    combine2020/tut3_debugSodiumChannelModel.rst
+    combine2020/tut4_generateMembraneModel.rst
+    combine2020/tut5_solveGeneratedCode.rst
+    combine2020/tut6_annotateModel.rst
 
 ..     
     tutorial1/outline1
