@@ -94,8 +94,8 @@ int main()
     //          - component.
 
     //  2.b
-    //  Get the number of state variables and iterate through the STATE_INFO structure to
-    //  retrieve and print each state variable's information to the terminal.
+    //      Get the number of state variables and iterate through the STATE_INFO structure to
+    //      retrieve and print each state variable's information to the terminal.
     std::cout << std::endl;
     std::cout << "STATE_COUNT = " << STATE_COUNT << std::endl;
     for (size_t s = 0; s < STATE_COUNT; ++s) {

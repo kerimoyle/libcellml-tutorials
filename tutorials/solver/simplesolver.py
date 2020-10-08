@@ -104,7 +104,7 @@ if __name__ == "__main__":
     my_variables = model.create_variables_array()
     my_state_variables = model.create_states_array()
     my_rates = model.create_states_array()
-    model.initialize_states_and_constants(my_state_variables, my_variables)
+    model.initialise_states_and_constants(my_state_variables, my_variables)
     model.compute_computed_constants(my_variables)
     model.compute_rates(0, my_state_variables, my_rates, my_variables)
     model.compute_variables(0, my_state_variables, my_rates, my_variables)
