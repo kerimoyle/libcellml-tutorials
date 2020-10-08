@@ -17,8 +17,6 @@
 
 #include <libcellml>
 
-#include "tutorial_utilities.h"
-
 // Change this to the name of your header file if need be.
 #include "HodgkinHuxleyModel.h"
 

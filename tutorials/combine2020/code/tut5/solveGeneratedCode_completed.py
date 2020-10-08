@@ -11,21 +11,27 @@
       - The basic idea of numerical integration using Euler's method (see ).
 '''
 
-# def module_from_file(input):
+import sys
+import importlib
 
-#     # Shouldn't need to check this if the extension is stripped during input
-#     if input[-3:] != '.py':
-#         module_file = input + '.py'
-#         module_name = input.split('/')[-1]
-#     else:
-#         module_file = input
-#         module_name = '.'.join(input.split('/')[-1].split('.')[:-1])
+def module_from_file(input):
 
-#     spec = importlib.util.spec_from_file_location(module_name, module_file)
-#     module = importlib.util.module_from_spec(spec)
-#     sys.modules[module_name] = module
-#     spec.loader.exec_module(module)
-#     return module
+    # Shouldn't need to check this if the extension is stripped during input
+    if input[-3:] != '.py':
+        module_file = input + '.py'
+        module_name = input.split('/')[-1]
+    else:
+        module_file = input
+        module_name = '.'.join(input.split('/')[-1].split('.')[:-1])
+
+    print(module_file)
+    print(module_name)
+
+    spec = importlib.util.spec_from_file_location(module_name, module_file)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    return module
 
 
 if __name__ == '__main__':
@@ -35,8 +41,8 @@ if __name__ == '__main__':
     print('-----------------------------------------------------------')
 
 
-    # model = module_from_file('HodgkinHuxleyModel.py')
-    model = importlib.import_module('HodgkinHuxleyModel.py')
+    model = module_from_file('HodgkinHuxleyModel.py')
+    # model = importlib.import_module('HodgkinHuxleyModel.py')
 
 
     print('-----------------------------------------------------------')
@@ -68,12 +74,12 @@ if __name__ == '__main__':
     #       retrieve and print each variable's information to the terminal.
     print('VARIABLE_COUNT = {}'.format(model.VARIABLE_COUNT))
 
-    for v in range (0, model.VARIABLE_COUNT)
+    for v in range (0, model.VARIABLE_COUNT):
         print('Variable {}:'.format(v))
-        print('  name = {}'.format(model.VARIABLE_INFO[v].name)
-        print('  units = {}'.format(model.VARIABLE_INFO[v].units)
-        print('  component = {}'.format(model.VARIABLE_INFO[v].component)
-        print('  type = {}'.format(model.VARIABLE_INFO[v].type)
+        print('  name = {}'.format(model.VARIABLE_INFO[v]['name']))
+        print('  units = {}'.format(model.VARIABLE_INFO[v]['units']))
+        print('  component = {}'.format(model.VARIABLE_INFO[v]['component']))
+        print('  type = {}'.format(model.VARIABLE_INFO[v]['type']))
     print()
     #      'State variables' are those which need integration.
     #      They are stored in an array of VariableInfo structs called STATE_INFO which
@@ -87,19 +93,19 @@ if __name__ == '__main__':
     #       retrieve and print each state variable's information to the terminal.
     print('STATE_COUNT = {}'.format(model.STATE_COUNT))
     for s in range(0, model.STATE_COUNT):
-        print('State variable {s}:'.format(s))
-        print('  name = {}'.format(model.STATE_INFO[s].name))
-        print('  units = {}'.format(model.STATE_INFO[s].units))
-        print('  component = {}'.format(model.STATE_INFO[s].component))
+        print('State variable {}:'.format(s))
+        print('  name = {}'.format(model.STATE_INFO[s]['name']))
+        print('  units = {}'.format(model.STATE_INFO[s]['units']))
+        print('  component = {}'.format(model.STATE_INFO[s]['component']))
     print()
 
     #  2.c 
     #       Get the integration variable and print its information to the terminal. This
     #       is stored in a VariableInfo struct called VOI_INFO.
     print('VOI_INFO')
-    print('  name = {}'.format(model.VOI_INFO.name))
-    print('  units = {}'.format(model.VOI_INFO.units))
-    print('  component = {}'.format(model.VOI_INFO.component))
+    print('  name = {}'.format(model.VOI_INFO['name']))
+    print('  units = {}'.format(model.VOI_INFO['units']))
+    print('  component = {}'.format(model.VOI_INFO['component']))
     print()
 
     #  end 2
@@ -141,18 +147,18 @@ if __name__ == '__main__':
     print('The initial values for variables are:')
     for v in range(0, model.VARIABLE_COUNT):
         print('  {} = {} ({})'.format(
-            model.VARIABLE_INFO[v].name,
+            model.VARIABLE_INFO[v]['name'],
             my_variables[v],
-            model.VARIABLE_INFO[v].units
+            model.VARIABLE_INFO[v]['units']
             ))
     print()
 
     print('The initial conditions for state variables are:')
     for v in range(0, model.STATE_COUNT):
         print('  {} = {} ({})'.format(
-            model.STATE_INFO[v].name,
+            model.STATE_INFO[v]['name'],
             my_variables[v],
-            model.STATE_INFO[v].units
+            model.STATE_INFO[v]['units']
             ))
     print()
 
@@ -162,9 +168,9 @@ if __name__ == '__main__':
     model.compute_computed_constants(my_variables)
     for v in range(0, model.VARIABLE_COUNT):
         print('  {} = {} ({})'.format(
-            model.VARIABLE_INFO[v].name,
+            model.VARIABLE_INFO[v]['name'],
             my_variables[v],
-            model.VARIABLE_INFO[v].units
+            model.VARIABLE_INFO[v]['units']
             ))
     print()
 
@@ -194,7 +200,7 @@ if __name__ == '__main__':
 
     #  4.c Create a file for output and open it. You can use the information to name columns
     #      with the variables, component, and units so you can keep track later.
-    write_file = open(write_file_name, 'w')
+    write_file = open('HodgkinHuxleyModelSolution.txt', 'w')
     row = 'iteration\t{}({})'.format(
         model.VOI_INFO['name'], model.VOI_INFO['units'])
     for s in range(0, model.STATE_COUNT):
@@ -218,8 +224,8 @@ if __name__ == '__main__':
 
     #  4.d 
     #      Iterate through the time domain and write the solution at each step. 
-    for step in range(0, args['n']):
-        time = step * args['dt']
+    for step in range(0, step_count):
+        time = step * step_size
 
         # Compute the rates at this step using the given function.
         model.compute_rates(time, my_state_variables, my_rates, my_variables)
@@ -228,7 +234,7 @@ if __name__ == '__main__':
 
         # Compute the states.
         for s in range(0, model.STATE_COUNT):
-            my_state_variables[s] = my_state_variables[s] + my_rates[s] * args['dt']
+            my_state_variables[s] = my_state_variables[s] + my_rates[s] * step_size
             row += '\t{}'.format(my_state_variables[s])
 
         # Compute the variables.
@@ -239,11 +245,15 @@ if __name__ == '__main__':
         row += '\n'
         write_file.write(row)
 
+        # Print progress bar.
         if step % incr == 0:
             print('.', end='', flush=True)
 
     write_file.close()
    
    #  end 4
+
+    print()
+    print()
 
     print('The results have been written to \'HodgkinHuxleyModelSolution.txt\'')
