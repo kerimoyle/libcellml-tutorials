@@ -16,16 +16,16 @@ Tutorial 1: Creating a model using the API
 
     **Requirements (C++)**
 
-    - :download:`CMakeLists.txt<CMakeLists_GateModel.txt>` The CMake file for building this tutorial;
-    - :download:`createGateModel.cpp<createGateModel.cpp>` Either the skeleton code, or ..
-    - :download:`createGateModel_completed.cpp<createGateModel_completed.cpp>` the completed tutorial code.
+    - :download:`CMakeLists.txt<code/CMakeLists_GateModel.txt>` The CMake file for building this tutorial;
+    - :download:`createGateModel.cpp<code/createGateModel.cpp>` Either the skeleton code, or ..
+    - :download:`createGateModel_completed.cpp<code/createGateModel_completed.cpp>` the completed tutorial code.
 
 .. container:: shortlist
 
     **Requirements (Python)**
 
-    - :download:`createGateModel.py<createGateModel.py>` Either the skeleton code, or ..
-    - :download:`createGateModel_completed.py<createGateModel_completed.py>` the completed tutorial code.
+    - :download:`createGateModel.py<code/createGateModel.py>` Either the skeleton code, or ..
+    - :download:`createGateModel_completed.py<code/createGateModel_completed.py>` the completed tutorial code.
 
 .. contents:: Contents
     :local:
@@ -270,7 +270,7 @@ Two helper functions have been provided for this tutorial that will help printin
 .. container:: shortlist
 
     - getIssueLevelFromEnum; and
-    - getItemTypeAsString. 
+    - getCellmlElementTypeFromEnum. 
 
 .. container:: dothis
 

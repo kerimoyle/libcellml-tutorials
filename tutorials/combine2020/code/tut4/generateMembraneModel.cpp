@@ -1,5 +1,5 @@
 /**
- * COMBINE2020: Generate code for the Hodgkin-Huxley model.
+ * COMBINE2020 libCellML TUTORIAL 4: Generate code for the Hodgkin-Huxley model.
  * 
  *  By the time you've worked through this tutorial you will be able to:
  *      - Use the Generator class to create C or Python code representing a CellML model;
@@ -33,19 +33,13 @@ int main()
     //         file into a single string.  The Parser will then read that string and return a model.
 
     //  1.a Read a CellML file into a std::string.
-    std::ifstream inFile("MembraneModel.cellml");
-    std::stringstream inFileContents;
-    inFileContents << inFile.rdbuf();
 
     //  1.b Create a Parser item. 
-    auto parser = libcellml::Parser::create();
 
     //  1.c Use the parser to deserialise the contents of the string you've read and return the model.
-    auto model = parser->parseModel(inFileContents.str());
-
+ 
     //  1.d Print the parsed model to the terminal for viewing.
-    printModel(model, false);
-
+  
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 2: Resolve the imports and flatten                " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;

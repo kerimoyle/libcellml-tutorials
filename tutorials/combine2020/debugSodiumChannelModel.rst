@@ -244,14 +244,14 @@ As with 3.a, here we have more than one issue generated from the same cause: in 
     
 Each issue generated contains a pointer to the item to which it refers. 
 We can retrieve the affected item directly from the issue in one of two ways:
-     - retrieving an :code:`AnyItem` structure (whose "first" attribute is an enum of the :code:`ItemType`; 
+     - retrieving an :code:`AnyItem` structure (whose "first" attribute is an enum of the :code:`CellmlElementType`; 
        and "second" attribute is an std::any cast of the item itself); and casting it appropriately, or
      - since we know that the type of item in this error is a :code:`VARIABLE`, we can call the convenience method Issue::variable() to return the variable which needs attention.
  (Of course you could retrieve it using the name of its parent component and its name too - this is just another way!)
 
 .. container:: dothis
 
-    **3.c** Check that the item to be returned from the issue is in fact an :code:`ItemType::VARIABLE` by calling the :code:`type()` function.
+    **3.c** Check that the item to be returned from the issue is in fact an :code:`CellmlElementType::VARIABLE` by calling the :code:`type()` function.
     Retrieve the variable missing units from the issue.
     Set its units to be millivolts.
 

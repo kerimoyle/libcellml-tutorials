@@ -9,34 +9,31 @@ By the time you've worked through this tutorial you will be able to:
 
 This tutorial assumes you're already comfortable with:
 
-    - Parsing an existing CellML file into a model instance (see TODO);
+    - Parsing an existing CellML file into a model instance;
     - Using the diagnostic :code:`Validator` class to check for syntactic issues; 
     - Using the :code:`Importer` class to resolve and flatten imports; and
     - Using the :code:`Analyser` class to check for mathematical issues in the model. 
     - Writing to files. 
 
-**Requirements (C++)**
+**Code (C++)**
 
-- :download:`CMakeLists.txt` The CMake file for building this tutorial;
-- :download:`generateMembraneModel.cpp` Either the skeleton code, or ..
-- :download:`generateMembraneModel_completed.cpp` the completed tutorial code;
-- :download:`GateModel.cellml` the generic gate model (from Tutorial 1);
-- :download:`PotassiumChannelModel.cpp` the potassium channel model (from Tutorial 2);
-- :download:`SodiumChannelModel.cpp` the sodium channel model (from Tutorial 3);
-- :download:`LeakageModel.cellml` an import dependency representing current leakage; 
-- :download:`MembraneController.cellml` an import dependency for the membrane model controller; and
-- :download:`MembraneModel.cellml` the file to parse.
+- :download:`CMakeLists.txt<code/tut4/CMakeLists.txt>` The CMake file for building this tutorial;
+- :download:`generateMembraneModel.cpp<code/tut4/generateMembraneModel.cpp>` Either the skeleton code, or ..
+- :download:`generateMembraneModel_completed.cpp<code/tut4/generateMembraneModel_completed.cpp>` the completed tutorial code;
 
-**Requirements (Python)**
+**Code (Python)**
 
-- :download:`generateMembraneModel.py` Either the skeleton code, or ..
-- :download:`generateMembraneModel_completed.py` the completed tutorial code;
-- :download:`GateModel.cellml` the generic gate model (from Tutorial 1);
-- :download:`PotassiumChannelModel.cpp` the potassium channel model (from Tutorial 2);
-- :download:`SodiumChannelModel.cpp` the sodium channel model (from Tutorial 3);
-- :download:`LeakageModel.cellml` an import dependency representing current leakage; 
-- :download:`MembraneController.cellml` an import dependency for the membrane model controller; and
-- :download:`MembraneModel.cellml` the file to parse.
+- :download:`generateMembraneModel.py<code/tut4/generateMembraneModel.py>` Either the skeleton code, or ..
+- :download:`generateMembraneModel_completed.py<code/tut4/generateMembraneModel_completed.py>` the completed tutorial code;
+
+**Resources**
+
+- :download:`GateModel.cellml<code/resources/GateModel.cellml>` the generic gate model (from Tutorial 1);
+- :download:`PotassiumChannelModel.cellml<code/resources/PotassiumChannelModel.cellml>` the potassium channel model (from Tutorial 2);
+- :download:`SodiumChannelModel.cellml<code/resources/SodiumChannelModel.cellml>` the sodium channel model (from Tutorial 3);
+- :download:`LeakageModel.cellml<code/resources/LeakageModel.cellml>` an import dependency representing current leakage; 
+- :download:`MembraneController.cellml<code/resources/MembraneController.cellml>` an import dependency for the membrane model controller; and
+- :download:`MembraneModel.cellml<code/resources/MembraneModel.cellml>` the file to parse.
 
 **Contents**
 
@@ -56,34 +53,25 @@ Step 1: Parse the existing membrane model
 
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show C++ code
+        Show C++ snippet
 
-  .. code-block:: cpp
-
-		// Read the string from the file.
-		std::ifstream inFile("MembraneModel.cellml");
-		std::stringstream inFileContents;
-		inFileContents << inFile.rdbuf();
-
-		//  Create a Parser and use it to create a model.
-		auto parser = libcellml::Parser::create();
-		auto model = parser->parseModel(inFileContents.str());
-
-		//  Print the model to the terminal.
-		printModel(model, false);
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
+        :language: c++
+        :start-at: //  1.a
+        :end-before: //  end 1
 
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show Python code
+        Show Python snippet
 
-  .. code-block:: python
-
-    # Python goes here.
-
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
+        :language: python
+        :start-at: #  1.a
+        :end-before: #  end 1
 
 .. code-block:: terminal
 
@@ -160,7 +148,6 @@ Step 1: Parse the existing membrane model
                         [1]: V [mV], initial = 1
                               └──> membraneEquations:V [mV]
 
-
 Step 2: Resolve the imports and flatten
 ---------------------------------------
 In all of the other tutorials we've used a flattened model only to analyse its mathematics.
@@ -168,79 +155,73 @@ This time, we need to keep the flattened version and will use this as input to t
 Resolve the imports, and create a flattened version of the model.
 We do not expect any issues to be reported by the importer.
 
-.. container:: toggle
+.. container:: dothis
 
-  .. container:: header
+    **2.a** Create an Importer instance and use it to resolve the imports in your model.
 
-    Show C++ code
+.. container:: dothis
 
-  .. code-block:: cpp
+    **2.b** Check that the importer has not raised any issues.
 
-		// Resolve the imports in this model using a new Importer instance.
-		auto importer = libcellml::Importer::create();
-		importer->resolveImports(model, "");
-		printIssues(importer);
+.. container:: dothis
 
-		// Create a flattened version of the model.
-		auto flatModel = importer->flattenModel(model);
-
+    **2.c** Use the importer to create a flattened version of the model.
 
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show Python code
+        Show C++ snippet
 
-  .. code-block:: python
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
+        :language: c++
+        :start-at: //  2.a
+        :end-before: //  end 2
 
-		# Resolve the imports in this model using a new Importer instance.
-		importer = Importer()
-		importer.resolveImports(model, '')
-		print_issues(importer)
+.. container:: toggle
 
-		# Create a flattened version of the model.
-		flat_model = importer.flattenModel(model)
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
+        :language: python
+        :start-at: #  2.a
+        :end-before: #  end 2
 
 Step 3: Validate and analyse the flattened model
 ------------------------------------------------
 You know what to do ... we do not expect any issues to be raised by either the validator or the analyser.
 
+.. container:: dothis
+
+    **3.a** Create a :code:`Validator` instance, pass in the flattened model, and check that there are no issues raised.
+
+.. container:: dothis
+
+    **3.b** Create an :code:`Analyser` instance,pass in the flattened model, and check that there are no issues raised.
+
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show C++ code
+        Show C++ snippet
 
-  .. code-block:: cpp
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
+        :language: c++
+        :start-at: //  3.a
+        :end-before: //  end 3
 
-		// Create a Validator and use it to check the flattened model.
-		auto validator = libcellml::Validator::create();
-		validator->validateModel(flatModel);
-		printIssues(validator);
-
-		// Create an Analyser and use it to check the flattened model.
-		auto analyser = libcellml::Analyser::create();
-		analyser->analyseModel(flatModel); 
-		printIssues(analyser);
-    
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show Python code
+        Show Python snippet
 
-  .. code-block:: python
-
-		# Create a Validator and use it to check the flattened model.
-		validator = Validator()
-		validator.validateModel(flat_model)
-		print_issues(validator)
-
-		# Create an Analyser and use it to check the flattened model.
-		analyser = Analyser()
-		analyser.analyseModel(flat_model)
-		print_issues(analyser)
-
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
+        :language: python
+        :start-at: #  3.a
+        :end-before: #  end 3
 
 Step 4: Generate code and output
 --------------------------------
@@ -248,72 +229,67 @@ The :code:`Generator` is a translator class that will change the CellML model an
 This is done using a :code:`GeneratorProfile` to specify a dictionary of mathematical operations.
 Two profiles are already defined; for C++ and for Python.
 
+.. container:: useful
+
+	**Useful functions**
+
+	:api:`GeneratorProfile class<GeneratorProfile>`
+
+	- :code:`create`
+	
+	:api:`Generator class<Generator>`
+
+	- :code:`create`
+	- :code:`setProfile`
+
 .. container:: dothis
 
     **4.a** Create a :code:`Generator` instance.  
 
 .. container:: dothis
 
-    **4.b** Create a GeneratorProfile object, and use the constructor argument of the libcellml::GeneratorProfile::Profile enum for the language you want (C or PYTHON).
+    **4.b** Create a GeneratorProfile object, and use the constructor argument of the :code:`libcellml::GeneratorProfile::Profile` enum for the language you want (C or PYTHON).
 
 .. container:: dothis
 
     **4.c** Use the generator's :code:`setProfile` function to pass in the profile item you just created.
 
-.. container:: infospec
+.. container:: toggle
 
-	**Useful functions**
+    .. container:: header
 
-	:api:`GeneratorProfile class<GeneratorProfile>`
+        Show C++ snippet
 
-		- :code:`create`
-	
-	:api:`Generator class<Generator>`
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
+        :language: c++
+        :start-at: //  4.a
+        :end-before: //  4.b
 
-		- :code:`create`
-		- :code:`setProfile`
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
+        :language: c++
+        :start-at: //  4.b
+        :end-before: //  end 4.c
 
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show C++ code
+        Show Python snippet
 
-  .. code-block:: cpp
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
+        :language: python
+        :start-at: #  4.a
+        :end-before: #  4.b
+    
 
-    // Create the Generator item.
-    auto generator = libcellml::Generator::create();
-
-    // Create a GeneratorProfile using the C profile in the constructor.
-    auto profile = libcellml::GeneratorProfile::create(libcellml::GeneratorProfile::Profile::C);
-
-    // Set the generator's profile.
-    generator->setProfile(profile);
-
-.. container:: toggle
-
-  .. container:: header
-
-    Show Python code
-
-  .. code-block:: python
-
-    # Create the Generator item.
-    generator = Generator()
-
-    # Create a GeneratorProfile using the C profile in the constructor.
-    profile = GeneratorProfile(GeneratorProfile.Profile.PYTHON)
-
-    # Set the generator's profile.
-    generator.setProfile(profile)
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
+        :language: python
+        :start-at: #  4.b
+        :end-before: #  end 4.c
 
 Instead of submitting a :code:`Model` item (as we do for all other classes), the :code:`Generator` class will work from something which has already been processed by the :code:`Analyser` class: an :code:`AnalyserModel` object.
     
-.. container:: dothis
-
-    **4.d** Retrieve the analysed model using the Analyser::model() function, and submit to the generator using the Generator::setModel(analysedModel) function.
-
-.. container:: infospec
+.. container:: useful
 
 	**Useful functions**
 
@@ -324,63 +300,89 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
 	:api:`Generator class<Generator>`
 
 	- :code:`setModel`
-  - :code:`implementationCode`
-  - :code:`interfaceCode`
+    - :code:`implementationCode`
+    - :code:`interfaceCode`
 
-  :api:`GeneratorProfile class<GeneratorProfile>`
+    :api:`GeneratorProfile class<GeneratorProfile>`
 
-  - :code:`setInterfaceFileNameString`
-
-.. container:: dothis
-
-  **4.e** (C only) If you're using the C profile then you have the option at this stage to specify the file name of the interface file you'll create in the next step.  
-  This means that the two files will be prepared to link to one another without manual editing later.
-  You can do this by specifying the header file name in the :code:`GeneratorProfile` item using the setInterfaceFileNameString("yourHeaderFileNameHere.h") function.
-  This will need to be the same as the file which you write to in step 4.g below.
+    - :code:`setInterfaceFileNameString`
 
 .. container:: dothis
 
-  **4.f** Implementation code is the bulk of the model, and contains all the equations, variables, units etc.
-  This is needed for both of the available profiles, and would normally be stored in a *.cpp or *.py file.  
-  Use the :code:`implementationCode` function to return the implementation code as a string, and write it to a file with the appropriate extension.
+    **4.d** Retrieve the analysed model using the Analyser::model() function, and submit to the generator using the Generator::setModel(analysedModel) function.
 
 .. container:: dothis
 
-  **4.g** (C only) Interface code is the header needed by the C profile to define data types.
-  Use the :code:`interfaceCode` function to return interface code as a string and write it to a *.h header file.
-  This needs to be the same filename as you specified in step 4.e above.
-
+    **4.e** (C only) If you're using the C profile then you have the option at this stage to specify the file name of the interface file you'll create in the next step.  
+    This means that the two files will be prepared to link to one another without manual editing later.
+    You can do this by specifying the header file name in the :code:`GeneratorProfile` item using the setInterfaceFileNameString("yourHeaderFileNameHere.h") function.
+    This will need to be the same as the file which you write to in step 4.g below.
 
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show C++ code
+        Show C++ snippet
 
-  .. code-block:: cpp
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
+        :language: c++
+        :start-at: //  4.d
+        :end-before: //  end 4.d
 
-		generator->setModel(analyser->model());
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
+        :language: c++
+        :start-at: //  4.e
+        :end-before: //  end 4.e
 
-		profile->setInterfaceFileNameString("HodgkinHuxleyModel.h");
+.. container:: toggle
 
-		std::ofstream outFile("HodgkinHuxleyModel.c");
-		outFile << generator->implementationCode();
-		outFile.close();
+    .. container:: header
 
-		outFile.open("HodgkinHuxleyModel.h");
-		outFile << generator->interfaceCode();
-		outFile.close();
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
+        :language: python
+        :start-at: #  4.d
+        :end-before: #  end 4.d
     
+
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
+        :language: python
+        :start-at: #  4.e
+        :end-before: #  end 4.e
+
+.. container:: dothis
+
+    **4.f** Implementation code is the bulk of the model, and contains all the equations, variables, units etc.
+    This is needed for both of the available profiles, and would normally be stored in a *.cpp or *.py file.  
+    Use the :code:`implementationCode` function to return the implementation code as a string, and write it to a file with the appropriate extension.
+
+.. container:: dothis
+
+    **4.g** (C only) Interface code is the header needed by the C profile to define data types.
+    Use the :code:`interfaceCode` function to return interface code as a string and write it to a *.h header file.
+    This needs to be the same filename as you specified in step 4.e above.
+
+    .. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
+        :language: c++
+        :start-at: //  4.f
+        :end-before: //  end 4
+
 .. container:: toggle
 
-  .. container:: header
+    .. container:: header
 
-    Show Python code
+        Show Python snippet
 
-  .. code-block:: python
+    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
+        :language: python
+        :start-at: #  4.f
+        :end-before: #  end 4
+    
 
-		generator.setModel(analyser.model())
-
-		write_file = open('MembraneModel.py', 'w')
-		write_file.write(generator.implementationCode())
-		write_file.close()

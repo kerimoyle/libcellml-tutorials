@@ -36,7 +36,7 @@
       libcellml::UnitsPtr itemUnits;
       libcellml::ImportSourcePtr itemImportSource;
       libcellml::VariablePair itemVariablePair;
-      libcellml::UnitItem itemUnit;
+      libcellml::Unit itemUnit;
 
       switch (anyItem.first) {
           case libcellml::Annotator::Type::COMPONENT:
@@ -60,7 +60,7 @@
               itemReset = std::any_cast<libcellml::ResetPtr>(anyItem.second);
               break;
           case libcellml::Annotator::Type::UNIT:
-              itemUnit = std::any_cast<libcellml::UnitItem>(anyItem.second);
+              itemUnit = std::any_cast<libcellml::Unit>(anyItem.second);
               break;
           case libcellml::Annotator::Type::UNITS:
               itemUnits = std::any_cast<libcellml::UnitsPtr>(anyItem.second);

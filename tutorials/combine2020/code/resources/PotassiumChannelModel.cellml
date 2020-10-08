@@ -42,8 +42,7 @@
     <variable name="V" units="mV" interface="public_and_private"/>
     <variable name="t" units="ms" interface="public_and_private"/>
     <variable name="n" units="dimensionless" interface="private"/>
-    <math xmlns="http://www.w3.org/1998/Math/MathML"
-      xmlns:cellml="http://www.cellml.org/cellml/2.0#">
+    <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">
       <apply>
         <eq/>
         <ci>i_K</ci>
@@ -75,8 +74,7 @@
     <variable name="alpha_n" units="per_ms" interface="private"/>
     <variable name="beta_n" units="per_ms" interface="private"/>
     <variable name="n" units="dimensionless" interface="public_and_private"/>
-    <math xmlns="http://www.w3.org/1998/Math/MathML"
-      xmlns:cellml="http://www.cellml.org/cellml/2.0#">
+    <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">
       <apply>
         <eq/>
         <ci>alpha_n</ci>

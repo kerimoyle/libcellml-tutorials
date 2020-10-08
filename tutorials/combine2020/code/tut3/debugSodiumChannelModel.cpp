@@ -1,5 +1,5 @@
 /**
- * COMBINE TUTORIAL 3: Debugging the sodium channel model
+ * COMBINE2020 libCellML TUTORIAL 3: Debugging the sodium channel model
  * 
  * By the time you have worked through this part of the tutorial you will be able to:
  *  - Parse an existing CellML file and deserialise it into a model instance;
@@ -30,22 +30,14 @@ int main()
 
     //  1.a 
     //      Read a CellML file into a std::string.
-    std::ifstream inFile("sodiumChannelModel_broken.cellml");
-    std::stringstream inFileContents;
-    inFileContents << inFile.rdbuf();
 
     //  1.b 
     //      Create a Parser item. 
-    auto parser = libcellml::Parser::create();
 
     //  1.c 
     //      Use the parser to deserialise the contents of the string you've read and return the model.
-    auto model = parser->parseModel(inFileContents.str());
 
     //  1.d Print the parsed model to the terminal for viewing.
-    printModel(model, false);
-
-    //  end 1
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 2: Validate the parsed model " << std::endl;
@@ -53,10 +45,6 @@ int main()
 
     //  2.a 
     //      Create a Validator item and validate the model.
-    auto validator = libcellml::Validator::create();
-    validator->validateModel(model);
-
-    //  end 2.a
 
     //      Each Validator issue contains:
     //          - a description of the problem;
@@ -68,16 +56,6 @@ int main()
     //  2.b
     //      Retrieve any issues from the validator and print their descriptions and help URL to the terminal.
     //      If you're already familiar with these you can use the printIssues function instead.
-    std::cout << "The validator found " << validator->issueCount() << " issues." << std::endl;
-    for(size_t i = 0; i < validator->issueCount(); ++i) {
-        auto issue = validator->issue(i);
-        std::cout << "Issue " << i << ": " << issue->description() << std::endl;
-        std::cout << "  reference: "<< issue->referenceHeading() << std::endl;
-        std::cout << "  see: " << issue->url() << std::endl;
-        std::cout << "  stored item type: " << getItemTypeAsString(issue->itemType()) << std::endl;
-        std::cout << std::endl;
-    }
-    //  end 2
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 3: Repair the parsed model " << std::endl;
@@ -104,9 +82,7 @@ int main()
     //      hierarchy for a component with that name, and not only the direct children of the model.
     //      You can follow the URL for information about what makes a valid name, and use the Component::setName
     //      function to fix it.
-    model->component("mGateEquations!", true)->setName("mGateEquations");
 
-    //  end 3.a
 
     //  The messages below indicate that we're missing a Units item named "mS_per_cm2". 
     //
@@ -119,15 +95,10 @@ int main()
     // Issue 4: Variable 'g_Na' in component 'sodiumChannelParameters' has a units reference 'mS_per_cm2' which is neither standard nor defined in the parent model.
     //   reference: 2.8.1.2
     //   see: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
-    //
+    
+
     //  3.b
     //      Create an appropriate Units item (note that S stands for "siemens"), and add it to your model.
-    auto mS_per_cm2 = libcellml::Units::create("mS_per_cm2");
-    mS_per_cm2->addUnit("siemens", "milli");
-    mS_per_cm2->addUnit("metre", "centi", -2);
-    model->addUnits(mS_per_cm2);
-
-    //  end 3.b
 
     //      As with 3.a, here we have more than one issue generated from the same cause: in this case, we haven't
     //      specified units for a variable:
@@ -144,20 +115,15 @@ int main()
     //
     //  Each issue generated contains a pointer to the item to which it refers. We can retrieve the affected item
     //  directly from the issue in one of two ways:
-    //      - retrieving an AnyItem struct (whose "first" attribute is an enum of the ItemType; 
+    //      - retrieving an AnyItem struct (whose "first" attribute is an enum of the CellmlElementType; 
     //        and "second" attribute is an std::any cast of the item itself); and casting it appropriately, or
-    //      - since we know that the type of item in this error is a ItemType::VARIABLE, we can call the 
+    //      - since we know that the type of item in this error is a CellmlElementType::VARIABLE, we can call the 
     //        convenience method Issue::variable() to return the variable which needs attention.
     //  (Of course you could retrieve it using the name of its parent component and its name too - this is just another way!)
-    //
+    
     //  3.c
-    //      Check that the item to be returned from the issue is in fact an ItemType::VARIABLE by calling the Issue::type()
+    //      Check that the item to be returned from the issue is in fact an CellmlElementType::VARIABLE by calling the Issue::type()
     //      function.  Retrieve the variable missing units from the issue.  Set its units to be millivolts.
-    auto issue6 = validator->issue(6);
-    assert(issue6->itemType() == libcellml::ItemType::VARIABLE);
-    issue6->variable()->setUnits(model->units("mV"));
-
-    //  end 3.c
 
     //  The error below indicates that a child Unit references something which can't be found.  
     //
@@ -175,35 +141,10 @@ int main()
     //     parent Units item, and the index of the relevant child.  
     //  3) The roundabout option. Since the error is saying that Units named "i_dont_exist" are missing, 
     //     we could simply provide them by creating a Units item and adding it to the model.  
-    //  
+ 
     //  3.d
     //      Choose your preferred method and use it to retrieve the problem unit attributes and print them all to
     //      to the terminal.  Then fix the issue.
-
-    std::string prefix;
-    std::string id;
-    double exponent;
-    double multiplier;
-    auto mV = model->units("mV");
-    mV->unitAttributes("i_dont_exist", prefix, exponent, multiplier, id);
-    std::cout << "The units 'mV' child has attributes: base units = 'i_dont_exist', prefix = '"<< prefix << "', exponent = "<<exponent<<", and multiplier = "<<multiplier <<std::endl;
-
-    // Method 1:
-    // mV->removeUnit("i_dont_exist");
-    // mV->addUnit("volt", "milli");
-
-    // Method 2:
-    auto issue7 = validator->issue(7);
-    assert(issue7->itemType() == libcellml::ItemType::UNIT);
-    auto issue7item = issue7->unit().first->removeUnit(issue7->unit().second);
-    issue7->unit().first->addUnit("volt", "milli");
-
-    // Method 3:
-    // auto missingUnits = libcellml::Units::create("i_dont_exist");
-    // missingUnits->addUnit("volt", "milli");
-    // model->addUnits(missingUnits); 
-
-    //  end 3.d
 
     //  The final validator issue refers to the fact that we need to explicitly specify how other components
     //  can access each of the variables in this component.
@@ -211,41 +152,24 @@ int main()
     // Issue 9: Variable 't' in component 'sodiumChannelEquations' has no interface type set. The interface type required is 'public_and_private'.
     //   reference: 3.10.8
     //   see: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specC10.html?issue=3.10.8
-    //
+
     //  3.e
     //      Retrieve the variable either using the issue pointer method, or using the name method, and set its 
     //      interface to be the required type.
-    auto issue9 = validator->issue(9);
-    assert(issue9->itemType() == libcellml::ItemType::VARIABLE);
-    issue9->variable()->setInterfaceType("public_and_private");
 
     //  3.f 
     //      Revalidate the model and confirm that the errors have gone.
-    validator->validateModel(model);
-    printIssues(validator);
 
     //  3.g
     //      Even though the model is free from validation errors, we still need to make sure it
     //      represents what we want it to.  Print the model to the terminal and check its structure.
-    printModel(model);
 
     //  3.h 
     //      Use the addComponent functions to rearrange the components as needed until you have the
     //      required structure.  Validate the model again.             
-    auto importedGateM = model->component("importedGateM", true);
-    auto mGateEquations = model->component("mGateEquations", true);
-    auto mGate = model->component("mGate", true);
-    mGateEquations->addComponent(importedGateM);
-    mGate->addComponent(mGateEquations);
-
-    validator->validateModel(model);
-    printIssues(validator);
-    printEncapsulation(model);
-
-    //  end 3
 
     std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 4: Resolve the imports " << std::endl;
+    std::cout << "   STEP 4: Resolve the imports                            " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
     //      It's important to remember that the imports are merely instructions for how
@@ -260,16 +184,12 @@ int main()
     //      Use the function Importer::resolveImports(ModelPtr &model, const std::string &path).
     //  4.a 
     //      Create an Importer instance and use it to resolve the model.
-    auto importer = libcellml::Importer::create();
-    importer->resolveImports(model, "");
 
     //  4.b 
     //      Similarly to the validator, the importer will log any issues it encounters.
     //      Retrieve these and print to the terminal (you can do this manually or using the
     //      convenience function as before).
-    printIssues(importer);
 
-    //  end 4.b
     //  Importer error[0]:
     //     Description: Import of component 'importedGateH' from 'GateModel.cellml' requires 
     //     component named 'i_dont_exist' which cannot be found.
@@ -277,13 +197,11 @@ int main()
     //     We need to change the import reference for the component to be "gateEquations" instead
     //     of "i_dont_exist".  You can either retrieve the component using its name or directly
     //     from the issue.  Use the Component::setImportReference() function to fix the issue.
+
     //  4.c 
     //      Fix the issues reported by the importer.  This needs to be an iterative process as
     //      more files become available to the importer.
-    auto issue0 = importer->issue(0);
-    issue0->component()->setImportReference("gateEquations");
 
-    //  end 4.c
     //      The second issue reported is a circular dependency. This is contained in files that
     //      haven't (yet) been seen at all by you, the user.  It's included here to highlight the
     //      fact that the Importer class opens and instantates all required dependencies, and that
@@ -302,41 +220,25 @@ int main()
     //      To fix this, we have two options: 
     //          - to open and repair the file which is actually broken, or
     //          - to switch the import source in this current model to one which doesn't have circular imports.
+    
     //  4.d
     //      In this example we can change the import of the controller component to have url of
     //      'SodiumChannelController.cellml'.
-    model->component("controller", true)->importSource()->setUrl("SodiumChannelController.cellml");
 
     //  4.e 
     //      Clear the current issues from the importer using the removeAllIssues function.
     //      Resolve the imports again and check that there are no further issues.
-    importer->removeAllIssues();
-    importer->resolveImports(model, "");
-    printIssues(importer);
-
-    //  end 4
 
     std::cout << "----------------------------------------------------------" << std::endl;
-    std::cout << "   STEP 5: Validate the imported dependencies " << std::endl;
+    std::cout << "   STEP 5: Validate the imported dependencies             " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
 
     //      At this stage we've validated the local model, and we've used the Importer class
     //      to retrieve all of its import dependencies.  These dependencies are stored in
     //      the importer's library, and have not yet been validated or analysed.  
-    //      Useful functions:
-    //          - Importer::libraryCount() returns the number of stored models;
-    //          - Importer::library(index) returns the model at the given index;
-    //          - Importer::key(index) returns a key string that could be used to retrieve the model too;
-    //          - Importer::library(keystring) returns the model at the given key.
-
+  
     //  5.a 
     //      Use a simple loop to validate each of the models stored in the importer's library.
-    for(size_t i = 0; i < importer->libraryCount(); ++i) {
-        std::cout << "Imported model at key: " << importer->key(i) << std::endl;
-        validator->validateModel(importer->library(i));
-        printIssues(validator);
-    }
-    //  end 5.a
 
     //  Note that the two files creating the circular import in 4.a are still in the
     //  library.
@@ -345,24 +247,12 @@ int main()
     //  dependencies of our repaired model, we can iterate through our model's ImportSource
     //  items instead.  As soon as the model's imports have been resolved, all these will 
     //  point to instantiated models within the importer.
-    //  Useful functions:
-    //          - Model::importSourceCount();
-    //          - Model::importSource(size_t index); and
-    //          - ImportSource::model();
-    //          - ImportSource::url();
+
     //  5.b
     //      Loop through the model's import source items and print their urls to the terminal.
     //      You'll notice that these have been used as the keys in the importer library.
     //      Check that the importer library's models are the same as that attached to the
     //      import source item.
-    for(size_t i = 0; i < model->importSourceCount(); ++i) {
-        std::cout << "Import source [" << i << "]:" << std::endl;
-        std::cout << "     url = " << model->importSource(i)->url() << std::endl;
-        std::cout << "     model = " << model->importSource(i)->model() << std::endl;
-        std::cout << "     library[url] = " << importer->library(model->importSource(i)->url()) << std::endl;
-    }
-
-    //  end 5
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 6: Analyse the model(s) " << std::endl;
@@ -381,24 +271,16 @@ int main()
 
     //  6.a 
     //      Create an Analyser instance and pass in the model for analysis.
-    //      Useful functions: Analyser::analyseModel(Model)
-    auto analyser = libcellml::Analyser::create();
-    analyser->analyseModel(model);
 
     //  6.b 
     //      Retrieve and print the issues from the analysis to the screen.  We expect to see 
     //      messages related to un-computed variables, since anything which is imported is 
     //      missing from this model.
-    printIssues(analyser);
 
     //  6.c 
     //      Create a flattened version of the model print it to the screen.
     //      Notice that any comments indicating that a component was an import have been
     //      removed as these components have been instantiated in the flattened model.
-    //      Useful functions:
-    //          - Importer::flattenModel(Model) will return a flattened copy.
-    auto flatModel = importer->flattenModel(model);
-    printModel(flatModel);
 
     //  6.d 
     //      Analyse the flattened model and print the issues to the screen.
@@ -422,19 +304,9 @@ int main()
     //      Create any necessary variable equivalences so that these two variables are connected. You
     //      can refer to your printout of the model's structure to help if need be, and remember that only
     //      variables in a sibling or parent/child relationship can be connected.
-    //      Useful function: Variable::addEquivalence(v1, v2) will create an equivalence between the 
-    //                       variables v1 and v2.
-
-    libcellml::Variable::addEquivalence(model->component("importedGateM", true)->variable("t"), 
-                                        model->component("mGateEquations", true)->variable("t"));
-    libcellml::Variable::addEquivalence(model->component("mGate", true)->variable("t"), 
-                                        model->component("mGateEquations", true)->variable("t"));
 
     //  6.f Reflatten and re-analyse the model and print the issues to the terminal.
-    analyser->analyseModel(importer->flattenModel(model));
-    printIssues(analyser);
 
-    //  end 6.f
     //      Now we see the importance of checking iteratively for issues in the analyser class!  
     //      The nature of this class means that frequently it is unable to continue processing
     //      when an issue is encountered.  It's not unusual to fix one issue only to find twenty more!
@@ -442,21 +314,11 @@ int main()
     //      printout we can see that this is because the integrated variable X (in both the imported
     //      gates) hasn't been connected to its local variable h or m in the appropriate "parameters"
     //      component.
+
     //  6.g
     //      Create all required connections needed to connect these variables.
     //      Re-flatten, re-analyse and print the issues to the terminal.
-    libcellml::Variable::addEquivalence(model->component("importedGateM", true)->variable("X"), 
-                                        model->component("mGateEquations", true)->variable("m"));
-    libcellml::Variable::addEquivalence(model->component("mGateParameters", true)->variable("m"), 
-                                        model->component("mGateEquations", true)->variable("m"));
-    libcellml::Variable::addEquivalence(model->component("importedGateH", true)->variable("X"), 
-                                        model->component("hGateEquations", true)->variable("h"));
-    libcellml::Variable::addEquivalence(model->component("hGateParameters", true)->variable("h"), 
-                                        model->component("hGateEquations", true)->variable("h"));                                    
-    analyser->analyseModel(importer->flattenModel(model));
-    printIssues(analyser);
 
-    //  end 6.g 
     //      The nice thing about issues in this class is that frequently a few issues refer to the
     //      same single problem.  The remainder of the issues reported deal with variables that are
     //      not computed.  This could mean any one of:
@@ -475,30 +337,10 @@ int main()
     //          - the addEquivalence function returns a boolean indicating success or otherwise.  If you
     //            check this as you go it will alert you quickly if you're trying to make an illegal 
     //            connection.
+
     //  6.h
     //      From the printout of your model and the issues listed, determine what needs to happen in 
     //      order to make the model viable, and do it.  Check that your final analysis contains no issues.
-
-    // Connect the mGate to its surroundings.
-    libcellml::Variable::addEquivalence(model->component("importedGateM", true)->variable("alpha_X"), 
-                                        model->component("mGateEquations", true)->variable("alpha_m"));
-    libcellml::Variable::addEquivalence(model->component("importedGateM", true)->variable("beta_X"), 
-                                        model->component("mGateEquations", true)->variable("beta_m"));
-    libcellml::Variable::addEquivalence(model->component("mGate", true)->variable("V"), 
-                                        model->component("mGateEquations", true)->variable("V"));
-    libcellml::Variable::addEquivalence(model->component("mGate", true)->variable("m"), 
-                                        model->component("mGateEquations", true)->variable("m"));
-
-    // E_Na in sodiumChannelParameters needs to be initialised to 35.
-    model->component("sodiumChannelParameters", true)->variable("E_Na")->setInitialValue(35);
-
-    // i_am_redundant in mGateParameters is not required.
-    model->component("mGateParameters", true)->removeVariable("i_am_redundant");
-
-    analyser->analyseModel(importer->flattenModel(model));
-    printIssues(analyser);
-
-    //  end 6
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 7: Serialise and print the repaired model         " << std::endl;
@@ -508,16 +350,8 @@ int main()
     //      Create a Printer instance and use it to print the CellML-formatted version of
     //      the repaired model to a string.  Remember we'll still be printing the original
     //      version of the model, not the flattened one!
-    auto printer = libcellml::Printer::create();
-    auto modelString = printer->printModel(model);
 
     //  7.b 
     //      Write the string to a file named "SodiumChannelModel.cellml".
-    std::ofstream outFile("SodiumChannelModel.cellml");
-    outFile << modelString;
-    outFile.close();
-
-    //  end
-
-    std::cout << "The repaired sodium channel model has been written to SodiumChannelModel.cellml." << std::endl;
-}
+    
+ }

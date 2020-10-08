@@ -15,22 +15,25 @@ Tutorial 5: Annotation tools
 
 .. container:: shortlist
 
-    **Requirements (C++)**
+    **Code (C++)**
 
-    - :download:`CMakeLists.txt<code/CMakeLists_AnnotateModel.txt>` The CMake file for building this tutorial;
-    - :download:`annotateModel.cpp<code/annotateModel.cpp>` Either the skeleton code, or ..
-    - :download:`annotateModel_completed.cpp<code/annotateModel_completed.cpp>` the completed tutorial code;
-    - :download:`MysteryModel.cellml<code/MysteryModel.cellml>` file to read; and
-    - :download:`AnotherMysteryModel.cellml<code/AnotherMysteryModel.cellml>` import dependency.
+    - :download:`CMakeLists.txt<code/tut6/CMakeLists.txt>` The CMake file for building this tutorial;
+    - :download:`annotateModel.cpp<code/tut6/annotateModel.cpp>` Either the skeleton code, or ..
+    - :download:`annotateModel_completed.cpp<code/tut6/annotateModel_completed.cpp>` the completed tutorial code;
 
 .. container:: shortlist
 
-    **Requirements (Python)**
+    **Code (Python)**
 
-    - :download:`annotateModel.py<annotateModel.py>` Either the skeleton code, or ..
-    - :download:`annotateModel_completed.py<annotateModel_completed.py>` the completed tutorial code;
-    - :download:`MysteryModel.cellml<code/MysteryModel.cellml>` file to read; and
-    - :download:`AnotherMysteryModel.cellml<code/AnotherMysteryModel.cellml>` import dependency.
+    - :download:`annotateModel.py<code/tut6/annotateModel.py>` Either the skeleton code, or ..
+    - :download:`annotateModel_completed.py<code/tut6/annotateModel_completed.py>` the completed tutorial code;
+
+.. container:: shortlist
+
+    **Resources**
+
+    - :download:`MysteryModel.cellml<code/resources/MysteryModel.cellml>` file to read; and
+    - :download:`AnotherMysteryModel.cellml<code/resources/AnotherMysteryModel.cellml>` import dependency.
 
 .. contents:: Contents
     :local:
@@ -69,7 +72,7 @@ Step 1: Parse the mystery model
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  1.a
         :end-before: //  end 1
@@ -80,7 +83,7 @@ Step 1: Parse the mystery model
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
         :start-at: #  1.a
         :end-before: #  end 1
@@ -104,12 +107,12 @@ Step 2: Retrieve an item with a unique id
 .. container:: dothis
 
     **2.a** Create an Annotator item and use its setModel function to pass in the parsed mystery model.
-    The :code:`item` function returns a :code:`libcellml::AnyItem`, a :code:`std::pair` whose first attribute is a libcellml::CellMLElement enumeration; and second attribute is a :code:`std::any` cast of the item itself.
+    The :code:`item` function returns a :code:`libcellml::AnyItem`, a :code:`std::pair` whose first attribute is a libcellml::CellmlElementType enumeration; and second attribute is a :code:`std::any` cast of the item itself.
 
 .. container:: dothis
 
     **2.b** Retrieve the item with an id of "marco".
-    Use the helper function :code:`getItemTypeAsString` or :code:`get_item_type_from_enum` to convert the enumeration of its type into a string, and print to the terminal.
+    Use the helper function :code:`getCellmlElementTypeFromEnum` or :code:`get_item_type_from_enum` to convert the enumeration of its type into a string, and print to the terminal.
     
 .. code-block:: terminal
 
@@ -129,7 +132,7 @@ Step 2: Retrieve an item with a unique id
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  2.a
         :end-before: //  end 2
@@ -140,7 +143,7 @@ Step 2: Retrieve an item with a unique id
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
         :start-at: #  2.a
         :end-before: #  end 2
@@ -170,7 +173,7 @@ Step 3: Retrieve items whose id are not unique
 
 .. container:: dothis
 
-    **3.b** The item type returned is libcellml::CellMLElement::UNDEFINED ... so we need to check what the annotator has to say about it. 
+    **3.b** The item type returned is libcellml::CellmlElementType::UNDEFINED ... so we need to check what the annotator has to say about it. 
     Retrieve the issues from the annotator and print them to the terminal.
 
 .. container:: toggle
@@ -179,7 +182,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  3.a
         :end-before: //  end 3.b
@@ -190,7 +193,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
         :start-at: #  3.a
         :end-before: #  end 3.b
@@ -213,7 +216,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  3.c
         :end-before: //  end 3.c
@@ -224,7 +227,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
         :start-at: #  3.c
         :end-before: #  end 3.c
@@ -243,8 +246,6 @@ The item we want has type :code:`libcellml::CellMLElements::UNIT`, and we'd like
 We need to change the other items to have other (also unique) ids.
 The :code:`Annotator` class can create a unique id for an item using the :code:`assignId` function.
 
-This has many overloaded function signatures so that any annotatable item can be reached. **TODO**
-
 .. container:: dothis
 
     **3.d** Assign an automatic id to all of the items with id "polo", except for the one whose type is :code:`UNIT`.
@@ -259,7 +260,7 @@ This has many overloaded function signatures so that any annotatable item can be
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  3.d
         :end-before: //  end 3.e
@@ -270,7 +271,7 @@ This has many overloaded function signatures so that any annotatable item can be
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
         :start-at: #  3.d
         :end-before: #  end 3.e
@@ -298,10 +299,10 @@ In circumstances where you know the type of the item with the id you're fetching
 
 .. container:: dothis
 
-    **3.f** Retrieve the UnitItem with id "polo" directly.
-    The UnitItem is another std::pair with: **TODO**
-         - first attribute is the libcellml::Units parent item; and
-         - second attribute is the index of this Unit within the parent.
+    **3.f** Retrieve the :code:`Unit` with id "polo" directly.
+    The :code:`Unit` class has two attributes:
+         - :code:`units()` returns the parent :code:`Units` item; and
+         - :code:`index()` returns the index of this unit within its parent.
 
 .. container:: toggle
 
@@ -309,7 +310,7 @@ In circumstances where you know the type of the item with the id you're fetching
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  3.f
         :end-before: //  end 3
@@ -320,7 +321,7 @@ In circumstances where you know the type of the item with the id you're fetching
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
         :start-at: #  3.f
         :end-before: #  end 3
@@ -337,6 +338,7 @@ Now that we've found Marco and fixed the duplicates of Polo, we'd like to know w
 
     - ids
     - duplicateIds
+    - itemCount
 
 .. container:: dothis
 
@@ -348,7 +350,7 @@ Now that we've found Marco and fixed the duplicates of Polo, we'd like to know w
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  4.a
         :end-before: //  end 4.a
@@ -359,7 +361,7 @@ Now that we've found Marco and fixed the duplicates of Polo, we'd like to know w
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
         :start-at: #  4.a
         :end-before: #  end 4.a
@@ -385,7 +387,7 @@ The hex strings printed are those which have been automatically generated by the
 .. container:: dothis
 
     **4.b** Use the :code:`duplicateIds` function to return a vector of those ids which have been duplicated in the model.
-    Use the :code:`duplicateCount` function to return the number of times each occurs, and print to the terminal.
+    Use the :code:`itemCount` function to return the number of times each occurs, and print to the terminal.
 
 .. container:: toggle
 
@@ -393,42 +395,9 @@ The hex strings printed are those which have been automatically generated by the
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  4.b
-        :end-before: //  4.c
-
-.. container:: toggle
-
-    .. container:: header
-
-        Show Python snippet
-
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
-        :language: python
-        :start-at: #  4.b
-        :end-before: #  4.c
-
-.. code-block:: terminal
-
-    Duplicated id strings are:
-    - "someOtherDuplicatedId" occurs 3 times
-
-.. container:: dothis
-
-    **4.c** Loop through all of the model's components and print their id to the terminal.
-    Use the :code:`assignIds` function with an item type of :code:`libcellml::CellMLElement::COMPONENT` to give all of the items of that type a new unique id.
-    Print the ids again and notice that the blanks have been filled with automatically generated strings, but existing ids are unchanged. 
-
-.. container:: toggle
-
-    .. container:: header
-
-        Show C++ snippet
-
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
-        :language: c++
-        :start-at: //  4.c
         :end-before: //  end 4
 
 .. container:: toggle
@@ -437,28 +406,15 @@ The hex strings printed are those which have been automatically generated by the
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
-        :start-at: #  4.c
+        :start-at: #  4.b
         :end-before: #  end 4
 
 .. code-block:: terminal
 
-    Before automatic assignment the components have ids:
-        - "i_am_a_component"
-        - ""
-        - ""
-        - ""
-        - "me_too"
-        - ""
-
-    After automatic assignment the components have ids:
-        - "i_am_a_component"
-        - "b4da5a"
-        - "b4da5b"
-        - "b4da5c"
-        - "me_too"
-        - "b4da5d"
+    Duplicated id strings are:
+    - "someOtherDuplicatedId" occurs 3 times
 
 Step 5: Trace provenance of imported items
 ------------------------------------------
@@ -510,7 +466,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  5.a
         :end-before: //  5.e
@@ -521,7 +477,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
         :start-at: #  5.a
         :end-before: #  5.e
@@ -541,7 +497,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
         :start-at: //  5.e
         :end-before: //  end 5
@@ -552,7 +508,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
         :start-at: #  5.e
         :end-before: #  end 5
@@ -565,6 +521,53 @@ The final step is to make sure that imported items can have their annotations tr
 
 Step 6: Bulk operations
 -----------------------
+
+.. container:: dothis
+
+    **6.a** Loop through all of the model's components and print their id to the terminal.
+    Use the :code:`assignIds` function with an item type of :code:`libcellml::CellmlElementType::COMPONENT` to give all of the items of that type a new unique id.
+    Print the ids again and notice that the blanks have been filled with automatically generated strings, but existing ids are unchanged. 
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
+        :language: c++
+        :start-at: //  6.a
+        :end-before: //  6.b
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
+        :language: python
+        :start-at: #  6.a
+        :end-before: #  6.b
+
+.. code-block:: terminal
+
+    Before automatic assignment the components have ids:
+        - "i_am_a_component"
+        - ""
+        - ""
+        - ""
+        - "me_too"
+        - ""
+
+    After automatic assignment the components have ids:
+        - "i_am_a_component"
+        - "b4da5a"
+        - "b4da5b"
+        - "b4da5c"
+        - "me_too"
+        - "b4da5d"
+
 Finally, we decide that it's too cold for swimming, and want to nuke all the ids and go home.
 
 .. container:: useful
@@ -576,7 +579,7 @@ Finally, we decide that it's too cold for swimming, and want to nuke all the ids
 
 .. container:: dothis
 
-    **6.a** Use the :code:`clearAllIds` function to completely remove all id strings from the model.
+    **6.b** Use the :code:`clearAllIds` function to completely remove all id strings from the model.
     Check that they have gone by repeating step 4.a to print any ids to the terminal.
 
 .. code-block:: terminal
@@ -587,7 +590,7 @@ Go looking for Marco, but he's gone home already.
 
 .. container:: dothis
 
-    **6.b** Retrieve the item with id "marco" and print its type to the terminal.
+    **6.c** Retrieve the item with id "marco" and print its type to the terminal.
     Retrieve and print any issues in the annotator to the terminal.
 
 .. code-block:: terminal
@@ -602,11 +605,11 @@ Now you regret nuking our friends and make plans to return tomorrow and annotate
 
 .. container:: dothis
 
-    **6.c** Use the :code:`assignAllIds` function to give an automatic id to everything which doesn't already have one (which is everything now!).
+    **6.d** Use the :code:`assignAllIds` function to give an automatic id to everything which doesn't already have one (which is everything now!).
 
 .. container:: dothis
 
-    **6.d** Try to retrieve duplicated ids from the annotator as in step 4.b, and check that it returns an empty list.
+    **6.e** Try to retrieve duplicated ids from the annotator as in step 4.b, and check that it returns an empty list.
     
 .. code-block:: container
 
@@ -618,9 +621,9 @@ Now you regret nuking our friends and make plans to return tomorrow and annotate
 
         Show C++ snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.cpp
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.cpp
         :language: c++
-        :start-at: //  6.a
+        :start-at: //  6.b
         :end-before: //  end 6
 
 .. container:: toggle
@@ -629,7 +632,7 @@ Now you regret nuking our friends and make plans to return tomorrow and annotate
 
         Show Python snippet
 
-    .. literalinclude:: ../combine2020/code/annotateModel_completed.py
+    .. literalinclude:: ../combine2020/code/tut6/annotateModel_completed.py
         :language: python
-        :start-at: #  6.a
+        :start-at: #  6.b
         :end-before: #  end 6
