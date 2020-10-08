@@ -263,7 +263,7 @@ Two profiles are already defined; for C++ and for Python.
     .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
         :language: c++
         :start-at: //  4.a
-        :end-before: //  4.b
+        :end-before: //  end 4.a
 
     .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
         :language: c++
@@ -279,7 +279,7 @@ Two profiles are already defined; for C++ and for Python.
     .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
         :language: python
         :start-at: #  4.a
-        :end-before: #  4.b
+        :end-before: #  end 4.a
     
 
     .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
@@ -291,21 +291,21 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
     
 .. container:: useful
 
-	**Useful functions**
+    **Useful functions**
 
-	:api:`Analyser class<GeneratorProfile>`
+    :api:`Analyser class<GeneratorProfile>`
 
-	- :code:`model`
-	
-	:api:`Generator class<Generator>`
+    - model
 
-	- :code:`setModel`
-    - :code:`implementationCode`
-    - :code:`interfaceCode`
+    :api:`Generator class<Generator>`
+
+    - setModel
+    - implementationCode
+    - interfaceCode
 
     :api:`GeneratorProfile class<GeneratorProfile>`
 
-    - :code:`setInterfaceFileNameString`
+    - setInterfaceFileNameString
 
 .. container:: dothis
 
@@ -344,12 +344,6 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
         :language: python
         :start-at: #  4.d
         :end-before: #  end 4.d
-    
-
-    .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
-        :language: python
-        :start-at: #  4.e
-        :end-before: #  end 4.e
 
 .. container:: dothis
 
@@ -363,7 +357,7 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
     Use the :code:`interfaceCode` function to return interface code as a string and write it to a *.h header file.
     This needs to be the same filename as you specified in step 4.e above.
 
-    .. container:: toggle
+.. container:: toggle
 
     .. container:: header
 
