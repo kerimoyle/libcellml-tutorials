@@ -68,6 +68,8 @@ if __name__ == '__main__':
         print('  component = {}'.format(model.VARIABLE_INFO[v]['component']))
         print('  type = {}'.format(model.VARIABLE_INFO[v]['type']))
     print()
+
+    #  end 2.a
     #      'State variables' are those which need integration.
     #      They are stored in an array of dicts called STATE_INFO which
     #      is STATE_COUNT long.  The dict contains:

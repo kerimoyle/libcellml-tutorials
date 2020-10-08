@@ -23,8 +23,8 @@ Tutorial 5: Interact with generated code
     - :download:`CMakeLists.txt<code/tut5/CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`solveGeneratedCode.cpp<code/tut5/solveGeneratedCode.cpp>` Either the skeleton code, or ..
     - :download:`solveGeneratedCode_completed.cpp<code/tut5/solveGeneratedCode_completed.cpp>` the completed tutorial code;
-    - :download:`HodgkinHuxleyModel.cpp<code/resources/HodgkinHuxleyModel.cpp>` Generated implementation code from Tutorial 4; and
-    - :download:`HodgkinHuxleyModel.h<code/resources/HodgkinHuxleyModel.h>` Generated interface code from Tutorial 4.
+    - :download:`HodgkinHuxleyModel.cpp<code/tut5/HodgkinHuxleyModel.cpp>` Generated implementation code from Tutorial 4; and
+    - :download:`HodgkinHuxleyModel.h<code/tut5/HodgkinHuxleyModel.h>` Generated interface code from Tutorial 4.
 
 .. container:: shortlist
 
@@ -32,7 +32,7 @@ Tutorial 5: Interact with generated code
 
     - :download:`solveGeneratedCode.py<code/tut5/solveGeneratedCode.py>` Either the skeleton code, or ..
     - :download:`solveGeneratedCode_completed.py<code/tut5/solveGeneratedCode_completed.py>` the completed tutorial code;
-    - :download:`HodgkinHuxleyModel.py<code/resources/HodgkinHuxleyModel.py>` Generated implementation code from Tutorial 4
+    - :download:`HodgkinHuxleyModel.py<code/tut5/HodgkinHuxleyModel.py>` Generated implementation code from Tutorial 4
 
 .. contents:: Contents
     :local:
@@ -101,7 +101,6 @@ There are necessarily big differences between C++ and Python for this tutorial!
 
 Step 2: Access the variables in the generated files
 ---------------------------------------------------
-
 Probably the best way to understand the contents of the generated files is o open them and look!
 The implementation file (*.cpp) has two types of items:
 
@@ -113,12 +112,14 @@ It's important to remember that in the generated code we don't have the notion o
 "Variables" are anything which does not require integration as part of the solution, and could have types :code:`COMPUTED_CONSTANT` (needs to be calculated but doesn't need integration), :code:`CONSTANT` (no calculation needed), or :code:`ALGEBRAIC` (**TODO**) as defined in the :code:`VariableType` enum.
 They are stored in an array of :code:`VariableInfoWithType` structs called :code:`VARIABLE_INFO` which is :code:`VARIABLE_COUNT` long.  
 
-The :code:`VariableInfoWithType` contains:
+.. container:: shortlist
 
-- name,
-- units,
-- component, and
-- VariableType.
+    The :code:`VariableInfoWithType` contains:
+
+    - name,
+    - units,
+    - component, and
+    - VariableType.
 
 .. container:: dothis
 
@@ -148,7 +149,12 @@ The :code:`VariableInfoWithType` contains:
 
 "State variables" are those which need integration.
 They are stored in an array of :code:`VariableInfo` structs called :code:`STATE_INFO` which
-is :code:`STATE_COUNT` long.  The :code:`VariableInfo` struct contains:
+is :code:`STATE_COUNT` long.  
+
+.. container:: shortlist
+
+    The :code:`VariableInfo` struct contains:
+
     - name,
     - units, and
     - component.
@@ -209,17 +215,35 @@ is :code:`STATE_COUNT` long.  The :code:`VariableInfo` struct contains:
 Step 3: Access the functions in the generated files
 ---------------------------------------------------
 
-The generated code contains seven functions:
+.. tabs::
 
-- :code:`createStatesArray()` to allocate an array of length :code:`STATE_COUNT`.
-  This can be used to allocate the "rates" or gradient function array too as they're the same length;
-- :code:`createVariablesArray()` to allocate an array of length :code:`VARIABLE_COUNT`;
-- :code:`deleteArray()` to free memory used by the given array;
-- :code:`initialiseStatesAndConstants(states, variables)` will do what it says on the tin, and populate the given pre-allocated arrays with the initial values for all of the model's state variables and constants.
-- :code:`computeComputedConstants(variables)` will fill in values for any variables that do not change in value throughout the solution, but still need to be calculated;
-- :code:`computeRates(VOI, states, rates, variables)` updates the rates array with the gradients of the state variables, given the values of the other variables and the variable of integration (VOI);
-- :code:`computeVariables(VOI, states, rates, variables)` updates any non-integrated variables whose values do not affect the integration.
-  Since this doesn't affect the solution process it only needs to be called whenever the values need to be output; not necessarily each integration timestep.
+    .. tab:: C++
+
+        The generated code contains seven functions:
+
+        - :code:`createStatesArray()` to allocate an array of length :code:`STATE_COUNT`.
+        This can be used to allocate the "rates" or gradient function array too as they're the same length;
+        - :code:`createVariablesArray()` to allocate an array of length :code:`VARIABLE_COUNT`;
+        - :code:`deleteArray()` to free memory used by the given array;
+        - :code:`initialiseStatesAndConstants(states, variables)` will do what it says on the tin, and populate the given pre-allocated arrays with the initial values for all of the model's state variables and constants.
+        - :code:`computeComputedConstants(variables)` will fill in values for any variables that do not change in value throughout the solution, but still need to be calculated;
+        - :code:`computeRates(VOI, states, rates, variables)` updates the rates array with the gradients of the state variables, given the values of the other variables and the variable of integration (VOI);
+        - :code:`computeVariables(VOI, states, rates, variables)` updates any non-integrated variables whose values do not affect the integration.
+        Since this doesn't affect the solution process it only needs to be called whenever the values need to be output; not necessarily each integration timestep.
+
+    .. tab:: Python
+
+        The generated code contains seven functions:
+
+        - :code:`create_states_array()` to allocate an array of length :code:`STATE_COUNT`.
+        This can be used to allocate the "rates" or gradient function array too as they're the same length;
+        - :code:`create_variables_array()` to allocate an array of length :code:`VARIABLE_COUNT`;
+        - :code:`delete_array()` to free memory used by the given array;
+        - :code:`initialise_states_and_constants(states, variables)` will do what it says on the tin, and populate the given pre-allocated arrays with the initial values for all of the model's state variables and constants.
+        - :code:`compute_computed_constants(variables)` will fill in values for any variables that do not change in value throughout the solution, but still need to be calculated;
+        - :code:`compute_rates(VOI, states, rates, variables)` updates the rates array with the gradients of the state variables, given the values of the other variables and the variable of integration (VOI);
+        - :code:`compute_variables(VOI, states, rates, variables)` updates any non-integrated variables whose values do not affect the integration.
+        Since this doesn't affect the solution process it only needs to be called whenever the values need to be output; not necessarily each integration timestep.
 
 .. container:: dothis
 
@@ -366,13 +390,16 @@ This part will make use of a simple routine to step through the solution iterati
     **4.c** Create a file for output and open it.
     You can use the information to name columns with the variables, component, and units so you can keep track later.
 
-The Euler update method is: x[n+1] = x[n] + x'[n]*stepSize
-At each step you will need to:
-    - Compute the variables; **
-    - Compute the rates;
-    - Compute the state variables using the update method above; and
-    - Print to a file.
-** We only need to compute these each timestep here because we're also writing the values to the file at each timestep.
+The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
+
+.. container:: shortlist
+
+    At each step you will need to:
+        - Compute the variables; **
+        - Compute the rates;
+        - Compute the state variables using the update method above; and
+        - Print to a file.
+    ** We only need to compute these each timestep here because we're also writing the values to the file at each timestep.
 
 .. container:: toggle
 
@@ -421,32 +448,3 @@ At each step you will need to:
         :language: python
         :start-at: #  4.d
         :end-before: #  end 4
-
-Step 5: Housekeeping
---------------------
-
-.. container:: dothis
-
-    **5.a**  Housekeeping - delete the allocated arrays.
-
-.. container:: toggle
-
-    .. container:: header
-
-        Show C++ snippet
-
-    .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.cpp
-        :language: c++
-        :start-at: //  5.a
-        :end-before: //  end 5
-
-.. container:: toggle
-
-    .. container:: header
-
-        Show Python snippet
-
-    .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.py
-        :language: python
-        :start-at: #  5.a
-        :end-before: #  end 5
