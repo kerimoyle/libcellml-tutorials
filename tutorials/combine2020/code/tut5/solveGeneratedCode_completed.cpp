@@ -156,7 +156,7 @@ int main()
 
     std::cout << "The initial conditions for state variables are:" << std::endl;
     for (size_t v = 0; v < STATE_COUNT; ++v) {
-        std::cout << "  " << STATE_INFO[v].name << " = " << myStateVariables[v] << " (" << STATE_INFO[v].units << ")"<< std::endl;
+        std::cout << "  " << STATE_INFO[v].name << "  = " << myStateVariables[v] << " (" << STATE_INFO[v].units << ")"<< std::endl;
     }
     std::cout << std::endl;
 
@@ -232,8 +232,8 @@ int main()
         // Write everything to the output file.  Keep the order of columns consistent with
         // whatever you've used in step 4.c.
         outFile << step << "\t " << time;
-        for(size_t v = 0; v < VARIABLE_COUNT; ++v){
-            outFile << myVariables[v] << "\t ";
+        for(size_t v = 0; v < VARIABLE_COUNT; ++v) {
+            outFile << "\t " << myVariables[v];
         }
         for (size_t s = 0; s < STATE_COUNT; ++s) {
             outFile << "\t" << myStateVariables[s];
