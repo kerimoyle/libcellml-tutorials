@@ -504,12 +504,13 @@ if __name__ == '__main__':
     #      the repaired model to a string.  Remember we'll still be printing the original
     #      version of the model, not the flattened one!
     printer = Printer()
-    write_file = open('SodiumChannelModel.cellml', 'w')
-    write_file.write(printer.printModel(model))
-    write_file.close()
-
+    printed_model_string = printer.printModel(model)
+    
     #  7.b 
     #      Write the string to a file named 'SodiumChannelModel.cellml'.
+    write_file = open('SodiumChannelModel.cellml', 'w')
+    write_file.write(printed_model_string)
+    write_file.close()
 
     #  end
 

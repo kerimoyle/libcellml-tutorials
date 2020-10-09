@@ -272,11 +272,11 @@ Two profiles are already defined; for C++ and for Python.
     .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
         :language: c++
         :start-at: //  4.a
-        :end-before: //  end 4.a
+        :end-before: //  end 4.b
 
     .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.cpp
         :language: c++
-        :start-at: //  4.b
+        :start-at: //  4.c
         :end-before: //  end 4.c
 
 .. container:: toggle
@@ -288,12 +288,11 @@ Two profiles are already defined; for C++ and for Python.
     .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
         :language: python
         :start-at: #  4.a
-        :end-before: #  end 4.a
-    
+        :end-before: #  end 4.b
 
     .. literalinclude:: ../combine2020/code/tut4/generateMembraneModel_completed.py
         :language: python
-        :start-at: #  4.b
+        :start-at: #  4.c
         :end-before: #  end 4.c
 
 Instead of submitting a :code:`Model` item (as we do for all other classes), the :code:`Generator` class will work from something which has already been processed by the :code:`Analyser` class: an :code:`AnalyserModel` object.

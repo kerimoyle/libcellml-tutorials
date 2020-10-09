@@ -42,7 +42,8 @@ int main()
     //      Use the parser to deserialise the contents of the string you've read and return the model.
     auto model = parser->parseModel(inFileContents.str());
 
-    //  1.d Print the parsed model to the terminal for viewing.
+    //  1.d 
+    //      Print the parsed model to the terminal for viewing.
     printModel(model, false);
 
     //  end 1

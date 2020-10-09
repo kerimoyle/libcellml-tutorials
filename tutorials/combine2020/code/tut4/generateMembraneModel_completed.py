@@ -139,7 +139,9 @@ if __name__ == '__main__':
     # write_file.write(generator.interfaceCode())
     # write_file.close()
 
+    #  end 4  
+
     print('The generated model code has been written to HodgkinHuxleyModel.py') 
 
-    #  end 4  
+    
 

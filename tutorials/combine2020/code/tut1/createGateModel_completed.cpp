@@ -298,7 +298,7 @@ int main()
     analyser->analyseModel(model);
     printIssues(analyser);
 
-    //  end 6.f
+    //  end 6
 
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 7: Sanity check" << std::endl;
@@ -313,12 +313,12 @@ int main()
     //      Even though this is clearly a valid situation (as proved by 4.f), it's not
     //      going to make this model easy to reuse.  We need to make sure that any input and
     //      output variables are also connected into the top level gate component.  
-    //
+    
+    //  7.b
     //      Create intermediate variables for time t and gate status X in the gate component,
     //      and ensure they have a public and private interface to enable two-way connection.
     //      You may also need to set a public and private connection onto t and X in the
     //      equations component too.
-    //  7.b
     gate->addVariable(gateEquations->variable("t")->clone());
     gate->addVariable(gateEquations->variable("X")->clone());
 
@@ -347,7 +347,7 @@ int main()
     //  8.a 
     //      Create a Printer instance and use it to serialise the model.  This creates a string
     //      containing the CellML-formatted version of the model.  Write this to a file called
-    //     "GateModel.cellml".
+    //      "GateModel.cellml".
     auto printer = libcellml::Printer::create();
     std::ofstream outFile("GateModel.cellml");
     outFile << printer->printModel(model);

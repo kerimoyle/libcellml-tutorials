@@ -371,7 +371,8 @@ if __name__ == '__main__':
     controller.setImportSource(controllerImportSource)
     model.addComponent(controller)
 
-    #  5.b Validate the model and confirm that there are no issues.
+    #  5.b 
+    #       Validate the model and confirm that there are no issues.
     validator.validateModel(model)
     print_issues(validator)
 
@@ -552,7 +553,7 @@ if __name__ == '__main__':
     analyser.analyseModel(model)
     print_issues(analyser)
 
-    # end 8
+    #  end 8
 
     print('------------------------------------------------------------')
     print('   STEP 9: Connect the calculated variables                 ')
@@ -618,7 +619,8 @@ if __name__ == '__main__':
     #      function.
     importer.resolveImports(model, '')
 
-    #  10.c  Check the Importer for issues and print any found to the terminal - we do not expect any at this stage.
+    #  10.c  
+    #       Check the Importer for issues and print any found to the terminal - we do not expect any at this stage.
     print_issues(importer)
 
     #  end 10.c

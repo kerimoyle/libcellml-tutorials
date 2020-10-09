@@ -856,7 +856,7 @@ Two particularly useful idioms are shown below.
     .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  6.e
-        :end-before: //  end 6.f
+        :end-before: //  end 6
 
 .. container:: toggle
 
@@ -867,7 +867,7 @@ Two particularly useful idioms are shown below.
     .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  6.e
-        :end-before: #  end 6.f
+        :end-before: #  end 6
 
 Step 7: Sanity check
 --------------------
