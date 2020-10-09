@@ -490,8 +490,8 @@ int main()
     libcellml::Variable::addEquivalence(model->component("mGate", true)->variable("m"), 
                                         model->component("mGateEquations", true)->variable("m"));
 
-    // E_Na in sodiumChannelParameters needs to be initialised to 35.
-    model->component("sodiumChannelParameters", true)->variable("E_Na")->setInitialValue(35);
+    // E_Na in sodiumChannelParameters needs to be initialised to 40.
+    model->component("sodiumChannelParameters", true)->variable("E_Na")->setInitialValue(40);
 
     // i_am_redundant in mGateParameters is not required.
     model->component("mGateParameters", true)->removeVariable("i_am_redundant");

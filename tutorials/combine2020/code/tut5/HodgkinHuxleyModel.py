@@ -66,12 +66,12 @@ def create_variables_array():
 
 
 def initialise_states_and_constants(states, variables):
-    variables[0] = -54.4
+    variables[0] = -64.387
     variables[1] = 0.3
     variables[2] = 1.0
-    variables[3] = -85.0
+    variables[3] = -87.0
     variables[4] = 36.0
-    variables[5] = 35.0
+    variables[5] = 40.0
     variables[6] = 120.0
     states[0] = 0.05
     states[1] = 0.6

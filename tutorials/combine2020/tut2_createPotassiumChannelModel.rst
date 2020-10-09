@@ -806,8 +806,8 @@ These are:
 
 - potassium channel parameters
 
-    - ??, E_K (-85) **TODO**
-    - conductance, g_K (??) **TODO**
+    - E_K (-87) 
+    - g_K (36) 
 
 - nGate parameters
 

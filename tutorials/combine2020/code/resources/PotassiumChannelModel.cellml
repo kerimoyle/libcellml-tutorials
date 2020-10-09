@@ -129,7 +129,7 @@
     <variable name="n" units="dimensionless" initial_value="0.325" interface="public"/>
   </component>
   <component name="potassiumChannelParameters">
-    <variable name="E_K" units="mV" initial_value="-85" interface="public"/>
+    <variable name="E_K" units="mV" initial_value="-87" interface="public"/>
     <variable name="g_K" units="milliS_per_cm2" initial_value="36" interface="public"/>
     <variable name="V" units="mV" interface="public"/>
   </component>
