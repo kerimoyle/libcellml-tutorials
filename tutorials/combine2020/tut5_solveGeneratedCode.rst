@@ -222,32 +222,33 @@ Step 3: Access the functions in the generated files
         The generated code contains seven functions:
 
         - :code:`createStatesArray()` to allocate an array of length :code:`STATE_COUNT`.
-        This can be used to allocate the "rates" or gradient function array too as they're the same length;
+          This can be used to allocate the "rates" or gradient function array too as they're the same length;
         - :code:`createVariablesArray()` to allocate an array of length :code:`VARIABLE_COUNT`;
         - :code:`deleteArray()` to free memory used by the given array;
         - :code:`initialiseStatesAndConstants(states, variables)` will do what it says on the tin, and populate the given pre-allocated arrays with the initial values for all of the model's state variables and constants.
         - :code:`computeComputedConstants(variables)` will fill in values for any variables that do not change in value throughout the solution, but still need to be calculated;
         - :code:`computeRates(VOI, states, rates, variables)` updates the rates array with the gradients of the state variables, given the values of the other variables and the variable of integration (VOI);
         - :code:`computeVariables(VOI, states, rates, variables)` updates any non-integrated variables whose values do not affect the integration.
-        Since this doesn't affect the solution process it only needs to be called whenever the values need to be output; not necessarily each integration timestep.
+          Since this doesn't affect the solution process it only needs to be called whenever the values need to be output; not necessarily each integration timestep.
 
     .. tab:: Python
 
         The generated code contains seven functions:
 
         - :code:`create_states_array()` to allocate an array of length :code:`STATE_COUNT`.
-        This can be used to allocate the "rates" or gradient function array too as they're the same length;
+          This can be used to allocate the "rates" or gradient function array too as they're the same length;
         - :code:`create_variables_array()` to allocate an array of length :code:`VARIABLE_COUNT`;
         - :code:`delete_array()` to free memory used by the given array;
         - :code:`initialise_states_and_constants(states, variables)` will do what it says on the tin, and populate the given pre-allocated arrays with the initial values for all of the model's state variables and constants.
         - :code:`compute_computed_constants(variables)` will fill in values for any variables that do not change in value throughout the solution, but still need to be calculated;
         - :code:`compute_rates(VOI, states, rates, variables)` updates the rates array with the gradients of the state variables, given the values of the other variables and the variable of integration (VOI);
         - :code:`compute_variables(VOI, states, rates, variables)` updates any non-integrated variables whose values do not affect the integration.
-        Since this doesn't affect the solution process it only needs to be called whenever the values need to be output; not necessarily each integration timestep.
+          Since this doesn't affect the solution process it only needs to be called whenever the values need to be output; not necessarily each integration timestep.
 
 .. container:: dothis
 
     **3.a** Create three arrays representing:
+    
     - the variables (which here includes constants)
     - the states (the integrated variables)
     - the rates 
