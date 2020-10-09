@@ -151,6 +151,8 @@ int main()
         std::cout << std::endl;
     }
 
+    //  end 3
+
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 4: Add the variables                              " << std::endl;
     std::cout << "----------------------------------------------------------" << std::endl;
@@ -188,7 +190,7 @@ int main()
     //      - X, gate status has units of *dimensionless*
     //      - alpha_X and beta_X, rates, have units of *per millisecond*.
 
-    // 5.a 
+    //  5.a 
     //      Create the units which will be needed by your variables and add them to the model.
  
     auto ms = libcellml::Units::create("ms");

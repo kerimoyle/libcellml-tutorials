@@ -148,6 +148,8 @@ if __name__ == '__main__':
             print('    see section {} in the CellML specification.'.format(ref))
         print('    stored item type: {}'.format(get_item_type_from_enum(issue.cellmlElementType())))
 
+    #  end 3
+
     print('----------------------------------------------------------')
     print('   STEP 4: Add the variables                              ')
     print('----------------------------------------------------------')
@@ -185,7 +187,7 @@ if __name__ == '__main__':
     #      - X, gate status has units of *dimensionless*
     #      - alpha_X and beta_X, rates, have units of *per millisecond*.
 
-    # 5.a 
+    #  5.a 
     #      Create the units which will be needed by your variables and add them to the model.
  
     ms = Units('ms')
