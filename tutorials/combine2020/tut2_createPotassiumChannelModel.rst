@@ -593,11 +593,11 @@ Note that the variable "n" in the nGateEquations is equivalent to the generic ga
 Imports require three things:
 
     - A destination for the imported item. 
-    This could be a :code:`Component` or :code:`Units` item.
+      This could be a :code:`Component` or :code:`Units` item.
     - A model to import for the imported item from.
-    This is stored in an :code:`ImportSource` item containing the URL of the model to read.
+      This is stored in an :code:`ImportSource` item containing the URL of the model to read.
     - The name of the item to import.
-    This is called the "import reference" and is stored by the destination :code:`Component` or :code:`Units` item.
+      This is called the "import reference" and is stored by the destination :code:`Component` or :code:`Units` item.
 
 .. container:: useful
 
