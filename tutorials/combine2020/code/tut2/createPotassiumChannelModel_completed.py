@@ -209,10 +209,10 @@ if __name__ == '__main__':
         '    <ci>alpha_n</ci>\n'\
         '    <apply><divide/>\n'\
         '      <apply><times/>\n'\
-        '        <cn cellml:units="per_mV_ms">0.01</cn>\n'\
+        '        <cn cellml:units="per_mV_ms">-0.01</cn>\n'\
         '        <apply><plus/>\n'\
         '          <ci>V</ci>\n'\
-        '          <cn cellml:units="mV">10</cn>\n'\
+        '          <cn cellml:units="mV">65</cn>\n'\
         '        </apply>\n'\
         '      </apply>\n'\
         '      <apply><minus/>\n'\
@@ -220,9 +220,9 @@ if __name__ == '__main__':
         '          <apply><divide/>\n'\
         '            <apply><plus/>\n'\
         '              <ci>V</ci>\n'\
-        '              <cn cellml:units="mV">10</cn>\n'\
+        '              <cn cellml:units="mV">65</cn>\n'\
         '            </apply>\n'\
-        '            <cn cellml:units="mV">10</cn>\n'\
+        '            <cn cellml:units="mV">-10</cn>\n'\
         '          </apply>\n'\
         '        </apply>\n'\
         '        <cn cellml:units="dimensionless">1</cn>\n'\
@@ -237,8 +237,11 @@ if __name__ == '__main__':
         '      <cn cellml:units="per_ms">0.125</cn>\n'\
         '      <apply><exp/>\n'\
         '        <apply><divide/>\n'\
-        '          <ci>V</ci>\n'\
-        '          <cn cellml:units="mV">80</cn>\n'\
+        '          <apply><plus/>\n'\
+        '            <ci>V</ci>\n'\
+        '            <cn cellml:units="mV">75</cn>\n'\
+        '          </apply>\n'\
+        '          <cn cellml:units="mV">-80</cn>\n'\
         '        </apply>\n'\
         '      </apply>\n'\
         '    </apply>\n'\

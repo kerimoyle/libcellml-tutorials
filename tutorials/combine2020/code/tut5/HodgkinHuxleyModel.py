@@ -94,8 +94,8 @@ def compute_rates(voi, states, rates, variables):
     variables[12] = 0.07*exp(-(states[3]+75.0)/20.0)
     variables[13] = 1.0/(exp(-(states[3]+45.0)/10.0)+1.0)
     rates[1] = variables[12]*(1.0-states[1])-variables[13]*states[1]
-    variables[15] = 0.01*(states[3]+10.0)/(exp((states[3]+10.0)/10.0)-1.0)
-    variables[16] = 0.125*exp(states[3]/80.0)
+    variables[15] = -0.01*(states[3]+65.0)/(exp((states[3]+65.0)/-10.0)-1.0)
+    variables[16] = 0.125*exp((states[3]+75.0)/-80.0)
     rates[2] = variables[15]*(1.0-states[2])-variables[16]*states[2]
     variables[7] = 20.0 if and_func(geq_func(voi, 10.0), leq_func(voi, 10.5)) else 0.0
     variables[17] = variables[1]*(states[3]-variables[0])

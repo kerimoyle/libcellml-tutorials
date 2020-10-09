@@ -139,7 +139,8 @@ if __name__ == '__main__':
     model.initialise_states_and_constants(my_state_variables, my_variables)
     print('The initial conditions for state variables are:')
     for v in range(0, model.STATE_COUNT):
-        print('  {} = {} ({})'.format(
+        print('{} {} = {} ({})'.format(
+            model.STATE_INFO[v]['component'],
             model.STATE_INFO[v]['name'],
             my_variables[v],
             model.STATE_INFO[v]['units']
