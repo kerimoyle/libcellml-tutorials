@@ -29,23 +29,23 @@ int main()
     //  Include the generated code in this project.  Note that many of these
     //  steps occur in other files.
 
-    //  1.a Enter the path to the generated header/interface *.h file in the #include block above.
+    //  1.a 
+    //      Enter the path to the generated header/interface *.h file in the #include block above.
 
-    //  1.b Add the name and path of the implementation *.cpp file in the CMakeLists.txt file, 
+    //  1.b 
+    //      Add the name and path of the implementation *.cpp file in the CMakeLists.txt file, 
     //      (or whatever your local toolchain requires).
 
-    //  1.c Open the implementation file *.cpp file and verify that the #include statement in
+    //  1.c 
+    //      Open the implementation file *.cpp file and verify that the #include statement in
     //      line 3 has the filename of your interface *.h file.  Amend if needed and close the file.
 
-    //  1.d Check that we can access the version string in both places: the libCellML library 
-    //      and the generated code.
-    std::cout << "The generated code used libCellML version " << LIBCELLML_VERSION << std::endl;
-    std::cout << "The library version of libCellML is " << libcellml::versionString() << std::endl 
-              << std::endl;
-
-    //  1.e Call cmake to create the Makefile.  Call make -j to build the executable.
+    //  1.d 
+    //      Call cmake to create the Makefile.  Call make -j to build the executable.
     //      Run the code so far to check that the libCellML versions match.
 
+    //  end 1
+    
     std::cout << "-----------------------------------------------------------" << std::endl;
     std::cout << "   Step 2: Access the variables in the generated files     " << std::endl;
     std::cout << "-----------------------------------------------------------" << std::endl;

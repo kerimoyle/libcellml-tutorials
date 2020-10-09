@@ -151,6 +151,8 @@ int main()
     outFile << generator->interfaceCode();
     outFile.close();
 
+    //  end 4
+
     std::cout << "The generated model code has been written to HodgkinHuxleyModel.[cpp,h]"
               << std::endl;   
 }

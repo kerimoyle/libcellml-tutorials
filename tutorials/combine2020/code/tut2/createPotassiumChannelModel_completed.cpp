@@ -375,7 +375,8 @@ int main()
     controller->setImportSource(controllerImportSource);
     model->addComponent(controller);
 
-    //  5.b Validate the model and confirm that there are no issues.
+    //  5.b 
+    //      Validate the model and confirm that there are no issues.
     validator->validateModel(model);
     printIssues(validator);
 
@@ -556,7 +557,7 @@ int main()
     analyser->analyseModel(model);
     printIssues(analyser);
 
-    // end 8
+    //  end 8
 
     std::cout << "------------------------------------------------------------" << std::endl;
     std::cout << "   STEP 9: Connect the 'calculated' variables               " << std::endl;
@@ -623,7 +624,8 @@ int main()
     //      function.
     importer->resolveImports(model, "");
 
-    //  10.c  Check the Importer for issues and print any found to the terminal - we do not expect any at this stage.
+    //  10.c  
+    //      Check the Importer for issues and print any found to the terminal - we do not expect any at this stage.
     printIssues(importer);
 
     //  end 10.c
