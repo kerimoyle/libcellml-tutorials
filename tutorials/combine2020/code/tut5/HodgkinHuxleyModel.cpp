@@ -92,7 +92,7 @@ void computeRates(double voi, double *states, double *rates, double *variables)
     variables[8] = variables[6]*states[1]*pow(states[0], 3.0);
     variables[9] = variables[8]*(states[3]-variables[5]);
     variables[14] = pow(states[2], 4.0)*variables[4]*(states[3]-variables[3]);
-    variables[18] = variables[7]+variables[14]+variables[9]+variables[17];
+    variables[18] = -variables[7]+variables[14]+variables[9]+variables[17];
     rates[3] = -1.0*variables[18]/variables[2];
 }
 

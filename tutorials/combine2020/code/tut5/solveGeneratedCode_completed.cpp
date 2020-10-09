@@ -156,7 +156,7 @@ int main()
 
     std::cout << "The initial conditions for state variables are:" << std::endl;
     for (size_t v = 0; v < STATE_COUNT; ++v) {
-        std::cout << "  " << STATE_INFO[v].name << "  = " << myStateVariables[v] << " (" << STATE_INFO[v].units << ")"<< std::endl;
+        std::cout << "  " << STATE_INFO[v].component << " " << STATE_INFO[v].name << "  = " << myStateVariables[v] << " (" << STATE_INFO[v].units << ")"<< std::endl;
     }
     std::cout << std::endl;
 

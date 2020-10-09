@@ -189,7 +189,6 @@ if __name__ == '__main__':
 
     #  5.a 
     #      Create the units which will be needed by your variables and add them to the model.
- 
     ms = Units('ms')
     per_ms = Units('per_ms')
    
@@ -290,7 +289,7 @@ if __name__ == '__main__':
     analyser.analyseModel(model)
     print_issues(analyser)
 
-    #  end 6.f
+    #  end 6
 
     print('----------------------------------------------------------')
     print('   STEP 7: Sanity check')

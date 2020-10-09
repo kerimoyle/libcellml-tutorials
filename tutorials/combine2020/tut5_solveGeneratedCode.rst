@@ -423,3 +423,8 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
         :language: python
         :start-at: #  4.c
         :end-before: #  end 4
+
+Step 5: Sanity check
+--------------------
+The file that results from running the completed version of this tutorial can be downloaded from :download:`HodgkinHuxleyModelSolution.txt<code/resources/HodgkinHuxleyModelSolution.txt>`, and is a tab-delimited file that can be easily read into your favourite plotting program.
+

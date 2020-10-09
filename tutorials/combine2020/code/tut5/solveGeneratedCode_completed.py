@@ -142,7 +142,7 @@ if __name__ == '__main__':
         print('{} {} = {} ({})'.format(
             model.STATE_INFO[v]['component'],
             model.STATE_INFO[v]['name'],
-            my_variables[v],
+            my_state_variables[v],
             model.STATE_INFO[v]['units']
             ))
     print()
