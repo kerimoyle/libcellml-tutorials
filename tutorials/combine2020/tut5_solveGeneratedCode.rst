@@ -247,8 +247,11 @@ Step 3: Access the functions in the generated files
 
 .. container:: dothis
 
-    **3.a** Create two arrays and use the functions to allocate them.
-    One will represent the variables, and one will represent the state variables. 
+    **3.a** Create three arrays representing:
+    - the variables (which here includes constants)
+    - the states (the integrated variables)
+    - the rates 
+    Create and initialise a variable of integration, time. 
 
 .. container:: toggle
 
@@ -274,7 +277,7 @@ Step 3: Access the functions in the generated files
 
 .. container:: dothis
 
-    **3.b** Use the functions provided to initialise the arrays you created, then print them to the screen for checking.
+    **3.b** Use the functions provided to initialise the states array you created, then print them to the screen for checking.
     
 .. container:: toggle
 
@@ -300,7 +303,7 @@ Step 3: Access the functions in the generated files
 
 .. container:: dothis
 
-    **3.c** Compute the computed constants and print them to the screen for checking.
+    **3.c** Compute the constants, compute the variables, and print them to the screen for checking.
 
 .. container:: toggle
 
@@ -332,7 +335,6 @@ This part will make use of a simple routine to step through the solution iterati
 
     **4.a** Create variables which control how the solution will run, representing:
 
-    - variable of integration (time);
     - step size; and
     - the number of steps to take.
 
@@ -360,34 +362,7 @@ This part will make use of a simple routine to step through the solution iterati
 
 .. container:: dothis
 
-    **4.b** Create an array for the rates.
-    You can use the same :code:`createStatesArray()` function to allocate this as the number of rates will always equal the number of state variables.
-
-.. container:: toggle
-
-    .. container:: header
-
-        Show C++ snippet
-
-    .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.cpp
-        :language: c++
-        :start-at: //  4.b
-        :end-before: //  4.c 
-
-.. container:: toggle
-
-    .. container:: header
-
-        Show Python snippet
-
-    .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.py
-        :language: python
-        :start-at: #  4.b
-        :end-before: #  4.c
-
-.. container:: dothis
-
-    **4.c** Create a file for output and open it.
+    **4.b** Create a file for output and open it.
     You can use the information to name columns with the variables, component, and units so you can keep track later.
 
 The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
@@ -395,9 +370,9 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
 .. container:: shortlist
 
     At each step you will need to:
-        - Compute the variables; **
         - Compute the rates;
-        - Compute the state variables using the update method above; and
+        - Compute the state variables using the update method above; 
+        - Compute the variables; **
         - Print to a file.
     ** We only need to compute these each timestep here because we're also writing the values to the file at each timestep.
 
@@ -409,8 +384,8 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
 
     .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.cpp
         :language: c++
-        :start-at: //  4.c
-        :end-before: //  end 4.c
+        :start-at: //  4.b
+        :end-before: //  end 4.b
 
 .. container:: toggle
 
@@ -420,12 +395,12 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
 
     .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.py
         :language: python
-        :start-at: #  4.c
-        :end-before: #  end 4.c
+        :start-at: #  4.b
+        :end-before: #  end 4.b
 
 .. container:: dothis
 
-    **4.d** Iterate through the time domain, calculate and write the solution at each step.
+    **4.c** Iterate through the time domain, calculate and write the solution at each step.
     
 .. container:: toggle
 
@@ -435,7 +410,7 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
 
     .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.cpp
         :language: c++
-        :start-at: //  4.d
+        :start-at: //  4.c
         :end-before: //  end 4
 
 .. container:: toggle
@@ -446,5 +421,5 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
 
     .. literalinclude:: ../combine2020/code/tut5/solveGeneratedCode_completed.py
         :language: python
-        :start-at: #  4.d
+        :start-at: #  4.c
         :end-before: #  end 4

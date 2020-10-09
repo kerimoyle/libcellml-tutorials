@@ -139,21 +139,20 @@ int main()
     //        necessarily each integration timestep.
 
     //  3.a 
-    //      Create two arrays and use the functions to allocate them.  One will represent the
-    //      variables, and one will represent the state variables. 
+    //      Create three arrays and use the functions to allocate them, representing
+    //      - variables,
+    //      - rates
+    //      - states.
+    //      Create a variable of integration and set it to 0.
     auto myVariables = createVariablesArray();
     auto myStateVariables = createStatesArray();
+    auto myRates = createStatesArray();
+    double time = 0;
 
     //  3.b 
     //      Use the functions provided to initialise the arrays you created, then print them 
     //      to the screen for checking.
     initialiseStatesAndConstants(myStateVariables, myVariables);
-
-    std::cout << "The initial conditions for variables are:" << std::endl;
-    for (size_t v = 0; v < VARIABLE_COUNT; ++v) {
-        std::cout << "  " << VARIABLE_INFO[v].name << " = " << myVariables[v] << " (" << VARIABLE_INFO[v].units << ")"<<std::endl;
-    }
-    std::cout << std::endl;
 
     std::cout << "The initial conditions for state variables are:" << std::endl;
     for (size_t v = 0; v < STATE_COUNT; ++v) {
@@ -162,9 +161,10 @@ int main()
     std::cout << std::endl;
 
     //  3.c 
-    //      Compute the computed constants and print them to the screen for checking.
-    std::cout << "The initial values including all computed constants are:" << std::endl;
+    //      Compute the constants, compute the variables, and print them to the screen for checking.
     computeComputedConstants(myVariables);
+    computeVariables(time, myStateVariables, myRates, myVariables);
+    std::cout << "The initial values including all computed constants are:" << std::endl;
     for (size_t v = 0; v < VARIABLE_COUNT; ++v) {
         std::cout << "  " << VARIABLE_INFO[v].name << " = " << myVariables[v] << " (" << VARIABLE_INFO[v].units << ")"<<std::endl;
     }
@@ -184,18 +184,11 @@ int main()
     //      - variable of integration (time);
     //      - step size; and
     //      - the number of steps to take.
-    double time = 0.0;
     double stepSize = 0.01;
     int stepCount = 2000;
     int incr = (int)(stepCount/60) + 1;
 
     //  4.b 
-    //      Create an array for the rates.  You can use the same createStatesArray() 
-    //      function to allocate this as the number of rates will always equal the 
-    //      number of state variables.
-    auto myRates = createStatesArray();
-
-    //  4.c 
     //      Create a file for output and open it. You can use the information to name columns
     //      with the variables, component, and units so you can keep track later.
     std::ofstream outFile("HodgkinHuxleyModelSolution.txt");
@@ -209,23 +202,20 @@ int main()
     }
     outFile << std::endl;
    
-    //  end 4.c
+    //  end 4.b
     //      The Euler update method is: x[n+1] = x[n] + x'[n]*stepSize
     //      At each step you will need to:
-    //          - Compute the variables; **
     //          - Compute the rates;
-    //          - Compute the state variables using the update method above; and
+    //          - Compute the state variables using the update method above; 
+    //          - Compute the variables; **
     //          - Print to a file.
     //      ** We only need to compute these each timestep here because we're also 
     //         writing the values to the file at each timestep.
 
-    //  4.d 
+    //  4.c
     //      Iterate through the time domain and write the solution at each step. 
     for (size_t step = 0; step < stepCount; ++step) {
         time = step * stepSize;
-
-        // Compute the variables at this step using the given function.
-        computeVariables(time, myStateVariables, myRates, myVariables);
 
         // Compute the rates at this step using the given function.
         computeRates(time, myStateVariables, myRates, myVariables);
@@ -235,6 +225,9 @@ int main()
         for (size_t s = 0; s < STATE_COUNT; ++s) {
             myStateVariables[s] = myStateVariables[s] + myRates[s] * stepSize;
         }
+
+        // Compute the variables at this step using the given function.
+        computeVariables(time, myStateVariables, myRates, myVariables);
 
         // Write everything to the output file.  Keep the order of columns consistent with
         // whatever you've used in step 4.c.

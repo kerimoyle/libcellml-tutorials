@@ -84,8 +84,6 @@
   <connection component_1="membraneEquations" component_2="sodiumChannel">
     <map_variables variable_1="t" variable_2="t"/>
     <map_variables variable_1="i_Na" variable_2="i_Na"/>
-    <map_variables variable_1="h" variable_2="h"/>
-    <map_variables variable_1="m" variable_2="m"/>
     <map_variables variable_1="E_Na" variable_2="E_Na"/>
     <map_variables variable_1="g_Na" variable_2="g_Na"/>
     <map_variables variable_1="V" variable_2="V"/>
@@ -93,7 +91,6 @@
   <connection component_1="membraneEquations" component_2="potassiumChannel">
     <map_variables variable_1="t" variable_2="t"/>
     <map_variables variable_1="i_K" variable_2="i_K"/>
-    <map_variables variable_1="n" variable_2="n"/>
     <map_variables variable_1="g_K" variable_2="g_K"/>
     <map_variables variable_1="E_K" variable_2="E_K"/>
     <map_variables variable_1="V" variable_2="V"/>

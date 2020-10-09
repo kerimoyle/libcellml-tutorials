@@ -69,7 +69,7 @@ void initialiseStatesAndConstants(double *states, double *variables)
     states[0] = 0.05;
     states[1] = 0.6;
     states[2] = 0.325;
-    states[3] = 1.0;
+    states[3] = -75.0;
 }
 
 void computeComputedConstants(double *variables)
@@ -87,7 +87,7 @@ void computeRates(double voi, double *states, double *rates, double *variables)
     variables[15] = 0.01*(states[3]+10.0)/(exp((states[3]+10.0)/10.0)-1.0);
     variables[16] = 0.125*exp(states[3]/80.0);
     rates[2] = variables[15]*(1.0-states[2])-variables[16]*states[2];
-    variables[7] = (voi < 1.0)?0.0:(voi > 1.2)?0.0:100.0;
+    variables[7] = ((voi >= 10.0) && (voi <= 10.5))?20.0:0.0;
     variables[17] = variables[1]*(states[3]-variables[0]);
     variables[8] = variables[6]*states[1]*pow(states[0], 3.0);
     variables[9] = variables[8]*(states[3]-variables[5]);
