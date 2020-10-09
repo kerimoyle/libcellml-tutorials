@@ -123,28 +123,24 @@ if __name__ == '__main__':
     #        necessarily each integration timestep.
 
     #  3.a 
-    #       Create two arrays and use the functions to allocate them.  One will represent the
-    #       variables, and one will represent the state variables. 
+    #       Create three arrays representing:
+    #       - the variables (which here includes constants)
+    #       - the states (the integrated variables)
+    #       - the rates 
+    #       Create and initialise a variable of integration, time.
     my_variables = model.create_variables_array()
     my_state_variables = model.create_states_array()
+    my_rates = model.create_states_array()
+    time = 0.0
 
     #  3.b 
     #       Use the functions provided to initialise the arrays you created, then print them 
     #       to the screen for checking.
     model.initialise_states_and_constants(my_state_variables, my_variables)
-
-    print('The initial values for variables are:')
-    for v in range(0, model.VARIABLE_COUNT):
-        print('  {} = {} ({})'.format(
-            model.VARIABLE_INFO[v]['name'],
-            my_variables[v],
-            model.VARIABLE_INFO[v]['units']
-            ))
-    print()
-
     print('The initial conditions for state variables are:')
     for v in range(0, model.STATE_COUNT):
-        print('  {} = {} ({})'.format(
+        print('{} {} = {} ({})'.format(
+            model.STATE_INFO[v]['component'],
             model.STATE_INFO[v]['name'],
             my_variables[v],
             model.STATE_INFO[v]['units']
@@ -152,9 +148,10 @@ if __name__ == '__main__':
     print()
 
     #  3.c 
-    #       Compute the computed constants and print them to the screen for checking.
+    #       Compute the constants, compute the variables,  and print them to the screen for checking.
     print('The initial values including all computed constants are:')
     model.compute_computed_constants(my_variables)
+    model.compute_variables(time, my_state_variables, my_rates, my_variables)
     for v in range(0, model.VARIABLE_COUNT):
         print('  {} = {} ({})'.format(
             model.VARIABLE_INFO[v]['name'],
@@ -174,20 +171,13 @@ if __name__ == '__main__':
 
     #  4.a 
     #       Create variables which control how the solution will run, representing:
-    #       - variable of integration (time)
     #       - step size and
     #       - the number of steps to take.
-    time = 0.0
     step_size = 0.01
     step_count = 2000
     incr = int(step_count/60) + 1
 
-    #  4.b Create an array for the rates.  You can use the same createStatesArray() 
-    #      function to allocate this as the number of rates will always equal the 
-    #      number of state variables.
-    my_rates = model.create_states_array()
-
-    #  4.c Create a file for output and open it. You can use the information to name columns
+    #  4.b Create a file for output and open it. You can use the information to name columns
     #      with the variables, component, and units so you can keep track later.
     write_file = open('HodgkinHuxleyModelSolution.txt', 'w')
     row = 'iteration\t{}({})'.format(
@@ -201,17 +191,17 @@ if __name__ == '__main__':
     row += '\n'
     write_file.write(row)
 
-    #  end 4.c
+    #  end 4.b
     #      The Euler update method is: x[n+1] = x[n] + x'[n]*stepSize
     #      At each step you will need to:
-    #          - Compute the variables; **
     #          - Compute the rates;
-    #          - Compute the state variables using the update method above; and
+    #          - Compute the state variables using the update method above; 
+    #          - Compute the variables; **
     #          - Print to a file.
     #      ** We only need to compute these each timestep here because we're also 
     #         writing the values to the file at each timestep.
 
-    #  4.d 
+    #  4.c 
     #      Iterate through the time domain and write the solution at each step. 
     for step in range(0, step_count):
         time = step * step_size
@@ -232,6 +222,7 @@ if __name__ == '__main__':
             row += '\t{}'.format(my_variables[s])
 
         row += '\n'
+        # Write to file.
         write_file.write(row)
 
         # Print progress bar.

@@ -484,8 +484,8 @@ if __name__ == '__main__':
     Variable.addEquivalence(model.component('mGate', True).variable('m'), 
                                         model.component('mGateEquations', True).variable('m'))
 
-    # E_Na in sodiumChannelParameters needs to be initialised to 35.
-    model.component('sodiumChannelParameters', True).variable('E_Na').setInitialValue(35)
+    # E_Na in sodiumChannelParameters needs to be initialised to 40.
+    model.component('sodiumChannelParameters', True).variable('E_Na').setInitialValue(40)
 
     # i_am_redundant in m_gateParameters is not required.
     model.component('mGateParameters', True).removeVariable('i_am_redundant')

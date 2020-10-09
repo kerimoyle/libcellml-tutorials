@@ -112,7 +112,7 @@ int main()
     //      to the screen for checking.
 
     //  3.c 
-    //      Compute the computed constants and print them to the screen for checking.
+    //      Compute the constants, compute the variables, and print them to the screen for checking.
 
     std::cout << "-----------------------------------------------------------" << std::endl;
     std::cout << "   Step 4: Iterate through the solution                    " << std::endl;
@@ -123,16 +123,10 @@ int main()
 
     //  4.a 
     //      Create variables which control how the solution will run, representing:
-    //      - variable of integration (time);
     //      - step size; and
     //      - the number of steps to take.
-
-    //  4.b 
-    //      Create an array for the rates.  You can use the same createStatesArray() 
-    //      function to allocate this as the number of rates will always equal the 
-    //      number of state variables.
    
-    //  4.c 
+    //  4.b
     //      Create a file for output and open it. You can use the information to name columns
     //      with the variables, component, and units so you can keep track later.
 
@@ -145,7 +139,7 @@ int main()
     //      ** We only need to compute these each timestep here because we're also 
     //         writing the values to the file at each timestep.
 
-    //  4.d 
+    //  4.c 
     //      Iterate through the time domain and write the solution at each step. 
 
     std::cout << "-----------------------------------------------------------" << std::endl;

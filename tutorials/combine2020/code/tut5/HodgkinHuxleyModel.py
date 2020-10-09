@@ -49,12 +49,16 @@ VARIABLE_INFO = [
 ]
 
 
-def lt_func(x, y):
-    return 1.0 if x < y else 0.0
+def leq_func(x, y):
+    return 1.0 if x <= y else 0.0
 
 
-def gt_func(x, y):
-    return 1.0 if x > y else 0.0
+def geq_func(x, y):
+    return 1.0 if x >= y else 0.0
+
+
+def and_func(x, y):
+    return 1.0 if bool(x) & bool(y) else 0.0
 
 
 def create_states_array():
@@ -66,17 +70,17 @@ def create_variables_array():
 
 
 def initialise_states_and_constants(states, variables):
-    variables[0] = -54.4
+    variables[0] = -64.387
     variables[1] = 0.3
     variables[2] = 1.0
-    variables[3] = -85.0
+    variables[3] = -87.0
     variables[4] = 36.0
-    variables[5] = 35.0
+    variables[5] = 40.0
     variables[6] = 120.0
     states[0] = 0.05
     states[1] = 0.6
     states[2] = 0.325
-    states[3] = 1.0
+    states[3] = -75.0
 
 
 def compute_computed_constants(variables):
@@ -90,10 +94,10 @@ def compute_rates(voi, states, rates, variables):
     variables[12] = 0.07*exp(-(states[3]+75.0)/20.0)
     variables[13] = 1.0/(exp(-(states[3]+45.0)/10.0)+1.0)
     rates[1] = variables[12]*(1.0-states[1])-variables[13]*states[1]
-    variables[15] = 0.01*(states[3]+10.0)/(exp((states[3]+10.0)/10.0)-1.0)
-    variables[16] = 0.125*exp(states[3]/80.0)
+    variables[15] = -0.01*(states[3]+65.0)/(exp((states[3]+65.0)/-10.0)-1.0)
+    variables[16] = 0.125*exp((states[3]+75.0)/-80.0)
     rates[2] = variables[15]*(1.0-states[2])-variables[16]*states[2]
-    variables[7] = 0.0 if lt_func(voi, 1.0) else 0.0 if gt_func(voi, 1.2) else 100.0
+    variables[7] = 20.0 if and_func(geq_func(voi, 10.0), leq_func(voi, 10.5)) else 0.0
     variables[17] = variables[1]*(states[3]-variables[0])
     variables[8] = variables[6]*states[1]*pow(states[0], 3.0)
     variables[9] = variables[8]*(states[3]-variables[5])

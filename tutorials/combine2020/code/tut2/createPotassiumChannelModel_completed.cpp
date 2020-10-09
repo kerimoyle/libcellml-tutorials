@@ -209,30 +209,30 @@ int main()
     //      Add the mathematics to the nGateEquations component and validate the model.
     //      Expect errors relating to missing variables.
     std::string equationAlphaN =
-        "  <apply><eq/>\n"
+        "<apply><eq/>\n"
         "    <ci>alpha_n</ci>\n"
         "    <apply><divide/>\n"
-        "      <apply><times/>\n"
-        "        <cn cellml:units=\"per_mV_ms\">0.01</cn>\n"
-        "        <apply><plus/>\n"
-        "          <ci>V</ci>\n"
-        "          <cn cellml:units=\"mV\">10</cn>\n"
-        "        </apply>\n" 
-        "      </apply>\n" 
-        "      <apply><minus/>\n"
-        "        <apply><exp/>\n"
-        "          <apply><divide/>\n"
+        "        <apply><times/>\n"
+        "            <cn cellml:units=\"per_mV_ms\">-0.01</cn>\n"
         "            <apply><plus/>\n"
-        "              <ci>V</ci>\n"
-        "              <cn cellml:units=\"mV\">10</cn>\n"
-        "            </apply>\n" 
-        "            <cn cellml:units=\"mV\">10</cn>\n"
-        "          </apply>\n" 
-        "        </apply>\n" 
-        "        <cn cellml:units=\"dimensionless\">1</cn>\n"
-        "      </apply>\n" 
-        "    </apply>\n" 
-        "  </apply>\n"; 
+        "                <ci>V</ci>\n"
+        "                <cn cellml:units=\"mV\">65</cn>\n"
+        "            </apply>\n"
+        "        </apply>\n"
+        "        <apply><minus/>\n"
+        "            <apply><exp/>\n"
+        "                <apply><divide/>\n"
+        "                    <apply><plus/>\n"
+        "                        <ci>V</ci>\n"
+        "                        <cn cellml:units=\"mV\">65</cn>\n"
+        "                    </apply>\n"
+        "                    <cn cellml:units=\"mV\">-10</cn>\n"
+        "                </apply>\n"
+        "            </apply>\n"
+        "            <cn cellml:units=\"dimensionless\">1</cn>\n"
+        "        </apply>\n"
+        "    </apply>\n"
+        "</apply>\n";
 
     std::string equationBetaN =
         "  <apply><eq/>\n"
@@ -241,8 +241,11 @@ int main()
         "      <cn cellml:units=\"per_ms\">0.125</cn>\n"
         "      <apply><exp/>\n"
         "        <apply><divide/>\n"
-        "          <ci>V</ci>\n"
-        "          <cn cellml:units=\"mV\">80</cn>\n"
+        "          <apply><plus/>"
+        "            <ci>V</ci>\n"
+        "            <cn cellml:units=\"mV\">75</cn>\n"
+        "          </apply>"
+        "          <cn cellml:units=\"mV\">-80</cn>\n"
         "        </apply>\n" 
         "      </apply>\n" 
         "    </apply>\n" 
@@ -433,8 +436,8 @@ int main()
     //      Create parameters siblings components for the equations components, and add the variables that 
     //      they will require.  These are:
     //      - potassium channel parameters
-    //          - ??, E_K (-85)
-    //          - conductance, g_K (??)
+    //          - E_K (-87)
+    //          - g_K (36)
     //      - nGate parameters
     //          - initial value for n (dimensionless)
     //      You can either do this by creating the variables from scratch (as in Step 3.d) but
@@ -485,14 +488,14 @@ int main()
     //      Variable::setInitialValue() function to give these values to the following variables 
     //      in the parameters components:
     //      - potassium channel parameters:
-    //          - E_K = -85 [mV]
+    //          - E_K = -87 [mV]
     //          - g_K = 36 [milliS_per_cm2]
     //      - nGate parameters
     //          - n = 0.325 [dimensionless]
     //  7.f
     //      Set the constant values on the variables.  Analyse the model again, expecting 
     //      that the calculation errors related to these constants have been solved.
-    kChannelParameters->variable("E_K")->setInitialValue(-85);
+    kChannelParameters->variable("E_K")->setInitialValue(-87);
     kChannelParameters->variable("g_K")->setInitialValue(36);
     nGateParameters->variable("n")->setInitialValue(0.325);
 

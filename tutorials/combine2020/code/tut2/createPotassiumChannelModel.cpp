@@ -248,10 +248,10 @@ int main()
     //      Create parameters siblings components for the equations components, and add the variables that 
     //      they will require.  These are:
     //      - potassium channel parameters
-    //          - ??, E_K (-85)
-    //          - conductance, g_K (??)
+    //          - E_K (-87)
+    //          - g_K (36)
     //      - nGate parameters
-    //          - initial value for n (dimensionless)
+    //          - n (0.325)
     //      You can either do this by creating the variables from scratch (as in Step 3.d) but
     //      because these are intended to be duplicates of existing variables, but in another 
     //      component, we can simply add a cloned variable to the parameters component.
@@ -281,7 +281,7 @@ int main()
     //      Variable::setInitialValue() function to give these values to the following variables 
     //      in the parameters components:
     //      - potassium channel parameters:
-    //          - E_K = -85 [mV]
+    //          - E_K = -87 [mV]
     //          - g_K = 36 [milliS_per_cm2]
     //      - nGate parameters
     //          - n = 0.325 [dimensionless]

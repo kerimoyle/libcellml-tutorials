@@ -354,7 +354,7 @@ The simplest way is to print the descriptions to the terminal.
     .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
         :start-at: //  3.b
-        :end-before: //  3.c
+        :end-before: //  end 3
 
 .. container:: toggle
 
@@ -365,7 +365,7 @@ The simplest way is to print the descriptions to the terminal.
     .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
         :start-at: #  3.b
-        :end-before: #  3.c
+        :end-before: #  end 3
 
 .. code-block:: terminal
 
@@ -748,8 +748,8 @@ This is the reason for the second internal component, the *parameters* component
 
     .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.cpp
         :language: c++
-        :start-at: //  4.c
-        :end-before: //  4.e
+        :start-at: //  6.d
+        :end-before: //  6.e
 
 .. container:: toggle
 
@@ -759,8 +759,8 @@ This is the reason for the second internal component, the *parameters* component
 
     .. literalinclude:: ../combine2020/code/tut1/createGateModel_completed.py
         :language: python
-        :start-at: #  4.c
-        :end-before: #  4.e
+        :start-at: #  6.d
+        :end-before: #  6.e
 
 So far in this tutorial we've only been creating items, defining them, and adding to their parent items.
 Now for the first time we will need to retrieve a child item from its parent.

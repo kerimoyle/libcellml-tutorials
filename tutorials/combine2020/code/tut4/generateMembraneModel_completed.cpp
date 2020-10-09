@@ -138,7 +138,7 @@ int main()
     //  4.f
     //      Use the Generator::implementationCode() function to return the implementation 
     //      code as a string, and write it to a file with the appropriate extension.
-    std::ofstream outFile("HodgkinHuxleyModel.c");
+    std::ofstream outFile("HodgkinHuxleyModel.cpp");
     outFile << generator->implementationCode();
     outFile.close();
 
@@ -151,7 +151,6 @@ int main()
     outFile << generator->interfaceCode();
     outFile.close();
 
-    //  end 4
-    std::cout << "The generated model code has been written to HodgkinHuxleyModel.[c,h|py]"
+    std::cout << "The generated model code has been written to HodgkinHuxleyModel.[cpp,h]"
               << std::endl;   
 }

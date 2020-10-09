@@ -41,7 +41,7 @@ Tutorial 4: Generating code from a model
     - :download:`PotassiumChannelModel.cellml<code/resources/PotassiumChannelModel.cellml>` the potassium channel model (from Tutorial 2);
     - :download:`SodiumChannelModel.cellml<code/resources/SodiumChannelModel.cellml>` the sodium channel model (from Tutorial 3);
     - :download:`LeakageModel.cellml<code/resources/LeakageModel.cellml>` an import dependency representing current leakage; 
-    - :download:`MembraneController.cellml<code/resources/MembraneController.cellml>` an import dependency for the membrane model controller; and
+    - :download:`MembraneModelController.cellml<code/resources/MembraneModelController.cellml>` an import dependency for the membrane model controller; and
     - :download:`MembraneModel.cellml<code/resources/MembraneModel.cellml>` the file to parse.
 
 **Contents**

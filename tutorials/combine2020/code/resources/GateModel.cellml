@@ -15,7 +15,36 @@
     <variable name="alpha_X" units="per_ms" interface="public"/>
     <variable name="beta_X" units="per_ms" interface="public"/>
     <variable name="X" units="dimensionless" interface="public_and_private"/>
-    <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">  <apply><eq/>    <apply><diff/>      <bvar><ci>t</ci></bvar>      <ci>X</ci>    </apply>    <apply><minus/>      <apply><times/>        <ci>alpha_X</ci>        <apply><minus/>          <cn cellml:units="dimensionless">1</cn>          <ci>X</ci>        </apply>      </apply>      <apply><times/>        <ci>beta_X</ci>        <ci>X</ci>      </apply>    </apply>  </apply></math>
+    <math xmlns="http://www.w3.org/1998/Math/MathML"
+      xmlns:cellml="http://www.cellml.org/cellml/2.0#">
+      <apply>
+        <eq/>
+        <apply>
+          <diff/>
+          <bvar>
+            <ci>t</ci>
+          </bvar>
+          <ci>X</ci>
+        </apply>
+        <apply>
+          <minus/>
+          <apply>
+            <times/>
+            <ci>alpha_X</ci>
+            <apply>
+              <minus/>
+              <cn cellml:units="dimensionless">1</cn>
+              <ci>X</ci>
+            </apply>
+          </apply>
+          <apply>
+            <times/>
+            <ci>beta_X</ci>
+            <ci>X</ci>
+          </apply>
+        </apply>
+      </apply>
+    </math>
   </component>
   <component name="gateParameters">
     <variable name="X" units="dimensionless" initial_value="0" interface="public"/>
