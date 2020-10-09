@@ -49,12 +49,12 @@
     <variable name="Cm" units="microF_per_cm2" interface="public_and_private"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML"
       xmlns:cellml="http://www.cellml.org/cellml/2.0#">
-      <apply>
-        <eq/>
+      <apply><eq/>
         <ci>i_tot</ci>
-        <apply>
-          <plus/>
-          <ci>i_stim</ci>
+        <apply><plus/>
+          <apply><minus/>
+            <ci>i_stim</ci>
+          </apply>
           <ci>i_K</ci>
           <ci>i_Na</ci>
           <ci>i_L</ci>
