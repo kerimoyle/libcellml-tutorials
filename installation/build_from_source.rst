@@ -68,7 +68,7 @@ Your folder structure should now look like this:
           └─ ( ... contains the files you cloned )
 
 2: Build and install the library
-===============================
+================================
 
 .. container:: dothis
 
@@ -77,8 +77,21 @@ Your folder structure should now look like this:
   .. code-block:: console
 
     cd build
-    cmake -DINSTALL_PREFIX=../install ../source .
+    cmake -DINSTALL_PREFIX=../install -S=../source -B=.
     make -j
+
+.. container:: infospec
+
+    CMake uses command line flags as well as the arguments' positions to determine what each of your inputs means.
+    In the example above the :code:`-S` flag indicates the source directory, and the :code:`-B` flag indicates the build directory.
+    By default, if these flags are not present, CMake will take the first unflagged item as the source directory (if there are none then it uses the current directory), and the second (if there is no second then it uses the current directory) as the build directory.
+    Thus, if called from the build directory, then these are equivalent:
+
+    .. code-block:: console
+
+      cmake -DINSTALL_PREFIX=../install -S=../source -B=.  # Explicitly specifying directories.
+      cmake -DINSTALL_PREFIX=../install ../source .        # First argument is the source, second argument is the build.
+      cmake -DINSTALL_PREFIX=../install ../source          # First argument is the source, build is the current directory.
 
 You should see output which runs through some checks (make sure they all pass), and finishes with a message like this:
 
@@ -161,7 +174,7 @@ If you are intending to use the Python library only, please skip to :ref:`Test t
 
   .. code-block:: console
 
-    cmake -DINSTALL_PREFIX=path/to/your/install .
+    cmake -DINSTALL_PREFIX=path/to/your/install 
 
 If this is correct you should see an output ending similar to this:
 

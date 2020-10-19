@@ -68,7 +68,6 @@ int main()
     //  2.d
     //      Print the model to the terminal and include the optional second argument of true
     //      to include the MathML.
-    printModel(model, true);
    
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "   STEP 3: Validate the model                            " << std::endl;

@@ -57,8 +57,6 @@ The final structure of this model is shown in the diagram below.
 
 .. container:: useful
 
-    **Useful functions**
-
     :api:`Model class<Model>`
 
     - create
@@ -109,8 +107,6 @@ Step 2: Create a potassium channel equations component
 ------------------------------------------------------
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Component class<Component>`
 
@@ -177,8 +173,6 @@ Step 2: Create a potassium channel equations component
 Once the mathematics has been added to the component, and the component to the model, we can make use of the diagnostic messages within the :code:`Validator` class to tell us what else needs to be done.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Validator class<Validator>`
 
@@ -265,8 +259,6 @@ The simplest way is to print the descriptions to the terminal.
     MathML ci element has the child text 'E_K' which does not correspond with any variable names present in component 'potassiumChannelEquations'.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Variable class<Variable>`
 
@@ -593,15 +585,13 @@ Note that the variable "n" in the nGateEquations is equivalent to the generic ga
 Imports require three things:
 
     - A destination for the imported item. 
-    This could be a :code:`Component` or :code:`Units` item.
+      This could be a :code:`Component` or :code:`Units` item.
     - A model to import for the imported item from.
-    This is stored in an :code:`ImportSource` item containing the URL of the model to read.
+      This is stored in an :code:`ImportSource` item containing the URL of the model to read.
     - The name of the item to import.
-    This is called the "import reference" and is stored by the destination :code:`Component` or :code:`Units` item.
+      This is called the "import reference" and is stored by the destination :code:`Component` or :code:`Units` item.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`ImportSource class<ImportSource>`
 

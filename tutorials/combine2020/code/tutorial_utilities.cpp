@@ -1,9 +1,10 @@
 
 /**
  *  TUTORIAL UTILITIES
- *  This file contains helper functions for the tutorials
+ *  This file contains helper functions for the tutorials.
  */
 
+#include <algorithm>
 #include <map>
 
 #include <libcellml>
@@ -238,8 +239,7 @@ void listEquivalentVariables(const libcellml::VariablePtr &variable, std::vector
     }
 
     for (size_t i = 0; i < variable->equivalentVariableCount(); ++i) {
-        libcellml::VariablePtr equivalentVariable = variable->equivalentVariable(i);
-
+        auto equivalentVariable = variable->equivalentVariable(i);
         if (std::find(variableList.begin(), variableList.end(), equivalentVariable) == variableList.end()) {
             variableList.push_back(equivalentVariable);
             listEquivalentVariables(equivalentVariable, variableList);

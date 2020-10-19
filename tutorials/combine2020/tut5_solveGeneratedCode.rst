@@ -97,8 +97,6 @@ There are necessarily big differences between C++ and Python for this tutorial!
                 :start-at: #  1.a
                 :end-before: #  end 1
 
-
-
 Step 2: Access the variables in the generated files
 ---------------------------------------------------
 Probably the best way to understand the contents of the generated files is o open them and look!

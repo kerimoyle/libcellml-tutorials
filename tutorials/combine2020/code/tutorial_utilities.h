@@ -1,6 +1,6 @@
 /**
- *  TUTORIAL 2: Utilities
- *  This file contains helper functions for Tutorial 2
+ *  TUTORIAL UTILITIES
+ *  This file contains helper functions for the tutorials.
  */
 #include <fstream>
 #include <iostream>
