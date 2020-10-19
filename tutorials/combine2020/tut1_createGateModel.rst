@@ -72,8 +72,8 @@ Step 1: Set up the model
 
 .. container:: dothis
 
-    **1.a** The first step is to create a `Model` item which will later contain the component and the units it needs.
-    Use the :code:`Model` create function to make a new instance.
+    **1.a** The first step is to create a :code:`Model` item which will later contain the component and the units it needs.
+    Use the :code:`create` function to make a new instance.
 
 .. container:: dothis
 
