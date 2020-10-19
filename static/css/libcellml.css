@@ -161,7 +161,7 @@ div[class^="issue"], div[class*=" issue"] > ol {
 }
 
 .useful:before {
-    content: "Useful API functions \A";
+    content: "Useful functions \A";
     white-space: pre;
     font-weight: 700;
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;

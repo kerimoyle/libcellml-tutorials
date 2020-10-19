@@ -94,8 +94,6 @@ Step 2: Retrieve an item with a unique id
 
 .. container:: useful
 
-    **Useful functions**
-
     :api:`Annotator class<Annotator>`
 
     - create
@@ -182,8 +180,6 @@ Step 3: Retrieve items whose id are not unique
 ----------------------------------------------
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Annotator class<Annotator>`
 
@@ -365,8 +361,6 @@ Step 4: Discover items whose ids are unknown
 Now that we've found Marco and fixed the duplicates of Polo, we'd like to know what other ids are being used in this model.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Annotator class<Annotator>`
 

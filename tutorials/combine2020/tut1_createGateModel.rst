@@ -56,8 +56,6 @@ Step 1: Set up the model
 
 .. container:: useful
 
-    **Useful functions**
-
     :api:`Model class<Model>`
 
     - create
@@ -97,7 +95,7 @@ All other components will then need to be added to this component, rather than t
     **1.d** Add the component to the model using the :code:`addComponent` function.
 
 .. container:: useful
-
+    
     A utility function :code:`printModel(Model, bool)` (C++) or :code:`print_model` (Python) has been provided to help you to see what's going  on inside your model.
     Setting the second optional parameter to :code:`true` will also print the MathML content.
 
@@ -185,8 +183,6 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
 .. container:: useful
 
-    **Useful functions**
-
     :api:`Component class<Component>`
 
     - setMath
@@ -264,8 +260,6 @@ Step 3: Validate the model
 Once the mathematics has been added to the component, and the component to the model, we can make use of the diagnostic messages within the :code:`Validator` class to tell us what else needs to be done.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Validator class<Validator>`
 
@@ -402,8 +396,6 @@ These must be created, named, and added to their parent component.
 
 .. container:: useful
 
-    **Useful functions**
-
     :api:`Variable class<Variable>`
 
     - create
@@ -442,8 +434,6 @@ These must be created, named, and added to their parent component.
         :end-before: #  4.b
 
 .. container:: useful
-
-    **Useful functions**
 
     Helper functions for retrieving and printing any issues from any of the logger classes:
 
@@ -504,8 +494,6 @@ The variables' units should be:
 - alpha_X and beta_X, rates, have units of *per millisecond*.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Units class<Units>`
 
@@ -645,8 +633,6 @@ Step 6: Analyse the mathematical construction of the model
 
 .. container:: useful
 
-    **Useful functions**
-
     :api:`Analyser class<Analyser>`
 
     - create
@@ -718,8 +704,6 @@ This is the reason for the second internal component, the *parameters* component
     Name it "gateParameters", and add it to the top-level gate component as a sibling of the gateEquations component.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Variable class<Variable>`
 
@@ -831,8 +815,6 @@ Two particularly useful idioms are shown below.
 
 .. container:: useful
 
-    **Useful functions**
-
     :api:`Model class<Model>`
 
     - fixVariableInterfaces
@@ -873,8 +855,6 @@ Step 7: Sanity check
 --------------------
 
 .. container:: useful
-
-    **Useful functions**
 
     There's a helper function provided for these tutorials which will print the model to the terminal.
     Use :code:`printModel(Model, bool)` (in C++) or :code:`print_model` (in Python) function to print the contents of the given :code:`Model`.

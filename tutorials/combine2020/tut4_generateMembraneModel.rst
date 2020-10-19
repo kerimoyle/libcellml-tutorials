@@ -240,8 +240,6 @@ Two profiles are already defined; for C++ and for Python.
 
 .. container:: useful
 
-	**Useful functions**
-
 	:api:`GeneratorProfile class<GeneratorProfile>`
 
 	- create
@@ -298,8 +296,6 @@ Two profiles are already defined; for C++ and for Python.
 Instead of submitting a :code:`Model` item (as we do for all other classes), the :code:`Generator` class will work from something which has already been processed by the :code:`Analyser` class: an :code:`AnalyserModel` object.
     
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Analyser class<GeneratorProfile>`
 

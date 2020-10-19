@@ -431,8 +431,6 @@ You have a few different options for how to fix this one.
    Since the error is saying that units named "i_dont_exist" are missing, we could simply provide them by creating a :code:`Units` item and adding it to the model.
  
 .. container:: useful
-    
-    **Useful functions**
 
     :api:`Units class<Units>`
 
@@ -506,8 +504,6 @@ The final validator issue refers to the fact that we need to explicitly specify 
     **3.f** Revalidate the model and confirm that the errors have gone.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Model class<Model>`
 
@@ -583,8 +579,6 @@ For this tutorial, the files are in the same directory as the code, so simply us
     If they're in your working directory, enter an empty string.
 
 .. container:: useful
-
-    **Useful functions**
     
     :api:`Importer class<Importer>`
     
@@ -634,8 +628,6 @@ Fix the issues reported by the importer.
 This needs to be an iterative process because as more files become available to the importer, the content of those files needs to be checked too.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Component class<Component>`
 
@@ -725,8 +717,6 @@ These dependencies are stored in the importer's library, and have not yet been v
 
 .. container:: useful
 
-    **Useful functions**
-
     :api:`Importer class<Importer>`
 
     - libraryCount returns the number of stored models;
@@ -778,8 +768,6 @@ To limit ourselves to only those models which are still relevant as the import d
 As soon as the model's imports have been resolved, all these will point to instantiated models within the importer.
 
 .. container:: useful 
-
-    **Useful functions**
 
     :api:`Model class<Model>`
 
@@ -841,8 +829,6 @@ The way around this is to use the :code:`Importer` class to create a flat (ie: i
 If the flat model meets the analyser's checks, then the importing version will too.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Analyser class<Analyser>`
 
@@ -916,8 +902,6 @@ It's still valid CellML though!
 In this example, the real problem is that these two variables are talking about the same thing, but haven't been connected to one another yet.
 
 .. container:: useful
-
-    **Useful functions**
 
     :api:`Variable class<Variable>`
 
@@ -1009,8 +993,6 @@ This could mean any one of:
 Because the "is not computed" errors are cascading by nature, frequently fixing just one will resolve many others. 
 
 .. container:: useful
-
-    **Useful functions**
 
     - C++: printEquivalentVariableSet with the variable argument
     - Python: print_equivalent_variable_set with the variable argument
