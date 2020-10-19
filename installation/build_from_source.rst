@@ -80,7 +80,7 @@ Your folder structure should now look like this:
     cmake -DINSTALL_PREFIX=../install -S=../source -B=.
     make -j
 
-.. container:: nb 
+.. container:: infospec
 
     CMake uses command line flags as well as the arguments' positions to determine what each of your inputs means.
     In the example above the :code:`-S` flag indicates the source directory, and the :code:`-B` flag indicates the build directory.
