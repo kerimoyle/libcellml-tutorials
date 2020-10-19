@@ -2,7 +2,7 @@
  *  TUTORIAL 2: ERROR CHECKING AND VALIDATION
  *
  *  By the time you have worked through Tutorial 2 you will be able to:
- *    - Use the Parser to report errors enountered when reading a file or
+ *    - Use the Parser to report errors encountered when reading a file or
  *      deserialising a string; and
  *    - Use the Validator to check for errors related to a model's description
  *      as compared to the CellML2.0 specifications.

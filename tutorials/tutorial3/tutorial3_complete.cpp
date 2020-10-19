@@ -219,7 +219,7 @@ int main()
     generator->processModel(model);
 
     //  4.b Check for errors found in the generator. You should expect 6 errors,
-    //      related to variables whose values are not computed or initalised.
+    //      related to variables whose values are not computed or initialised.
     printErrorsToTerminal(generator);
 
     //  4.c Add initial conditions to all variables except the base variable, time
