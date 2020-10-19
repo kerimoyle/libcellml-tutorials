@@ -176,11 +176,11 @@ div[class^="issue"], div[class*=" issue"] > ol {
     margin: 6px 6px 6px 0;
 }
 
-.useful > p {
+.useful > p, ul {
     margin-bottom:0;
 }
 
-.gotcha > p {
+.gotcha > p, ul {
     margin-bottom:0;
 }
 
