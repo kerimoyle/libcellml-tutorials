@@ -52,28 +52,28 @@ If you'd rather not work through the tutorial yourself and want to skip to the c
 
 .. tabs::
 
-  .. tab:: C++
+    .. tab:: C++
 
-    Navigate into the directory and check that you can build the template against the libCellML library successfully:
+        Navigate into the directory and check that you can build the template against the libCellML library successfully:
 
-    .. code-block:: console
+        .. code-block:: console
 
-        cmake -DINSTALL_PREFIX=../../install
-        make -j
+            cmake -DINSTALL_PREFIX=../../install
+            make -j
 
-    Running the template:
+        Running the template:
 
-    .. code-block:: console
+        .. code-block:: console
 
-        ./tutorial2
+            ./tutorial2
 
-    ... should give the output:
+        ... should give the output:
 
-    .. code-block:: console
+        .. code-block:: console
 
-        -----------------------------------------------
-           TUTORIAL 2: ERROR CHECKING AND VALIDATION
-        -----------------------------------------------
+            -----------------------------------------------
+            TUTORIAL 2: ERROR CHECKING AND VALIDATION
+            -----------------------------------------------
 
     .. tab:: Python
 
@@ -368,12 +368,6 @@ Our first step is to retrieve the badly named variable from the model, then we c
 You'll notice that the name of the component is given too.
 Because component names are unique in the model, this means that we can use the combination of component name and variable name to retrieve the variable.
 The :code:`component` function of the :code:`Model` class takes an optional second argument: this is a boolean indicating whether to search for the given component name in the model's top level components (:code:`false`, the default), or the entirety of the component tree (:code:`true`).
-
-.. tabs::
-
-    .. code-tab:: c++
-
-        
 
 
     
