@@ -26,9 +26,9 @@ It is a simpler starting point for users who are unfamiliar with CellML and/or m
     :maxdepth: 2
     :titlesonly:
        
-    tutorial1/outline1
-    tutorial2/outline2
-    tutorial3/outline3
-    tutorial4/outline4
+    tutorial1/tutorial1
+    tutorial2/tutorial2
+    tutorial3/tutorial3
+    tutorial4/tutorial4
     solver/solver
 
