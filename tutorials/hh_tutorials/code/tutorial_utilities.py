@@ -115,7 +115,7 @@ def print_issues(item):
             if url != "":
                 print("    More information is available at {url}".format(
                     url=url))
-            print("    Stored item type: {}".format(get_item_type_from_enum(i.cellmlElementType())))
+            print("    Stored item type: {}".format(get_cellml_element_type_from_enum(i.cellmlElementType())))
     else:
         print("\nThe {t} has not found any issues!".format(
             t=type(item).__name__)
@@ -199,7 +199,7 @@ def get_issue_level_from_enum(my_level):
     return my_type_as_string
 
 
-def get_item_type_from_enum(my_cause):
+def get_cellml_element_type_from_enum(my_cause):
 
     my_type_as_string = "dunno"
 

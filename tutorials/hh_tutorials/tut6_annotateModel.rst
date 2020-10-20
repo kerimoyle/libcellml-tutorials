@@ -105,7 +105,7 @@ Step 2: Retrieve an item with a unique id
     Tutorial functions
 
     - C++: getCellmlElementTypeFromEnum will return a string version of the CellmlElementType enumeration
-    - Python: get_item_type_from_enum
+    - Python: get_cellml_element_type_from_enum
 
 .. container:: dothis
 

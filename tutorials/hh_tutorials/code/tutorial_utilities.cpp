@@ -15,7 +15,6 @@
 
 void printModel(libcellml::ModelPtr &model)
 {
-    printModel(model, false);
 }
 
 void printModel(libcellml::ModelPtr &model, bool includeMaths)

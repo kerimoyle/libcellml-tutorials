@@ -215,6 +215,10 @@ div[class^="issue"], div[class*=" issue"] > ol {
     border: none !important;
 } */
 
+.sphinx-tab {
+    border: none !important;
+}
+
 .ui.tabular.menu .item {
     height: 1em;
 }

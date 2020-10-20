@@ -11,7 +11,7 @@
 
 from libcellml import Analyser, Component, Importer, CellmlElementType, Model, Parser, Printer, Units, Validator, Variable
 
-from tutorial_utilities import print_issues, print_model, get_item_type_from_enum, get_issue_level_from_enum, print_encapsulation
+from tutorial_utilities import print_issues, print_model, get_cellml_element_type_from_enum, get_issue_level_from_enum, print_encapsulation
 
 if __name__ == '__main__':
 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
         print('Issue {}: {}'.format(i,issue.description()))
         print('  reference: {}'.format(issue.referenceHeading()))
         print('  see: {}'.format(issue.url()))
-        print('  stored item type: {}'.format(get_item_type_from_enum(issue.cellmlElementType())))
+        print('  stored item type: {}'.format(get_cellml_element_type_from_enum(issue.cellmlElementType())))
         print()
 
     #  end 2
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     #      Check that the item to be returned from the issue is in fact an CellmlElementType.VARIABLE by calling the Issue.type()
     #      function.  Retrieve the variable missing units from the issue.  Set its units to be millivolts.
     issue6 = validator.issue(6)
-    print('Issue 6 is a {}'.format(get_item_type_from_enum(issue6.cellmlElementType())))
+    print('Issue 6 is a {}'.format(get_cellml_element_type_from_enum(issue6.cellmlElementType())))
     issue6.variable().setUnits(model.units('mV'))
 
     #  end 3.c
@@ -189,7 +189,7 @@ if __name__ == '__main__':
 
     # Method 2:
     issue7 = validator.issue(7)
-    print('Issue 7 is a {}'.format(get_item_type_from_enum(issue7.cellmlElementType())))
+    print('Issue 7 is a {}'.format(get_cellml_element_type_from_enum(issue7.cellmlElementType())))
     issue7_units = issue7.unit().units()
     issue7_units.removeUnit(issue7.unit().index())
     issue7_units.addUnit('volt', 'milli')

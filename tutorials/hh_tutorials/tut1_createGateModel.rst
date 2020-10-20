@@ -332,7 +332,7 @@ The simplest way is to print the descriptions to the terminal.
         **Python**
 
         - get_issue_level_from_enum; and
-        - get_item_type_from_enum.
+        - get_cellml_element_type_from_enum.
 
 .. container:: dothis
 

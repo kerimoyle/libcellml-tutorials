@@ -21,7 +21,7 @@
 
 from libcellml import Annotator, CellmlElementType, Component, Importer, Model, Parser, Units, Variable
 
-from tutorial_utilities import print_issues, print_model, get_item_type_from_enum, get_issue_level_from_enum
+from tutorial_utilities import print_issues, print_model, get_cellml_element_type_from_enum, get_issue_level_from_enum
 
 if __name__ == '__main__':
 
@@ -65,10 +65,10 @@ if __name__ == '__main__':
     #     - second attribute is a std.any cast of the item itself.
     #  2.b
     #      Retrieve the item with an id of 'marco'.  Use the helper function
-    #      get_item_type_from_enum to convert the enumeration of its type into a
+    #      get_cellml_element_type_from_enum to convert the enumeration of its type into a
     #      string for printing to the terminal.
     marco_item = annotator.item('marco')
-    print('The item with ID "marco" is a {}'.format(get_item_type_from_enum(marco_item[0])))
+    print('The item with ID "marco" is a {}'.format(get_cellml_element_type_from_enum(marco_item[0])))
 
     # The item with ID 'marco' is a VARIABLE
 
@@ -92,7 +92,7 @@ if __name__ == '__main__':
     #      Now try the same procedure to find the item with id of 'polo'.
     #      Retrieve the item and print its type to the terminal.
     polo_item = annotator.item('polo')
-    print('The type of item with ID "polo" is {}'.format(get_item_type_from_enum(polo_item[0])))
+    print('The type of item with ID "polo" is {}'.format(get_cellml_element_type_from_enum(polo_item[0])))
 
     #  3.b
     #      The item type returned is CellmlElementType.UNDEFINED ... so we 
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     print('The items with an id of "polo" have types of:')
     index = 0
     for item in polo_items:
-        print('  - [{}] {}'.format(index, get_item_type_from_enum(item[0])))
+        print('  - [{}] {}'.format(index, get_cellml_element_type_from_enum(item[0])))
         index += 1
 
     #  end 3.c
@@ -204,7 +204,7 @@ if __name__ == '__main__':
     #      Retrieve an item with id of 'whoAmIAndWhereDidIComeFrom' and print its item type
     #      to the terminal.
     who_am_i = annotator.item('whoAmIAndWhereDidIComeFrom')
-    print('The type of item with ID "whoAmIAndWhereDidIComeFrom" is {}'.format(get_item_type_from_enum(who_am_i[0])))
+    print('The type of item with ID "whoAmIAndWhereDidIComeFrom" is {}'.format(get_cellml_element_type_from_enum(who_am_i[0])))
     
     #  5.b
     #      Cast it into a CellML item of the appropriate type.
@@ -271,7 +271,7 @@ if __name__ == '__main__':
     #      Try and retrieve an item with id 'marco' and check that a null pointer is returned.
     #      Retrieve and print any issues to the terminal.
     marco_item = annotator.item('marco')
-    print('The type of item with ID "marco" is {}'.format(get_item_type_from_enum(marco_item[0])))
+    print('The type of item with ID "marco" is {}'.format(get_cellml_element_type_from_enum(marco_item[0])))
     print_issues(annotator)
 
     #  6.d

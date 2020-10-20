@@ -12,7 +12,7 @@ By the time you have worked through this tutorial you will be able to:
 
 from libcellml import Analyser, Component, Model, Printer, Units, Validator, Variable
 
-from tutorial_utilities import print_issues, print_model, get_item_type_from_enum, get_issue_level_from_enum
+from tutorial_utilities import print_issues, print_model, get_cellml_element_type_from_enum, get_issue_level_from_enum
 
 if __name__ == '__main__':
 
@@ -132,7 +132,7 @@ if __name__ == '__main__':
     #  Two helper functions have been provided for this tutorial that will help printing 
     #  enumerated values to the terminal.  These are:
     #      - get_issue_level_from_enum, and
-    #      - get_item_type_from_enum. 
+    #      - get_cellml_element_type_from_enum. 
 
     #  3.b 
     #      Retrieve the number of issues encountered using the validator.issueCount() function,
@@ -146,7 +146,7 @@ if __name__ == '__main__':
         print('    description: {}'.format(issue.description()))
         if ref != '':
             print('    see section {} in the CellML specification.'.format(ref))
-        print('    stored item type: {}'.format(get_item_type_from_enum(issue.cellmlElementType())))
+        print('    stored item type: {}'.format(get_cellml_element_type_from_enum(issue.cellmlElementType())))
 
     #  end 3
 
