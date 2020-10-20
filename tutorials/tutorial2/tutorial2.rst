@@ -7,19 +7,19 @@ You'll be taking a CellML2.0 file which has some mistakes in it, using the valid
 
 .. container:: shortlist
 
-  By the time you have worked through Tutorial 2 you will be able to:
+    By the time you have worked through Tutorial 2 you will be able to:
 
-  - Use the :code:`Parser` to report issues encountered when reading a file or deserialising a string; and
-  - Use the :code:`Validator` to check for issues related to a model's description as compared to the CellML2.0 specifications.
+    - Use the :code:`Parser` to report issues encountered when reading a file or deserialising a string; and
+    - Use the :code:`Validator` to check for issues related to a model's description as compared to the CellML2.0 specifications.
 
 .. container:: shortlist
 
-  This tutorial assumes that you can already:
+    This tutorial assumes that you can already:
 
-  - Read and deserialise a CellML model from a file (as in :ref:`Tutorial 1<tutorial2>`);
-  - Retrieve the name and id of models, components, and variables;
-  - Navigate through the hierarchy of the :code:`Model` and its subsidiary elements (:code:`Components`, :code:`Variables`, :code:`Units`, and MathML blocks); and
-  - Serialise and print a :code:`Model` structure to a CellML file.
+    - Read and deserialise a CellML model from a file (as in :ref:`Tutorial 1<tutorial1>`);
+    - Retrieve the name and id of models, components, and variables;
+    - Navigate through the hierarchy of the model and its subsidiary elements (components, variables, units and MathML blocks); and
+    - Serialise and print a :code:`Model` structure to a CellML file.
 
 .. container:: shortlist
 
@@ -52,7 +52,7 @@ If you'd rather not work through the tutorial yourself and want to skip to the c
 
 .. tabs::
 
-  .. code-tab:: cpp
+  .. tab:: C++
 
     Navigate into the directory and check that you can build the template against the libCellML library successfully:
 
@@ -72,24 +72,24 @@ If you'd rather not work through the tutorial yourself and want to skip to the c
     .. code-block:: console
 
         -----------------------------------------------
-          TUTORIAL 2: ERROR CHECKING AND VALIDATION
+           TUTORIAL 2: ERROR CHECKING AND VALIDATION
         -----------------------------------------------
 
-  .. code-tab:: python
+    .. tab:: Python
 
-    Confirm that you're able to run the :code:`tutorial2.py` template against the libCellML library.
+        Confirm that you're able to run the :code:`tutorial2.py` template against the libCellML library.
 
-  .. code-block:: console
+        .. code-block:: console
 
-      python3 tutorial2.py
+            python3 tutorial2.py
 
-  This should give the output:
+        This should give the output:
 
-  .. code-block:: console
+        .. code-block:: console
 
-      ------------------------------------------------------------
-          TUTORIAL 2: ERROR CHECKING AND VALIDATION
-      ------------------------------------------------------------
+            ------------------------------------------------------------
+                TUTORIAL 2: ERROR CHECKING AND VALIDATION
+            ------------------------------------------------------------
 
 Step 1: Parse a CellML file into a model
 ----------------------------------------
@@ -144,17 +144,17 @@ This is really easy:
 
 .. tabs::
 
-  .. code-tab:: cpp
+    .. code-tab:: cpp
 
-      auto validator = libcellml::Validator::create();
-      validator->validateModel(yourModelHere);
+        auto validator = libcellml::Validator::create();
+        validator->validateModel(yourModelHere);
 
-  .. code-tab:: python
+    .. code-tab:: python
 
-      from libcellml import Validator
+        from libcellml import Validator
 
-      validator = Validator()
-      validator.validateModel(your_model_here)
+        validator = Validator()
+        validator.validateModel(your_model_here)
 
 .. container:: dothis
 
@@ -195,7 +195,7 @@ In the :code:`Validator`, only those issues which are errors indicate validation
     .. literalinclude:: tutorial2_complete.cpp
         :language: c++
         :start-at: //  2.a
-        :end-before: // 2.c
+        :end-before: //  2.c
 
 .. container:: toggle
 
@@ -304,5 +304,76 @@ Two utility functions have been provided which will convert the enums for error 
         :start-at: #  2.a
         :end-before: #  end 2
 
+.. code-block:: terminal
+
+    The validator has found 5 issues!
+
+    Validator issue[0]:
+        Description: Variable '1' in component 'i_am_a_component' does not have a valid name attribute. CellML identifiers must not begin with a European numeric character [0-9].
+        Type of item stored: VARIABLE
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.1
+        See section 2.8.1.1 in the CellML specification.
+
+    Validator issue[1]:
+        Description: Variable 'b' in component 'i_am_a_component' has a units reference 'i_am_not_a_unit' which is neither standard nor defined in the parent model.
+        Type of item stored: VARIABLE
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+        See section 2.8.1.2 in the CellML specification.
+
+    Validator issue[2]:
+        Description: Variable 'c' in component 'i_am_a_component' has an invalid initial value 'this_variable_doesnt_exist'. Initial values must be a real number string or a variable reference.
+        Type of item stored: VARIABLE
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.2.2
+        See section 2.8.2.2 in the CellML specification.
+
+    Validator issue[3]:
+        Description: Variable 'd' in component 'i_am_a_component' does not have any units specified.
+        Type of item stored: VARIABLE
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+        See section 2.8.1.2 in the CellML specification.
+
+    Validator issue[4]:
+        Description: MathML ci element has the child text 'a' which does not correspond with any variable names present in component 'i_am_a_component'.
+        Type of item stored: MATH
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB12.html?issue=2.12.3
+        See section 2.12.3 in the CellML specification.
+
+Step 3: Fix the issues raised
+-----------------------------
+Now that we know what's wrong with the model the next steps are to fix it!
+A useful feature of the :code:`Issue` items is as well as the textual information (which is more valuable to a *reader*), we also have a pointer to the item itself (which is more valuable to a *programmer* or user).
+This section will work through the issues reported by the validator, and demonstrate different ways of accessing and repairing each of the problems.
+
+.. container:: useful
+
+    :api:`Issue class<Issue>`
+
+    - item
+    - variable
+    - math
+
+    :api:`Variable class<Variable>`
+
+    - setName
+    - setUnits
+    - setInitialValue
+
+    :api:`Model class<Model>`
+
+    - component(name, True) Retrieving a component by its name with the optional second argument true will search the entire   component tree for the component name.
+
+The first issue raised involves the name of a variable.
+Note that even though the name is invalid (as per CellML specification), it can still be used to access the item.
+Our first step is to retrieve the badly named variable from the model, then we can use the :code:`setName` function to repair it.
+You'll notice that the name of the component is given too.
+Because component names are unique in the model, this means that we can use the combination of component name and variable name to retrieve the variable.
+The :code:`component` function of the :code:`Model` class takes an optional second argument: this is a boolean indicating whether to search for the given component name in the model's top level components (:code:`false`, the default), or the entirety of the component tree (:code:`true`).
+
+.. tabs::
+
+    .. code-tab:: c++
+
+        
 
 
+    

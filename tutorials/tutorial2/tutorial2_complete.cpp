@@ -101,75 +101,71 @@ int main()
     std::cout << "   STEP 3: Fix the issues reported             " << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 
-    //  3.a
     //  Validator issue[0]:
-    //    Description: CellML identifiers must not begin with a European numeric
-    //    character [0-9].
-    //    See section 3.1.4 in the CellML specification.
+    //      Description: Variable '1st' in component 'i_am_a_component' does not have a valid name attribute. CellML identifiers must not begin with a European numeric character [0-9].
+    //      Type of item stored: VARIABLE
+    //      URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.1
+    //      See section 2.8.1.1 in the CellML specification.
+
+    //  3.a
+    //      Retrieve the variable named '1st' from the component named 'i_am_a_component' and change its name
+    //      to 'a'.
+    auto component = model->component("i_am_a_component", true);
+    auto a = component->variable("1st");
+    a->setName("a");
+    // This could be done in a chain: model->component("i_am_a_component", true)->variable("1st")->setName("a");
+
+    //  end 3.a 
+
     //  Validator issue[1]:
-    //    Description: Variable does not have a valid name attribute.
-    //    See section 11.1.1.1 in the CellML specification.
-    // These issues refer to the same thing, but are better read in reverse order.
-    // Variables (and everything else in CellML) which specify a name attribute
-    // can must have the correct format.  Comparing the issue to the names of
-    // entities printed in the terminal we can see that variable[0] in
-    // component[0] doesn't have a valid name, so let's fix it.
-    model->component(0)->variable(0)->setName("a");
+    //      Description: Variable 'b' in component 'i_am_a_component' has a units reference 'i_am_not_a_unit' which is neither standard nor defined in the parent model.
+    //      Type of item stored: VARIABLE
+    //      URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+    //      See section 2.8.1.2 in the CellML specification.
 
     //  3.b
+    //      Retrieve the variable directly from the issue using the Issue::variable() function to return it.
+    //      Note that we can only do this because we know that the item type stored is a VARIABLE.
+    //      Set its units to be "dimensionless".
+    auto issue1 = validator->issue(1);
+    auto b = issue1->variable();
+    b->setUnits("dimensionless");
+
+    //  This can be done in a chain too: validator->issue(1)->variable()->setUnits("dimensionless");
+    //  end 3.b
+
     //  Validator issue[2]:
-    //    Description: Variable 'b' has an invalid units reference
-    //    'i_am_not_a_unit' that does not correspond with a standard unit or units
-    //    in the variable's parent component or model.
-    //    See section 11.1.1.2 in the CellML specification.
-    //  Variables must have a unit defined.  These can be either something from
-    //  the built-in list within libCellML (which you can read in the
-    //  specifications document), or something you define yourself.  We'll look at
-    //  user defined units in Tutorial 3, but for now it's enough to see that the
-    //  units which are associated with variable 'b' is not valid.  We'll change
-    //  it to be 'dimensionless' instead.  NB items can be accessed through their
-    //  name (as here) or their index (as above)
-    model->component("i_am_a_component")
-        ->variable("b")
-        ->setUnits("dimensionless");
+    //     Description: Variable 'c' in component 'i_am_a_component' has an invalid initial value 'this_variable_doesnt_exist'. Initial values must be a real number string or a variable reference.
+    //     Type of item stored: VARIABLE
+    //     URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.2.2
+    //     See section 2.8.2.2 in the CellML specification.
+
+    //  For this step we're going to pretend that we don't know the item type stored with the issue.
+    //  We can retrieve its item using the item() function, which will return an AnyItem item.  The
+    //  first attribute of an AnyItem is its CellmlElementType enum, and the second attribute is a
+    //  std::any cast of the item itself.
 
     //  3.c
+    //      Use the item() function to retrieve a std::any cast of the item from the third issue.  
+    //      Use the cellmlElementType() to check that its type is a VARIABLE, and then cast
+    //      into a VariablePtr using std::any_cast so that you can use it as normal.
+    //      Set its initial value to 20.
+    auto issue2 = validator->issue(2);
+    auto item = issue2->item();
+    assert(issue2->cellmlElementType() == libcellml::CellmlElementType::VARIABLE);
+    auto c = std::any_cast<libcellml::VariablePtr>(item);
+    c->setInitialValue(20.0);
+
+    //  end 3.c
+
     //  Validator issue[3]:
-    //    Description: Variable 'c' has an invalid initial value
-    //    'this_variable_doesnt_exist'. Initial values must be a real number
-    //    string or a variable reference.
-    //    See section 11.1.2.2 in the CellML specification.
-    //  We can either access members by their index or their name, as shown above,
-    //  or we can create a pointer to them instead.
-    //  Initial values (if set) must be a valid variable name in the same
-    //  component, or a real number.
-    auto variableC = model->component(0)->variable("c");
-    variableC->setInitialValue(20.0);
+    //     Description: Variable 'd' in component 'i_am_a_component' does not have any units specified.
+    //     Type of item stored: VARIABLE
+    //     URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+    //     See section 2.8.1.2 in the CellML specification.
 
     //  3.d
-    //  Validator issue[4]:
-    //    Description: CellML identifiers must contain one or more basic Latin
-    //    alphabetic characters.
-    //    See section 3.1.3 in the CellML specification.
-    //  Validator issue[5]:
-    //    Description: Variable 'd' does not have a valid units attribute.
-    //    See section 11.1.1.2 in the CellML specification.
-    //  These two issues go together too.  Because we haven't defined a units
-    //  attribute for variable 'd', it effectively has a blank name, which is not
-    //  allowed.  Simply assigning a unit to the variable will fix both issues.
-    auto variableD = model->component(0)->variable("d");
-    variableD->setUnits("dimensionless");
-
-    //  3.e
-    //  Validator issue[6]:
-    //    Description: MathML ci element has the child text 'a' which does not
-    //    correspond with any variable names present in component
-    //    'i_am_a_component' and is not a variable defined within a bvar element.
-    //  The maths block is complaining that it is being asked to compute:
-    //    a = b + c
-    //  but in the component there was no variable called 'a'.  Since we
-    //  corrected this earlier by naming the first variable in component[0] as 'a'
-    //  this issue will be fixed already.
+    //      Prove to yourself that 
 
 
     std::cout << "-----------------------------------------------" << std::endl;

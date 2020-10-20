@@ -153,7 +153,7 @@ div[class^="issue"], div[class*=" issue"] > ol {
 .useful {
     background:#e1eaf0;
     color: #444444;
-    padding: 3px 3px 5px 12px;
+    padding: 3px 3px 5px 40px;
     margin-top:20px;
     margin-bottom:20px;
     line-height: 24px;
@@ -211,9 +211,9 @@ div[class^="issue"], div[class*=" issue"] > ol {
     list-style-type: '- ';
 }
 
-/* .sphinx-tabs {
+.sphinx-tabs {
     border: none !important;
-} */
+}
 
 .sphinx-tab {
     border: none !important;
