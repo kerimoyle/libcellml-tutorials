@@ -211,9 +211,12 @@ div[class^="issue"], div[class*=" issue"] > ol {
     list-style-type: '- ';
 }
 
-.sphinx-menu {
+.sphinx-tabs {
     border: none !important;
-    margin-bottom: 0;
-    margin-top: 0;
+}
+
+.ui.tabular.menu .item {
+    height: 1.5em;
+    background-color: pink;
     color: red !important;
 }
