@@ -217,11 +217,11 @@ Again following the same retrieval idiom as in Tutorial 1 for items in sets, we 
 
 .. tabs::
 
-  .. code-block:: C++
+  .. code-block:: c++
 
       auto theFifteenthIssue = validator->issue(14);
 
-  .. code-tab:: Python 
+  .. code-tab:: python 
 
       the_15th_issue = validator.issue(14)
 
