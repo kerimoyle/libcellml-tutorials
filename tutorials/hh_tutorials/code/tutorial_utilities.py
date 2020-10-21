@@ -62,8 +62,9 @@ def print_component_to_terminal(component, c, spacer, include_maths=False):
                 
                 con = ", "
             print()
-        if include_maths:
-            print(component.math())
+    if include_maths:
+        print("The component contains maths:")
+        print(component.math())
 
     # Print the encapsulated components inside this one
     if component.componentCount() > 0:

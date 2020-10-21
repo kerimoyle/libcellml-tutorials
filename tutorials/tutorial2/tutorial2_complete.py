@@ -135,7 +135,7 @@ if __name__ == '__main__':
     #      into a VariablePtr using std.any_cast so that you can use it as normal.
     #      Set its initial value to 20.
     issue2 = validator.issue(2)
-    c = issue2.item()
+    c = issue2.item()[1] # TODO clarify this after issue #759 is clarified.
     assert(issue2.cellmlElementType() == CellmlElementType.VARIABLE)
     c.setInitialValue(20.0)
 
@@ -190,14 +190,14 @@ if __name__ == '__main__':
     #  4.c
     #      Print corrected model to a file.
     printer = Printer()
-    serialised_model = printer.print_model(model)
+    serialised_model = printer.printModel(model)
 
     write_file = open('tutorial2_printed.cellml', 'w')
     write_file.write(serialised_model)
 
     #  end 4
 
-    print('The corrected model has been printed to {}'.format())
+    print('The corrected model has been printed.')
 
     #  4.d
     #      Go and have a cuppa, you're done!
