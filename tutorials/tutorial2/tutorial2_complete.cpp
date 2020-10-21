@@ -53,7 +53,7 @@ int main()
     //  1.c
     //      Use the printModel utility function to display the contents of the 
     //      parsed model in the terminal.
-    printModel(model);
+    printModel(model, true);
 
     //  end 1
 
@@ -110,15 +110,16 @@ int main()
     //  3.a
     //      Retrieve the variable named '1st' from the component named 'i_am_a_component' and change its name
     //      to 'a'.
-    auto component = model->component("i_am_a_component", true);
-    auto a = component->variable("1st");
+    auto iAmAComponent = model->component("i_am_a_component", true);
+    auto a = iAmAComponent->variable("1st");
     a->setName("a");
-    // This could be done in a chain: model->component("i_am_a_component", true)->variable("1st")->setName("a");
+    //  This could be done in a chain without instantiating the component and variable:
+    //      model->component("i_am_a_component", true)->variable("1st")->setName("a");
 
     //  end 3.a 
 
     //  Validator issue[1]:
-    //      Description: Variable 'b' in component 'i_am_a_component' has a units reference 'i_am_not_a_unit' which is neither standard nor defined in the parent model.
+    //      Description: Variable 'b' in component 'i_am_a_component' does not have any units specified.
     //      Type of item stored: VARIABLE
     //      URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
     //      See section 2.8.1.2 in the CellML specification.
@@ -141,9 +142,9 @@ int main()
     //     See section 2.8.2.2 in the CellML specification.
 
     //  For this step we're going to pretend that we don't know the item type stored with the issue.
-    //  We can retrieve its item using the item() function, which will return an AnyItem item.  The
-    //  first attribute of an AnyItem is its CellmlElementType enum, and the second attribute is a
-    //  std::any cast of the item itself.
+    //  We can retrieve its item using the item() function, which will return a std::any item.  We
+    //  can retrieve its type using the cellmlElementType() function to return the CellmlElementType enum,
+    //  and then cast the item accordinly.
 
     //  3.c
     //      Use the item() function to retrieve a std::any cast of the item from the third issue.  
@@ -159,38 +160,63 @@ int main()
     //  end 3.c
 
     //  Validator issue[3]:
-    //     Description: Variable 'd' in component 'i_am_a_component' does not have any units specified.
-    //     Type of item stored: VARIABLE
-    //     URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
-    //     See section 2.8.1.2 in the CellML specification.
+    //      Description: Variable 'd' in component 'i_am_a_component' has a units reference 'i_dont_exist' which is neither standard nor defined in the parent model.
+    //      Type of item stored: VARIABLE
+    //      URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+    //      See section 2.8.1.2 in the CellML specification.
+
+    //      This error is similar in implication to that in 3.b: the validator is reporting that it can't find
+    //      the Units item specified by a Variable.  It could be fixed in two different ways:
+    //      - by supplying a Units item called "i_dont_exist"; or
+    //      - by changing the name of the units which the variable requires to one that is available.
 
     //  3.d
-    //      Prove to yourself that 
+    //      Change the name of the units required by variable 'd' to be those which are called 'i_am_a_units_item'.
+    //      You will need to retrieve these units from the model in order to pass them to the variable.
+    auto iAmAUnitsItem = model->units("i_am_a_units_item");
+    validator->issue(3)->variable()->setUnits(iAmAUnitsItem);
 
+    //  end 3.d
+
+    //  This issue was actually also caught by the Parser, which, like the Validator, is a Logger class.
+    //  This means that it will keep track of anything it encounters when parsing a model.  You can try calling
+    //  Parser::issueCount() etc and iterating through them (just like in 2.c) to see what you find.
+
+    //  Validator issue[4]:
+    //      Description: MathML ci element has the child text 'a' which does not correspond with any variable names present in component 'i_am_a_component'.
+    //      Type of item stored: MATH
+    //      URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB12.html?issue=2.12.3
+    //      See section 2.12.3 in the CellML specification.
+
+    //  This issue is already resolved by fixing the name of the variable in step 3.a.  
+
+    //  end 3
 
     std::cout << "-----------------------------------------------" << std::endl;
     std::cout << "  STEP 4: Check and output the corrected model " << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 
     //  4.a
-    //      Print the corrected model to the terminal using the utility function,
-    //      printModel.
-    printModel(model);
-
-    //  4.b
-    //      Validate the corrected model and check that there are no more issues.
+    //      Validate the corrected model again and check that there are no more issues.
     validator->validateModel(model);
     std::cout << "The validator found " << validator->issueCount()
               << " issues in the model." << std::endl;
+
+    //  4.b
+    //      Print the corrected model to the terminal.
+    printModel(model, true);
 
     //  4.c
     //      Print corrected model to a file.
     auto printer = libcellml::Printer::create();
     std::string serialisedModelString = printer->printModel(model);
+
     std::string outFileName = "tutorial2_printed.cellml";
     std::ofstream outFile(outFileName);
     outFile << serialisedModelString;
     outFile.close();
+
+    //  end 4
 
     std::cout << "The corrected '" << model->name()
               << "' model has been printed to: " << outFileName << std::endl;

@@ -117,11 +117,32 @@ Instead of duplicating the work you did throughout the middle steps of :ref:`Tut
 
 .. container:: dothis
 
-    **2.a** Use the utility function :code:`printModel(yourModelHere)` (in C++) or :code:`print_model(your_model_here)` to output the contents of the model you just created to the terminal so that you can see it all properly.
+    **1.b** Use the utility function :code:`printModel(yourModelHere)` (in C++) or :code:`print_model(your_model_here)` to output the contents of the model you just created to the terminal so that you can see it all properly.
 
 .. code-block:: console
 
-    TODO
+    MODEL: 'tutorial_2_model', id: 'tutorial 2 id has spaces'
+    UNITS: 1 custom units
+        [0]: i_am_a_units_item
+    COMPONENTS: 1 components
+        [0]: i_am_a_component id: my_component_id
+            VARIABLES: 4 variables
+                [0]: 1st [dimensionless]
+                [1]: b
+                [2]: c [dimensionless], initial = this_variable_doesnt_exist
+                [3]: d [i_dont_exist]
+            Maths in the component is:
+                <math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <apply>
+                        <eq/>
+                        <ci>a</ci>
+                        <apply>
+                        <plus/>
+                        <ci>b</ci>
+                        <ci>c</ci>
+                        </apply>
+                    </apply>
+                </math>
 
 Step 2: Validate the model
 --------------------------
@@ -203,14 +224,14 @@ In the :code:`Validator`, only those issues which are errors indicate validation
 
         Show Python snippet
 
-    .. literalinclude:: tutorial1_complete.py
+    .. literalinclude:: tutorial2_complete.py
         :language: python
         :start-at: #  2.a
         :end-before: #  2.c
 
 .. code-block:: terminal
 
-    TODO
+    The validator has found 5 issues!
 
 Now we need to create an iterative loop to retrieve all the issues (and there should be a few in this particular model!) from the validator.
 Again following the same retrieval idiom as in Tutorial 1 for items in sets, we can access the issues using an index:
@@ -299,23 +320,21 @@ Two utility functions have been provided which will convert the enums for error 
 
         Show Python snippet
 
-    .. literalinclude:: tutorial1_complete.py
+    .. literalinclude:: tutorial2_complete.py
         :language: python
-        :start-at: #  2.a
+        :start-at: #  2.c
         :end-before: #  end 2
 
 .. code-block:: terminal
 
-    The validator has found 5 issues!
-
     Validator issue[0]:
-        Description: Variable '1' in component 'i_am_a_component' does not have a valid name attribute. CellML identifiers must not begin with a European numeric character [0-9].
+        Description: Variable '1st' in component 'i_am_a_component' does not have a valid name attribute. CellML identifiers must not begin with a European numeric character [0-9].
         Type of item stored: VARIABLE
         URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.1
         See section 2.8.1.1 in the CellML specification.
 
     Validator issue[1]:
-        Description: Variable 'b' in component 'i_am_a_component' has a units reference 'i_am_not_a_unit' which is neither standard nor defined in the parent model.
+        Description: Variable 'b' in component 'i_am_a_component' does not have any units specified.
         Type of item stored: VARIABLE
         URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
         See section 2.8.1.2 in the CellML specification.
@@ -327,7 +346,7 @@ Two utility functions have been provided which will convert the enums for error 
         See section 2.8.2.2 in the CellML specification.
 
     Validator issue[3]:
-        Description: Variable 'd' in component 'i_am_a_component' does not have any units specified.
+        Description: Variable 'd' in component 'i_am_a_component' has a units reference 'i_dont_exist' which is neither standard nor defined in the parent model.
         Type of item stored: VARIABLE
         URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
         See section 2.8.1.2 in the CellML specification.
@@ -369,5 +388,289 @@ You'll notice that the name of the component is given too.
 Because component names are unique in the model, this means that we can use the combination of component name and variable name to retrieve the variable.
 The :code:`component` function of the :code:`Model` class takes an optional second argument: this is a boolean indicating whether to search for the given component name in the model's top level components (:code:`false`, the default), or the entirety of the component tree (:code:`true`).
 
+.. code-block:: terminal
 
-    
+    Validator issue[0]:
+        Description: Variable '1st' in component 'i_am_a_component' does not have a valid name attribute. CellML identifiers must not begin with a European numeric character [0-9].
+        Type of item stored: VARIABLE
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.1
+        See section 2.8.1.1 in the CellML specification.
+
+.. container:: dothis
+
+    **3.a** Retrieve the variable named "1st" from the component named "i_am_a_component" and change its name to "a".
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: tutorial2_complete.cpp
+        :language: c++
+        :start-at: //  3.a
+        :end-before: //  end 3.a
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: tutorial2_complete.py
+        :language: python
+        :start-at: #  3.a
+        :end-before: #  end 3.a
+
+.. code-block:: terminal
+
+    Validator issue[1]:
+        Description: Variable 'b' in component 'i_am_a_component' does not have any units specified.
+        Type of item stored: VARIABLE
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+        See section 2.8.1.2 in the CellML specification.
+
+Inside the :code:`Issue` class are helper functions which allow you to access the item which needs to be fixed.
+The naming of these functions is pretty straightforward, but there's a catch.
+Not all of the "items" returned actually exist as independent libCellML entities; some are referenced by their parent item instead.
+For example, calling the :code:`math()` function on an issue which reports storing an item with type :code:`MATH` returns a pointer to the component item that the maths sits within.
+The functions and the types they return are shown below.
+
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| enumeration value | function to call | type returned from function                                                                          |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| COMPONENT         | component()      | :code:`ComponentPtr` a pointer to a component.                                                       |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| COMPONENT_REF     | componentRef()   | :code:`ComponentPtr` a pointer to the component referenced via a :code:`component_ref`.              |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| CONNECTION        | connection()     | :code:`VariablePair` containing pointers to two :code:`VariablePtr` items which span the connection. |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| ENCAPSULATION     | encapsulation()  | :code:`ModelPtr` a pointer to the model containing the encapsulation.                                |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| IMPORT            | importSource()   | :code:`ImportSource` pointer to an import source item.                                               |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| MAP_VARIABLES     | mapVariables()   | :code:`VariablePair` containing the two :code:`VariablePtr` items connected by a variable            |
+|                   |                  | equivalence.                                                                                         |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| MODEL             | model()          | :code:`ModelPtr` a pointer to a model.                                                               |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| RESET             | reset()          | :code:`ResetPtr` a pointer to a reset.                                                               |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| RESET_VALUE       | resetValue()     | :code:`ResetPtr` a pointer to the parent reset item.                                                 |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| TEST_VALUE        | testValue()      | :code:`ResetPtr` a pointer to the parent reset item.                                                 |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| UNIT              | unit()           | :code:`UnitPtr` a pointer to a unit item.                                                            |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| UNITS             | units()          | :code:`UnitsPtr` a pointer to a units item.                                                          |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| VARIABLE          | variable()       | :code:`VariablePtr` a pointer to a variable item.                                                    |
++-------------------+------------------+------------------------------------------------------------------------------------------------------+
+
+.. container:: dothis
+
+    **3.b** Retrieve the variable directly from the issue using the :code:`variable` function.
+    Set its units to be "dimensionless".
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: tutorial2_complete.cpp
+        :language: c++
+        :start-at: //  3.b
+        :end-before: //  end 3.b
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: tutorial2_complete.py
+        :language: python
+        :start-at: #  3.b
+        :end-before: #  end 3.b
+
+.. code-block:: terminal
+
+    Validator issue[2]:
+        Description: Variable 'c' in component 'i_am_a_component' has an invalid initial value 'this_variable_doesnt_exist'. Initial values must be a real number string or a variable reference.
+        Type of item stored: VARIABLE
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.2.2
+        See section 2.8.2.2 in the CellML specification.
+
+For this next issue we're going to show how to use the generic :code:`item()` function on an issue.
+This differs between C++ and Python so please refer to the appropriate tab for information.
+
+.. tabs::
+
+    .. tab:: C++
+
+        In C++ we need to know the types of everything we're dealing with, all the time.
+        A recent workaround is the provision of the :code:`std::any` type, which can be used to store an object of arbitrary type.
+        The caveat is that in order to use it, you need to cast it back into its original type using :code:`std::any_cast`.
+        The items in the :code:`Issue` class are stored as :code:`std::any` objects, and can either be retrieved and cast in one step using the functions listed above; or the :code:`std::any` pointer itself can be retrieved using the :code:`item()` function.
+
+        You will need to also call the :code:`cellmlElementType()` function to verify the correct type to cast the item to.
+
+        .. code-block:: c++
+
+            //  Retrieve an issue pointer from the validator.
+            auto myFirstIssue = validator->issue(0);
+
+            // Retrieve the std::any item from the issue.
+            auto anyItem = myFirstIssue->item();
+
+            // Check the type of the item stored.  If you don't know ahead of time this would be a
+            // switch statement to check them all.
+            assert(myFirstIssue->cellmlElementType() == libcellml::CellmlElementType::VARIABLE);
+
+            // Cast into a VariablePtr for use as normal.
+            auto myVariable = std::any_cast<libcellml::VariablePtr>(anyItem);
+
+    .. tab:: Python
+
+        Since Python doesn't care about types the same way that C++ does, the :code:`item()` function will return the correct item.  
+        No casting is needed!  
+        It can still be useful to know the type that's returned, as your options for how to deal with it may vary.
+
+        .. code-block:: python
+
+            #  Retrieve an issue pointer from the validator.
+            my_first_issue = validator.issue(0)
+
+            # Retrieve the item from the issue.
+            item = my_first_issue.item()
+
+            # Check the type of the item stored.  If you don't know ahead of time this would be a
+            # switch statement to check them all.
+            assert(my_first_issue->cellmlElementType() == CellmlElementType.VARIABLE)
+
+            # The item is available for use as a variable already.
+
+.. container:: dothis
+
+    **3.c** Retrieve the third issue and its item from the validator.
+    This should be a :code:`VARIABLE` item, so in C++ you will need to cast it appropriately.
+    Set the variable's initial conditions to 20.
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: tutorial2_complete.cpp
+        :language: c++
+        :start-at: //  3.c
+        :end-before: //  end 3.c
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: tutorial2_complete.py
+        :language: python
+        :start-at: #  3.c
+        :end-before: #  end 3.c
+
+.. code-block:: terminal
+
+    Validator issue[3]:
+        Description: Variable 'd' in component 'i_am_a_component' has a units reference 'i_dont_exist' which is neither standard nor defined in the parent model.
+        Type of item stored: VARIABLE
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+        See section 2.8.1.2 in the CellML specification.
+
+This error is similar in implication to that in 3.b: the validator is reporting that it can't find the units required by a variable.
+It could be fixed in two different ways: either by supplying units called "i_dont_exist"; or by changing the name of the units which the variable requires to one that is available.
+
+.. container:: dothis
+
+    **3.d** Retrieve the units named "i_am_a_units_item" from the model, and set them to be used by variable "d". 
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: tutorial2_complete.cpp
+        :language: c++
+        :start-at: //  3.d
+        :end-before: //  end 3
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: tutorial2_complete.py
+        :language: python
+        :start-at: #  3.d
+        :end-before: #  end 3
+
+This issue was actually also caught by the parser, which, like the validator, is a :code:`Logger` class.
+This means that it will keep track of anything it encounters when parsing a model.
+You can try calling the :code:`issueCount` and :code:`issue` functions on the parser and iterating through them (just like in 2.c) to see what you find.
+
+.. code-block:: terminal
+
+    Validator issue[4]:
+        Description: MathML ci element has the child text 'a' which does not correspond with any variable names present in component 'i_am_a_component'.
+        Type of item stored: MATH
+        URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB12.html?issue=2.12.3
+        See section 2.12.3 in the CellML specification.
+
+As discussed earlier, the type of item stored doesn't always match the type of item returned.
+In this final example, the type stored is :code:`MATH` but, according to the table above, the type returned from both the :code:`math()` and :code:`item()` functions is (after casting, if required) a :code:`ComponentPtr`.
+We don't need to take action to resolve this issue, since our earlier change of the variable name to become "a" will have sorted out the problem already.
+
+Step 4: Check and output the model
+----------------------------------
+Now that (we hope) the issues have been resolved, it's time to check that the model is free of validation errors.
+
+.. container:: dothis
+
+    **4.a** Validate the model again, and check that there are no more issues.
+
+.. container:: dothis
+
+    **4.b** Print the corrected model to the terminal so that you can see your changes.
+
+.. container:: dothis
+
+    **4.c** Just as you have done in :ref:`Tutorial 1<tutorial1>`, create a :code:`Printer` instance and use it to serialise the model into a string.
+    Print the string to a .cellml file.
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: tutorial2_complete.cpp
+        :language: c++
+        :start-at: //  4.a
+        :end-before: //  end 4
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: tutorial2_complete.py
+        :language: python
+        :start-at: #  4.a
+        :end-before: #  end 4
+
+.. container:: dothis
+
+    **4.d** Go and have a cuppa, you're done!
