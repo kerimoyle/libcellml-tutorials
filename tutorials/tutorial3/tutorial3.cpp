@@ -1,19 +1,19 @@
 /**
- *  TUTORIAL 3: MODEL CREATION THROUGH THE API
+ *  TUTORIAL 3: MODEL CREATION AND CODE GENERATION WITH THE API
  *
  *  By the time you have worked through Tutorial 3 you will be able to:
- *    - create a new model and its child entities from scratch using the API
- *    - define custom combinations of built-in units
- *    - define your own custom units independent from the built-in units
- *    - call the Generator to output code in languages other than CellML
+ *    - Create a new model and its child entities from scratch using the API;
+ *    - Define custom combinations of built-in units;
+ *    - Define your own custom units independent from the built-in units; and
+ *    - Use the Generator to create C or Python code representing the model.
  *
  *  This tutorial assumes that you are comfortable with:
- *    - accessing and adjusting names of items inside a model hierarchy (Tutorial 2)
- *    - creating a validator and using it to check a model for errors (Tutorial 2)
- *    - accessing the errors produced by a validator and using them to correct
- *      the model (Tutorial 2)
+ *    - Accessing and adjusting names of items inside a model hierarchy (T2);
+ *    - Creating a validator and using it to check a model for errors (T2);
+ *    - Accessing the errors produced by a validator and using them to correct
+ *      the model (T2); and
+ *    - Serialising and printing a model to a CellML file (T1).
  */
-
 
 #include <fstream>
 #include <iostream>
@@ -21,81 +21,122 @@
 
 #include <libcellml>
 
-#include "../../utilities/tutorial_utilities.h"
+#include "tutorial_utilities.h"
 
 int main()
 {
-    std::cout << "-----------------------------------------------" << std::endl;
-    std::cout << "   TUTORIAL 3: CREATE A MODEL USING THE API" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
+    std::cout << "-------------------------------------------------------------" << std::endl;
+    std::cout << " TUTORIAL 3: MODEL CREATION AND CODE GENERATION WITH THE API" << std::endl;
+    std::cout << "-------------------------------------------------------------" << std::endl;
 
-    // ---------------------------------------------------------------------------
-    //  STEP 1: Create the model, component and maths
-    //
-    //  1.a   Create the Model and name it
+    std::cout << "-------------------------------------------------------------" << std::endl;
+    std::cout << "   Step 1: Create a component                                " << std::endl;
+    std::cout << "-------------------------------------------------------------" << std::endl;
 
-    //  1.b   Create a Component, name it, and add it to the model
+    //  1.a
+    //      Create a Model instance, set its name and id.
+    
+    //  1.b   
+    //      Create a Component instance to use as an integrator, set its attributes and
+    //      add it to the model.
 
-    //  1.c,d,e Create strings representing the governing equations in MathML2.
-    //          The header and footer strings are provided for you below.
-    std::string mathHeader = "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" xmlns:cellml=\"http://www.cellml.org/cellml/2.0#\">\n";
-    std::string mathFooter = "</math>";
+    //  1.c, d, e
+    //      Create the MathML2 strings representing the governing equations.
 
-    //  1.g Assemble the entire MathML into the component
+    //  1.f
+    //      Create the header and footer strings.
 
-    //  1.h Call the validator and check for error so far.  We expect there to be 20 errors found,
-    //      related to missing variables in the component.
+    //  1.g 
+    //      Add the maths strings in to the component.
 
-    // ---------------------------------------------------------------------------
-    //  STEP 2: Create the variables and add them to the component
+    //  1.h 
+    //      Create a Validator instance and use it to check for issues so far.
+    //      We expect there to be 18 errors found, related to missing variables
+    //      in the component.  You can use the utility printIssues function 
+    //      to print them to the terminal.
 
-    //  2.a Create the variables with names listed by the validator: d, a, b, c, time, y_s, y_f
-    //      Note that the variables can have any symbol, but their names must match exactly those
-    //      used in the MathML.
+    std::cout << "-------------------------------------------------------------" << std::endl;
+    std::cout << "   Step 2: Create the variables                              " << std::endl;
+    std::cout << "-------------------------------------------------------------" << std::endl;
 
-    //  2.b Add the variables into the component
+    //  2.a 
+    //      Create the variables listed by the validator: d, a, b, c, time, y_s, y_f.
 
-    //  2.c Call the validator to check.  Expect errors related to missing units.
+    //  2.b 
+    //      Add the variables into the component.
 
-    // ---------------------------------------------------------------------------
-    //  STEP 3: Create the Units and add them to the model
+    //  2.c 
+    //      Call the validator again to check.
 
-    //  3.a,b Create the day and per_day units
+    std::cout << "-------------------------------------------------------------" << std::endl;
+    std::cout << "   Step 3: Create the units                                  " << std::endl;
+    std::cout << "-------------------------------------------------------------" << std::endl;
 
-    //  3.c Create the sharks and fishes base units, "number_of_sharks" and "thousands_of_fish"
+    //  3.a 
+    //      Create units representing a month, or 2592000 seconds.
 
-    //  3.d Create the combined units for the constants
+    //  3.b 
+    //      Create the per_month unit based on the month defined in 3.a.
 
-    //  3.e Add the units to their variables
+    //  3.c 
+    //      Create the sharks and fishes base units, "number_of_sharks" and "thousands_of_fish".
 
-    //  3.f Call the validator to check the model.  We expect one error regarding the missing units in the MathML.
+    //  3.d 
+    //      Create the combined units for the constants, "per_shark_month" and "per_fish_month".
 
-    //  3.g Units for constants inside the MathML must be specified inside MathML the time.  This means
-    //      we need to adjust equation1 to include the per_day units.  Remove all the maths from the component,
-    //      and replace with the correct version of equation1.
+    //  3.e 
+    //      Add the units to their variables using the setUnits function.
 
-    //  3.h Call the validator to check.  Expect no errors.
+    //  3.f 
+    //      Call the validator to check the model.  We expect one error regarding the missing units in the MathML.
 
-    // ---------------------------------------------------------------------------
-    //  STEP 4: Code generation
+    //  3.g 
+    //      Units for constants inside the MathML must be specified at the time.  This means we need to adjust
+    //      equation1 to include the per_month units.  We have to wipe all the existing MathML and replace it.
 
-    //  4.a Create a generator instance and pass it the model for processing.  The
-    //      default profile is to generate C code, but we can change this later.
+    //  3.h 
+    //      Revalidate your model and expect there to be no errors.
 
-    //  4.b Check for errors found in the generator.  Expect errors related to missing initial conditions.
+    std::cout << "-------------------------------------------------------------" << std::endl;
+    std::cout << "   Step 4: Analyse the model                                 " << std::endl;
+    std::cout << "-------------------------------------------------------------" << std::endl;
 
-    //  4.c Add initial conditions to all variables except the base variable, time
-    //      and the constant c which will be computed.
+    //  4.a 
+    //      Create an Analyser instance and pass it the model using the
+    //      analyseModel function.  
 
-    //  4.d Reprocess the model.
+    //  4.b 
+    //      Check for errors found in the analyser. You should expect 6 errors,
+    //      related to variables whose values are not computed or initialised.
 
-    //  4.e Because we've used the default profile (C) we need to output both the
+    //  4.c 
+    //      Add initial conditions to all variables except the base variable, time
+    //      and the constant c which will be computed. Reprocess the model.
+
+    //  4.d 
+    //      Reprocess the model and check that the generator is now free of errors.
+
+    std::cout << "-------------------------------------------------------------" << std::endl;
+    std::cout << "   Step 5: Generate code and write to files                  " << std::endl;
+    std::cout << "-------------------------------------------------------------" << std::endl;
+
+    //  5.a  
+    //      Create a Generator instance.  Instead of giving it the Model item to process, 
+    //      the generator takes the output from the analyser.  
+    //      Retrieve the analysed model using the Analyser::model() function and pass it
+    //      to the generator using the Generator::setModel function.
+
+    //  5.b 
+    //      First we'll use the default profile (C), so we need to output both the
     //      interfaceCode (the header file) and the implementationCode (source file)
-    //      from the generator and write them.
+    //      from the generator and write them to their respective files.
 
-    //  4.f Change the generator profile to Python
+    //  5.c 
+    //      Create a GeneratorProfile item using the libcellml::GeneratorProfile::Profile::PYTHON
+    //      enum value in the constructor.  Pass this profile to the setProfile function in the
+    //      generator.
 
-    //  4.g Retrieve the Python implementation code and write to a file
+    //  5.d
+    //      Retrieve the Python implementation code (there is no header file) and write to a *.py file.
 
-    //  4.h Go and have a cuppa, you're done!
 }

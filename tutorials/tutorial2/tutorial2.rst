@@ -25,7 +25,7 @@ You'll be taking a CellML2.0 file which has some mistakes in it, using the valid
 
     **Requirements (C++)**
     
-    :download:`The whole folder<tutorial2.zip>` Download the whole folder, or:
+    :download:`Everything<tutorial2.zip>` Download the whole folder, or:
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building;
     - :download:`tutorial2.cpp<tutorial2.cpp>` The skeleton code or
@@ -36,7 +36,7 @@ You'll be taking a CellML2.0 file which has some mistakes in it, using the valid
 
     **Requirements (Python)**
 
-    :download:`The whole folder<tutorial2.zip>` Download the whole folder, or:
+    :download:`Everything<tutorial2.zip>` Download the whole folder, or:
 
     - :download:`tutorial2.py` The skeleton code or
     - :download:`tutorial2_complete.py` or the completed code; and
