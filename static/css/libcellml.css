@@ -5,14 +5,14 @@
 }
 
 .rst-content pre.literal-block, .rst-content div[class^='highlight'] {
-    margin: 0px;
+    margin: 0px 0px 10px 0px;
 }
 
 pre {
     border: none;
     background-color:#eeeeee;
     color: darkslategray;
-    margin:2px;
+    /* margin:2px; */
 }
 
 .highlight {
@@ -145,10 +145,10 @@ div[class^="issue"], div[class*=" issue"] > ol {
     line-height: 24px;
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
 }
-
+/* 
 .gotcha > p {
     margin-bottom:0;
-}
+} */
 
 .useful {
     background:#e1eaf0;
@@ -176,13 +176,13 @@ div[class^="issue"], div[class*=" issue"] > ol {
     margin: 6px 6px 6px 0;
 }
 
-.useful > p, ul {
+/* .useful > p, ul {
     margin-bottom:0;
 }
 
 .gotcha > p, ul {
     margin-bottom:0;
-}
+} */
 
 .heading2 {
     color: #444444;
