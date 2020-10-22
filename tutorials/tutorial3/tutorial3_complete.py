@@ -28,12 +28,14 @@ if __name__ == "__main__":
     print("   Step 1: Create model instance and maths                   ")
     print("-------------------------------------------------------------")
 
-    #   1.a   Create a Model and name it.
+    #   1.a   
+    #       Create a Model and name it.
     model = Model()
     model.setName("tutorial3_model")
 
-    #   1.b   Create a component to use as an integrator, set its attributes and
-    #         add it to the model.
+    #   1.b   
+    #       Create a component to use as an integrator, set its attributes and
+    #       add it to the model.
     component = Component()
     component.setName("component")
     model.addComponent(component)
@@ -242,6 +244,8 @@ if __name__ == "__main__":
     #       Validate once more, and expect there to be no errors this time.
     validator.validateModel(model)
     print_issues(validator)
+
+    #  end 3
 
     print("-------------------------------------------------------------")
     print("   Step 4: Analyse the mathematics                           ")

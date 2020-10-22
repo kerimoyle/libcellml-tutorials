@@ -31,7 +31,7 @@ Tutorial 3: Create a model and generate code using the API
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial3.cpp` The skeleton code; or
     - :download:`tutorial3_complete.cpp` the completed tutorial code; and
-    - :download:`../tutorial_utilities.h` and :download:`../tutorial_utilities.cpp` Utility functions for use in the tutorials.
+    - :download:`tutorial_utilities.h<../tutorial_utilities.h>` and :download:`tutorial_utilities.cpp<../tutorial_utilities.cpp>` Utility functions for use in the tutorials.
 
 .. container:: shortlist
 
@@ -41,7 +41,7 @@ Tutorial 3: Create a model and generate code using the API
 
     - :download:`tutorial3.py` Either the skeleton code; or
     - :download:`tutorial3_complete.py` the completed tutorial code; and
-    - :download:`../../utilities/tutorial_utilities.py`  Utility functions for use in the tutorials.
+    - :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.
 
 Overview
 --------
@@ -507,7 +507,7 @@ Some common units have been defined and built into libCellML, others you can def
 
     .. container:: infospec
 
-        .. include:: ../asides/aside_units.rst
+        .. include:: ../../asides/aside_units.rst
 
 .. container:: useful
 

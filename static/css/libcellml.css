@@ -223,6 +223,10 @@ div[class^="issue"], div[class*=" issue"] > ol {
     height: 1em;
 }
 
+.ui.menu {
+    min-height: 1em;
+}
+
 .sphinx-menu {
     border-bottom: none !important;
 }
