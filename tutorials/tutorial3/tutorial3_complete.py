@@ -294,31 +294,41 @@ if __name__ == "__main__":
     #  language.  The default is C, but Python is available too.  This language choice is
     #  called the "profile", and is stored in a GeneratorProfile item.
 
-    #  5.b 
+    #  The default profile has a C flavour, and it already exists inside the Generator you've just created.
+    #  We need to edit that profile a little, but only to tell it the file name where they interface
+    #  (header file) code will be written.  This is so that the implementation code (source file) knows
+    #  where to look when it tries to #include it.  
+
+    #  5.b
+    #     Retrieve the C profile from the generator, and use its setInterfaceFileNameString function
+    #     to pass in the same filename that you'll use in 5.c for the interface code.
+    generator.profile().setInterfaceFileNameString('PredatorPrey.h')
+
+    #  5.c
     #     First we'll use the default profile (C), so we need to output both the
     #     interfaceCode (the header file) and the implementationCode (source file)
     #     from the generator and write them to their respective files.
     implementation_code_C = generator.implementationCode()
-    write_file = open("tutorial3_PredatorPrey.c", "w")
+    write_file = open("PredatorPrey.c", "w")
     write_file.write(implementation_code_C)
     write_file.close()
 
     interface_code = generator.interfaceCode()
-    write_file = open("tutorial3_PredatorPrey.h", "w")
+    write_file = open("PredatorPrey.h", "w")
     write_file.write(interface_code)
     write_file.close()
 
-    #  5.c 
+    #  5.d
     #     Create a GeneratorProfile item using the libcellml.GeneratorProfile.Profile.PYTHON
     #     enum value in the constructor.  Pass this profile to the setProfile function in the
     #     generator.
     profile = GeneratorProfile(GeneratorProfile.Profile.PYTHON)
     generator.setProfile(profile)
 
-    #  5.d
+    #  5.e
     #     Retrieve the Python implementation code (there is no header file) and write to a *.py file.
     implementation_code_python = generator.implementationCode()
-    write_file = open("tutorial3_PredatorPrey.py", "w")
+    write_file = open("PredatorPrey.py", "w")
     write_file.write(implementation_code_python)
 
     #  end 5

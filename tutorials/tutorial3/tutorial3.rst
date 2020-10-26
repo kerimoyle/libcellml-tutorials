@@ -890,7 +890,7 @@ There are several requirements that need to be satisfied in order for the code g
 These are:
 
 - The mathematical model definition must be appropriately constrained (not over- or under-constrained);
-- Initial conditions must be specified for variables which are integrated; **TODO** need to elaborate ...
+- Initial conditions must be specified for variables which are integrated; 
 - Initial conditions must not be specified for variables which are the base of integration;
 - The values of constants must be specified or calculable; and
 - **TODO get full list of stuff here ...**
@@ -900,6 +900,7 @@ These are:
     :api:`Generator class<Generator>`
 
     - create
+    - profile
     - setModel
     - interfaceCode
     - implementationCode
@@ -907,6 +908,7 @@ These are:
     :api:`GeneratorProfile class<GeneratorProfile>`
 
     - create
+    - setInterfaceFileNameString
     
     The GeneratorProfile class contains an enum indicating the language of profile to set.
     In C++ this is :code:`GeneratorProfile::Profile`.
@@ -945,9 +947,17 @@ These are:
         :start-at: #  5.a
         :end-before: #  5.b
 
+The generator takes the CellML model and turns it into procedural code in another language.
+The default is C, but Python is available too.
+This language choice is called the "profile", and is stored in a :code:`GeneratorProfile` item.
+
+The default profile already exists inside the :code:`Generator` you've just created.
+We need to edit that profile a little, but only to tell it the file name where they interface (header file) code will be written.
+This is so that the implementation code (source file) knows where to look when it tries to include it.  
+
 .. container:: dothis
 
-    **5.b** First we'll use the default profile (C), so we need to output both the interface code (the header file) and the implementation code (the source file) from the generator and write them to their respective files.
+    **5.b** Retrieve the C profile from the generator, and use its :code:`setInterfaceFileNameString` function to pass in the same filename that you'll use in 5.c below for the interface code.
 
 .. container:: toggle
 
@@ -971,14 +981,9 @@ These are:
         :start-at: #  5.b
         :end-before: #  5.c
 
-The generator takes the CellML model and turns it into procedural code in another language.
-The default is C, but Python is available too.
-This language choice is called the "profile", and is stored in a :code:`GeneratorProfile` item.
-
 .. container:: dothis
-    
-    **5.c** Create a :code:`GeneratorProfile` item using the Profile::PYTHON enum value in the constructor.
-    Pass this profile to the :code:`setProfile` function in the generator.
+
+    **5.c** Since we're using the default profile (C), we need to output both the interface code (the header file) and the implementation code (the source file) from the generator and write them to their respective files.
 
 .. container:: toggle
 
@@ -1002,9 +1007,14 @@ This language choice is called the "profile", and is stored in a :code:`Generato
         :start-at: #  5.c
         :end-before: #  5.d
 
+The generator takes the CellML model and turns it into procedural code in another language.
+The default is C, but Python is available too.
+This language choice is called the "profile", and is stored in a :code:`GeneratorProfile` item.
+
 .. container:: dothis
     
-    **5.d** Retrieve the Python implementation code (there is no header file) and write to a *.py file.
+    **5.d** Create a :code:`GeneratorProfile` item using the Profile::PYTHON enum value in the constructor.
+    Pass this profile to the :code:`setProfile` function in the generator.
 
 .. container:: toggle
 
@@ -1015,6 +1025,32 @@ This language choice is called the "profile", and is stored in a :code:`Generato
     .. literalinclude:: tutorial3_complete.cpp
         :language: c++
         :start-at: //  5.d
+        :end-before: //  5.e
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show Python snippet
+
+    .. literalinclude:: tutorial3_complete.py
+        :language: python
+        :start-at: #  5.d
+        :end-before: #  5.e
+
+.. container:: dothis
+    
+    **5.e** Retrieve the Python implementation code (there is no header file) and write to a *.py file.
+
+.. container:: toggle
+
+    .. container:: header
+
+        Show C++ snippet
+
+    .. literalinclude:: tutorial3_complete.cpp
+        :language: c++
+        :start-at: //  5.e
         :end-before: //  end 5
 
 .. container:: toggle
