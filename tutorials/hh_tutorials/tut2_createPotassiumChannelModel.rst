@@ -1,7 +1,7 @@
 ..  _combine_createPotassiumChannelModel:
 
-Tutorial 2: Creating a model which uses imports
-===============================================
+Hodgkin-Huxley  2: Creating a model which uses imports
+======================================================
 
 .. container:: shortlist
 

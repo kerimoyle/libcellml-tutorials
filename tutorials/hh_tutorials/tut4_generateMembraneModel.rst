@@ -1,7 +1,7 @@
 ..  _combine_generateMembraneModel:
 
-Tutorial 4: Generating code from a model
-========================================
+Hodgkin-Huxley 4: Generating code from a model
+===============================================
 
 .. container:: shortlist
 

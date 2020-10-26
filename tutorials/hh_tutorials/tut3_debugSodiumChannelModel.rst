@@ -1,7 +1,7 @@
 ..  _combine_debugSodiumChannelModel:
 
-Tutorial 3: Debugging a model
-=============================
+Hodgkin-Huxley 3: Debugging a model
+====================================
 
 .. container:: shortlist
 

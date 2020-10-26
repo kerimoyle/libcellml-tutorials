@@ -1,7 +1,7 @@
 ..  _combine_createGateModel:
 
-Tutorial 1: Creating a model using the API
-==========================================
+Hodgkin-Huxley 1: Creating a model using the API
+================================================
 
 .. container:: shortlist
 

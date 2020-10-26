@@ -237,3 +237,12 @@ div[class^="issue"], div[class*=" issue"] > ol {
 .wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul {
     margin-bottom: 0;
 }
+
+.shortlist {
+    margin: 5px;
+}
+
+.shortlist > p, ol, ul, dl {
+    margin-bottom: 0;
+}
+

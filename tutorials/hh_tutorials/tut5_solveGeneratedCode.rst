@@ -1,7 +1,7 @@
 ..  _combine_solveGeneratedCode:
 
-Tutorial 5: Interact with generated code
-========================================
+Hodgkin-Huxley 5: Interact with generated code
+==============================================
 
 .. container:: shortlist
 
