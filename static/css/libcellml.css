@@ -148,9 +148,11 @@ div[class^="issue"], div[class*=" issue"] > ol {
 
 .gotcha > p, ul, ol, dl {
     margin-bottom:0;
+    padding: 5px;
 }
 
 .useful {
+    border-left: 5px solid rgb(100, 127, 190);
     background:#e1eaf0;
     color: #444444;
     padding: 3px 3px 5px 40px;
@@ -162,10 +164,10 @@ div[class^="issue"], div[class*=" issue"] > ol {
 
 .useful:before {
     content: "Useful functions \A";
-    white-space: pre;
     font-weight: 700;
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
     color: rgb(100, 127, 190);
+    margin-bottom: 10px;
 }
 
 .useful > .guilabel {
@@ -177,6 +179,7 @@ div[class^="issue"], div[class*=" issue"] > ol {
 }
 
 .useful > p, ul, ol, dl {
+    padding: 5px;
     margin-bottom:0;
 }
 
