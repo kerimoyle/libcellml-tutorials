@@ -178,6 +178,10 @@ div[class^="issue"], div[class*=" issue"] > ol {
     margin: 6px 6px 6px 0;
 }
 
+.useful > p, ul, ol, dl {
+    margin-bottom: 5px;
+}
+
 .useful:last-child {
     padding: 5px !important;
     margin-bottom:0 !important;
