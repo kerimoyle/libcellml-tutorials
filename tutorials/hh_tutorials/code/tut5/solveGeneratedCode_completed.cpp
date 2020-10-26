@@ -61,7 +61,7 @@ int main()
     //      "Variables" are anything which does not require integration as part of the
     //      solution, and could have types COMPUTED_CONSTANT (needs to be calculated
     //      but doesn't need integration), CONSTANT (no calculation needed), or
-    //      ALGEBRAIC (TODO??) as defined in the VariableType enum.
+    //      ALGEBRAIC as defined in the VariableType enum.
     //      They are stored in an array of VariableInfoWithType structs called
     //      VARIABLE_INFO which is VARIABLE_COUNT long.  The VariableInfoWithType contains:
     //          - name,
@@ -70,8 +70,8 @@ int main()
     //          - VariableType.
 
     //  2.a
-    //  Get the number of variables and iterate through the VARIABLE_INFO structure to
-    //  retrieve and print each variable's information to the terminal.
+    //      Get the number of variables and iterate through the VARIABLE_INFO structure to
+    //      retrieve and print each variable's information to the terminal.
 
     std::cout << "VARIABLE_COUNT = " << VARIABLE_COUNT << std::endl;
     for (size_t v = 0; v < VARIABLE_COUNT; ++v) {

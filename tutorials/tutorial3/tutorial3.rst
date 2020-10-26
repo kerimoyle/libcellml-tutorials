@@ -43,6 +43,9 @@ Tutorial 3: Create a model and generate code using the API
     - :download:`tutorial3_complete.py` the completed tutorial code; and
     - :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.
 
+.. contents:: Contents
+    :local:
+    
 Overview
 --------
 During this tutorial you will create a simple model representing the population dynamics of two species - one a predator (sharks), and the other their prey (fish).

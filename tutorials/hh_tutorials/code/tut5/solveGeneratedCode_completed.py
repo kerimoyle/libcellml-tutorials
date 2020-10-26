@@ -48,7 +48,7 @@ if __name__ == '__main__':
     #  'Variables' are anything which does not require integration as part of the
     #  solution, and could have types COMPUTED_CONSTANT (needs to be calculated
     #  but doesn't need integration), CONSTANT (no calculation needed), or
-    #  ALGEBRAIC (TODO??) as defined in the VariableType enum.
+    #  ALGEBRAIC as defined in the VariableType enum.
     #  They are stored in an array of dictionaries called
     #  VARIABLE_INFO which is VARIABLE_COUNT long.  This contains:
     #     - name,
