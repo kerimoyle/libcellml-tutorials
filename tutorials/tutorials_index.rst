@@ -6,10 +6,20 @@ libCellML Tutorials
 
 Please follow the :ref:`Installation instructions<installation_index>` first to get yourself a copy of libCellML.
 
-The first set of tutorials below take the user progressively through different aspects of the libCellML functionality while building towards a model of Hodgkin and Huxley's squid axon activation.
+The first set is a simple starting point for users who are unfamiliar with CellML and/or modelling in general.
 
-The second set is agnostic as to application, and works only to illustrate the functionality.
-It is a simpler starting point for users who are unfamiliar with CellML and/or modelling in general.
+.. toctree::
+    :maxdepth: 2
+    :titlesonly:
+       
+    tutorial1/tutorial1
+    tutorial2/tutorial2
+    tutorial3/tutorial3
+    tutorial4/tutorial4
+    tutorial5/tutorial5
+
+The second set of tutorials below take the user progressively through different aspects of the libCellML functionality while building towards a model of Hodgkin and Huxley's squid axon activation.
+It is aimed at users who are already familiar with the concept of CellML and modelling.
 
 .. toctree::
     :maxdepth: 2
@@ -20,15 +30,6 @@ It is a simpler starting point for users who are unfamiliar with CellML and/or m
     hh_tutorials/tut3_debugSodiumChannelModel.rst
     hh_tutorials/tut4_generateMembraneModel.rst
     hh_tutorials/tut5_solveGeneratedCode.rst
-    hh_tutorials/tut6_annotateModel.rst
+    
 
-.. toctree::
-    :maxdepth: 2
-    :titlesonly:
-       
-    tutorial1/tutorial1
-    tutorial2/tutorial2
-    tutorial3/tutorial3
-    tutorial4/tutorial4
-    solver/solver
 

@@ -1,5 +1,5 @@
 """
-  COMBINE2020 libCellML TUTORIAL 6: Annotating a mystery model
+   TUTORIAL 6: Annotating a mystery model
  
   	This tutorial is a guide to playing Marco Polo using libCellML.
  
