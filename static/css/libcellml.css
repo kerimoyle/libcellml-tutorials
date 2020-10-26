@@ -233,3 +233,7 @@ div[class^="issue"], div[class*=" issue"] > ol {
 .sphinx-menu {
     border-bottom: none !important;
 }
+
+.wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul {
+    margin-bottom: 0;
+}
