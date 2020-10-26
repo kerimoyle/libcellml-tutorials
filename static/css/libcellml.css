@@ -152,10 +152,10 @@ div[class^="issue"], div[class*=" issue"] > ol {
 }
 
 .useful {
-    border-left: 5px solid rgb(100, 127, 190);
+    border-left: 5px solid rgb(137, 153, 192);
     background:#e1eaf0;
     color: #444444;
-    padding: 3px 3px 5px 40px;
+    padding: 3px 3px 5px 8px;
     margin-top:20px;
     margin-bottom:20px;
     line-height: 24px;
@@ -178,9 +178,9 @@ div[class^="issue"], div[class*=" issue"] > ol {
     margin: 6px 6px 6px 0;
 }
 
-.useful > p, ul, ol, dl {
-    padding: 5px;
-    margin-bottom:0;
+.useful:last-child {
+    padding: 5px !important;
+    margin-bottom:0 !important;
 }
 
 .heading2 {
