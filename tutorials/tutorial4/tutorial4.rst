@@ -379,10 +379,12 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
 .. container:: shortlist
 
     At each step you will need to:
+
         - Compute the rates;
         - Compute the state variables using the update method above; 
         - Compute the variables; **
         - Print to a file.
+
     ** We only need to compute these each timestep here because we're also writing the values to the file at each timestep.
 
 .. container:: toggle
@@ -437,6 +439,11 @@ Step 5: Sanity check
 --------------------
 The file that results from running the completed version of this tutorial can be downloaded from :download:`solution.txt<solution.txt>`; a tab-delimited file that can be easily read into your favourite plotting program.
 
+You should find results similar to the figure below, where the cyclical dependency of the shark and fish populations can be seen.
 
+.. figure:: ../images/sharks_and_fish.png
+   :name: sharksAndFish
+   :alt: Population dynamics of sharks and fish
+   :align: center
 
-
+   Population dynamics for the sharks and fish.  
