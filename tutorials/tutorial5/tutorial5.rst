@@ -15,18 +15,20 @@ Tutorial 5: Annotation tools
 
 .. container:: shortlist
 
+    :download:`Download the entire folder<tutorial5.txt>`
+
     **Code (C++)**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
-    - :download:`annotateModel.cpp<annotateModel.cpp>` Either the skeleton code, or ..
-    - :download:`annotateModel_completed.cpp<annotateModel_completed.cpp>` the completed tutorial code;
+    - :download:`tutorial5.cpp<tutorial5.cpp>` Either the skeleton code, or ..
+    - :download:`tutorial5_completed.cpp<tutorial5_completed.cpp>` the completed tutorial code;
 
 .. container:: shortlist
 
     **Code (Python)**
 
-    - :download:`annotateModel.py<annotateModel.py>` Either the skeleton code, or ..
-    - :download:`annotateModel_completed.py<annotateModel_completed.py>` the completed tutorial code;
+    - :download:`tutorial5.py<tutorial5.py>` Either the skeleton code, or ..
+    - :download:`tutorial5_completed.py<tutorial5_completed.py>` the completed tutorial code;
 
 .. container:: shortlist
 
@@ -72,7 +74,7 @@ Step 1: Parse the mystery model
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  1.a
         :end-before: //  end 1
@@ -83,7 +85,7 @@ Step 1: Parse the mystery model
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  1.a
         :end-before: #  end 1
@@ -121,7 +123,7 @@ Step 2: Retrieve an item with a unique id
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  2.a
         :end-before: //  end 2.a
@@ -132,7 +134,7 @@ Step 2: Retrieve an item with a unique id
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  2.a
         :end-before: #  end 2.a
@@ -160,7 +162,7 @@ Step 2: Retrieve an item with a unique id
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  2.b
         :end-before: //  end 2
@@ -171,7 +173,7 @@ Step 2: Retrieve an item with a unique id
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  2.b
         :end-before: #  end 2
@@ -207,7 +209,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  3.a
         :end-before: //  end 3.b
@@ -218,7 +220,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  3.a
         :end-before: #  end 3.b
@@ -241,7 +243,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  3.c
         :end-before: //  end 3.c
@@ -252,7 +254,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  3.c
         :end-before: #  end 3.c
@@ -285,7 +287,7 @@ The :code:`Annotator` class can create a unique id for an item using the :code:`
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  3.d
         :end-before: //  end 3.e
@@ -296,7 +298,7 @@ The :code:`Annotator` class can create a unique id for an item using the :code:`
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  3.d
         :end-before: #  end 3.e
@@ -340,7 +342,7 @@ In circumstances where you know the type of the item with the id you're fetching
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  3.f
         :end-before: //  end 3
@@ -351,7 +353,7 @@ In circumstances where you know the type of the item with the id you're fetching
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  3.f
         :end-before: #  end 3
@@ -378,7 +380,7 @@ Now that we've found Marco and fixed the duplicates of Polo, we'd like to know w
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  4.a
         :end-before: //  end 4.a
@@ -389,7 +391,7 @@ Now that we've found Marco and fixed the duplicates of Polo, we'd like to know w
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  4.a
         :end-before: #  end 4.a
@@ -423,7 +425,7 @@ The hex strings printed are those which have been automatically generated by the
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  4.b
         :end-before: //  end 4
@@ -434,7 +436,7 @@ The hex strings printed are those which have been automatically generated by the
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  4.b
         :end-before: #  end 4
@@ -494,7 +496,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  5.a
         :end-before: //  5.e
@@ -505,7 +507,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  5.a
         :end-before: #  5.e
@@ -525,7 +527,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  5.e
         :end-before: //  end 5
@@ -536,7 +538,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  5.e
         :end-before: #  end 5
@@ -562,7 +564,7 @@ Step 6: Bulk operations
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  6.a
         :end-before: //  6.b
@@ -573,7 +575,7 @@ Step 6: Bulk operations
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  6.a
         :end-before: #  6.b
@@ -649,7 +651,7 @@ Now you regret nuking our friends and make plans to return tomorrow and annotate
 
         Show C++ snippet
 
-    .. literalinclude:: annotateModel_completed.cpp
+    .. literalinclude:: tutorial5_completed.cpp
         :language: c++
         :start-at: //  6.b
         :end-before: //  end 6
@@ -660,7 +662,7 @@ Now you regret nuking our friends and make plans to return tomorrow and annotate
 
         Show Python snippet
 
-    .. literalinclude:: annotateModel_completed.py
+    .. literalinclude:: tutorial5_completed.py
         :language: python
         :start-at: #  6.b
         :end-before: #  end 6

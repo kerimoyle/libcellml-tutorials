@@ -11,33 +11,48 @@ Tutorial 4: Using generated code to run a simulation
     - Investigate and understand the contents of files created by the :code:`Generator`; and
     - Integrate generated code into a simple solver to run a simulation.
 
+
 .. container:: shortlist
 
     This tutorial assumes that you are comfortable with:
 
-    - Interacting with a model and its entities using the API (see :ref:`Tutorial 3<tutorial3>`); and
+    - Interacting with a model and its entities using the API (see :ref:`Tutorial 1<tutorial1>` and :ref:`Tutorial 2<tutorial2>`); and
     - Using the :code:`Generator` functionality to output files in C or Python (see :ref:`Tutorial 3<tutorial3>`).
+
+
+**Requirements (C++)**
 
 .. container:: shortlist
 
-    **Requirements (C++)**
-
-    :download:`Download the whole folder<tutorial4.zip`> or:
+    :download:`Download the whole folder<tutorial4.zip>` or:
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial4.cpp` The skeleton code; or
     - :download:`tutorial4_complete.cpp` the completed tutorial code; and
     - :download:`tutorial_utilities.h<../tutorial_utilities.h>` and :download:`tutorial_utilities.cpp<../tutorial_utilities.cpp>` Utility functions for use in the tutorials.
 
+
+**Requirements (C++)**
+
 .. container:: shortlist
 
-    **Requirements (C++)**
-
-    :download:`Download the whole folder<tutorial4.zip`> or:
+    :download:`Download the whole folder<tutorial4.zip>` or:
 
     - :download:`tutorial4.py` Either the skeleton code; or
     - :download:`tutorial4_complete.py` the completed tutorial code; and
     - :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.
+
+
+**Resources**
+
+This tutorial is built upon the :ref:`previous Tutorial 3<tutorial3>` and uses the output created there.
+If you haven't completed this tutorial, you can download those output files here:
+
+.. container:: shortlist
+
+    - :download:`PredatorPrey.py<PredatorPrey.py>` for use with Python; or 
+    - :download:`PredatorPrey.cpp<PredatorPrey.cpp>` and :download:`PredatorPrey.h<PredatorPrey.h>` for use with C++.
+
 
 .. contents:: Contents
     :local:
