@@ -11,7 +11,9 @@
 
 """
 from libcellml import versionString
-import tutorial3_PredatorPrey as model
+
+import sys
+import importlib
 
 if __name__ == "__main__":
     print("-----------------------------------------------------")
@@ -22,13 +24,18 @@ if __name__ == "__main__":
     print('   Step 1: Link to the generated code                      ')
     print('-----------------------------------------------------------')
 
-    #  1.a 
-    #       Import the entirety of the module generated as "model"
+    #  1.a
+    #       Use the importlib functionality to open the generated code file.
+    spec = importlib.util.spec_from_file_location('PredatorPrey', 'PredatorPrey.py')
+    module = importlib.util.module_from_spec(spec)
 
-    #  1.b 
-    #       Check that the libcellml and generated libcellml versions match
-    print("The generated code used libCellML version: " + model.LIBCELLML_VERSION)
-    print("The library version of libCellML is: " + versionString())
+    #  1.b
+    #       Load into a module.
+    sys.modules['PredatorPrey'] = module
+    spec.loader.exec_module(module)
+    model = module
+
+    #  end 1
 
     print('-----------------------------------------------------------')
     print('   Step 2: Access the variables in the generated files     ')

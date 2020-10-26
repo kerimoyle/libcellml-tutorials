@@ -17,8 +17,8 @@
 
 #include <libcellml>
 
-#include "../../utilities/tutorial_utilities.h"
-#include "../resources/tutorial3_PredatorPrey_generated.h"
+#include "tutorial_utilities.h"
+#include "PredatorPrey.h"
 
 int main()
 {
@@ -51,6 +51,8 @@ int main()
     //  1.f 
     //      Call cmake to create the Makefile.  Call make -j to build the executable.
     //      Run the code so far to print the versions to the terminal.
+
+    //  end 1
 
     std::cout << "-----------------------------------------------" << std::endl;
     std::cout << "   Step 2: Investigate the items stored        " << std::endl;

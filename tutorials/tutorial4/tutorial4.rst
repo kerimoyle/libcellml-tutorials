@@ -4,55 +4,40 @@
 Tutorial 4: Using generated code to run a simulation
 ====================================================
 
-.. container:: shortlist
+By the time you have worked through Tutorial 4 you will be able to:
 
-    By the time you have worked through Tutorial 4 you will be able to:
+- Investigate and understand the contents of files created by the :code:`Generator`; and
+- Integrate generated code into a simple solver to run a simulation.
 
-    - Investigate and understand the contents of files created by the :code:`Generator`; and
-    - Integrate generated code into a simple solver to run a simulation.
+This tutorial assumes that you are comfortable with:
 
-
-.. container:: shortlist
-
-    This tutorial assumes that you are comfortable with:
-
-    - Interacting with a model and its entities using the API (see :ref:`Tutorial 1<tutorial1>` and :ref:`Tutorial 2<tutorial2>`); and
-    - Using the :code:`Generator` functionality to output files in C or Python (see :ref:`Tutorial 3<tutorial3>`).
-
+- Interacting with a model and its entities using the API (see :ref:`Tutorial 1<tutorial1>` and :ref:`Tutorial 2<tutorial2>`); and
+- Using the :code:`Generator` functionality to output files in C or Python (see :ref:`Tutorial 3<tutorial3>`).
 
 **Requirements (C++)**
 
-.. container:: shortlist
+:download:`Download the whole folder<tutorial4.zip>` or:
 
-    :download:`Download the whole folder<tutorial4.zip>` or:
-
-    - :download:`CMakeLists.txt` The CMake file for building this tutorial;
-    - :download:`tutorial4.cpp` The skeleton code; or
-    - :download:`tutorial4_complete.cpp` the completed tutorial code; and
-    - :download:`tutorial_utilities.h<../tutorial_utilities.h>` and :download:`tutorial_utilities.cpp<../tutorial_utilities.cpp>` Utility functions for use in the tutorials.
-
+- :download:`CMakeLists.txt` The CMake file for building this tutorial;
+- :download:`tutorial4.cpp` The skeleton code; or
+- :download:`tutorial4_complete.cpp` the completed tutorial code; and
+- :download:`tutorial_utilities.h<../tutorial_utilities.h>` and :download:`tutorial_utilities.cpp<../tutorial_utilities.cpp>` Utility functions for use in the tutorials.
 
 **Requirements (C++)**
 
-.. container:: shortlist
+:download:`Download the whole folder<tutorial4.zip>` or:
 
-    :download:`Download the whole folder<tutorial4.zip>` or:
-
-    - :download:`tutorial4.py` Either the skeleton code; or
-    - :download:`tutorial4_complete.py` the completed tutorial code; and
-    - :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.
-
+- :download:`tutorial4.py` Either the skeleton code; or
+- :download:`tutorial4_complete.py` the completed tutorial code; and
+- :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.
 
 **Resources**
 
 This tutorial is built upon the :ref:`previous Tutorial 3<tutorial3>` and uses the output created there.
 If you haven't completed this tutorial, you can download those output files here:
 
-.. container:: shortlist
-
     - :download:`PredatorPrey.py<PredatorPrey.py>` for use with Python; or 
     - :download:`PredatorPrey.cpp<PredatorPrey.cpp>` and :download:`PredatorPrey.h<PredatorPrey.h>` for use with C++.
-
 
 .. contents:: Contents
     :local:
@@ -98,14 +83,14 @@ There are necessarily big differences between C++ and Python for this tutorial!
 
             .. literalinclude:: tutorial4_complete.cpp
                 :language: c++
-                :start-at: //  1.a
-                :end-before: //  end 1
+                :start-at: //  1.e
+                :end-before: //  1.f
 
     .. tab:: Python instructions
 
         .. container:: dothis
 
-            **1.a** Use the importlib functionality to open the generated code file.
+            **1.a** Use the :code:`importlib` functionality to connect with the generated code file.
 
         .. container:: dothis
 
@@ -124,7 +109,7 @@ There are necessarily big differences between C++ and Python for this tutorial!
 
 Step 2: Access the variables in the generated files
 ---------------------------------------------------
-Probably the best way to understand the contents of the generated files is o open them and look!
+Probably the best way to understand the contents of the generated files is to open them and look!
 The implementation file (*.cpp) has two types of items:
 
 - information structures (in all-caps); and
@@ -132,7 +117,7 @@ The implementation file (*.cpp) has two types of items:
 
 It's important to remember that in the generated code we don't have the notion of separate components: they are listed here with the variables only in order to give the correct context to the variable names.
 
-"Variables" are anything which does not require integration as part of the solution, and could have types :code:`COMPUTED_CONSTANT` (needs to be calculated but doesn't need integration), :code:`CONSTANT` (no calculation needed), or :code:`ALGEBRAIC` (**TODO**) as defined in the :code:`VariableType` enum.
+"Variables" are anything which does not require integration as part of the solution, and could have types :code:`COMPUTED_CONSTANT` (needs to be calculated but doesn't need integration), :code:`CONSTANT` (no calculation needed), or :code:`ALGEBRAIC` as defined in the :code:`VariableType` enum.
 They are stored in an array of :code:`VariableInfoWithType` structs called :code:`VARIABLE_INFO` which is :code:`VARIABLE_COUNT` long.  
 
 .. container:: shortlist
