@@ -536,14 +536,14 @@ For example:
 
     .. code-tab:: cpp
 
-        Declare, name, and define a "millisecond" unit pointer.
+        // Declare, name, and define a "millisecond" unit pointer.
         auto ms = libcellml::Units::create("millisecond");
 
-        The manner of specification here is agnostic: all three definitions are identical.
+        // The manner of specification here is agnostic: all three definitions are identical.
         ms->addUnit("second", "milli");  reference unit and built-in prefix
-        OR
+        // OR
         ms->addUnit("second", 1.0, -3);  reference unit, prefix, exponent
-        OR
+        // OR
         ms->addUnit("second", 1.0, 0, 0.001);  reference unit, prefix, exponent, multiplier
 
     .. code-tab:: python
