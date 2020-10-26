@@ -28,23 +28,23 @@ if __name__ == "__main__":
     print("   Step 1: Create model instance and maths                   ")
     print("-------------------------------------------------------------")
 
-    #   1.a   
-    #       Create a Model and name it.
+    #  1.a   
+    #      Create a Model and name it.
     model = Model()
     model.setName("tutorial3_model")
 
-    #   1.b   
-    #       Create a component to use as an integrator, set its attributes and
-    #       add it to the model.
+    #  1.b   
+    #      Create a component to use as an integrator, set its attributes and
+    #      add it to the model.
     component = Component()
     component.setName("component")
     model.addComponent(component)
 
-    #   Checking that it worked
+    #  Checking that it worked
     print_model(model)
 
-    #   1.c
-    #       Create the MathML2 string representing the governing equations.  
+    #  1.c
+    #      Create the MathML2 string representing the governing equations.  
     equation1 = \
         "  <apply><eq/>"\
         "    <ci>c</ci>"\
@@ -54,7 +54,7 @@ if __name__ == "__main__":
         "    </apply>"\
         "  </apply>"
 
-    #   1.d
+    #  1.d
     equation2 = \
         "  <apply><eq/>"\
         "    <apply><diff/>"\
@@ -74,7 +74,7 @@ if __name__ == "__main__":
         "    </apply>"\
         "  </apply>"
 
-    #   1.e
+    #  1.e
     equation3 = \
         "  <apply><eq/>"\
         "    <apply><diff/>"\
@@ -95,12 +95,12 @@ if __name__ == "__main__":
         "  </apply>"
 
     #  1.f
-    #     Add the header and footer strings.
+    #    Add the header and footer strings.
     math_header = '<math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">'
     math_footer = '</math>'
 
     #  1.g
-    #     Include the MathML strings in the component.
+    #    Include the MathML strings in the component.
     component.setMath(math_header)
     component.appendMath(equation1)
     component.appendMath(equation2)
@@ -108,7 +108,7 @@ if __name__ == "__main__":
     component.appendMath(math_footer)
 
     #  1.h   
-    #     Create a validator and use it to check the model so far.
+    #    Create a validator and use it to check the model so far.
     validator = Validator()
     validator.validateModel(model)
     print_issues(validator)
@@ -119,8 +119,8 @@ if __name__ == "__main__":
     print("   Step 2: Create the variables                              ")
     print("-------------------------------------------------------------")
 
-    #  2.a  
-    #       Create the variables listed by the validator: d, a, b, c, time, y_s, y_f.
+    #  2.a
+    #      Create the variables listed by the validator: d, a, b, c, time, y_s, y_f.
     sharks = Variable("y_s")
     fish = Variable("y_f")
     time = Variable("time")
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     d = Variable("d")
 
     #  2.b
-    #       Add the variables into the component.
+    #      Add the variables into the component.
     component.addVariable(sharks)
     component.addVariable(fish)
     component.addVariable(time)
@@ -140,7 +140,7 @@ if __name__ == "__main__":
     component.addVariable(d)
 
     #  2.c  
-    #       Call the validator again to check the model.
+    #      Call the validator again to check the model.
     validator.validateModel(model)
     print_issues(validator)
 
@@ -159,30 +159,30 @@ if __name__ == "__main__":
     #  Tutorial 5)
 
     #  3.a  
-    #       Define the relationship between our custom units and the built-in
-    #       units. There is a list of built-in units and their definitions
-    #       available in section 19.2 of the CellML2 specification.
-    #       First we create the "month" units, which will be equivalent to
-    #       60*60*24*30 = 2,592,000 seconds.
+    #      Define the relationship between our custom units and the built-in
+    #      units. There is a list of built-in units and their definitions
+    #      available in section 19.2 of the CellML2 specification.
+    #      First we create the "month" units, which will be equivalent to
+    #      60*60*24*30 = 2,592,000 seconds.
     month = Units("month")
     month.addUnit("second", 1, 2592000)  # Setting a month to be 2592000 seconds.
     model.addUnits(month)
 
     #  "second" is a built-in unit, used with a multiplier of 2592000.
     #  Note that this could have been written:
-    #     month.addUnit("second", "mega", 1, 2.592)
-    #     month.addUnit("second", 5, 25.92)
+    #    month.addUnit("second", "mega", 1, 2.592)
+    #    month.addUnit("second", 5, 25.92)
 
     #  3.b  
-    #       Create units which represent "per_month", which
-    #       is simply the inverse of the "month" unit above.
+    #      Create units which represent "per_month", which
+    #      is simply the inverse of the "month" unit above.
     per_month = Units()
     per_month.setName("per_month")
     per_month.addUnit("month", -1)
     model.addUnits(per_month)
 
     #  3.c      
-    #       Create the sharks and fishes base units.
+    #      Create the sharks and fishes base units.
     number_of_sharks = Units()
     number_of_sharks.setName("number_of_sharks")
     model.addUnits(number_of_sharks)
@@ -191,8 +191,8 @@ if __name__ == "__main__":
     model.addUnits(thousands_of_fish)
 
     #  3.d  
-    #       Create the combined units for the constants.  Note that each item included
-    #       with the addUnit command is multiplied to create the final Units definition.
+    #      Create the combined units for the constants.  Note that each item included
+    #      with the addUnit command is multiplied to create the final Units definition.
     b_units = Units()
     b_units.setName("per_shark_month")
     b_units.addUnit("per_month")
@@ -206,7 +206,7 @@ if __name__ == "__main__":
     model.addUnits(d_units)
 
     #  3.e  
-    #       Set the units to their respective variables.
+    #      Set the units to their respective variables.
     time.setUnits(month)
     sharks.setUnits(number_of_sharks)
     fish.setUnits(thousands_of_fish)
@@ -216,15 +216,15 @@ if __name__ == "__main__":
     d.setUnits(d_units)
 
     #  3.f  
-    #       Call the validator again to check the model.
-    #       Expect one error regarding a missing unit in the MathML.
+    #      Call the validator again to check the model.
+    #      Expect one error regarding a missing unit in the MathML.
     validator.validateModel(model)
     print_issues(validator)
 
     #  3.g  
-    #       Units for constants inside the MathML must be specified at the time.
-    #       This means we need to adjust equation1 to include the per_month units.
-    #       We have to wipe all the existing MathML and replace it.
+    #      Units for constants inside the MathML must be specified at the time.
+    #      This means we need to adjust equation1 to include the per_month units.
+    #      We have to wipe all the existing MathML and replace it.
     component.removeMath()
     component.setMath(math_header)
     equation1 = \
@@ -241,7 +241,7 @@ if __name__ == "__main__":
     component.appendMath(math_footer)
 
     #  3.h  
-    #       Validate once more, and expect there to be no errors this time.
+    #      Validate once more, and expect there to be no errors this time.
     validator.validateModel(model)
     print_issues(validator)
 
@@ -252,19 +252,19 @@ if __name__ == "__main__":
     print("-------------------------------------------------------------")
 
     #  4.a 
-    #      Create an Analyser instance and pass it the model using the
-    #      analyseModel function.  
+    #     Create an Analyser instance and pass it the model using the
+    #     analyseModel function.  
     analyser = Analyser()
     analyser.analyseModel(model)
 
     #  4.b 
-    #      Check for errors found in the analyser. You should expect 6 errors,
-    #      related to variables whose values are not computed or initialised.
+    #     Check for errors found in the analyser. You should expect 6 errors,
+    #     related to variables whose values are not computed or initialised.
     print_issues(analyser)
 
     #  4.c 
-    #      Add initial conditions to all variables except the base variable, time
-    #      and the constant c which will be computed. Reprocess the model.
+    #     Add initial conditions to all variables except the base variable, time
+    #     and the constant c which will be computed. Reprocess the model.
     a.setInitialValue(-0.8)
     b.setInitialValue(0.3)
     d.setInitialValue(-0.6)
@@ -272,7 +272,7 @@ if __name__ == "__main__":
     fish.setInitialValue(2.0)
 
     #  4.d 
-    #      Reprocess the model and check that the analyser is now free of errors.
+    #     Reprocess the model and check that the analyser is now free of errors.
     analyser.analyseModel(model)
     print_issues(analyser)
 
@@ -283,10 +283,10 @@ if __name__ == "__main__":
     print("-------------------------------------------------------------")
 
     #  5.a  
-    #      Create a Generator instance.  Instead of giving it the Model item to process, 
-    #      the generator takes the output from the analyser.  
-    #      Retrieve the analysed model using the Analyser.model() function and pass it
-    #      to the generator using the Generator.setModel function.
+    #     Create a Generator instance.  Instead of giving it the Model item to process, 
+    #     the generator takes the output from the analyser.  
+    #     Retrieve the analysed model using the Analyser.model() function and pass it
+    #     to the generator using the Generator.setModel function.
     generator = Generator()
     generator.setModel(analyser.model())
 
@@ -295,9 +295,9 @@ if __name__ == "__main__":
     #  called the "profile", and is stored in a GeneratorProfile item.
 
     #  5.b 
-    #      First we'll use the default profile (C), so we need to output both the
-    #      interfaceCode (the header file) and the implementationCode (source file)
-    #      from the generator and write them to their respective files.
+    #     First we'll use the default profile (C), so we need to output both the
+    #     interfaceCode (the header file) and the implementationCode (source file)
+    #     from the generator and write them to their respective files.
     implementation_code_C = generator.implementationCode()
     write_file = open("tutorial3_PredatorPrey.c", "w")
     write_file.write(implementation_code_C)
@@ -309,14 +309,14 @@ if __name__ == "__main__":
     write_file.close()
 
     #  5.c 
-    #      Create a GeneratorProfile item using the libcellml.GeneratorProfile.Profile.PYTHON
-    #      enum value in the constructor.  Pass this profile to the setProfile function in the
-    #      generator.
+    #     Create a GeneratorProfile item using the libcellml.GeneratorProfile.Profile.PYTHON
+    #     enum value in the constructor.  Pass this profile to the setProfile function in the
+    #     generator.
     profile = GeneratorProfile(GeneratorProfile.Profile.PYTHON)
     generator.setProfile(profile)
 
     #  5.d
-    #      Retrieve the Python implementation code (there is no header file) and write to a *.py file.
+    #     Retrieve the Python implementation code (there is no header file) and write to a *.py file.
     implementation_code_python = generator.implementationCode()
     write_file = open("tutorial3_PredatorPrey.py", "w")
     write_file.write(implementation_code_python)
