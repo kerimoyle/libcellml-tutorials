@@ -14,29 +14,33 @@ Tutorial 5: Annotation tools
     - Automatically generate and assign unique ids to any or all items.
 
 
-:download:`Download the entire folder<tutorial5.zip>`, or ...
+Requirements
+------------
+Either :download:`download the entire folder<tutorial5.zip>`, or:
 
 .. container:: shortlist   
 
-    **Code (C++)**
+    **C++**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`tutorial5.cpp<tutorial5.cpp>` Either the skeleton code, or ..
-    - :download:`tutorial5_complete.cpp<tutorial5_complete.cpp>` the completed tutorial code;
+    - :download:`tutorial5_complete.cpp<tutorial5_complete.cpp>` the completed tutorial code; and
+    - :download:`tutorial_utilities.h<../tutorial_utilities.h>` and :download:`tutorial_utilities.cpp<../tutorial_utilities.cpp>` Utility functions for use in the tutorials.
 
 .. container:: shortlist
 
-    **Code (Python)**
+    **Python**
 
     - :download:`tutorial5.py<tutorial5.py>` Either the skeleton code, or ..
-    - :download:`tutorial5_complete.py<tutorial5_complete.py>` the completed tutorial code;
+    - :download:`tutorial5_complete.py<tutorial5_complete.py>` the completed tutorial code; and
+    - :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.
 
 .. container:: shortlist
 
     **Resources**
 
     - :download:`MysteryModel.cellml<MysteryModel.cellml>` file to read; and
-    - :download:`AnotherMysteryModel.cellml<AnotherMysteryModel.cellml>` import dependency.
+    - :download:`AnotherMysteryModel.cellml<AnotherMysteryModel.cellml>` its import dependency.
 
 .. contents:: Contents
     :local:

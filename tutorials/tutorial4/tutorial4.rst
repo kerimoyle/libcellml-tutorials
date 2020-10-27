@@ -14,11 +14,14 @@ This tutorial assumes that you are comfortable with:
 - Interacting with a model and its entities using the API (see :ref:`Tutorial 1<tutorial1>` and :ref:`Tutorial 2<tutorial2>`); and
 - Using the :code:`Generator` functionality to output files in C or Python (see :ref:`Tutorial 3<tutorial3>`).
 
+
+Requirements
+------------
+Either :download:`download the whole folder<tutorial4.zip>`, or:
+
 .. container:: shortlist
 
-    **Requirements (C++)**
-
-    :download:`Download the whole folder<tutorial4.zip>` or:
+    **C++**
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial4.cpp` The skeleton code; or
@@ -27,9 +30,7 @@ This tutorial assumes that you are comfortable with:
 
 .. container:: shortlist
 
-    **Requirements (C++)**
-
-    :download:`Download the whole folder<tutorial4.zip>` or:
+    **Python**
 
     - :download:`tutorial4.py` Either the skeleton code; or
     - :download:`tutorial4_complete.py` the completed tutorial code; and
@@ -42,8 +43,8 @@ This tutorial assumes that you are comfortable with:
     This tutorial is built upon the :ref:`previous Tutorial 3<tutorial3>` and uses the output created there.
     If you haven't completed this tutorial, you can download those output files here:
 
-        - :download:`PredatorPrey.py<PredatorPrey.py>` for use with Python; or 
-        - :download:`PredatorPrey.cpp<PredatorPrey.cpp>` and :download:`PredatorPrey.h<PredatorPrey.h>` for use with C++.
+    - :download:`PredatorPrey.py<PredatorPrey.py>` for use with Python; or 
+    - :download:`PredatorPrey.cpp<PredatorPrey.cpp>` and :download:`PredatorPrey.h<PredatorPrey.h>` for use with C++.
 
 .. contents:: Contents
     :local:

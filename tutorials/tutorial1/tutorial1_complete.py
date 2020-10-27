@@ -23,7 +23,7 @@ if __name__ == "__main__":
     #
     #  1.a
     #     Open the tutorial1.cellml file for reading
-    read_file = open("../resources/tutorial1.cellml", "r")
+    read_file = open("tutorial1.cellml", "r")
 
     #  1.b   
     #     Create a libCellML Parser, and use it to parse the file
