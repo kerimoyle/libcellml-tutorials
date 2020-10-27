@@ -26,7 +26,7 @@ int main()
     //  1.a   
     //      Open the file and read its contents into a buffer stream.
 
-    std::string inFileName = "../resources/tutorial1.cellml";
+    std::string inFileName = "tutorial1.cellml";
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
