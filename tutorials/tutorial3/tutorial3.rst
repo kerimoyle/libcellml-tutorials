@@ -29,6 +29,7 @@ Either :download:`download the whole folder<tutorial3.zip>`, or:
 .. container:: shortlist
 
     **C++**
+
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial3.cpp` The skeleton code; or
     - :download:`tutorial3_complete.cpp` the completed tutorial code; and
@@ -37,6 +38,7 @@ Either :download:`download the whole folder<tutorial3.zip>`, or:
 .. container:: shortlist
 
     **Python**
+    
     - :download:`tutorial3.py` Either the skeleton code; or
     - :download:`tutorial3_complete.py` the completed tutorial code; and
     - :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.
