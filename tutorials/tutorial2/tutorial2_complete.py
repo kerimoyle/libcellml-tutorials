@@ -1,182 +1,203 @@
-"""
+'''
     TUTORIAL 2: ERROR CHECKING AND VALIDATION
 
     By the time you have worked through Tutorial 2 you will be able to:
         - Use the Parser to report errors enountered when reading a file
-          or deserialising a string; and
+          or deserialising a string and
         - Use the Validator to check for errors related to a model's
           description as compared to the CellML2.0 specifications.
 
     This tutorial assumes that you can already:
-    - Read and deserialise a CellML model from a file;
-    - Retrieve the name and id of models, components, and variables;
+    - Read and deserialise a CellML model from a file
+    - Retrieve the name and id of models, components, and variables
     - Navigate through the hierarchy of the model (model contains
-      component(s) contain(s) variable(s) and maths); and
+      component(s) contain(s) variable(s) and maths) and
     - Serialise and print a Model structure to a CellML file.
-"""
+'''
 
-from libcellml import Parser, Printer, Validator
+from libcellml import CellmlElementType, Issue, Parser, Printer, Validator
 
-from tutorial_utilities import print_model_to_terminal
+from tutorial_utilities import print_model, get_cellml_element_type_from_enum
 
-if __name__ == "__main__":
-    print("------------------------------------------------------------")
-    print("     TUTORIAL 2: Debugging, error checking and validation   ")
-    print("------------------------------------------------------------")
+if __name__ == '__main__':
+
+    print('-----------------------------------------------')
+    print('   TUTORIAL 2: ERROR CHECKING AND VALIDATION   ')
+    print('-----------------------------------------------')
 
     # ---------------------------------------------------------------------------
-    #  STEP 1:  Create the model
-    print("-----------------------------------------------")
-    print("       Step 1: Print the parsed model          ")
-    print("-----------------------------------------------")
-    #  1.a  Create a CellML Model from the contents of a CellML file.  You will
-    #       need to create a Parser and then pass it the file contents to read,
-    #       as you did in Tutorial 1.
-    read_file = open("../resources/tutorial2.cellml", "r")
+    #  STEP 1:   Create a CellML Model from the contents of a CellML file
+    #
+    print('-----------------------------------------------')
+    print('   STEP 1: Parse a file into a model           ')
+    print('-----------------------------------------------')
+
+    #  1.a
+    #      Read the contents of the tutorial2.cellml file into a string.
+    read_file = open('tutorial2.cellml', 'r')
+
+    #  1.b
+    #      Create a Parser instance, and submit your string for serialisation
+    #      into a new model.
     parser = Parser()
     model = parser.parseModel(read_file.read())
+    
+    #  1.c
+    #      Use the print_model utility function to display the contents of the 
+    #      parsed model in the terminal.
+    print_model(model, True)
 
-    #  1.b  Print the contents of the model to the terminal so that we can read
-    #       it more easily. This step makes use of a function in the
-    #       'tutorial_utilities.py' file called "print_model_to_terminal".
-    print_model_to_terminal(model)
+    #  end 1
 
-    # ---------------------------------------------------------------------------
-    #  STEP 2: Check that the model meets the CellML2.0 specifications using the Validator.
-    #
-    #  2.a   Create a Validator and pass the model into it
-    print("-----------------------------------------------")
-    print("       Step 2: Validate the parsed model")
-    print("-----------------------------------------------")
+    print('-----------------------------------------------')
+    print('   STEP 2: Validate the model                  ')
+    print('-----------------------------------------------')
+
+    #  2.a
+    #      Create a Validator and pass the model into it.
     validator = Validator()
     validator.validateModel(model)
 
-    #  2.b  Check whether there were errors returned from the validator.
-    number_of_validation_errors = validator.errorCount()
+    #  2.b   
+    #      Check the number of issues returned from the validator.
+    num_validation_issues = validator.issueCount()
+    print('The validator has found {} issues.'.format(num_validation_issues))
 
-    if number_of_validation_errors != 0:
-        print("The validator has found {n} errors!".format(n=number_of_validation_errors))
+    #  2.c  
+    #      Retrieve the issues, and print their description, url, reference, and
+    #      type of item stored to the terminal.  The type of stored item is
+    #      available as an enum, which can be turned into a string for output using
+    #      the utility function, getItemTypeFromEnum(type).
+    for e in range(0, num_validation_issues):
+        issue = validator.issue(e)
+        reference = issue.referenceHeading()
+        print('  Validator issue[{}]:'.format(e))
+        print('     Description: {}'.format(issue.description()))
+        print('     Type of item stored: {}'.format(get_cellml_element_type_from_enum(issue.cellmlElementType())))
+        print('     URL: {}'.format(issue.url()))
+        if reference != '':
+            print('    See section {} in the CellML specification.'.format(reference))
 
-        # 2.c  Retrieve the errors, and print their description and specification reference to the terminal.
-        for e in range(0, number_of_validation_errors):
-            validator_error = validator.error(e)
+    #  end 2
 
-            specification_heading = validator_error.referenceHeading()
+    print('-----------------------------------------------')
+    print('   STEP 3: Fix the issues reported             ')
+    print('-----------------------------------------------')
 
-            print("  Validator error[{e}]: ".format(e=e))
-            print("     Description: " + validator_error.description())
+    #  Validator issue[0]:
+    #      Description: Variable '1st' in component 'i_am_a_component' does not have a valid name attribute. CellML identifiers must not begin with a European numeric character [0-9].
+    #      Type of item stored: VARIABLE
+    #      URL: https:#cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.1
+    #      See section 2.8.1.1 in the CellML specification.
 
-            if specification_heading != "":
-                print("    See section {r} in the CellML specification.".format(r=specification_heading))
+    #  3.a
+    #      Retrieve the variable named '1st' from the component named 'i_am_a_component' and change its name
+    #      to 'a'.
+    component = model.component('i_am_a_component', True)
+    a = component.variable('1st')
+    a.setName('a')
+    #  This could be done in a chain without instantiating the component and variable:
+    #      model.component('i_am_a_component', True).variable('1st').setName('a')
 
-    # ---------------------------------------------------------------------------
-    #  STEP 3:   Fix the errors that were reported in Step 2
-    #
-    print("-----------------------------------------------")
-    print("       Step 3: Fix the parsed model")
-    print("-----------------------------------------------")
+    #  end 3.a 
 
-    # 3.a
-    #   Validator error[0]:
-    #       Description: CellML identifiers must not begin with a European numeric
-    #       character [0-9].
-    #       See section 3.1.4 in the CellML specification.
-    #   Validator error[1]:
-    #       Description: Variable does not have a valid name attribute.
-    #       See section 11.1.1.1 in the CellML specification.
-    #
-    # These errors refer to the same thing, but are better read in reverse order.
-    # Variables (and everything else in CellML) which specify a name attribute
-    # can must have the correct format.  Comparing the error to the names of
-    # entities printed in the terminal we can see that variable[0] in
-    # component[0] doesn't have a valid name, so let's fix it.
-    model.component(0).variable(0).setName("a")
+    #  Validator issue[1]:
+    #      Description: Variable 'b' in component 'i_am_a_component' does not have any units specified.
+    #      Type of item stored: VARIABLE
+    #      URL: https:#cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+    #      See section 2.8.1.2 in the CellML specification.
 
-    # 3.b
-    #   Validator error[2]:
-    #       Description: Variable 'b' has an invalid units reference 'i_am_not_a_unit'
-    #       that does not correspond with a standard unit or units in the variable's
-    #       parent component or model.
-    #       See section 11.1.1.2 in the CellML specification.
-    #
-    #  Variables must have a unit defined.  These can be either something from
-    #  the built-in list within libCellML (which you can read in the
-    #  specifications document), or something you define yourself.  We'll look at
-    #  user defined units in Tutorial 3, but for now it's enough to see that the
-    #  units which are associated with variable 'b' is not valid.  We'll change
-    #  it to be 'dimensionless' instead.  NB items can be accessed through their
-    #  name (as here) or their index (as above).
-    model.component("i_am_a_component").variable("b").setUnits("dimensionless")
+    #  3.b
+    #      Retrieve the variable directly from the issue using the Issue.variable() function to return it.
+    #      Note that we can only do this because we know that the item type stored is a VARIABLE.
+    #      Set its units to be 'dimensionless'.
+    issue1 = validator.issue(1)
+    b = issue1.variable()
+    b.setUnits('dimensionless')
 
-    # 3.c
-    #   Validator error[3]:
-    #       Description: Variable 'c' has an invalid initial value
-    #       'this_variable_doesnt_exist'. Initial values must be a real number
-    #       string or a variable reference.
-    #       See section 11.1.2.2 in the CellML specification.
-    #
-    #  We can either access members by their index or their name, as shown above,
-    #  or we can create a pointer to them instead. Initial values (if set) must
-    #  be a valid variable name in the same component, or a real number.
+    #  This can be done in a chain too: validator.issue(1).variable().setUnits('dimensionless')
+    #  end 3.b
 
-    variableC = model.component(0).variable("c")
-    variableC.setInitialValue(20.0)
+    #  Validator issue[2]:
+    #     Description: Variable 'c' in component 'i_am_a_component' has an invalid initial value 'this_variable_doesnt_exist'. Initial values must be a real number string or a variable reference.
+    #     Type of item stored: VARIABLE
+    #     URL: https:#cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.2.2
+    #     See section 2.8.2.2 in the CellML specification.
 
-    # 3.d
-    #   Validator error[4]:
-    #       Description: CellML identifiers must contain one or more basic Latin
-    #       alphabetic characters.
-    #       See section 3.1.3 in the CellML specification.
-    #   Validator error[5]:
-    #       Description: Variable 'd' does not have a valid units attribute.
-    #       See section 11.1.1.2 in the CellML specification.
-    #
-    #  These two errors go together too.  Because we haven't defined a units
-    #  attribute for variable 'd', it effectively has a blank name, which is not
-    #  allowed.  Simply assigning a unit to the variable will fix both errors.
+    #  For this step we're going to pretend that we don't know the item type stored with the issue.
+    #  We can retrieve its item using the item() function, which will return a std.any item.  We
+    #  can retrieve its type using the cellmlElementType() function to return the CellmlElementType enum,
+    #  and then cast the item accordinly.
 
-    variableD = model.component(0).variable("d")
-    variableD.setUnits("dimensionless")
+    #  3.c
+    #      Use the item() function to retrieve a std.any cast of the item from the third issue.  
+    #      Use the cellmlElementType() to check that its type is a VARIABLE, and then cast
+    #      into a VariablePtr using std.any_cast so that you can use it as normal.
+    #      Set its initial value to 20.
+    issue2 = validator.issue(2)
+    c = issue2.item()[1] # TODO clarify this after issue #759 is clarified.
+    assert(issue2.cellmlElementType() == CellmlElementType.VARIABLE)
+    c.setInitialValue(20.0)
 
-    # 3.e
-    #   Validator error[6]:
-    #       Description: MathML ci element has the child text 'a' which does not
-    #       correspond with any variable names present in component
-    #       'i_am_a_component' and is not a variable defined within a bvar element.
-    #
-    #  The maths block is complaining that it is being asked to compute:
-    #    a = b + c
-    #  but in the component there was no variable called 'a'.  Since we
-    #  corrected this earlier by naming the first variable in component[0] as 'a'
-    #  this error will be fixed already.
+    #  end 3.c
 
-    # ---------------------------------------------------------------------------
-    #  STEP 4:   Check our changes.
-    print("-----------------------------------------------")
-    print("       Step 4: Check the corrected model")
-    print("-----------------------------------------------")
+    #  Validator issue[3]:
+    #      Description: Variable 'd' in component 'i_am_a_component' has a units reference 'i_dont_exist' which is neither standard nor defined in the parent model.
+    #      Type of item stored: VARIABLE
+    #      URL: https:#cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+    #      See section 2.8.1.2 in the CellML specification.
 
-    #   4.a Print the corrected model to the terminal.
-    print_model_to_terminal(model)
+    #      This error is similar in implication to that in 3.b: the validator is reporting that it can't find
+    #      the Units item specified by a Variable.  It could be fixed in two different ways:
+    #      - by supplying a Units item called 'i_dont_exist' or
+    #      - by changing the name of the units which the variable requires to one that is available.
 
-    #   4.b Validate that the corrected model is now free of errors.
+    #  3.d
+    #      Change the name of the units required by variable 'd' to be those which are called 'i_am_a_units_item'.
+    #      You will need to retrieve these units from the model in order to pass them to the variable.
+    iAmAUnitsItem = model.units('i_am_a_units_item')
+    validator.issue(3).variable().setUnits(iAmAUnitsItem)
+
+    #  end 3.d
+
+    #  This issue was actually also caught by the Parser, which, like the Validator, is a Logger class.
+    #  This means that it will keep track of anything it encounters when parsing a model.  You can try calling
+    #  Parser.issueCount() etc and iterating through them (just like in 2.c) to see what you find.
+
+    #  Validator issue[4]:
+    #      Description: MathML ci element has the child text 'a' which does not correspond with any variable names present in component 'i_am_a_component'.
+    #      Type of item stored: MATH
+    #      URL: https:#cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB12.html?issue=2.12.3
+    #      See section 2.12.3 in the CellML specification.
+
+    #  This issue is already resolved by fixing the name of the variable in step 3.a.  
+
+    #  end 3
+
+    print('-----------------------------------------------')
+    print('  STEP 4: Check and output the corrected model ')
+    print('-----------------------------------------------')
+
+    #  4.a
+    #      Validate the corrected model again and check that there are no more issues.
     validator.validateModel(model)
-    number_of_validation_errors = validator.errorCount()
-    print("The validator found {n} errors in the model.".format(n=number_of_validation_errors))
+    print('The validator found {} issues in the model.'.format(validator.issueCount()))
 
-    # ---------------------------------------------------------------------------
-    #  STEP 5:   Print the corrected model to a file.
-    print("-----------------------------------------------")
-    print("       Step 5: Output the corrected model")
-    print("-----------------------------------------------")
+    #  4.b
+    #      Print the corrected model to the terminal.
+    print_model(model, True)
 
-    #   5.a Create a printer instance, and use it to serialise your model into a string.
+    #  4.c
+    #      Print corrected model to a file.
     printer = Printer()
     serialised_model = printer.printModel(model)
 
-    #   5.b Write the serialised string to a file.
-    write_file = open("tutorial2_printed.cellml", "w")
+    write_file = open('tutorial2_printed.cellml', 'w')
     write_file.write(serialised_model)
-    print("The {} has been printed to tutorial2_printed.cellml".format(model.name()))
 
-    #   5.c Go and have a cuppa, you're done!
+    #  end 4
+
+    print('The corrected model has been printed.')
+
+    #  4.d
+    #      Go and have a cuppa, you're done!

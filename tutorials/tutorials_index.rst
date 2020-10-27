@@ -1,29 +1,36 @@
 .. _tutorials_index:
 
-===============================
-COMBINE2020 libCellML Tutorials
-===============================
+===================
+libCellML Tutorials
+===================
 
-Please follow the :ref:`Installation instructions<installation_index>` first to get yourself a copy of libCellML ahead of the tutorial session.
+Please follow the :ref:`Installation instructions<installation_index>` first to get yourself a copy of libCellML.
+
+The first set is a simple starting point for users who are unfamiliar with CellML and/or modelling in general.
+
+.. toctree::
+    :maxdepth: 2
+    :titlesonly:
+       
+    tutorial1/tutorial1
+    tutorial2/tutorial2
+    tutorial3/tutorial3
+    tutorial4/tutorial4
+    tutorial5/tutorial5
+
+
+The second set of tutorials below take the user progressively through different aspects of the libCellML functionality while building towards a model of Hodgkin and Huxley's squid axon activation.
+It is aimed at users who are already familiar with the concept of CellML and modelling.
 
 .. toctree::
     :maxdepth: 2
     :titlesonly:
 
-    combine2020/tut1_createGateModel.rst
-    combine2020/tut2_createPotassiumChannelModel.rst
-    combine2020/tut3_debugSodiumChannelModel.rst
-    combine2020/tut4_generateMembraneModel.rst
-    combine2020/tut5_solveGeneratedCode.rst
-    combine2020/tut6_annotateModel.rst
+    hh_tutorials/tut1_createGateModel.rst
+    hh_tutorials/tut2_createPotassiumChannelModel.rst
+    hh_tutorials/tut3_debugSodiumChannelModel.rst
+    hh_tutorials/tut4_generateMembraneModel.rst
+    hh_tutorials/tut5_solveGeneratedCode.rst
+    
 
-..     
-    tutorial1/outline1
-    tutorial2/outline2
-    tutorial3/outline3
-    tutorial4/outline4
-    solver/solver
-    tutorial5/outline5
-    tutorial6/outline6
-    tutorial7/outline7
-    tutorial8/outline8
+

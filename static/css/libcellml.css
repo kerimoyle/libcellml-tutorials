@@ -5,14 +5,14 @@
 }
 
 .rst-content pre.literal-block, .rst-content div[class^='highlight'] {
-    margin: 0px;
+    margin: 0px 0px 10px 0px;
 }
 
 pre {
     border: none;
     background-color:#eeeeee;
     color: darkslategray;
-    margin:2px;
+    /* margin:2px; */
 }
 
 .highlight {
@@ -146,14 +146,16 @@ div[class^="issue"], div[class*=" issue"] > ol {
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
 }
 
-.gotcha > p {
+.gotcha > p, ul, ol, dl {
     margin-bottom:0;
+    padding: 5px;
 }
 
 .useful {
+    border-left: 5px solid rgb(137, 153, 192);
     background:#e1eaf0;
     color: #444444;
-    padding: 3px 3px 5px 12px;
+    padding: 3px 3px 5px 8px;
     margin-top:20px;
     margin-bottom:20px;
     line-height: 24px;
@@ -162,10 +164,10 @@ div[class^="issue"], div[class*=" issue"] > ol {
 
 .useful:before {
     content: "Useful functions \A";
-    white-space: pre;
     font-weight: 700;
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
     color: rgb(100, 127, 190);
+    margin-bottom: 10px;
 }
 
 .useful > .guilabel {
@@ -176,12 +178,13 @@ div[class^="issue"], div[class*=" issue"] > ol {
     margin: 6px 6px 6px 0;
 }
 
-.useful > p, ul {
-    margin-bottom:0;
+.useful > p, ul, ol, dl {
+    margin-bottom: 5px;
 }
 
-.gotcha > p, ul {
-    margin-bottom:0;
+.useful:last-child {
+    padding: 5px !important;
+    margin-bottom:0 !important;
 }
 
 .heading2 {
@@ -211,6 +214,31 @@ div[class^="issue"], div[class*=" issue"] > ol {
     list-style-type: '- ';
 }
 
+.sphinx-tabs {
+    border: none !important;
+}
+
 .sphinx-tab {
     border: none !important;
 }
+
+.ui.tabular.menu .item {
+    height: 1em;
+}
+
+.ui.menu {
+    min-height: 1em;
+}
+
+.sphinx-menu {
+    border-bottom: none !important;
+}
+
+.shortlist {
+    margin: 5px;
+}
+
+.shortlist > p, ol, ul, dl {
+    margin-bottom: 0;
+}
+

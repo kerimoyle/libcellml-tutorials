@@ -21,8 +21,7 @@ if __name__ == "__main__":
     # ----------------------------------------------------------------------------
     #  STEP 1:   Create a CellML Model from the contents of a CellML file
     #
-    #  1.a   Open the tutorial1.cellml file for reading.  This is currently in the
-    #        resources folder.
+    #  1.a   Open the tutorial1.cellml file for reading.
 
     #  1.b   Create a libCellML Parser, and use it to parse the file
     #        string contents and convert it into a CellML Model structure

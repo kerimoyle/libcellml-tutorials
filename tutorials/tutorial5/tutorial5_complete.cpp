@@ -1,12 +1,23 @@
 /**
- *  TUTORIAL 5: Mathematical behaviour and units
+ *  TUTORIAL 6: Annotating a mystery model
  *
- *  This tutorial assumes that you can already:
- *      - read and deserialise a CellML model from a file (Tutorial 1)
- *      - retrieve the name and id of models, components, and variables (Tutorial 2),
- *      - navigate through the hierarchy of the model (Tutorial 2)
- *      - serialise and print a Model structure to a CellML file (Tutorial 1)
- *      - create and include user-defined units (Tutorial 3)
+ * 	This tutorial is a guide to playing Marco Polo using libCellML.
+ *
+ *	By the time you have worked through this tutorial you will be able to:
+ * 		- Parse a CellML file into a Model instance;
+ * 		- Determine the type of item with a given id;
+ * 		- Use the Annotator class to retrieve an item using only its id
+ *string;
+ * 		- Repair duplicated id strings within the model scope; and
+ * 		- Automatically generate and assign unique ids to any or all
+ *items.
+ *
+ * Background:
+ * 		"Marco Polo" is a game played with many people.  One person calls
+ *      "Marco" with their eyes closed.  Others answer "Polo" and the first person
+ *      must find them by following the sound.  In this tutorial you are given two id
+ *      strings - "marco" and "polo" - and a mystery CellML model file.  We will work
+ *      through how the Annotator class can be used to locate the desired objects.
  */
 
 #include <fstream>
@@ -15,261 +26,281 @@
 
 #include <libcellml>
 
-#include "../../utilities/tutorial_utilities.h"
+#include "tutorial_utilities.h"
 
 int main()
 {
-    std::cout << "-----------------------------------------------" << std::endl;
-    std::cout << "  STEP 1: Create the model and component" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
 
-    //  1.a   Create the model instance.
-    auto model = libcellml::Model::create("Tutorial5_FirstOrderModel");
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 1: Parse a mystery model                          " << std::endl;
+    std::cout << "----------------------------------------------------------" << std::endl;
 
-    //  1.b   Create a component and add it into the model.
-    auto component = libcellml::Component::create("IonChannel");
-    model->addComponent(component);
+    //  1.a 
+    //      Read the mystery file, MysteryModel.cellml.
+    std::ifstream inFile("MysteryModel.cellml");
+    std::stringstream inFileContents;
+    inFileContents << inFile.rdbuf();
 
-    //  1.c   Call the validator and print the messages to the terminal.
-    //        No errors are expected at this stage.
-    auto validator = libcellml::Validator::create();
-    validator->validateModel(model);
-    printErrorsToTerminal(validator);
+    //  1.b 
+    //      Create a Parser item.
+    auto parser = libcellml::Parser::create();
 
-    std::cout << "-----------------------------------------------" << std::endl;
-    std::cout << "  STEP 2: Define the mathematical behaviour" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
+    //  1.c 
+    //      Use the parser to deserialise the contents of the string you've read
+    //      and return the model.
+    auto model = parser->parseModel(inFileContents.str());
 
-    //  2.a   Define the mathematics.
-    std::string mathHeader = "<math xmlns=\"http://www.w3.org/1998/Math/MathML\" xmlns:cellml=\"http://www.cellml.org/cellml/2.0#\">\n";
+    //  1.d 
+    //      Check that the parser has not raised any issues.
+    printIssues(parser);
 
-    // dy/dt = alpha_y*(1-y) - beta_y*y
-    std::string equation1 =
-        "  <apply><eq/>\n"
-        "    <apply><diff/>\n"
-        "      <bvar>\n"
-        "        <ci>t</ci>\n"
-        "      </bvar>\n"
-        "      <ci>y</ci>\n"
-        "    </apply>\n"
-        "    <apply><minus/>\n"
-        "      <apply><times/>\n"
-        "        <ci>alpha_y</ci>\n"
-        "        <apply><minus/>\n"
-        "          <cn cellml:units=\"dimensionless\">1</cn>\n"
-        "          <ci>y</ci>\n"
-        "        </apply>\n"
-        "      </apply>\n"
-        "      <apply><times/>\n"
-        "        <ci>beta_y</ci>\n"
-        "        <ci>y</ci>\n"
-        "      </apply>\n"
-        "    </apply>\n"
-        "  </apply>\n";
+    //  end 1
 
-    // i_y = g_y*power(y,gamma)*(V-E_y)
-    std::string equation2 =
-        "  <apply><eq/>\n"
-        "    <ci>i_y</ci>\n"
-        "    <apply><times/>\n"
-        "      <ci>g_y</ci>\n"
-        "      <apply><minus/>\n"
-        "        <ci>V</ci>\n"
-        "        <ci>E_y</ci>\n"
-        "      </apply>\n"
-        "      <apply><power/>\n"
-        "        <ci>y</ci>\n"
-        "        <ci>gamma</ci>\n"
-        "      </apply>\n"
-        "    </apply>\n"
-        "  </apply>\n";
-    std::string mathFooter = "</math>";
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 2: Find 'marco'		                            " << std::endl;
+    std::cout << "----------------------------------------------------------"<< std::endl;
 
-    //  2.b   Add the maths to the component.  Note that there is only one maths
-    //        string stored, so parts which are appended must create a viable
-    //        MathML2 string when concatenated.  To clear any string which is
-    //        already stored, simply call setMath("") with an empty string.
-    component->setMath(mathHeader);
-    component->appendMath(equation1);
-    component->appendMath(equation2);
-    component->appendMath(mathFooter);
+    //  2.a
+    //      Create an Annotator item and use the setModel function to pass in the parsed
+    //      mystery model.
+    auto annotator = libcellml::Annotator::create();
+    annotator->setModel(model);
 
-    //  2.c   Call the validator and print the messages to the terminal.
-    //        Expected errors refer to variables referenced in the maths which
-    //        are not (yet) defined in the component.
-    validator->validateModel(model);
-    printErrorsToTerminal(validator);
+    //  end 2.a
 
-    std::cout << "-----------------------------------------------" << std::endl;
-    std::cout << "  STEP 3: Define the variables and their units" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
+    // The item function returns a libcellml::AnyItem, a std::pair whose:
+    //     - first attribute is a libcellml::CellmlElementType enumeration; and
+    //     - second attribute is a std::any cast of the item itself.
+    //  2.b
+    //      Retrieve the item with an id of "marco".  Use the helper function
+    //      getCellmlElementTypeFromEnum to convert the enumeration of its type into a
+    //      string for printing to the terminal.
+    libcellml::AnyItem marcoItem = annotator->item("marco");
+    std::cout << "The item with ID 'marco' is a " << getCellmlElementTypeFromEnum(marcoItem.first) << std::endl;
 
-    //  3.a,b Declare the variables, their names, and their units.
-    //        Note that the names given to variables must be the same as that used
-    //        within the <ci> blocks in the MathML string created in step 2.a.
+    //  2.c
+    //      Check that the annotator has not reported any issues.
+    printIssues(annotator);
 
-    auto t = libcellml::Variable::create("t");
-    t->setUnits("millisecond");
+    //  2.d
+    //      Now that we know the marco item's type using its first attribute (it should
+    //      be a libcellml::CellmlElementType::VARIABLE) we can cast it into a usable item
+    //      using std::any_cast.  Cast the second attribute of the macro item into a
+    //      libcellml::VariablePtr item.
+    auto marcoVariable = std::any_cast<libcellml::VariablePtr>(marcoItem.second);
 
-    auto V = libcellml::Variable::create("V");
-    V->setUnits("millivolt");
+    //  end 2
 
-    auto alpha_y = libcellml::Variable::create("alpha_y");
-    alpha_y->setUnits("per_millisecond");
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 3: Find 'polo'		                            " << std::endl;
+    std::cout << "----------------------------------------------------------"<< std::endl;
 
-    auto beta_y = libcellml::Variable::create("beta_y");
-    beta_y->setUnits("per_millisecond");
+    //  3.a
+    //      Now try the same procedure to find the item with id of "polo".
+    //      Retrieve the item and print its type to the terminal.
+    auto poloItem = annotator->item("polo");
+    std::cout << "The type of item with ID 'polo' is " << getCellmlElementTypeFromEnum(poloItem.first) << std::endl;
 
-    auto y = libcellml::Variable::create("y");
-    y->setName("y");
-    y->setUnits("dimensionless");
+    //  3.b
+    //      The item type returned is libcellml::CellmlElementType::UNDEFINED ... so we 
+    //      need to check what the annotator has to say about it. 
+    //      Retrieve the issues from the annotator and print to the terminal.
+    printIssues(annotator);
 
-    auto E_y = libcellml::Variable::create("E_y");
-    E_y->setUnits("millivolt");
+    //  end 3.b
 
-    libcellml::VariablePtr i_y = libcellml::Variable::create("i_y");
-    i_y->setUnits("microA_per_cm2");
+    // Recorded 1 issues:
+    // Issue [0] is a WARNING:
+    //     description: The id 'polo' occurs 6 times in the model so a unique item cannot be located.
+    //     stored item type: UNDEFINED
 
-    libcellml::VariablePtr g_y = libcellml::Variable::create("g_y");
-    g_y->setName("g_y");
-    g_y->setUnits("milliS_per_cm2");
+    //      Since the id is not unique, we need to retrieve a vector of all items 
+    //      with that id to investigate them.
 
-    libcellml::VariablePtr gamma = libcellml::Variable::create();
-    gamma->setName("gamma");
-    gamma->setUnits("dimensionless");
+    //  3.c
+    //      Use the items function to retrieve the vector of items with id "polo", 
+    //      and iterate through it printing the different types to the terminal.
+    auto poloItems = annotator->items("polo");
+    std::cout << "The items with an id of 'polo' have types of:" << std::endl;
+    size_t index = 0;
+    for (auto &item : poloItems) {
+        std::cout << "  - [" << index << "] " << getCellmlElementTypeFromEnum(item.first) << std::endl;
+        ++index; 
+    }
 
-    //  3.c Add the variables to the component.  Note that Variables are
-    //      added by their pointer, not their name.
-    component->addVariable(t);
-    component->addVariable(V);
-    component->addVariable(E_y);
-    component->addVariable(gamma);
-    component->addVariable(i_y);
-    component->addVariable(g_y);
-    component->addVariable(alpha_y);
-    component->addVariable(beta_y);
-    component->addVariable(y);
+    //  end 3.c
+    //     The items with an id of 'polo' have types of:
+    //   - [0] UNITS
+    //   - [1] UNITS
+    //   - [2] UNIT
+    //   - [3] VARIABLE
+    //   - [4] RESET
+    //   - [5] RESET_VALUE
 
-    //  3.d Call the validator and print the messages to the terminal.
-    //      Expected errors refer to units referred to by these variables, but
-    //      which don't (yet) exist in the model.
-    validator->validateModel(model);
-    printErrorsToTerminal(validator);
+    //      The item we want has type libcellml::CellMLElements::UNIT, and we'd like it
+    //      to be unique.  We need to change the other items to have other (also unique)
+    //      ids.  The Annotator class can create a unique id for an item using the assignId function.
+    //      This is overloaded so that you can pass in any libCellML item, as well as an AnyItem
+    //      pair.  NB: You need to be aware of the default types assigned when passing in CellML items
+    //      without a corresponding item type.  These are listed in the documentation.
 
-    std::cout << "-----------------------------------------------" << std::endl;
-    std::cout << "  STEP 4: Define the units and add to the model" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
+    //  3.d
+    //      Assign an automatic id to all of the items with id "polo", except for the one whose
+    //      type is UNIT.
+    poloItem = poloItems.at(2);
+    assert(poloItem.first == libcellml::CellmlElementType::UNIT);
+    poloItems.erase(poloItems.begin() + 2);
 
-    //  4.a Define the units of millisecond, millivolt, per_millisecond, microA_per_cm2,
-    //      and milliS_per_cm2.  Note that the dimensionless units built-in already, so
-    //      do not need to be redefined here.
-    auto ms = libcellml::Units::create("millisecond");
-    ms->addUnit("second", "milli");
+    for (auto &item : poloItems) {
+        annotator->assignId(item);
+    }
 
-    auto mV = libcellml::Units::create("millivolt");
-    mV->addUnit("volt", "milli");
+    //  3.e
+    //      Check that the id of "polo" is now unique in the model by calling the 
+    //      isUnique function.
+    assert(annotator->isUnique("polo"));
 
-    auto per_ms = libcellml::Units::create("per_millisecond");
-    per_ms->addUnit("millisecond", -1.0);
+    //  end 3.e
 
-    auto microA_per_cm2 = libcellml::Units::create("microA_per_cm2");
-    microA_per_cm2->addUnit("ampere", "micro");
-    microA_per_cm2->addUnit("metre", "centi", -2.0);
+    //  Now we know that there is only one item in the model with id "polo", and we also know
+    //  that it has type UNIT.  This means that we can retrieve a Unit item directly from the
+    //  annotator rather than needing to cast it using the std::any_cast.  Instead of calling
+    //  the annotator's item function, call the Annotator::unit function with the id "polo" to return the 
+    //  unit item directly.
 
-    auto mS_per_cm2 = libcellml::Units::create("milliS_per_cm2");
-    mS_per_cm2->addUnit("siemens", "milli");
-    mS_per_cm2->addUnit("metre", "centi", -2.0);
+    //  3.f
+    //      Retrieve the Unit with id polo without casting.
+    auto poloUnit = annotator->unit("polo");
 
-    //  4.b Add all these units into the model.
-    model->addUnits(ms);
-    model->addUnits(mV);
-    model->addUnits(per_ms);
-    model->addUnits(microA_per_cm2);
-    model->addUnits(mS_per_cm2);
+    //  end 3.f
+    //  The Unit is another std::pair with: **TODO**
+    //      - first attribute is the libcellml::Units parent item; and
+    //      - second attribute is the index of this Unit within the parent.
+    
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 4: See who else is lurking in this pool            " << std::endl;
+    std::cout << "----------------------------------------------------------"<< std::endl;
 
-    //  4.c Link the units into the model.
-    //      This step is necessary because at the time the units were specified
-    //      for the variables by name (in step 3.b) those units didn't exist in
-    //      the parent model.  Calling the Model::linkUnits() function will link
-    //      them in properly.
-    model->linkUnits();
+    //  Now that we've found Marco and fixed the duplicates of Polo, we'd like to know
+    //  what other ids are being used in this model.
+    //  4.a
+    //      Use the Annotator::ids function to return a vector of id strings used in the model, and 
+    //      print them to the terminal.
+    std::cout << "The id strings used in the model are:" << std::endl;
+    auto ids = annotator->ids();
+    for(auto &id :ids) {
+        std::cout << "  - '"<< id << "'" << std::endl;
+    }
 
-    //  4.d Validate the final arrangement.  No errors are expected at this stage.
-    validator->validateModel(model);
-    printErrorsToTerminal(validator);
+    //  end 4.a
+    //  The hex strings printed are those which have been automatically generated by the assignId
+    //  function; we can also see the 'marco' and 'polo' ids as expected.
 
-    std::cout << "-----------------------------------------------" << std::endl;
-    std::cout << "  STEP 5: Generate the model" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
+    //  4.b
+    //      Use the duplicateIds function to return a vector of those ids which have been duplicated in 
+    //      the model, and print them to the terminal.
+    std::cout << "Duplicated id strings are:" << std::endl;
+    auto duplicatedIds = annotator->duplicateIds();
+    for(auto &id :duplicatedIds) {
+        std::cout << "  - '" << id << "' occurs " << annotator->itemCount(id) << "times." << std::endl;
+    }
 
-    //  5.a Create a Generator item, set the profile (that is, the output
-    //      language) to your choice of C (the default) or Python, and
-    //      submit the model for processing.
-    libcellml::GeneratorPtr generator = libcellml::Generator::create();
-    generator->processModel(model);
+    //  end 4
 
-    //  5.b Output the errors from the Generator.  Expect errors related to missing initial conditions.
-    printErrorsToTerminal(generator);
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 5: See who else is lurking around the corner      " << std::endl;
+    std::cout << "----------------------------------------------------------"<< std::endl;
 
-    //  5.c Initialise the variables as required.
-    V->setInitialValue(0.0);
-    alpha_y->setInitialValue(1.0);
-    beta_y->setInitialValue(2.0);
-    E_y->setInitialValue(-85);
-    g_y->setInitialValue(36);
-    gamma->setInitialValue(4);
-    y->setInitialValue(0);
+    //      The final step is to make sure that imported items can have their annotations
+    //      tracked back to their sources too.  
 
-    //  5.d Reprocess the model and check that it is now free of errors.
-    generator->processModel(model);
-    printErrorsToTerminal(generator);
+    //  5.a
+    //      Retrieve an item with id of "whoAmIAndWhereDidIComeFrom" and print its item type
+    //      to the terminal.
+    auto whoAmIAndWhereDidIComeFrom = annotator->item("whoAmIAndWhereDidIComeFrom");
+    std::cout << "The type of item with ID 'whoAmIAndWhereDidIComeFrom' is " << getCellmlElementTypeFromEnum(whoAmIAndWhereDidIComeFrom.first) << std::endl;
+    
+    //  5.b
+    //      Cast it into a CellML item of the appropriate type.
+    auto units = std::any_cast<libcellml::UnitsPtr>(whoAmIAndWhereDidIComeFrom.second);
 
-    std::cout << "-----------------------------------------------" << std::endl;
-    std::cout << "  STEP 6: Output the model" << std::endl;
-    std::cout << "-----------------------------------------------" << std::endl;
+    //  5.c
+    //      Use the Component::isImport() function to verify that it is imported.
+    assert(units->isImport());
 
-    //  6.a Retrieve the output code from the Generator, remembering
-    //      that for output in C you will need both the interfaceCode (the
-    //      header file contents) as well as the implementationCode (the source
-    //      file contents), whereas for Python you need only output the
-    //      implementationCode.  Write the file(s).
+    //  5.d
+    //      Create an Importer instance and use it to resolve this model's imports.
+    //      Check that it has not raised any issues.
+    auto importer = libcellml::Importer::create();
+    importer->resolveImports(model, "");
+    printIssues(importer);
 
-    std::ofstream outFile("tutorial5_IonChannelModel.h");
-    outFile << generator->interfaceCode();
-    outFile.close();
+    //  5.e
+    //      Retrieve all the information needed to locate any annotations on the 
+    //      original item:
+    //           - the URL from which it was imported; and
+    //           - the id of the item in the original model.
+    //      Print these to the terminal.
+    auto url = units->importSource()->url();
+    auto reference = units->importReference();
+    auto importedId = units->importSource()->model()->units(reference)->id();
 
-    outFile.open("tutorial5_IonChannelModel.c");
-    outFile << generator->implementationCode();
-    outFile.close();
+    std::cout << "The units with id 'whoAmIAndWhereDidIComeFrom' came from:" << std::endl;
+    std::cout << "  - url: " << url << std::endl;
+    std::cout << "  - id: " << importedId << std::endl;
+    
+    //  end 5
 
-    //  6.b Change the generator profile to Python and reprocess the model.
+    std::cout << "----------------------------------------------------------" << std::endl;
+    std::cout << "   STEP 6: Give up and go home                            " << std::endl;
+    std::cout << "----------------------------------------------------------"<< std::endl;
 
-    libcellml::GeneratorProfilePtr profile =
-        libcellml::GeneratorProfile::create(libcellml::GeneratorProfile::Profile::PYTHON);
-    generator->setProfile(profile);
-    generator->processModel(model);
+    //  6.a
+    //      Loop through all of the model's components and print their id to the terminal.
+    //      Use the assignIds string with an item type (libcellml::CellmlElementType::COMPONENT)
+    //      to give all of the items of that type a new unique id.  Print the ids again and
+    //      notice that the blanks have been filled with automatically generated strings, 
+    //      but existing ids are unchanged. 
+    std::cout << "Before automatic assigning the components have ids:" << std::endl;
+    for(size_t i = 0; i < model->componentCount(); ++i) {
+        std::cout << "  - '" << model->component(i)->id() << "'" << std::endl;
+    }
 
-    //  6.c Write the Python implementation code to a file.
-    outFile.open("tutorial5_IonChannelModel.py");
-    outFile << generator->implementationCode();
-    outFile.close();
+    annotator->assignIds(libcellml::CellmlElementType::COMPONENT);
 
-    std::cout << "The generated '" << model->name()
-              << "' model has been written to: tutorial5_IonChannelModel.[c,h,py]" << std::endl;
+    std::cout << "After automatic assigning components have ids:" << std::endl;
+    for(size_t i = 0; i < model->componentCount(); ++i) {
+        std::cout << "  - '" << model->component(i)->id() << "'" <<std::endl;
+    }
 
-    //  6.d Create a Printer item and submit your model for serialisation.
-    libcellml::PrinterPtr printer = libcellml::Printer::create();
-    std::string serialisedModelString = printer->printModel(model);
+    //  6.b
+    //      Finally, we decide that it's too cold for swimming, and want to nuke all the ids
+    //      and go home.
+    //      Use the clearAllIds function to completely remove all id strings from the model.
+    //      Check that they have gone by repeating step 4.a to print any ids to the terminal.
+    annotator->clearAllIds();
+    ids = annotator->ids();
+    std::cout << "There are " << ids.size() << " ids in the model." << std::endl;
 
-    //  6.e Write the serialised string output from the printer to a file.
-    std::string outFileName = "tutorial5_IonChannelModel.cellml";
-    outFile.open(outFileName);
-    outFile << serialisedModelString;
-    outFile.close();
+    //  6.c
+    //      Go looking for Marco, but he's gone home already.
+    //      Try and retrieve an item with id "marco" and check that a null pointer is returned.
+    //      Retrieve and print any issues to the terminal.
+    marcoItem = annotator->item("marco");
+    std::cout << "The type of item with ID 'marco' is " << getCellmlElementTypeFromEnum(marcoItem.first) << std::endl;
+    printIssues(annotator);
 
-    std::cout << "The created '" << model->name()
-              << "' model has been printed to: " << outFileName << std::endl;
+    //  6.d
+    //      Regret nuking our friends and make plans to return tomorrow and
+    //      annotate everything.  Use the assignAllIds function to give an automatic
+    //      id to everything in the model.
+    annotator->assignAllIds();
 
-    //  6.f Go and have a cuppa, you're done creating the model!
-    //      You can now use the simple solver to simulate the operation of the gate.
+    //  6.e
+    //      Try to retrieve duplicated ids from the annotator as in step 4.b, and
+    //      check that it returns an empty list.
+    duplicatedIds = annotator->duplicateIds();
+    std::cout << "There are " << duplicatedIds.size() << " duplicated ids left in the model." << std::endl;
+
+    //  end 6
 }
