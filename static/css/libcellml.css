@@ -234,10 +234,6 @@ div[class^="issue"], div[class*=" issue"] > ol {
     border-bottom: none !important;
 }
 
-.wy-plain-list-disc, .rst-content .section ul, .rst-content .toctree-wrapper ul, article ul {
-    margin-bottom: 0;
-}
-
 .shortlist {
     margin: 5px;
 }
