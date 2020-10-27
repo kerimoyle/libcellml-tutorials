@@ -13,36 +13,36 @@ Tutorial 5: Annotation tools
     - Repair duplicated id strings within the model scope; and
     - Automatically generate and assign unique ids to any or all items.
 
-.. container:: shortlist
 
-    :download:`Download the entire folder<tutorial5.txt>`
+:download:`Download the entire folder<tutorial5.zip>`, or ...
+
+.. container:: shortlist   
 
     **Code (C++)**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`tutorial5.cpp<tutorial5.cpp>` Either the skeleton code, or ..
-    - :download:`tutorial5_completed.cpp<tutorial5_completed.cpp>` the completed tutorial code;
+    - :download:`tutorial5_complete.cpp<tutorial5_complete.cpp>` the completed tutorial code;
 
 .. container:: shortlist
 
     **Code (Python)**
 
     - :download:`tutorial5.py<tutorial5.py>` Either the skeleton code, or ..
-    - :download:`tutorial5_completed.py<tutorial5_completed.py>` the completed tutorial code;
+    - :download:`tutorial5_complete.py<tutorial5_complete.py>` the completed tutorial code;
 
 .. container:: shortlist
 
     **Resources**
 
-    - :download:`MysteryModel.cellml<code/resources/MysteryModel.cellml>` file to read; and
-    - :download:`AnotherMysteryModel.cellml<code/resources/AnotherMysteryModel.cellml>` import dependency.
+    - :download:`MysteryModel.cellml<MysteryModel.cellml>` file to read; and
+    - :download:`AnotherMysteryModel.cellml<AnotherMysteryModel.cellml>` import dependency.
 
 .. contents:: Contents
     :local:
 
 Background
 ----------
-
 "Marco Polo" is a game played with many people in a swimming pool.
 One person calls "Marco" with their eyes closed.
 Others answer "Polo" and the first person must find them by following the sound.
@@ -58,7 +58,7 @@ Step 1: Parse the mystery model
 
 .. container:: dothis
 
-    **1.b** Create a Parser item.
+    **1.b** Create a :code:`Parser` item.
 
 .. container:: dothis
 
@@ -74,7 +74,7 @@ Step 1: Parse the mystery model
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  1.a
         :end-before: //  end 1
@@ -85,7 +85,7 @@ Step 1: Parse the mystery model
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  1.a
         :end-before: #  end 1
@@ -123,7 +123,7 @@ Step 2: Retrieve an item with a unique id
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  2.a
         :end-before: //  end 2.a
@@ -134,7 +134,7 @@ Step 2: Retrieve an item with a unique id
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  2.a
         :end-before: #  end 2.a
@@ -162,7 +162,7 @@ Step 2: Retrieve an item with a unique id
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  2.b
         :end-before: //  end 2
@@ -173,7 +173,7 @@ Step 2: Retrieve an item with a unique id
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  2.b
         :end-before: #  end 2
@@ -209,7 +209,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  3.a
         :end-before: //  end 3.b
@@ -220,7 +220,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  3.a
         :end-before: #  end 3.b
@@ -243,7 +243,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  3.c
         :end-before: //  end 3.c
@@ -254,7 +254,7 @@ Step 3: Retrieve items whose id are not unique
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  3.c
         :end-before: #  end 3.c
@@ -287,7 +287,7 @@ The :code:`Annotator` class can create a unique id for an item using the :code:`
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  3.d
         :end-before: //  end 3.e
@@ -298,7 +298,7 @@ The :code:`Annotator` class can create a unique id for an item using the :code:`
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  3.d
         :end-before: #  end 3.e
@@ -342,7 +342,7 @@ In circumstances where you know the type of the item with the id you're fetching
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  3.f
         :end-before: //  end 3
@@ -353,7 +353,7 @@ In circumstances where you know the type of the item with the id you're fetching
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  3.f
         :end-before: #  end 3
@@ -380,7 +380,7 @@ Now that we've found Marco and fixed the duplicates of Polo, we'd like to know w
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  4.a
         :end-before: //  end 4.a
@@ -391,7 +391,7 @@ Now that we've found Marco and fixed the duplicates of Polo, we'd like to know w
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  4.a
         :end-before: #  end 4.a
@@ -425,7 +425,7 @@ The hex strings printed are those which have been automatically generated by the
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  4.b
         :end-before: //  end 4
@@ -436,7 +436,7 @@ The hex strings printed are those which have been automatically generated by the
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  4.b
         :end-before: #  end 4
@@ -496,7 +496,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  5.a
         :end-before: //  5.e
@@ -507,7 +507,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  5.a
         :end-before: #  5.e
@@ -527,7 +527,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  5.e
         :end-before: //  end 5
@@ -538,7 +538,7 @@ The final step is to make sure that imported items can have their annotations tr
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  5.e
         :end-before: #  end 5
@@ -564,7 +564,7 @@ Step 6: Bulk operations
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  6.a
         :end-before: //  6.b
@@ -575,7 +575,7 @@ Step 6: Bulk operations
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  6.a
         :end-before: #  6.b
@@ -651,7 +651,7 @@ Now you regret nuking our friends and make plans to return tomorrow and annotate
 
         Show C++ snippet
 
-    .. literalinclude:: tutorial5_completed.cpp
+    .. literalinclude:: tutorial5_complete.cpp
         :language: c++
         :start-at: //  6.b
         :end-before: //  end 6
@@ -662,7 +662,7 @@ Now you regret nuking our friends and make plans to return tomorrow and annotate
 
         Show Python snippet
 
-    .. literalinclude:: tutorial5_completed.py
+    .. literalinclude:: tutorial5_complete.py
         :language: python
         :start-at: #  6.b
         :end-before: #  end 6
