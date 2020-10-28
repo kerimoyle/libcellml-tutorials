@@ -5,16 +5,20 @@
 cmake_minimum_required(VERSION 3.12)
 
 set(INSTALL_PREFIX "" CACHE PATH "Please enter the path to the libCellML install directory using the syntax -DINSTALL_PREFIX=your_path")
+set(BUILD_PATH "" CACHE PATH "Please enter the path to the directory in which the tests should be built using the syntax -DBUILD_PATH=your_path")
 
-# # Get path to libCellML installation from the command line
-# set(INSTALL_PREFIX "" CACHE PATH "Please enter the path to the libCellML install directory using the syntax -DINSTALL_PREFIX=your_path")
+set(EXPECTED_OUTPUT_REL_PATH "./expected_outputs")
+get_filename_component(EXPECTED_OUTPUT_PATH ${EXPECTED_OUTPUT_REL_PATH} ABSOLUTE)
+
+message(STATUS "Build path is ${BUILD_PATH}")
+message(STATUS "Expected outputs are in directory: ${EXPECTED_OUTPUT_PATH}")
 
 # # Make a list of the files that need to be built and run
 set(tutorial_src 
     ../tutorials/tutorial1/tutorial1_complete.cpp
     # ../tutorials/tutorial2/tutorial2_complete.cpp
     # ../tutorials/tutorial3/tutorial3_complete.cpp
-    # # ../tutorials/tutorial4/tutorial4_complete.cpp
+    # ../tutorials/tutorial4/tutorial4_complete.cpp
     # ../tutorials/tutorial5/tutorial5_complete.cpp
 )
 
@@ -30,14 +34,19 @@ math(EXPR num_tests "${len} - 1")
 
 # Make working directory locally.  This is where the source code and the 
 # resources will be temporarily copied to.  It should be deleted at the end.
-file(MAKE_DIRECTORY build)
+file(MAKE_DIRECTORY ${BUILD_PATH})
 
 # Copy utils into the temp directory
 file(GLOB transit 
     "${utils_directory}/tutorial_utilities.cpp"
     "${utils_directory}/tutorial_utilities.h"
 )
-file(COPY ${transit} DESTINATION "build/")
+file(COPY ${transit} DESTINATION ${BUILD_PATH})
+
+
+get_filename_component(abs "." ABSOLUTE)
+message(STATUS "My absolute path is: ${abs}")
+
 
 foreach(src ${tutorial_src})
 
@@ -53,7 +62,7 @@ foreach(src ${tutorial_src})
 
     message(STATUS "test dir = ${test_dir}")
 
-    file(MAKE_DIRECTORY "build/${test_dir}")
+    file(MAKE_DIRECTORY "${BUILD_PATH}/${test_dir}")
 
     # Retrieve tutorial source and expected output from list
     if(EXISTS "${src}")
@@ -66,8 +75,8 @@ foreach(src ${tutorial_src})
             "${src_path}/*.h"
             "${src_path}/*.cellml"
             "${src_path}/test.cmake"
-            )
-        file(COPY ${transit} DESTINATION "build/${test_dir}/")
+        )
+        file(COPY ${transit} DESTINATION "${BUILD_PATH}/${test_dir}/")
         
         # Build this tutorial.
         set(project_name "${test_name}")
@@ -76,13 +85,13 @@ foreach(src ${tutorial_src})
         find_package(libCellML REQUIRED)
 
         set(project_src
-                "build/${test_dir}/${src_file}"
-                "build/tutorial_utilities.cpp"
+                "${BUILD_PATH}/${test_dir}/${src_file}"
+                "${BUILD_PATH}/tutorial_utilities.cpp"
             )
-        include_directories("build/")
+        include_directories("${BUILD_PATH}/")
 
         add_executable(${project_name} ${project_src})
-        set_target_properties(${project_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "build/${test_dir}")
+        set_target_properties(${project_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${BUILD_PATH}/${test_dir}")
         target_link_libraries(${project_name} PUBLIC cellml)
 
     else()
@@ -92,7 +101,11 @@ foreach(src ${tutorial_src})
 
 endforeach()
 
-# Run with the "test" argument
+# Run with the "test" argument.
 add_custom_target(test
-      COMMAND ${CMAKE_COMMAND} -DTUTORIAL_SRC=${tutorial_src} -P run_tests.cmake
+      COMMAND ${CMAKE_COMMAND} 
+        -DTUTORIAL_SRC=${tutorial_src} 
+        -DBUILD_PATH=${BUILD_PATH} 
+        -DEXPECTED_OUTPUT_PATH=${EXPECTED_OUTPUT_PATH}
+        -P run_tests.cmake
     )
