@@ -7,11 +7,13 @@ cmake_minimum_required(VERSION 3.12)
 set(INSTALL_PREFIX "" CACHE PATH "Please enter the path to the libCellML install directory using the syntax -DINSTALL_PREFIX=your_path")
 set(BUILD_PATH "" CACHE PATH "Please enter the path to the directory in which the tests should be built using the syntax -DBUILD_PATH=your_path")
 
-set(EXPECTED_OUTPUT_REL_PATH "./expected_outputs")
-get_filename_component(EXPECTED_OUTPUT_PATH ${EXPECTED_OUTPUT_REL_PATH} ABSOLUTE)
+set(EXPECTED_OUTPUT_REL_PATH "./tutorial_tests")
+get_filename_component(TESTS_PATH ${EXPECTED_OUTPUT_REL_PATH} ABSOLUTE)
+
+set(COMPARE_SCRIPT "./compare_output.cmake")
 
 message(STATUS "Build path is ${BUILD_PATH}")
-message(STATUS "Expected outputs are in directory: ${EXPECTED_OUTPUT_PATH}")
+message(STATUS "Expected outputs are in directory: ${TESTS_PATH}")
 
 # # Make a list of the files that need to be built and run
 set(tutorial_src 
@@ -43,11 +45,6 @@ file(GLOB transit
 )
 file(COPY ${transit} DESTINATION ${BUILD_PATH})
 
-
-get_filename_component(abs "." ABSOLUTE)
-message(STATUS "My absolute path is: ${abs}")
-
-
 foreach(src ${tutorial_src})
 
     message(STATUS "Starting with: ${src}")
@@ -74,7 +71,6 @@ foreach(src ${tutorial_src})
             "${src_path}/*.c"
             "${src_path}/*.h"
             "${src_path}/*.cellml"
-            "${src_path}/test.cmake"
         )
         file(COPY ${transit} DESTINATION "${BUILD_PATH}/${test_dir}/")
         
@@ -106,6 +102,7 @@ add_custom_target(test
       COMMAND ${CMAKE_COMMAND} 
         -DTUTORIAL_SRC=${tutorial_src} 
         -DBUILD_PATH=${BUILD_PATH} 
-        -DEXPECTED_OUTPUT_PATH=${EXPECTED_OUTPUT_PATH}
-        -P run_tests.cmake
+        -DTESTS_PATH=${TESTS_PATH}
+        -DCOMPARE_SCRIPT=${COMPARE_SCRIPT}
+        -P run_all_tests.cmake
     )
