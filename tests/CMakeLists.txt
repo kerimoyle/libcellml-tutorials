@@ -23,10 +23,9 @@ get_filename_component(TESTS_PATH ${EXPECTED_OUTPUT_REL_PATH} ABSOLUTE)
 
 # # Make a list of the files that need to be built and run
 set(tutorial_cpp 
-    tutorial1/tutorial1_complete.cpp 
-    tutorial2/tutorial2_complete.cpp 
-    tutorial3/tutorial3_complete.cpp 
-    # ../tutorials/tutorial4/tutorial4_complete.cpp
+    tutorial1/tutorial1_complete.cpp
+    tutorial2/tutorial2_complete.cpp
+    tutorial3/tutorial3_complete.cpp
     tutorial5/tutorial5_complete.cpp
 )
 
@@ -97,7 +96,7 @@ message("COMMAND ${CMAKE_COMMAND} '-DTUTORIAL_CPP=${tutorial_cpp}' -DTEMP_WORKIN
 
 
 # Run "make test" to run all the tests.
-add_custom_target(hello
+add_custom_target(test
     COMMAND ${CMAKE_COMMAND} 
         -DTUTORIAL_CPP="${tutorial_cpp}"
         -DTEMP_WORKING_PATH=${TEMP_WORKING_PATH} 

@@ -9,9 +9,8 @@ cmake_policy(SET CMP0007 NEW)
 
 include(colours.cmake)
 
-# message(STATUS "TEMP_WORKING_PATH = ${TEMP_WORKING_PATH}")
-# message(STATUS "TESTS_PATH = ${TESTS_PATH}")
-message(STATUS "TUTORIAL_CPP = ${TUTORIAL_CPP}")
+# Splitting command line string.  NB: this means that files cannot have spaces in their names.
+string(REPLACE " " ";" srcs ${TUTORIAL_CPP})
 
 # Clear previous report file.
 set(report_file "${TEMP_WORKING_PATH}/test_report.txt")
@@ -20,12 +19,12 @@ file(WRITE ${report_file} "")
 set(error_count 0)
 
 # Run through all tests.
-foreach(test_src ${TUTORIAL_CPP}) 
+foreach(test_src ${srcs}) 
 
     get_filename_component(temp "${test_src}/.." ABSOLUTE)
     get_filename_component(test_to_run "${temp}" NAME) # Gets the folder containing the cpp file as the test name
 
-    message(STATUS "Lauching test: ${test_to_run}")
+    message(STATUS "Lauching test in directory: ${test_to_run}")
     set(script_to_run "${TESTS_PATH}/${test_to_run}/test.cmake")
 
     # Run the test.cmake script.  This will run the completed program, 

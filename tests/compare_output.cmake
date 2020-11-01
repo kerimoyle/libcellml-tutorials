@@ -19,7 +19,7 @@ set(expected_dir "${abs2}/${TEST}")
 
 set(executable "./${TEST}_complete")
 
-message(STATUS "executable = ${executable}")
+message("     - testing ${executable}:")
 
 set(all_logs "${test_dir}/logs/${TEST}_report.txt")
 
@@ -47,7 +47,7 @@ foreach(file_name ${FILES})
     file(READ ${log} errors)
 
     if("${errors}" STREQUAL "")
-        message("    ${Green}${file_name}: OK${ColourReset}")
+        message("       ${Green}${file_name}: OK${ColourReset}")
         file(APPEND ${all_logs} 
             "OK: ${file_name}\n\n"
         )
@@ -57,7 +57,7 @@ foreach(file_name ${FILES})
                 "ERROR: ${file}\n    See ${log} for details.\n\n"
             )
         math(EXPR error_count "${error_count}+1")
-        message("    ${Magenta}${file_name}: ERRORS${ColourReset}")
+        message("       ${Magenta}${file_name}: ERRORS${ColourReset}")
     endif()
 
 endforeach()
