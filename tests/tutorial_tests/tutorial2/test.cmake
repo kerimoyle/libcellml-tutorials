@@ -3,7 +3,7 @@
 # with the expected console output.
 set(output_files 
     stdout  
-    tutorial1_printed.cellml
+    tutorial2_printed.cellml
 )
 
 # message(STATUS "in test.cmake")

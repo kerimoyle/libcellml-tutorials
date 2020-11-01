@@ -11,8 +11,8 @@ find_package(libCellML REQUIRED)
 #          order for CMake to accept it.
 set (PROJECT_SRC
         ${PROJECT_NAME}.cpp
-        ../../utilities/tutorial_utilities.cpp
-        ../resources/tutorial3_PredatorPrey_generated.cpp
+        tutorial_utilities.cpp
+        PredatorPrey.cpp
      )
 
 add_executable(${PROJECT_NAME}  ${PROJECT_SRC})

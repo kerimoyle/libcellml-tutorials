@@ -3,7 +3,9 @@
 # with the expected console output.
 set(output_files 
     stdout  
-    tutorial1_printed.cellml
+    PredatorPrey.c 
+    PredatorPrey.h 
+    PredatorPrey.py
 )
 
 # message(STATUS "in test.cmake")

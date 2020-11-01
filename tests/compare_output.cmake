@@ -1,15 +1,17 @@
 # Expects command line inputs:
 #    TEST
 #    FILES
-#    BUILD_PATH
+#    TEMP_WORKING_PATH
 #    TESTS_PATH
 
-message(STATUS "BUILD_PATH = ${BUILD_PATH}")
-message(STATUS "TESTS_PATH = ${TESTS_PATH}")
-message(STATUS "TEST = ${TEST}")
-message(STATUS "FILES = ${FILES}")
+# message(STATUS "TEMP_WORKING_PATH = ${TEMP_WORKING_PATH}")
+# message(STATUS "TESTS_PATH = ${TESTS_PATH}")
+# message(STATUS "TEST = ${TEST}")
+# message(STATUS "FILES = ${FILES}")
 
-get_filename_component(abs ${BUILD_PATH} ABSOLUTE)
+include(colours.cmake)
+
+get_filename_component(abs ${TEMP_WORKING_PATH} ABSOLUTE)
 set(test_dir "${abs}/${TEST}")
 
 get_filename_component(abs2 ${TESTS_PATH} ABSOLUTE)
@@ -17,9 +19,9 @@ set(expected_dir "${abs2}/${TEST}")
 
 set(executable "./${TEST}_complete")
 
-set(all_logs "${test_dir}/logs/${TEST}_report.txt")
+message(STATUS "executable = ${executable}")
 
-message(STATUS "TEST = ${TEST}")
+set(all_logs "${test_dir}/logs/${TEST}_report.txt")
 
 # Run the executable and collect the stdout in 'stdout'.
 execute_process(
@@ -32,21 +34,12 @@ execute_process(
 set(error_count 0)
 file(WRITE ${all_logs} "")
 
-
-
 foreach(file_name ${FILES})
-
-    message(STATUS "    ${file_name}")
 
     set(log "${test_dir}/logs/${file_name}.diff")
     set(expected "${expected_dir}/${file_name}")
     set(testfile "${test_dir}/${file_name}")
 
-    message(STATUS "log = ${log}")
-    message(STATUS "expected = ${expected}")
-    message(STATUS "testfile = ${testfile}")
-
-    
     file(REMOVE ${log})
     execute_process(COMMAND diff -u -E ${expected} ${testfile} OUTPUT_FILE ${log})
 
@@ -54,15 +47,17 @@ foreach(file_name ${FILES})
     file(READ ${log} errors)
 
     if("${errors}" STREQUAL "")
+        message("    ${Green}${file_name}: OK${ColourReset}")
         file(APPEND ${all_logs} 
-            "OK: ${file}\n\n"
+            "OK: ${file_name}\n\n"
         )
-        # file(REMOVE ${log})
+        file(REMOVE ${log})
     else()
         file(APPEND ${all_logs} 
                 "ERROR: ${file}\n    See ${log} for details.\n\n"
             )
         math(EXPR error_count "${error_count}+1")
+        message("    ${Magenta}${file_name}: ERRORS${ColourReset}")
     endif()
 
 endforeach()
@@ -73,6 +68,6 @@ if(${error_count} GREATER 0)
         )
 else()
     file(APPEND ${all_logs}
-            "All tests passed successfully.\n\n"
+            "All tests passed successfully."
         )
 endif()

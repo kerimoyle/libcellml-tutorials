@@ -21,7 +21,7 @@
 
 #include <libcellml>
 
-#include "../tutorial_utilities.h"
+#include "tutorial_utilities.h"
 
 int main()
 {
