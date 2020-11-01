@@ -4,9 +4,7 @@
 set(output_files 
     stdout  
 )
-
-# message(STATUS "in test.cmake")
-# message(STATUS "output_files = ${output_files}")
+set(test_to_run tutorial5_complete)
 
 # -------------------------- DO NOT CHANGE ANYTHING BELOW THIS LINE -------------------------------
 
@@ -20,6 +18,7 @@ execute_process(COMMAND ${CMAKE_COMMAND}
         -DTEMP_WORKING_PATH=${TEMP_WORKING_PATH} 
         -DTESTS_PATH=${TESTS_PATH} 
         -DTEST=${TEST}
+        -DTEST_EXE=${test_to_run}
         "-DFILES=${output_files}"  # The quotes are needed in order to pass a list.
         -P ${COMPARE_SCRIPT}
     )

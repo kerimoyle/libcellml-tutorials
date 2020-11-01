@@ -3,11 +3,13 @@
 #    FILES
 #    TEMP_WORKING_PATH
 #    TESTS_PATH
+#    TEST_EXE
 
 # message(STATUS "TEMP_WORKING_PATH = ${TEMP_WORKING_PATH}")
 # message(STATUS "TESTS_PATH = ${TESTS_PATH}")
 # message(STATUS "TEST = ${TEST}")
 # message(STATUS "FILES = ${FILES}")
+# message(STATUS "TEST_EXE = ${TEST_EXE}")
 
 include(colours.cmake)
 
@@ -17,7 +19,7 @@ set(test_dir "${abs}/${TEST}")
 get_filename_component(abs2 ${TESTS_PATH} ABSOLUTE)
 set(expected_dir "${abs2}/${TEST}")
 
-set(executable "./${TEST}_complete")
+set(executable "./${TEST_EXE}")
 
 message("     - testing ${executable}:")
 
@@ -41,23 +43,32 @@ foreach(file_name ${FILES})
     set(testfile "${test_dir}/${file_name}")
 
     file(REMOVE ${log})
-    execute_process(COMMAND diff -u -E ${expected} ${testfile} OUTPUT_FILE ${log})
 
-    # Test log file contents.  If the log file is empty then the test has passed.
-    file(READ ${log} errors)
-
-    if("${errors}" STREQUAL "")
-        message("       ${Green}${file_name}: OK${ColourReset}")
-        file(APPEND ${all_logs} 
-            "OK: ${file_name}\n\n"
-        )
-        file(REMOVE ${log})
+    # Check that the files to compare exist:
+    if(NOT EXISTS "${expected}")
+        message("       ${Magenta}${expected}: ERROR! Could not open expected output file.${ColourReset}")
+    elseif(NOT EXISTS "${testfile}")
+        message("       ${Magenta}${testfile}: ERROR! Could not open test output file.${ColourReset}")
     else()
-        file(APPEND ${all_logs} 
-                "ERROR: ${file}\n    See ${log} for details.\n\n"
+
+        execute_process(COMMAND diff -u -E ${expected} ${testfile} OUTPUT_FILE ${log})
+
+        # Test log file contents.  If the log file is empty then the test has passed.
+        file(READ ${log} errors)
+
+        if("${errors}" STREQUAL "")
+            message("       ${Green}${file_name}: OK${ColourReset}")
+            file(APPEND ${all_logs} 
+                "OK: ${file_name}\n\n"
             )
-        math(EXPR error_count "${error_count}+1")
-        message("       ${Magenta}${file_name}: ERRORS${ColourReset}")
+            file(REMOVE ${log})
+        else()
+            file(APPEND ${all_logs} 
+                    "ERROR: ${file}\n    See ${log} for details.\n\n"
+                )
+            math(EXPR error_count "${error_count}+1")
+            message("       ${Magenta}${file_name}: ERRORS${ColourReset}")
+        endif()
     endif()
 
 endforeach()

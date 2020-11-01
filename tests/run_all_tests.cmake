@@ -3,6 +3,10 @@
 #   TUTORIAL_CPP
 #   TESTS_PATH
 
+# message(STATUS "TEMP_WORKING_PATH = ${TEMP_WORKING_PATH}")
+# message(STATUS "TESTS_PATH = ${TESTS_PATH}")
+# message(STATUS "TUTORIAL_CPP = ${TUTORIAL_CPP}")
+
 
 cmake_minimum_required(VERSION 3.12)
 cmake_policy(SET CMP0007 NEW)

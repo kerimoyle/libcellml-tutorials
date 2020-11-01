@@ -7,21 +7,7 @@ cmake_policy(SET CMP0007 NEW)
 
 set(INSTALL_PREFIX "" CACHE PATH "Please enter the path to the libCellML install directory using the syntax -DINSTALL_PREFIX=your_path")
 
-set(EXPECTED_OUTPUT_REL_PATH "./tutorial_tests")
-set(COMPARE_SCRIPT "./compare_output.cmake")
-set(TEMP_WORKING_PATH "./temp_testing")
-
-set(TUTORIAL_SRC_DIR "../tutorials")
-
-set(utils_directory
-    "${TUTORIAL_SRC_DIR}"
-)
-
-include(colours.cmake)
-
-get_filename_component(TESTS_PATH ${EXPECTED_OUTPUT_REL_PATH} ABSOLUTE)
-
-# # Make a list of the files that need to be built and run
+# Make a list of the files that need to be built and run
 set(tutorial_cpp 
     tutorial1/tutorial1_complete.cpp
     tutorial2/tutorial2_complete.cpp
@@ -29,9 +15,25 @@ set(tutorial_cpp
     tutorial5/tutorial5_complete.cpp
 )
 
+
+set(TEMP_WORKING_PATH "${CMAKE_BINARY_DIR}/temp_testing")
+set(EXPECTED_OUTPUT_REL_PATH "${CMAKE_CURRENT_SOURCE_DIR}/tests/tutorial_tests")
+set(TUTORIAL_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tutorials")
+set(utils_directory
+    "${TUTORIAL_SRC_DIR}"
+)
+
+set(COMPARE_SCRIPT "compare_output.cmake")
+
+include(tests/colours.cmake)
+
+get_filename_component(TESTS_PATH ${EXPECTED_OUTPUT_REL_PATH} ABSOLUTE)
+
+
 # Make working directory locally.  This is where the source code and the 
-# resources will be temporarily copied to.  It should be deleted at the end.
+# resources will be temporarily copied to.  It will be deleted by the 'make cleanup' command.
 file(MAKE_DIRECTORY ${TEMP_WORKING_PATH})
+
 
 # Copy utils into the temp directory
 file(GLOB transit 
@@ -40,8 +42,16 @@ file(GLOB transit
 )
 file(COPY ${transit} DESTINATION ${TEMP_WORKING_PATH})
 
-foreach(s ${tutorial_cpp})
 
+# Copy cmake scripts into the temp directory
+file(GLOB transit 
+    "${CMAKE_CURRENT_SOURCE_DIR}/tests/*.cmake"
+)
+file(COPY ${transit} DESTINATION ${CMAKE_BINARY_DIR})
+
+
+# Process each tutorial source.
+foreach(s ${tutorial_cpp})
     set(src "${TUTORIAL_SRC_DIR}/${s}")
     get_filename_component(src_file "${src}" NAME)
     get_filename_component(src_path "${src}" DIRECTORY)
@@ -83,17 +93,10 @@ foreach(s ${tutorial_cpp})
         target_link_libraries(${project_name} PUBLIC cellml)
 
     else()
-        message(FATAL_ERROR "${BoldRed}Can't find ${src}${ColorReset}")
+        message(WARNING "${BoldMagenta}Can't find ${src}. ${ColourReset}")
     endif()
 
 endforeach()
-
-
-message("COMMAND ${CMAKE_COMMAND} '-DTUTORIAL_CPP=${tutorial_cpp}' -DTEMP_WORKING_PATH=${TEMP_WORKING_PATH} 
--DTESTS_PATH=${TESTS_PATH}
--DCOMPARE_SCRIPT=${COMPARE_SCRIPT}
--P run_all_tests.cmake")
-
 
 # Run "make test" to run all the tests.
 add_custom_target(test
@@ -105,7 +108,7 @@ add_custom_target(test
         -P run_all_tests.cmake
 )
 
-# Run "make cleanup" to delete all the files created by CMake and the tests.
+# Run "make cleanup" to delete all the files created by CMake and the tests, including the log files.
 add_custom_target(cleanup
-    COMMAND rm -rf ${TEMP_WORKING_PATH} CMakeCache.txt CMakeFiles Makefile cmake_install.cmake
+    COMMAND rm -rf ${TEMP_WORKING_PATH} CMakeCache.txt CMakeFiles Makefile *.cmake
 )
