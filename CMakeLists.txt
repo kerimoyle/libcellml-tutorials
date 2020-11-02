@@ -7,10 +7,7 @@ cmake_policy(SET CMP0007 NEW)
 
 set(INSTALL_PREFIX "" CACHE PATH "Please enter the path to the libCellML install directory using the syntax -DINSTALL_PREFIX=your_path")
 
-# Make working directory locally.  This is where the source code and the 
-# resources will be temporarily copied to.  It will be deleted by the 'make cleanup' command.
-set(TEMP_WORKING_PATH "${CMAKE_BINARY_DIR}/temp")
-file(MAKE_DIRECTORY ${TEMP_WORKING_PATH})
+
 
 # General setup stuff
 set(COMPARE_SCRIPT "compare_output.cmake")
@@ -22,14 +19,11 @@ file(GLOB transit
 )
 file(COPY ${transit} DESTINATION ${CMAKE_BINARY_DIR})
 
-
 # Make the tutorials tests
 include(tests/test_tutorials.cmake)
 
 # Make the how-to tests
 include(tests/test_howto.cmake)
-
-
 
 # Run "make test" to run all the tests.
 add_custom_target(test

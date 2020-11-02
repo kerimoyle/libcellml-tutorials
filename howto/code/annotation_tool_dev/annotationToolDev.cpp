@@ -14,7 +14,7 @@ int main()
     // STEP 1
     // Parse an existing CellML model from a file.
 
-    std::string inFileName = "resources/annotationExample.cellml";
+    std::string inFileName = "annotationToolDev.cellml";
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
