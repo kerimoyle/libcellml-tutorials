@@ -1,0 +1,15 @@
+The importer found 0 issues.
+The validator found 2 issues.
+Variable 'b' in component 'validationErrors' does not have any units specified.
+MathML ci element has the child text 'c' which does not correspond with any variable names present in component 'validationErrors'.
+The validator found 0 issues.
+The analyser found 1 issues.
+Variable 'd' in component 'importedComponent' is initialised using variable 'e', but it is not a constant.
+The analyser found 5 issues.
+Variable 'x' in component 'nonInitialisedStateVariable' is used in an ODE, but it is not initialised.
+Variable 'x' in component 'overconstrainedModel' is computed more than once.
+Variable 'x' in component 'uncomputedVariable' is not computed.
+Variable 'a' in component 'validationErrors' is not computed.
+Variable 'c' in component 'validationErrors' is not computed.
+The validator found 0 issues.
+The analyser found 0 issues.

@@ -3,20 +3,21 @@
 # with the expected console output.
 set(output_files 
     stdout  
-    tutorial2_printed.cellml
+    tutorial1_printed.cellml
 )
-set(test_to_run tutorial2_complete)
+set(test_to_run tutorial1_complete)
 
 # -------------------------- DO NOT CHANGE ANYTHING BELOW THIS LINE -------------------------------
 
 # Expecting command line inputs:
-#     - TEMP_WORKING_PATH
+#     - WORKING_PATH
 #     - TESTS_PATH
 #     - COMPARE_SCRIPT
 
 # Run the processes launch this executable and compare the files.
 execute_process(COMMAND ${CMAKE_COMMAND}
-        -DTEMP_WORKING_PATH=${TEMP_WORKING_PATH} 
+        -DWORKING_PATH=${WORKING_PATH} 
+        -DEXPECTED_OUTPUT_PATH=${EXPECTED_OUTPUT_PATH} 
         -DTESTS_PATH=${TESTS_PATH} 
         -DTEST=${TEST}
         -DTEST_EXE=${test_to_run}

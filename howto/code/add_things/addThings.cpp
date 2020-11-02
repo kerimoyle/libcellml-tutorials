@@ -1,4 +1,5 @@
 
+#include <iostream>
 #include <libcellml>
 
 int main()
@@ -33,4 +34,5 @@ int main()
     // - myOtherComponent->variable(0) = myVariable
     // - myVariable->parent() = myOtherComponent
     // - myComponent->variableCount() == 0.
+    std::cout << "hello world!"<<std::endl;
 }

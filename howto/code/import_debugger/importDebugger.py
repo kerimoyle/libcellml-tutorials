@@ -167,7 +167,7 @@ if __name__ == '__main__':
     # Write the original model to a file.
     printer = Printer()
     model_string = printer.printModel(original_model)
-    write_file = open("repaired/resources/importExample1.cellml", "w")
+    write_file = open("repaired/import_debugger/importExample1.cellml", "w")
     write_file.write(model_string)
     
     # Write the dependency models in the importer library to files.

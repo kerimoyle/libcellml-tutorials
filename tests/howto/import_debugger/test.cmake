@@ -3,23 +3,15 @@
 # with the expected console output.
 set(output_files 
     stdout  
-    PredatorPrey.c 
-    PredatorPrey.h 
-    PredatorPrey.py
 )
-set(test_to_run tutorial3_complete)
+set(test_to_run importDebugger)
 
 # -------------------------- DO NOT CHANGE ANYTHING BELOW THIS LINE -------------------------------
 
-# Expecting command line inputs:
-#     - TEMP_WORKING_PATH
-#     - TESTS_PATH
-#     - COMPARE_SCRIPT
-
 # Run the processes launch this executable and compare the files.
 execute_process(COMMAND ${CMAKE_COMMAND}
-        -DTEMP_WORKING_PATH=${TEMP_WORKING_PATH} 
-        -DTESTS_PATH=${TESTS_PATH} 
+        -DWORKING_PATH=${WORKING_PATH} 
+        -DEXPECTED_OUTPUT_PATH=${EXPECTED_OUTPUT_PATH}
         -DTEST=${TEST}
         -DTEST_EXE=${test_to_run}
         "-DFILES=${output_files}"  # The quotes are needed in order to pass a list.

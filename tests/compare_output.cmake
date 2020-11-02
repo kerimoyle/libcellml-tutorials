@@ -1,23 +1,22 @@
 # Expects command line inputs:
 #    TEST
 #    FILES
-#    TEMP_WORKING_PATH
-#    TESTS_PATH
+#    WORKING_PATH
+#    EXPECTED_OUTPUT_PATH
 #    TEST_EXE
 
-# message(STATUS "TEMP_WORKING_PATH = ${TEMP_WORKING_PATH}")
-# message(STATUS "TESTS_PATH = ${TESTS_PATH}")
+# message(STATUS "WORKING_PATH = ${WORKING_PATH}")
+# message(STATUS "EXPECTED_OUTPUT_PATH = ${EXPECTED_OUTPUT_PATH}")
 # message(STATUS "TEST = ${TEST}")
 # message(STATUS "FILES = ${FILES}")
 # message(STATUS "TEST_EXE = ${TEST_EXE}")
 
 include(colours.cmake)
 
-get_filename_component(abs ${TEMP_WORKING_PATH} ABSOLUTE)
+get_filename_component(abs ${WORKING_PATH} ABSOLUTE)
 set(test_dir "${abs}/${TEST}")
 
-get_filename_component(abs2 ${TESTS_PATH} ABSOLUTE)
-set(expected_dir "${abs2}/${TEST}")
+set(expected_dir "${EXPECTED_OUTPUT_PATH}/${TEST}")
 
 set(executable "./${TEST_EXE}")
 
@@ -46,9 +45,9 @@ foreach(file_name ${FILES})
 
     # Check that the files to compare exist:
     if(NOT EXISTS "${expected}")
-        message("       ${Magenta}${expected}: ERROR! Could not open expected output file.${ColourReset}")
+        message("       ${Magenta}ERROR! Could not open expected output file: ${expected}${ColourReset}")
     elseif(NOT EXISTS "${testfile}")
-        message("       ${Magenta}${testfile}: ERROR! Could not open test output file.${ColourReset}")
+        message("       ${Magenta}ERROR! Could not open test output file: ${testfile}${ColourReset}")
     else()
 
         execute_process(COMMAND diff -u -E ${expected} ${testfile} OUTPUT_FILE ${log})

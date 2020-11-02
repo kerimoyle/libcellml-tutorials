@@ -12,7 +12,7 @@ By the time you have worked through this tutorial you will be able to:
 
 from libcellml import Analyser, Component, Model, Printer, Units, Validator, Variable
 
-from tutorial_utilities import print_issues, print_model, get_cellml_element_type_from_enum, get_issue_level_from_enum
+from utilities import print_issues, print_model, get_cellml_element_type_from_enum, get_issue_level_from_enum
 
 if __name__ == '__main__':
 

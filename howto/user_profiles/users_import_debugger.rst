@@ -11,21 +11,21 @@ For more general debugging use cases, please see the :ref:`Model debugger<users_
    :local:
 
 | **C++ resources**
-|   ├ :download:`CMakeLists.txt<../code/example_importDebugger_CMakeLists.txt>`
-|   ├ :download:`example_importDebugger.cpp<../code/example_importDebugger.cpp>`
+|   ├ :download:`CMakeLists.txt<../code/import_debugger/CMakeLists.txt>`
+|   ├ :download:`example_importDebugger.cpp<../code/import_debugger/importDebugger.cpp>`
 |   └ resources/
-|       ├ :download:`importerExample1.cellml<../code/resources/importerExample1.cellml>`
-|       ├ :download:`importerExample2a.cellml<../code/resources/importerExample2a.cellml>`
-|       ├ :download:`importerExample2b.cellml<../code/resources/importerExample2b.cellml>`
-|       └ :download:`importerExample3.cellml<../code/resources/importerExample3.cellml>`
+|       ├ :download:`importerExample1.cellml<../code/import_debugger/importerExample1.cellml>`
+|       ├ :download:`importerExample2a.cellml<../code/import_debugger/importerExample2a.cellml>`
+|       ├ :download:`importerExample2b.cellml<../code/import_debugger/importerExample2b.cellml>`
+|       └ :download:`importerExample3.cellml<../code/import_debugger/importerExample3.cellml>`
 
 | **Python resources**
-|   ├ :download:`example_importDebugger.py<../code/example_importDebugger.py>`
+|   ├ :download:`example_importDebugger.py<../code/import_debugger/importDebugger.py>`
 |   └ resources/
-|       ├ :download:`importerExample1.cellml<../code/resources/importerExample1.cellml>`
-|       ├ :download:`importerExample2a.cellml<../code/resources/importerExample2a.cellml>`
-|       ├ :download:`importerExample2b.cellml<../code/resources/importerExample2b.cellml>`
-|       └ :download:`importerExample3.cellml<../code/resources/importerExample3.cellml>`
+|       ├ :download:`importerExample1.cellml<../code/import_debugger/importerExample1.cellml>`
+|       ├ :download:`importerExample2a.cellml<../code/import_debugger/importerExample2a.cellml>`
+|       ├ :download:`importerExample2b.cellml<../code/import_debugger/importerExample2b.cellml>`
+|       └ :download:`importerExample3.cellml<../code/import_debugger/importerExample3.cellml>`
 
 
 Parse an existing CellML model 
@@ -37,14 +37,14 @@ Here we use the :code:`Parser` class to read the file, and deserialise the CellM
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importDebugger.cpp
+      .. literalinclude:: ../code/import_debugger/importDebugger.cpp
         :language: c++
         :start-after: // STEP 1
         :end-before: // STEP 2
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importDebugger.py
+      .. literalinclude:: ../code/import_debugger/importDebugger.py
         :language: python
         :start-after: # STEP 1
         :end-before: # STEP 2
@@ -59,14 +59,14 @@ Since the :code:`Importer` class contains a logger, we can check that the proces
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importDebugger.cpp
+      .. literalinclude:: ../code/import_debugger/importDebugger.cpp
         :language: c++
         :start-after: // STEP 2
         :end-before: // STEP 3
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importDebugger.py
+      .. literalinclude:: ../code/import_debugger/importDebugger.py
         :language: python
         :start-after: # STEP 2
         :end-before: # STEP 3
@@ -87,14 +87,14 @@ This can be used to identify mistakes in the original version of the model.
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importDebugger.cpp
+      .. literalinclude:: ../code/import_debugger/importDebugger.cpp
         :language: c++
         :start-after: // STEP 3
         :end-before: // STEP 4
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importDebugger.py
+      .. literalinclude:: ../code/import_debugger/importDebugger.py
         :language: python
         :start-after: # STEP 3
         :end-before: # STEP 4
@@ -126,14 +126,14 @@ We can make use of the library of import dependencies which is stored in the :co
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importDebugger.cpp
+      .. literalinclude:: ../code/import_debugger/importDebugger.cpp
         :language: c++
         :start-after: // STEP 4
         :end-before: // STEP 5     
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importDebugger.py
+      .. literalinclude:: ../code/import_debugger/importDebugger.py
         :language: python
         :start-after: # STEP 4
         :end-before: # STEP 5
@@ -165,14 +165,14 @@ Here we print the list of the importer's library keys to demonstrate, and then r
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importDebugger.cpp
+      .. literalinclude:: ../code/import_debugger/importDebugger.cpp
         :language: c++
         :start-after: // STEP 5
         :end-before: // STEP 6
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importDebugger.py
+      .. literalinclude:: ../code/import_debugger/importDebugger.py
         :language: python
         :start-after: # STEP 5
         :end-before: # STEP 6
@@ -186,14 +186,14 @@ We can then fix the issues found in the same way, by accessing the library's ver
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importDebugger.cpp
+      .. literalinclude:: ../code/import_debugger/importDebugger.cpp
         :language: c++
         :start-after: // STEP 6
         :end-before: // STEP 7
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importDebugger.py
+      .. literalinclude:: ../code/import_debugger/importDebugger.py
         :language: python
         :start-after: # STEP 6
         :end-before: # STEP 7
@@ -214,14 +214,14 @@ By doing this, we maintain the same relationship between the model files as was 
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_importDebugger.cpp
+      .. literalinclude:: ../code/import_debugger/importDebugger.cpp
         :language: c++
         :start-after: // STEP 7
         :end-before: // END
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_importDebugger.py
+      .. literalinclude:: ../code/import_debugger/importDebugger.py
         :language: python
         :start-after: # STEP 7
         :end-before: # END

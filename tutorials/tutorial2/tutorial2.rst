@@ -33,7 +33,7 @@ Either :download:`download the whole folder<tutorial2.zip>`, or:
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building;
     - :download:`tutorial2.cpp<tutorial2.cpp>` The skeleton code or
     - :download:`tutorial2_complete.cpp<tutorial2_complete.cpp>` the completed code; and
-    - :download:`tutorial_utilities.cpp<../tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<../tutorial_utilities.h>` Utility functions for use in the tutorials.
+    - :download:`utilities.cpp<../utilities/utilities.cpp>` and :download:`utilities.h<../utilities/utilities.h>` Utility functions for use in the tutorials.
 
 .. container:: shortlist
 
@@ -41,7 +41,7 @@ Either :download:`download the whole folder<tutorial2.zip>`, or:
 
     - :download:`tutorial2.py` The skeleton code or
     - :download:`tutorial2_complete.py` or the completed code; and
-    - :download:`tutorial_utilities.py<../tutorial_utilities.py>` Utility functions for use in the tutorials.
+    - :download:`utilities.py<../utilities/utilities.py>` Utility functions for use in the tutorials.
 
 .. container:: shortlist
 
@@ -120,7 +120,7 @@ Step 1: Parse a CellML file into a model
 
     **1.a** As you did in :ref:`Tutorial 1<tutorial1>`, create a :code:`Parser` and use it to create a model from the :code:`tutorial2.cellml` file provided.
 
-Instead of duplicating the work you did throughout the middle steps of :ref:`Tutorial 1<tutorial1>`, we've provided you with a set of utility functions in the :code:`tutorial_utilities.[cpp,h]` files which will help with some of the repeated bits of these tutorials.
+Instead of duplicating the work you did throughout the middle steps of :ref:`Tutorial 1<tutorial1>`, we've provided you with a set of utility functions in the :code:`utilities.[cpp,h]` files which will help with some of the repeated bits of these tutorials.
 
 .. container:: dothis
 

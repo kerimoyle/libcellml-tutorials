@@ -11,7 +11,7 @@ This example works through that process.
    :local:
 
 | **C++ resources**
-|    ├ :download:`CMakeLists.txt<../code/example_simulationToolDev_CMakeLists.txt>`
+|    ├ :download:`CMakeLists.txt<../code/simulation_tool_dev/CMakeLists.txt>`
 |    ├ :download:`example_simulationToolDev.cpp<../code/example_simulationToolDev.cpp>`
 |    └ resources/
 |        └ :download:`simulationExample.cellml<../code/resources/simulationExample.cellml>`

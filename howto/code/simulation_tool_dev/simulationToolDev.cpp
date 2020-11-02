@@ -16,7 +16,7 @@
 
 #include <libcellml>
 
-#include "../../utilities/tutorial_utilities.h"
+#include "utilities.h"
 
 int main()
 {
@@ -24,7 +24,7 @@ int main()
     // Parse a CellML file into a model.
 
     // Read the file containing the CellML model into a string.
-    std::string inFileName = "resources/simulationExample.cellml";
+    std::string inFileName = "simulationExample.cellml";
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
@@ -35,7 +35,7 @@ int main()
     // string and convert it into a CellML Model structure.
     auto parser = libcellml::Parser::create();
     auto model = parser->parseModel(inFileContents.str());
-    printErrorsToTerminal(parser);
+    printIssues(parser);
 
     // STEP 2
     // Resolve the import dependencies (if any) and flatten the model.
@@ -45,9 +45,9 @@ int main()
 
         // Submit the model to the importer and the absolute location 
         // against which the import reference paths will be resolved.
-        importer->resolveImports(model, "resources/");
+        importer->resolveImports(model, "");
 
-        printErrorsToTerminal(importer);
+        printIssues(importer);
 
         // Print a list of dependencies for the current unflattened model.
         printImportDependencies(model);
@@ -66,13 +66,13 @@ int main()
     auto validator = libcellml::Validator::create();
     validator->validateModel(model);
     auto isValid = validator->errorCount() == 0;
-    printErrorsToTerminal(validator);
+    printIssues(validator);
 
     // STEP 4
     // Analyse the model: check for mathematical and modelling errors.
     auto analyser = libcellml::Analyser::create();
     analyser->analyseModel(model);
-    printErrorsToTerminal(analyser);
+    printIssues(analyser);
 
     // STEP 5
     // Generate runnable code in other language formats for this model.
@@ -81,8 +81,7 @@ int main()
     auto generator = libcellml::Generator::create();
 
     // Pass the generator the model for processing.
-    generator->processModel(model);
-    printErrorsToTerminal(generator);
+    generator->setModel(analyser->model());
 
     // Retrieve and write the interface code (*.h) and implementation code (*.c) to files.
     std::ofstream outFile("sineComparisonExample.h");
@@ -93,10 +92,9 @@ int main()
     outFile << generator->implementationCode();
     outFile.close();
 
-    // If required, change the generator profile to Python and reprocess the model.
+    // If required, change the generator profile to Python.
     auto profile = libcellml::GeneratorProfile::create(libcellml::GeneratorProfile::Profile::PYTHON);
     generator->setProfile(profile);
-    generator->processModel(model);
 
     // Retrieve and write the implementation code (*.py) to a file.
     outFile.open("sineComparisonExample.py");

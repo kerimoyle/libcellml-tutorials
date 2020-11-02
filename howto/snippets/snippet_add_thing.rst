@@ -18,11 +18,11 @@
 
     .. tab:: C++
 
-      .. literalinclude:: ../code/example_addThings.cpp
+      .. literalinclude:: ../code/add_things/addThings.cpp
         :language: c++
 
     .. tab:: Python
 
-      .. literalinclude:: ../code/example_addThings.py
+      .. literalinclude:: ../code/add_things/addThings.py
         :language: python
       

@@ -1,15 +1,13 @@
 
 get_filename_component(TESTS_PATH ${EXPECTED_OUTPUT_PATH} ABSOLUTE)
 
-
-set(TEMP_WORKING_PATH "${CMAKE_BINARY_DIR}/${TEMP_WORKING_DIR}")
-file(MAKE_DIRECTORY ${TEMP_WORKING_PATH})
+file(MAKE_DIRECTORY ${WORKING_PATH})
 
 foreach(file ${EXTRA_CPP})
-    file(COPY ${file} DESTINATION ${TEMP_WORKING_PATH})
+    file(COPY ${file} DESTINATION ${WORKING_PATH})
 endforeach()
 foreach(file ${EXTRA_H})
-    file(COPY ${file} DESTINATION ${TEMP_WORKING_PATH})
+    file(COPY ${file} DESTINATION ${WORKING_PATH})
 endforeach()
 
 # Process each source.
@@ -31,7 +29,7 @@ foreach(s ${SRC_CPP})
     get_filename_component(test_dir "${a_second_dir}" NAME)
 
     # Duplicating the structure to the temporary testing directories.
-    file(MAKE_DIRECTORY "${TEMP_WORKING_PATH}/${test_dir}")
+    file(MAKE_DIRECTORY "${WORKING_PATH}/${test_dir}")
 
     # Retrieve tutorial source and expected output from list, and copy to testing directories.
     if(EXISTS "${src}")
@@ -44,7 +42,7 @@ foreach(s ${SRC_CPP})
             "${src_path}/*.h"
             "${src_path}/*.cellml"
         )
-        file(COPY ${transit} DESTINATION "${TEMP_WORKING_PATH}/${test_dir}/")
+        file(COPY ${transit} DESTINATION "${WORKING_PATH}/${test_dir}/")
         
         # Build this source code into an executable.
         set(project_name "${test_name}")
@@ -53,13 +51,13 @@ foreach(s ${SRC_CPP})
         find_package(libCellML REQUIRED)
 
         set(project_src
-                "${TEMP_WORKING_PATH}/${test_dir}/${src_file}"
+                "${WORKING_PATH}/${test_dir}/${src_file}"
                 ${EXTRA_CPP}
             )
-        include_directories("${TEMP_WORKING_PATH}")
+        include_directories("${WORKING_PATH}")
 
         add_executable(${project_name} ${project_src})
-        set_target_properties(${project_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${TEMP_WORKING_PATH}/${test_dir}")
+        set_target_properties(${project_name} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${WORKING_PATH}/${test_dir}")
         target_link_libraries(${project_name} PUBLIC cellml)
 
     else()

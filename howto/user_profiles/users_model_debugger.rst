@@ -10,14 +10,14 @@ This example walks through the process of using the :code:`Validator` and :code:
    :local:
 
 | **C++ resources**
-|    ├ :download:`CMakeLists.txt<../code/example_modelDebugger_CMakeLists.txt>`
-|    ├ :download:`example_modelDebugger.cpp<../code/example_modelDebugger.cpp>`
+|    ├ :download:`CMakeLists.txt<../code/model_debugger/CMakeLists.txt>`
+|    ├ :download:`example_modelDebugger.cpp<../code/model_debugger/modelDebugger.cpp>`
 |    └ resources/
 |        ├ :download:`debugAnalysisExample.cellml<../code/resources/debugAnalysisExample.cellml>`
 |        └ :download:`debugAnalysisExampleImport.cellml<../code/resources/debugAnalysisExampleImport.cellml>`
 
 | **Python resources**
-|    ├ :download:`example_modelDebugger.py<../code/example_modelDebugger.py>`
+|    ├ :download:`example_modelDebugger.py<../code/model_debugger/modelDebugger.py>`
 |    └ resources/
 |        ├ :download:`debugAnalysisExample.cellml<../code/resources/debugAnalysisExample.cellml>`
 |        └ :download:`debugAnalysisExampleImport.cellml<../code/resources/debugAnalysisExampleImport.cellml>`
@@ -31,14 +31,14 @@ The CellML file used in this example makes use of imports, so we need to have th
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.cpp
+      .. literalinclude:: ../code/model_debugger/modelDebugger.cpp
         :language: c++
         :start-after: // STEP 1
         :end-before: // STEP 2
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.py
+      .. literalinclude:: ../code/model_debugger/modelDebugger.py
         :language: python
         :start-after: # STEP 1
         :end-before: # STEP 2
@@ -53,14 +53,14 @@ For detailed information on debugging models with imports, please see the :ref:`
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.cpp
+      .. literalinclude:: ../code/model_debugger/modelDebugger.cpp
         :language: c++
         :start-after: // STEP 2
         :end-before: // STEP 3
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.py
+      .. literalinclude:: ../code/model_debugger/modelDebugger.py
         :language: python
         :start-after: # STEP 2
         :end-before: # STEP 3
@@ -74,14 +74,14 @@ Here we create a validator, use it to check the model, and retrieve the descript
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.cpp
+      .. literalinclude:: ../code/model_debugger/modelDebugger.cpp
         :language: c++
         :start-after: // STEP 3
         :end-before: // STEP 4
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.py
+      .. literalinclude:: ../code/model_debugger/modelDebugger.py
         :language: python
         :start-after: # STEP 3
         :end-before: # STEP 4
@@ -92,14 +92,14 @@ The validation issues raised can be used to fix any "spelling" problems with the
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.cpp
+      .. literalinclude:: ../code/model_debugger/modelDebugger.cpp
         :language: c++
         :start-after: // STEP 4
         :end-before: // STEP 5
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.py
+      .. literalinclude:: ../code/model_debugger/modelDebugger.py
         :language: python
         :start-after: # STEP 4
         :end-before: # STEP 5
@@ -114,14 +114,14 @@ The :code:`Analyser` works in the same way as the other service classes: we crea
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.cpp
+      .. literalinclude:: ../code/model_debugger/modelDebugger.cpp
         :language: c++
         :start-after: // STEP 5
         :end-before: // STEP 6
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.py
+      .. literalinclude:: ../code/model_debugger/modelDebugger.py
         :language: python
         :start-after: # STEP 5
         :end-before: # STEP 6
@@ -135,14 +135,14 @@ The :code:`Analyser` works in the same way as the other service classes: we crea
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.cpp
+      .. literalinclude:: ../code/model_debugger/modelDebugger.cpp
         :language: c++
         :start-after: // STEP 6
         :end-before: // STEP 7
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.py
+      .. literalinclude:: ../code/model_debugger/modelDebugger.py
         :language: python
         :start-after: # STEP 6
         :end-before: # STEP 7
@@ -156,14 +156,14 @@ Note that this prints the flattened model, so will not contain the import depend
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.cpp
+      .. literalinclude:: ../code/model_debugger/modelDebugger.cpp
         :language: c++
         :start-after: // STEP 7
         :end-before: // END
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_modelDebugger.py
+      .. literalinclude:: ../code/model_debugger/modelDebugger.py
         :language: python
         :start-after: # STEP 7
         :end-before: # END

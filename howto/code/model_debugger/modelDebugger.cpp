@@ -14,7 +14,7 @@ int main()
     // STEP 1
     // Parse an existing CellML model from a file.
 
-    std::string inFileName = "resources/debugAnalysisExample.cellml";
+    std::string inFileName = "debugAnalysisExample.cellml";
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
@@ -27,7 +27,7 @@ int main()
     auto importer = libcellml::Importer::create();
 
     // Resolve the imports.
-    importer->resolveImports(model, "resources/");
+    importer->resolveImports(model, "");
 
     // Check for issues.
     std::cout << "The importer found "<<importer->issueCount() << " issues." << std::endl;
@@ -134,8 +134,8 @@ int main()
     std::string serialisedModelString = printer->printModel(model);
 
     // Write the serialised string to a file.
-    outFileName = "debugAnalysisExampleFixed.cellml";
-    outFile.open(outFileName);
+    std::string outFileName = "debugAnalysisExampleFixed.cellml";
+    std::ofstream outFile(outFileName);
     outFile << serialisedModelString;
     outFile.close();
 

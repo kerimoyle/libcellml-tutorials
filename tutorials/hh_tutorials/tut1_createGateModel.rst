@@ -19,7 +19,7 @@ Hodgkin-Huxley 1: Creating a model using the API
     - :download:`CMakeLists.txt<code/tut1/CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`createGateModel.cpp<code/tut1/createGateModel.cpp>` Either the skeleton code, or ..
     - :download:`createGateModel_completed.cpp<code/tut1/createGateModel_completed.cpp>` the completed tutorial code; and
-    - :download:`tutorial_utilities.cpp<code/tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<code/tutorial_utilities.h>` Helper functions.
+    - :download:`utilities.cpp<code/utilities.cpp>` and :download:`utilities.h<code/utilities.h>` Helper functions.
 
 .. container:: shortlist
 

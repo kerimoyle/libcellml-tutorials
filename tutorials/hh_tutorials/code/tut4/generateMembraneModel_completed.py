@@ -13,7 +13,7 @@
 """
 from libcellml import Analyser, Generator, GeneratorProfile, Importer, Model, Parser, Validator
 
-from tutorial_utilities import print_issues, print_model, get_cellml_element_type_from_enum, get_issue_level_from_enum, print_encapsulation
+from utilities import print_issues, print_model, get_cellml_element_type_from_enum, get_issue_level_from_enum, print_encapsulation
 
 if __name__ == '__main__':
 

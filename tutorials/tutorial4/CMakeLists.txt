@@ -11,7 +11,7 @@ find_package(libCellML REQUIRED)
 #          order for CMake to accept it.
 set (PROJECT_SRC
         ${PROJECT_NAME}.cpp
-        tutorial_utilities.cpp
+        utilities.cpp
         PredatorPrey.cpp
      )
 

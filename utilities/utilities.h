@@ -16,6 +16,8 @@ void printComponentToTerminal(const libcellml::ComponentPtr &component, size_t c
 void printComponentOnlyToTerminal(libcellml::ComponentPtr &component, std::string spacer);
 void printEncapsulation(libcellml::ModelPtr &model);
 
+void printImportDependencies(const libcellml::ModelPtr &model);
+
 std::string fileContents(const std::string &fileName);
 
 std::string getCellmlElementTypeFromEnum(libcellml::CellmlElementType t);

@@ -24,7 +24,7 @@ Hodgkin-Huxley 4: Generating code from a model
     - :download:`CMakeLists.txt<code/tut4/CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`generateMembraneModel.cpp<code/tut4/generateMembraneModel.cpp>` Either the skeleton code, or ..
     - :download:`generateMembraneModel_completed.cpp<code/tut4/generateMembraneModel_completed.cpp>` the completed tutorial code; and
-    - :download:`tutorial_utilities.cpp<code/tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<code/tutorial_utilities.h>` Helper functions.
+    - :download:`utilities.cpp<code/utilities.cpp>` and :download:`utilities.h<code/utilities.h>` Helper functions.
 
 .. container:: shortlist
 

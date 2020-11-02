@@ -10,7 +10,7 @@
 #include <libcellml>
 
 #include "libcellml/types.h"
-#include "tutorial_utilities.h"
+#include "utilities.h"
 
 
 void printModel(libcellml::ModelPtr &model)

@@ -8,7 +8,7 @@ find_package(libCellML REQUIRED)
 
 set (PROJECT_SRC
         ${PROJECT_NAME}.cpp
-        tutorial_utilities.cpp
+        utilities.cpp
      )
 
 add_executable(${PROJECT_NAME}  ${PROJECT_SRC})

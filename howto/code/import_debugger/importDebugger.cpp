@@ -195,7 +195,7 @@ int main()
 
     // Write the original model to a file. 
     auto printer = libcellml::Printer::create();
-    std::ofstream outFile("repaired/resources/importExample1.cellml");
+    std::ofstream outFile("repaired/import_debugger/importExample1.cellml");
     outFile << printer->printModel(originalModel);
     outFile.close();
 
