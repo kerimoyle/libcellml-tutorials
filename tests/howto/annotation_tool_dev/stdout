@@ -1,0 +1,49 @@
+Recorded 0 issues!
+
+Existing id strings are:
+ - beige
+ - black
+ - blue
+ - brown
+ - duplicateId1
+ - duplicateId2
+ - duplicateId3
+ - duplicateId4
+ - green
+ - indigo
+ - mauve
+ - orange
+ - puce
+ - red
+ - taupe
+ - violet
+ - yellow
+
+The item with id 'green' has type: UNITS
+
+There are 4 duplicated ids in the model.
+ - duplicateId1
+ - duplicateId2
+ - duplicateId3
+ - duplicateId4
+
+There are 2 items with an id of 'duplicateId1'.
+After assigning a new id, there are 0 items with an id of 'duplicateId1'.
+After assigning new ids, there are 0 duplicated ids in the model.
+
+Before automatic ids are assigned:
+  Component 1: b4da56
+  Component 2: 
+  Component 3: yellow
+  Component 4: b4da5c
+
+After automatic ids are assigned to component items:
+  Component 1: b4da56
+  Component 2: b4da5e
+  Component 3: yellow
+  Component 4: b4da5c
+
+Before assigning all automatic ids, there are 23 items with an id attribute.
+After assigning all automatic ids, there are 30 items with an id attribute.
+After clearing all ids, there are 0 items with an id attribute.
+

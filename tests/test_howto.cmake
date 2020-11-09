@@ -5,22 +5,13 @@ set(TEST_GROUP_NAME "howto")
 
 # Make a list of the files that need to be built and run.
 set(SRC_CPP 
+    "annotation_tool_dev/annotationToolDev.cpp"
     "add_things/addThings.cpp"
     "import_debugger/importDebugger.cpp"
     "model_debugger/modelDebugger.cpp"
     "simulation_tool_dev/simulationToolDev.cpp"
 )
-# annotation_tool_dev/annotationToolDev.cpp
 # example_solveGeneratedModel.cpp
-
-# Make a list of directories inside the path that also need to be moved to the 
-# testing directory.
-set(RESOURCES_DIR
-    ""
-    "broken/"
-    ""
-    ""
-)
 
 # Make a list of extra source files which need to be included in the 
 # build.  These should be common for all files to be tested in the list

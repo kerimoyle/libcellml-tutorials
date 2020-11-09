@@ -73,7 +73,7 @@ The analyser found 0 issues.
 --------------------------------------------------------
   STEP 7: Write the corrected models to files           
 --------------------------------------------------------
-Writing import dependency: importExample2b.cellml
 Writing import dependency: importExample2a.cellml
+Writing import dependency: importExample2b.cellml
 Writing import dependency: importExample3.cellml
 The corrected models have been written to the working directory.

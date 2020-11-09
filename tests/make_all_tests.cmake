@@ -22,7 +22,6 @@ foreach(s ${SRC_CPP})
 
     # The name of the test is the name of the soruce file sans extension.
     get_filename_component(test_name "${src}" NAME_WE)
-    # get_filename_component(test_dir "${src_path}" DIRECTORY)
 
     # The name of the test_dir is the directory containing this source file to test.
     get_filename_component(a_second_dir "${src}/.." ABSOLUTE)

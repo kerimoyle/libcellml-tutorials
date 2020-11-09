@@ -9,18 +9,21 @@
 
 #include <libcellml>
 
+#include "utilities.h"
+
 int main()
 {
     // STEP 1
     // Parse an existing CellML model from a file.
 
-    std::string inFileName = "annotationToolDev.cellml";
+    std::string inFileName = "annotationExample.cellml";
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
 
     auto parser = libcellml::Parser::create();
     auto model = parser->parseModel(inFileContents.str());
+    printIssues(parser);
 
     // STEP 2
     // Create an Annotator instance and pass the model to it for processing.
@@ -28,10 +31,10 @@ int main()
     annotator->setModel(model);
 
     // Retrieve a dictionary of all the id strings and the types of items they represent.
-    auto dictionary = annotator->dictionary();
-    std::cout << "Existing id strings are:"<<std::endl;
-    for(auto const &i : dictionary){
-        std::cout << " " << i.first << " = " << annotator->typeAsString(i.second) << std::endl;
+    std::vector<std::string> dictionary = annotator->ids();
+    std::cout << "Existing id strings are:" << std::endl;
+    for(auto &i : dictionary) {
+        std::cout << " - " << i << std::endl;
     }
     std::cout << std::endl;
 
@@ -48,7 +51,7 @@ int main()
     auto reset = annotator->reset("violet");
     auto import = annotator->importSource("orange");
     auto units = annotator->units("green");
-    // auto model = annotator->model("red");
+    auto anotherModel = annotator->model("red");
     auto unit = annotator->unit("blue");
     auto connection = annotator->connection("beige");
     auto mapVariables = annotator->mapVariables("puce");
@@ -68,18 +71,18 @@ int main()
     
     // In this example reset, resetValue and testValue will be the same because the
     // "taupe" reset value and "mauve" test value are in the "violet" reset item.
-    std::cout << std::endl;
+
     // STEP 4
     // Dealing with unique id strings where the item has an unknown type.
-
     libcellml::AnyItem itemOfUnknownType;
 
     // Check that the id is unique in the model scope:
     if(annotator->isUnique("green")){
-        // Retrieve item from the annotator by their unique id.
+        // Retrieve item from the annotator by its unique id.
         itemOfUnknownType = annotator->item("green");
+        std::cout << "The item with id 'green' has type: "<< getCellmlElementTypeFromEnum(itemOfUnknownType.first) << std::endl;
     }
-
+    
     // Because these could be any kind of item, they are stored in an AnyItem
     // type.  This is a pair, where the first item is a CellmlElementType enum 
     // indicating the item's type, and the second is a std::any cast containing the
@@ -96,10 +99,10 @@ int main()
             componentRef = std::any_cast<libcellml::ComponentPtr>(itemOfUnknownType.second);
             break;
         case libcellml::CellmlElementType::CONNECTION:
-            connection = std::any_cast<libcellml::VariablePair>(itemOfUnknownType.second);
+            connection = std::any_cast<libcellml::VariablePairPtr>(itemOfUnknownType.second);
             break;
         case libcellml::CellmlElementType::MAP_VARIABLES:
-            mapVariables = std::any_cast<libcellml::VariablePair>(itemOfUnknownType.second);
+            mapVariables = std::any_cast<libcellml::VariablePairPtr>(itemOfUnknownType.second);
             break;
         case libcellml::CellmlElementType::IMPORT:
             import = std::any_cast<libcellml::ImportSourcePtr>(itemOfUnknownType.second);
@@ -107,10 +110,11 @@ int main()
         case libcellml::CellmlElementType::ENCAPSULATION:
             encapsulation = std::any_cast<libcellml::ModelPtr>(itemOfUnknownType.second);
             break;
-        case libcellml::CellmlElementType::MATHML:
+        case libcellml::CellmlElementType::MATH:
+            component = std::any_cast<libcellml::ComponentPtr>(itemOfUnknownType.second);
             break;
         case libcellml::CellmlElementType::MODEL:
-            // model = std::any_cast<libcellml::ModelPtr>(itemOfUnknownType.second);
+            anotherModel = std::any_cast<libcellml::ModelPtr>(itemOfUnknownType.second);
             break;
         case libcellml::CellmlElementType::RESET:
             reset = std::any_cast<libcellml::ResetPtr>(itemOfUnknownType.second);
@@ -122,7 +126,7 @@ int main()
             testValue = std::any_cast<libcellml::ResetPtr>(itemOfUnknownType.second);
             break;
         case libcellml::CellmlElementType::UNIT:
-            unit = std::any_cast<libcellml::Unit>(itemOfUnknownType.second);
+            unit = std::any_cast<libcellml::UnitPtr>(itemOfUnknownType.second);
             break;
         case libcellml::CellmlElementType::UNITS:
             units = std::any_cast<libcellml::UnitsPtr>(itemOfUnknownType.second);
@@ -134,6 +138,7 @@ int main()
             break;
     }
     std::cout << std::endl;
+
     // STEP 5
     // Handling duplicate ID strings.
 
@@ -144,6 +149,7 @@ int main()
     for(auto const &id : duplicatedIds) {
         std::cout << " - " << id << std::endl;
     }
+    std::cout << std::endl;
 
     // Retrieve all items with the given id string. This returns a std::vector
     // of AnyItems which will need to be cast into libcellml items before they
@@ -160,7 +166,7 @@ int main()
     // Now there are no more items with the duplicated id "duplicateId1"
     // remaining in the model.
     allItemsWithDuplicateId1 = annotator->items("duplicateId1");
-    std::cout << "There are " << allItemsWithDuplicateId1.size() << " items with an id of 'duplicateId1'." << std::endl;
+    std::cout << "After assigning a new id, there are " << allItemsWithDuplicateId1.size() << " items with an id of 'duplicateId1'." << std::endl;
 
     // It's straightforward to use a double loop to automatically assign new and unique ids to
     // any duplicated ids in the model.
@@ -173,8 +179,9 @@ int main()
 
     // Get the list of duplicates again.
     duplicatedIds = annotator->duplicateIds();
-    std::cout << "There are " << duplicatedIds.size() << " duplicated ids in the model." << std::endl;
+    std::cout << "After assigning new ids, there are " << duplicatedIds.size() << " duplicated ids in the model." << std::endl;
     std::cout << std::endl;
+
     // STEP 6
     // Automatically assign id strings to anything without them in the model.
     // This can be done by item type (eg: all the components, all the resets, etc)
@@ -184,8 +191,8 @@ int main()
     std::cout << "Before automatic ids are assigned:" << std::endl;
     std::cout << "  Component 1: "<< model->component("component1")->id() << std::endl;
     std::cout << "  Component 2: "<< model->component("component2")->id() << std::endl;
-    std::cout << "  Component 3: "<< model->component("component2")->component("component3")->id() << std::endl;
-    std::cout << "  Component 4: "<< model->component("component4")->id() << std::endl;
+    std::cout << "  Component 3: "<< model->component("component3", true)->id() << std::endl;
+    std::cout << "  Component 4: "<< model->component("component4")->id() << std::endl << std::endl;
 
     // Assigns an automatic id string to all Component items which don't already have one.
     annotator->assignIds(libcellml::CellmlElementType::COMPONENT);
@@ -193,23 +200,23 @@ int main()
     std::cout << "After automatic ids are assigned to component items:" << std::endl;
     std::cout << "  Component 1: "<< model->component("component1")->id() << std::endl;
     std::cout << "  Component 2: "<< model->component("component2")->id() << std::endl;
-    std::cout << "  Component 3: "<< model->component("component2")->component("component3")->id() << std::endl;
-    std::cout << "  Component 4: "<< model->component("component4")->id() << std::endl;
+    std::cout << "  Component 3: "<< model->component("component3", true)->id() << std::endl;
+    std::cout << "  Component 4: "<< model->component("component4")->id() << std::endl << std::endl;
 
-    auto numberOfIds = annotator->dictionary().size();
+    auto numberOfIds = annotator->ids().size();
     std::cout << "Before assigning all automatic ids, there are " << numberOfIds <<" items with an id attribute." << std::endl;
 
     // Automatically assign ids to everything in the model without one already.
     annotator->assignAllIds();
 
     // Check the dictionary again.
-    numberOfIds = annotator->dictionary().size();
+    numberOfIds = annotator->ids().size();
     std::cout << "After assigning all automatic ids, there are " << numberOfIds <<" items with an id attribute." << std::endl;
 
     // Completely clear all ids in the model.
     annotator->clearAllIds();
-    numberOfIds = annotator->dictionary().size();
-    std::cout << "After clearing all ids, there are " << numberOfIds <<" items with an id attribute." << std::endl;
+    numberOfIds = annotator->ids().size();
+    std::cout << "After clearing all ids, there are " << numberOfIds <<" items with an id attribute." << std::endl << std::endl;
 
     // END
 }

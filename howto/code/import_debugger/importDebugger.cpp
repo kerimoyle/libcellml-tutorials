@@ -261,13 +261,11 @@ int main()
     // library still contains the (now unneeded) circular reference files.  In order
     // to iterate through only those models which are actually used in the repaired version
     // you can use the importer->requirements(model) function.
-
-    for(auto &info : importer->requirements(originalModel) )
-    {
-        std::cout << "Writing import dependency: "<< info.second <<std::endl;
-        auto outFileName = info.second;
+    for(auto &info : importer->requirements(originalModel)) {
+        std::cout << "Writing import dependency: "<< info.first <<std::endl;
+        auto outFileName = info.first;
         outFile.open(outFileName);
-        outFile << printer->printModel(info.first);
+        outFile << printer->printModel(info.second);
         outFile.close();
     }
 
