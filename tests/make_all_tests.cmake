@@ -43,6 +43,14 @@ foreach(s ${SRC_CPP})
             "${src_path}/*.cellml"
         )
         file(COPY ${transit} DESTINATION "${WORKING_PATH}/${test_dir}/")
+
+        file(GLOB transit 
+        "${src_path}/resources/*.cpp"
+        "${src_path}/resources/*.c"
+        "${src_path}/resources/*.h"
+        "${src_path}/resources/*.cellml"
+        )
+        file(COPY ${transit} DESTINATION "${WORKING_PATH}/${test_dir}/resources/")
         
         # Build this source code into an executable.
         set(project_name "${test_name}")

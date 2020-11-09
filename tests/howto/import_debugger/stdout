@@ -1,2 +1,79 @@
+--------------------------------------------------------
+  STEP 1: Parse an existing CellML model from a file    
+--------------------------------------------------------
+Recorded 0 issues!
 
-THIS SEGFAULTS!!
+--------------------------------------------------------
+  STEP 2: Create an Importer instance                   
+--------------------------------------------------------
+
+The importer found 1 issues.
+Cyclic dependencies were found when attempting to resolve components in model 'circularImport1'. The dependency loop is:
+ - component 'importedSideA' is imported from 'sideA' in 'importExample2a.cellml';
+ - component 'sideA' is imported from 'shared' in 'importExample3.cellml';
+ - component 'importedSideB' is imported from 'sideB' in 'importExample2b.cellml';
+ - component 'sideB' is imported from 'shared' in 'circularImport1.cellml';
+ - component 'shared' is imported from 'circular2' in 'circularImport2.cellml';
+ - component 'circular2' is imported from 'shared' in 'circularImport1.cellml'; and
+ - component 'shared' is imported from 'circular2' in 'circularImport2.cellml'.
+
+
+The importer found 0 issues.
+
+--------------------------------------------------------
+  STEP 3: Flatten the model and use diagnostic tools    
+--------------------------------------------------------
+Investigating the original model:
+ - the validator found 0 issues.
+ - the analyser found 0 issues.
+
+Investigating the flattened model:
+The validator found 2 issues.
+    - Variable 'i_need_units' in component 'importedSideA' does not have any units specified.
+    - Variable 'i_need_units' in component 'importedSideB' does not have any units specified.
+The analyser found 2 issues.
+    - Variable 'i_need_units' in component 'importedSideA' does not have any units specified.
+    - Variable 'i_need_units' in component 'importedSideB' does not have any units specified.
+
+--------------------------------------------------------
+  STEP 4: Investigate individual imported models        
+--------------------------------------------------------
+The validator found 0 issues in resources/circularImport1.cellml
+The validator found 0 issues in resources/circularImport2.cellml
+The validator found 0 issues in resources/importExample2a.cellml
+The validator found 0 issues in resources/importExample2b.cellml
+The validator found 1 issues in resources/importExample3.cellml
+    - Variable 'i_need_units' in component 'shared' does not have any units specified.
+
+--------------------------------------------------------
+  STEP 5: Fix the validation errors                     
+--------------------------------------------------------
+Investigating the repaired model: importExample3
+The validator found 0 issues.
+
+--------------------------------------------------------
+  STEP 6: Fix the analysis errors                       
+--------------------------------------------------------
+The analyser found 0 issues in resources/circularImport1.cellml
+The analyser found 0 issues in resources/circularImport2.cellml
+The analyser found 0 issues in resources/importExample2a.cellml
+The analyser found 0 issues in resources/importExample2b.cellml
+The analyser found 2 issues in resources/importExample3.cellml
+    - Variable 'i_need_units' in component 'shared' is not computed.
+    - Variable 'some_other_variable' in component 'shared' is not computed.
+
+
+Investigating the repaired model: importExample3
+The analyser found 0 issues.
+
+Investigating the flattened model:
+The validator found 0 issues.
+The analyser found 0 issues.
+
+--------------------------------------------------------
+  STEP 7: Write the corrected models to files           
+--------------------------------------------------------
+Writing import dependency: importExample2b.cellml
+Writing import dependency: importExample2a.cellml
+Writing import dependency: importExample3.cellml
+The corrected models have been written to the working directory.

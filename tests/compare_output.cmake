@@ -10,6 +10,7 @@
 # message(STATUS "TEST = ${TEST}")
 # message(STATUS "FILES = ${FILES}")
 # message(STATUS "TEST_EXE = ${TEST_EXE}")
+message(STATUS "EXPECTED_OUTPUT_SUB_DIR = ${EXPECTED_OUTPUT_SUB_DIR}")
 
 include(colours.cmake)
 

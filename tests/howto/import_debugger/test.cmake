@@ -2,7 +2,11 @@
 # If you want to compare what's written to the console, then include a file named 'stdout'
 # with the expected console output.
 set(output_files 
-    stdout  
+    stdout
+    importExample1.cellml
+    importExample2a.cellml
+    importExample2b.cellml
+    importExample3.cellml
 )
 set(test_to_run importDebugger)
 

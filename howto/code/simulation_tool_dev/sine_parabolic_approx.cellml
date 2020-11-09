@@ -3,9 +3,9 @@
   xmlns:cellml="http://www.cellml.org/cellml/2.0#"
   xmlns:xlink="http://www.w3.org/1999/xlink" name="parabolic_approx_sin" id="parabolic_approx_sin">
 
-  <component name="sin" id="sin">
-    <variable id="x" units="dimensionless" name="x" interface="public_and_private"/>
-    <variable id="sin" units="dimensionless" name="sin" interface="public_and_private"/>
+  <component name="sin">
+    <variable units="dimensionless" name="x" interface="public_and_private"/>
+    <variable units="dimensionless" name="sin" interface="public_and_private"/>
     <variable units="dimensionless" name="k2_oPi" interface="public_and_private"/>
     <variable units="dimensionless" name="k2Pi" interface="public_and_private"/>
     <variable units="dimensionless" name="kPi_2" interface="public_and_private"/>
@@ -138,7 +138,7 @@
         </piecewise>
       </apply>
 
-      <apply id="sin">
+      <apply>
         <eq/>
         <ci>sin</ci>
         <piecewise>

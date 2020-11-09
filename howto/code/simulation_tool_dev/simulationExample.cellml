@@ -14,11 +14,11 @@
   </import>
 
   <component name="main" id="main">
-    <variable id="x" name="x" units="dimensionless" interface="public_and_private"/>
-    <variable id="sin" name="exact_solution" units="dimensionless" interface="public_and_private"/>
-    <variable id="deriv_approx" units="dimensionless" name="derivative_approx_solution" interface="public_and_private"/>
-    <variable id="deriv_approx_initial_value" units="dimensionless" name="deriv_approx_initial_value" initial_value="0" interface="public_and_private"/>
-    <variable id="parabolic_approx" name="parabolic_approx_solution" units="dimensionless" interface="public_and_private"/>
+    <variable name="x" units="dimensionless" interface="public_and_private"/>
+    <variable name="exact_solution" units="dimensionless" interface="public_and_private"/>
+    <variable units="dimensionless" name="derivative_approx_solution" interface="public_and_private"/>
+    <variable units="dimensionless" name="deriv_approx_initial_value" initial_value="0" interface="public_and_private"/>
+    <variable name="parabolic_approx_solution" units="dimensionless" interface="public_and_private"/>
     <variable name="C" units="dimensionless" interface="public_and_private" initial_value="0.75"/>
   </component>
 

@@ -4,11 +4,16 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" name="importExample3">
   <component name="shared">
     <variable name="i_need_units"/>
+    <variable name="some_other_variable" units="dimensionless"/>
     <math xmlns="http://www.w3.org/1998/Math/MathML">
       <apply>
         <eq/>
         <ci>i_need_units</ci>
-        <cn cellml:units="dimensionless">1</cn>
+        <apply>
+          <plus/>
+          <ci>some_other_variable</ci>
+          <cn cellml:units="dimensionless">1</cn>
+        </apply>
       </apply>
     </math>
   </component>

@@ -13,6 +13,15 @@ set(SRC_CPP
 # annotation_tool_dev/annotationToolDev.cpp
 # example_solveGeneratedModel.cpp
 
+# Make a list of directories inside the path that also need to be moved to the 
+# testing directory.
+set(RESOURCES_DIR
+    ""
+    "broken/"
+    ""
+    ""
+)
+
 # Make a list of extra source files which need to be included in the 
 # build.  These should be common for all files to be tested in the list
 # above.

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.cellml.org/cellml/2.0#" name="importExample1">
+  <import xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="importExample2a.cellml">
+    <component component_ref="sideA" name="importedSideA"/>
+  </import>
+  <import xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="importExample2b.cellml">
+    <component component_ref="sideB" name="importedSideB"/>
+  </import>
+</model>

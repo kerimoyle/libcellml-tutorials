@@ -7,6 +7,11 @@
 #include <algorithm>
 #include <map>
 
+// Includes for creating a new directory
+#include <string> // required for std::string
+#include <sys/types.h> // required for stat.h
+#include <sys/stat.h> // no clue why required -- man pages say so
+
 #include <libcellml>
 
 #include "libcellml/types.h"
@@ -316,4 +321,20 @@ void doPrintImportDependencies(const libcellml::ModelPtr &model, std::string &sp
 void printImportDependencies(const libcellml::ModelPtr &model){
     std::string spacer = " ";
     doPrintImportDependencies(model, spacer);
+}
+
+bool makeDirectory(const std::string &sPath) {
+    // std::string sPath = "/tmp/test";
+    mode_t nMode = 0733; // UNIX style permissions
+    int nError = 0;
+    #if defined(_WIN32)
+    nError = _mkdir(sPath.c_str()); // can be used on Windows
+    #else 
+    nError = mkdir(sPath.c_str(), nMode); // can be used on non-Windows
+    #endif
+    if (nError != 0) {
+        // std::cout << "OOPS! Something went wrong trying to create directory: " << sPath << std::endl;
+        return false;
+    }
+    return true;
 }

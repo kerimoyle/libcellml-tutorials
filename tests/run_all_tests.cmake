@@ -41,7 +41,6 @@ foreach(t ${test_list})
 
         message(STATUS "Lauching test in directory: ${test_to_run}")
 
-
         set(script_to_run "${EXPECTED_OUTPUT_PATH}/${test_to_run}/test.cmake")
         if(NOT EXISTS ${script_to_run})
             message(STATUS "    ${Magenta}ERROR: Cannot find test.cmake file at location: ${EXPECTED_OUTPUT_PATH}/${test_to_run}${ColourReset}")

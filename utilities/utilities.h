@@ -24,3 +24,5 @@ std::string getCellmlElementTypeFromEnum(libcellml::CellmlElementType t);
 std::string getIssueLevelFromEnum(libcellml::Issue::Level myLevel);
 
 void solveWithEuler(double stepSize, int stepCount, std::string outFileName);
+
+bool makeDirectory(const std::string &sPath);

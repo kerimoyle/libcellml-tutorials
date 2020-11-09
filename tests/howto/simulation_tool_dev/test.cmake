@@ -2,7 +2,10 @@
 # If you want to compare what's written to the console, then include a file named 'stdout'
 # with the expected console output.
 set(output_files 
-    stdout  
+    stdout
+    sineComparisonExample.c
+    sineComparisonExample.py
+    sineComparisonExample.h
 )
 set(test_to_run simulationToolDev)
 
