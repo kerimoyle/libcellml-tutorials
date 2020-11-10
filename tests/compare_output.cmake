@@ -75,7 +75,7 @@ if(${error_count} GREATER 0)
     file(APPEND ${all_logs}
             "Failed: ${error_count} files do not match.\n\n"
         )
-    message("${Magenta}[  FAILED  ] ${TEST} ${executable} ${ColourReset}")
+    message("${Magenta}[  FAILED  ]${ColourReset} ${TEST}.${TEST_EXE}")
 else()
     file(APPEND ${all_logs}
             "All tests passed successfully."

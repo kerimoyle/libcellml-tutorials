@@ -87,7 +87,7 @@ foreach(t ${test_list})
             file(APPEND ${report_file} 
                 "${test_to_run} : FAILED\n\n${log}\n\n"
             )
-            list(APPEND global_error_list "${Magenta}[  FAILED  ]${ColourReset} ${test_to_run}.${test}")
+            string(APPEND global_error_list "${Magenta}[  FAILED  ]${ColourReset} ${test_to_run}.${test}\n")
         endif()
 
     endforeach()
@@ -108,9 +108,7 @@ else()
     message("${BoldGreen}[  PASSED  ]${ColourReset} Tests complete.")
 endif()
 
-foreach(t ${global_error_list})
-    message("${t}")
-endforeach()
+message(${global_error_list})
 message("")
 
 
