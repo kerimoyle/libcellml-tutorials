@@ -7,7 +7,7 @@
         [1]: ms
         [2]: per_ms
         [3]: per_mV_ms
-        [4]: microA_per_cm2  I AM DIFFERENT!!!
+        [4]: microA_per_cm2
     COMPONENTS: 4 components
         [0]: controller <--- imported from: 'controller' in 'CircularControllerReference.cellml'
             VARIABLES: 2 variables

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <model xmlns="http://www.cellml.org/cellml/2.0#" name="GateModel">
   <units name="ms">
-    <unit prefix="milli" units="second"/>  I AM DIFFERENT!!!
+    <unit prefix="milli" units="second"/>
   </units>
   <units name="per_ms">
     <unit exponent="-1" prefix="milli" units="second"/>

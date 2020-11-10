@@ -55,14 +55,15 @@ foreach(file_name ${FILES})
         file(READ ${log} errors)
 
         if("${errors}" STREQUAL "")
-            file(APPEND ${all_logs} 
-                "OK: ${file_name}\n\n"
-            )
             file(REMOVE ${log})
         else()
             file(APPEND ${all_logs} 
-                    "ERROR: ${file}\n    See ${log} for details.\n\n"
+                    "ERROR: ${file_name}\n"
                 )
+            file(APPEND ${all_logs} 
+                "${errors}"
+            )
+            file(APPEND ${all_logs} "\n")
             math(EXPR error_count "${error_count}+1")
             message("                ERROR: ${file_name} does not match exemplar.")
         endif()
@@ -72,9 +73,9 @@ foreach(file_name ${FILES})
 endforeach()
 
 if(${error_count} GREATER 0)
-    file(APPEND ${all_logs}
-            "Failed: ${error_count} files do not match.\n\n"
-        )
+    # file(APPEND ${all_logs}
+    #         "Failed: ${error_count} files do not match.\n\n"
+    #     )
     message("${Magenta}[  FAILED  ]${ColourReset} ${TEST}.${TEST_EXE}")
 else()
     file(APPEND ${all_logs}

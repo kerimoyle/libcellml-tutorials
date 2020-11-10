@@ -26,6 +26,9 @@ set(failed_count 0)
 set(passed_count 0)
 set(global_error_list "")
 
+set(report_file "${CMAKE_BINARY_DIR}/test_report.diff")
+file(WRITE ${report_file} "")
+
 # Run through all tests.
 foreach(t ${test_list})
 
@@ -38,10 +41,6 @@ foreach(t ${test_list})
 
     list(LENGTH SRC_CPP num)
     message("${Green}[----------] ${num} tests in ${TEST_GROUP_NAME}")
-
-    # Clear previous report file.
-    set(report_file "${WORKING_PATH}/test_report.txt")
-    file(WRITE ${report_file} "")
 
     set(error_count 0)
 
@@ -85,8 +84,14 @@ foreach(t ${test_list})
         else()
             math(EXPR failed_count "${failed_count}+1")
             file(APPEND ${report_file} 
-                "${test_to_run} : FAILED\n\n${log}\n\n"
+                "\n[  FAILED  ] ${TEST_GROUP_NAME}/${test_to_run}/${test}\n"
             )
+            foreach(line ${log_list})
+                file(APPEND ${report_file}
+                    "${line}\n"
+                )
+            endforeach()
+
             string(APPEND global_error_list "${Magenta}[  FAILED  ]${ColourReset} ${test_to_run}.${test}\n")
         endif()
 
@@ -108,7 +113,8 @@ else()
     message("${BoldGreen}[  PASSED  ]${ColourReset} Tests complete.")
 endif()
 
-message(${global_error_list})
+if(${failed_count} GREATER 0)
+    message(${global_error_list})
+    message("See ${CMAKE_BINARY_DIR}/test_report.diff for details of failed tests.")
+endif()
 message("")
-
-
