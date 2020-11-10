@@ -8,6 +8,7 @@ cmake_policy(SET CMP0007 NEW)
 set(INSTALL_PREFIX "" CACHE PATH "Please enter the path to the libCellML install directory using the syntax -DINSTALL_PREFIX=your_path")
 
 set(TEST_LIST 
+    test_hh_tutorials.cmake
     test_howto.cmake
     test_tutorials.cmake
 )

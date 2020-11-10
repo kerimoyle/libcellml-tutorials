@@ -1,0 +1,92 @@
+----------------------------------------------------------
+   STEP 1: Parse the existing membrane model              
+----------------------------------------------------------
+ MODEL: 'MembraneModel'
+    UNITS: 5 custom units
+        [0]: mV
+        [1]: ms
+        [2]: mS_per_cm2
+        [3]: microA_per_cm2
+        [4]: microF_per_cm2
+    COMPONENTS: 2 components
+        [0]: controller <--- imported from: 'controller' in 'MembraneModelController.cellml'
+            VARIABLES: 2 variables
+                [0]: i_stim
+                      └──> membrane:i_stim [microA_per_cm2]
+                [1]: t
+                      └──> membrane:t [ms]
+        [1]: membrane
+            VARIABLES: 2 variables
+                [0]: t [ms]
+                      └──> membraneEquations:t [ms], controller:t
+                [1]: i_stim [microA_per_cm2]
+                      └──> membraneEquations:i_stim [microA_per_cm2], controller:i_stim
+            COMPONENT membrane has 2 child components:
+                [0]: membraneEquations
+                    VARIABLES: 8 variables
+                        [0]: V [mV]
+                              └──> sodiumChannel:V, potassiumChannel:V, leakage:V, membraneParameters:V [mV]
+                        [1]: t [ms]
+                              └──> sodiumChannel:t, potassiumChannel:t, membrane:t [ms]
+                        [2]: i_K [microA_per_cm2]
+                              └──> potassiumChannel:i_K
+                        [3]: i_Na [microA_per_cm2]
+                              └──> sodiumChannel:i_Na
+                        [4]: i_L [microA_per_cm2]
+                              └──> leakage:i_L
+                        [5]: i_stim [microA_per_cm2]
+                              └──> membrane:i_stim [microA_per_cm2]
+                        [6]: i_tot [microA_per_cm2]
+                        [7]: Cm [microF_per_cm2]
+                              └──> membraneParameters:Cm [microF_per_cm2]
+                    COMPONENT membraneEquations has 3 child components:
+                        [0]: sodiumChannel <--- imported from: 'sodiumChannel' in 'SodiumChannelModel.cellml'
+                            VARIABLES: 5 variables
+                                [0]: t
+                                      └──> membraneEquations:t [ms]
+                                [1]: i_Na
+                                      └──> membraneEquations:i_Na [microA_per_cm2]
+                                [2]: E_Na
+                                [3]: g_Na
+                                [4]: V
+                                      └──> membraneEquations:V [mV]
+                        [1]: potassiumChannel <--- imported from: 'potassiumChannel' in 'PotassiumChannelModel.cellml'
+                            VARIABLES: 5 variables
+                                [0]: t
+                                      └──> membraneEquations:t [ms]
+                                [1]: i_K
+                                      └──> membraneEquations:i_K [microA_per_cm2]
+                                [2]: g_K
+                                [3]: E_K
+                                [4]: V
+                                      └──> membraneEquations:V [mV]
+                        [2]: leakage <--- imported from: 'leakage' in 'LeakageModel.cellml'
+                            VARIABLES: 4 variables
+                                [0]: i_L
+                                      └──> membraneEquations:i_L [microA_per_cm2]
+                                [1]: g_L
+                                [2]: E_L
+                                [3]: V
+                                      └──> membraneEquations:V [mV]
+                [1]: membraneParameters
+                    VARIABLES: 2 variables
+                        [0]: V [mV], initial = -75
+                              └──> membraneEquations:V [mV]
+                        [1]: Cm [microF_per_cm2], initial = 1
+                              └──> membraneEquations:Cm [microF_per_cm2]
+----------------------------------------------------------
+   STEP 2: Resolve the imports and flatten                
+----------------------------------------------------------
+Recorded 0 issues!
+
+----------------------------------------------------------
+   STEP 3: Validate and analyse the flattened model       
+----------------------------------------------------------
+Recorded 0 issues!
+
+Recorded 0 issues!
+
+----------------------------------------------------------
+   STEP 4: Generate code and output                       
+----------------------------------------------------------
+The generated model code has been written to HodgkinHuxleyModel.[cpp,h]

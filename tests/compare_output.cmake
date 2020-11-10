@@ -14,13 +14,12 @@
 include(colours.cmake)
 
 get_filename_component(abs ${WORKING_PATH} ABSOLUTE)
+
 set(test_dir "${abs}/${TEST}")
-
 set(expected_dir "${EXPECTED_OUTPUT_PATH}/${TEST}")
-
 set(executable "./${TEST_EXE}")
 
-message("     - testing ${executable}:")
+message("${Green}[ RUN      ]${ColourReset} ${TEST}.${TEST_EXE}")
 
 set(all_logs "${test_dir}/logs/${TEST}_report.txt")
 
@@ -56,7 +55,6 @@ foreach(file_name ${FILES})
         file(READ ${log} errors)
 
         if("${errors}" STREQUAL "")
-            message("       ${Green}${file_name}: OK${ColourReset}")
             file(APPEND ${all_logs} 
                 "OK: ${file_name}\n\n"
             )
@@ -66,8 +64,9 @@ foreach(file_name ${FILES})
                     "ERROR: ${file}\n    See ${log} for details.\n\n"
                 )
             math(EXPR error_count "${error_count}+1")
-            message("       ${Magenta}${file_name}: ERRORS${ColourReset}")
+            message("                ERROR: ${file_name} does not match exemplar.")
         endif()
+
     endif()
 
 endforeach()
@@ -76,8 +75,10 @@ if(${error_count} GREATER 0)
     file(APPEND ${all_logs}
             "Failed: ${error_count} files do not match.\n\n"
         )
+    message("${Magenta}[  FAILED  ] ${TEST} ${executable} ${ColourReset}")
 else()
     file(APPEND ${all_logs}
             "All tests passed successfully."
         )
+    message("${Green}[       OK ]${ColourReset} ${TEST}.${TEST_EXE}")
 endif()

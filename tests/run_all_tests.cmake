@@ -17,6 +17,15 @@ include(colours.cmake)
 # Splitting command line string.  NB: this means that files cannot have spaces in their names.
 string(REPLACE " " ";" test_list ${TEST_LIST})
 
+list(LENGTH test_list num_sets)
+
+message("")
+message("${Green}[==========]${ColourReset} Running ${num_sets} sets of tests.")
+
+set(failed_count 0)
+set(passed_count 0)
+set(global_error_list "")
+
 # Run through all tests.
 foreach(t ${test_list})
 
@@ -26,7 +35,9 @@ foreach(t ${test_list})
     include(${t})
 
     set(EXPECTED_OUTPUT_PATH "${TEST_ROOT}/${TEST_GROUP_NAME}")
-    message(STATUS "Expected output path: ${EXPECTED_OUTPUT_PATH}")
+
+    list(LENGTH SRC_CPP num)
+    message("${Green}[----------] ${num} tests in ${TEST_GROUP_NAME}")
 
     # Clear previous report file.
     set(report_file "${WORKING_PATH}/test_report.txt")
@@ -36,13 +47,13 @@ foreach(t ${test_list})
 
     foreach(test_src ${SRC_CPP}) 
 
+        get_filename_component(test "${test_src}" NAME_WE)
         get_filename_component(temp "${test_src}/.." ABSOLUTE)
         get_filename_component(test_to_run "${temp}" NAME) # Gets the folder containing the cpp file as the test name
 
-        message(STATUS "Lauching test in directory: ${test_to_run}")
-
         set(script_to_run "${EXPECTED_OUTPUT_PATH}/${test_to_run}/test.cmake")
         if(NOT EXISTS ${script_to_run})
+            math(EXPR error_count "${error_count}+1")
             message(STATUS "    ${Magenta}ERROR: Cannot find test.cmake file at location: ${EXPECTED_OUTPUT_PATH}/${test_to_run}${ColourReset}")
             continue()
         endif()
@@ -70,22 +81,36 @@ foreach(t ${test_list})
         list(GET log_list ${list_last} log)
 
         if("${log}" STREQUAL "All tests passed successfully.")
-            file(APPEND ${report_file} 
-                "${test_to_run} : PASSED\n\n"
-            )
+            math(EXPR passed_count "${passed_count}+1")
         else()
-            math(EXPR error_count "${error_count}+1")
+            math(EXPR failed_count "${failed_count}+1")
             file(APPEND ${report_file} 
                 "${test_to_run} : FAILED\n\n${log}\n\n"
             )
+            list(APPEND global_error_list "${Magenta}[  FAILED  ]${ColourReset} ${test_to_run}.${test}")
         endif()
 
     endforeach()
+
+    message("${Green}[----------]${ColourReset} ${num} tests ran.")
+    message("")
+
 endforeach()
 
-if(${error_count} GREATER 0)
-    message(STATUS "${BoldMagenta}Tests finished: ${error_count} errors.${ColourReset}")
+math(EXPR total_count "${passed_count}+${failed_count}")
+message("${Green}[==========]${ColourReset} ${total_count} tests in ${num_sets} sets ran.")
+message("${Green}[  PASSED  ]${ColourReset} ${passed_count} tests.")
+if(${failed_count} GREATER 1)
+    message("${Magenta}[  FAILED  ]${ColourReset} ${failed_count} tests, listed below:")
+elseif(${failed_count} GREATER 0)
+    message("${Magenta}[  FAILED  ]${ColourReset} ${failed_count} test, listed below:")
 else()
-    message(STATUS "${BoldGreen}Tests finished: ${error_count} errors.${ColourReset}")
+    message("${BoldGreen}[  PASSED  ]${ColourReset} Tests complete.")
 endif()
+
+foreach(t ${global_error_list})
+    message("${t}")
+endforeach()
+message("")
+
 

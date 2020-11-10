@@ -1,15 +1,15 @@
 # --------------- END_TO_END TESTING -------------------------
 
 # Set the root for searching for files to test.
-set(TEST_GROUP_NAME "howto")
+set(TEST_GROUP_NAME "hh_tutorials")
 
 # Make a list of the files that need to be built and run.
 set(SRC_CPP 
-    "add_things/addThings.cpp"
-    "annotation_tool_dev/annotationToolDev.cpp"
-    "import_debugger/importDebugger.cpp"
-    "model_debugger/modelDebugger.cpp"
-    "simulation_tool_dev/simulationToolDev.cpp"
+    "tut1/createGateModel_completed.cpp"
+    "tut2/createPotassiumChannelModel_completed.cpp"
+    "tut3/debugSodiumChannelModel_completed.cpp"
+    "tut4/generateMembraneModel_completed.cpp"
+    # "tut5/solveGeneratedCode_completed.cpp"
 )
 
 # Make a list of extra source files which need to be included in the 
@@ -25,7 +25,7 @@ set(EXTRA_H
 )
 
 # These are the defaults. They can be changed.
-set(ORIG_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/howto/code")
+set(ORIG_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tutorials/hh_tutorials")
 set(WORKING_PATH "${CMAKE_BINARY_DIR}/${TEST_GROUP_NAME}")
 set(EXPECTED_OUTPUT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/tests/${TEST_GROUP_NAME}")
 
