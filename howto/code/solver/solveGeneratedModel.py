@@ -4,7 +4,7 @@
     This script uses Euler updates to solve a set of differential equations.
 
     Usage:
-        python3 simplesolver.py:
+        python3 solveGeneratedModel.py:
             -m generated file to run
             -n number of steps to take
             -dt step size to use.

@@ -1040,7 +1040,7 @@ This language choice is called the "profile", and is stored in a :code:`Generato
 
 .. container:: dothis
     
-    **5.e** Retrieve the Python implementation code (there is no header file) and write to a *.py file.
+    **5.e** Retrieve the Python implementation code (there is no header file) and write to a :code:`*.py` file.
 
 .. container:: toggle
 

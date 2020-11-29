@@ -14,18 +14,18 @@ For more general debugging use cases, please see the :ref:`Model debugger<users_
 |   ├ :download:`CMakeLists.txt<../code/import_debugger/CMakeLists.txt>`
 |   ├ :download:`example_importDebugger.cpp<../code/import_debugger/importDebugger.cpp>`
 |   └ resources/
-|       ├ :download:`importerExample1.cellml<../code/import_debugger/importerExample1.cellml>`
-|       ├ :download:`importerExample2a.cellml<../code/import_debugger/importerExample2a.cellml>`
-|       ├ :download:`importerExample2b.cellml<../code/import_debugger/importerExample2b.cellml>`
-|       └ :download:`importerExample3.cellml<../code/import_debugger/importerExample3.cellml>`
+|       ├ :download:`importerExample1.cellml<../code/import_debugger/resources/importExample1.cellml>`
+|       ├ :download:`importerExample2a.cellml<../code/import_debugger/resources/importExample2a.cellml>`
+|       ├ :download:`importerExample2b.cellml<../code/import_debugger/resources/importExample2b.cellml>`
+|       └ :download:`importerExample3.cellml<../code/import_debugger/resources/importExample3.cellml>`
 
 | **Python resources**
 |   ├ :download:`example_importDebugger.py<../code/import_debugger/importDebugger.py>`
 |   └ resources/
-|       ├ :download:`importerExample1.cellml<../code/import_debugger/importerExample1.cellml>`
-|       ├ :download:`importerExample2a.cellml<../code/import_debugger/importerExample2a.cellml>`
-|       ├ :download:`importerExample2b.cellml<../code/import_debugger/importerExample2b.cellml>`
-|       └ :download:`importerExample3.cellml<../code/import_debugger/importerExample3.cellml>`
+|       ├ :download:`importerExample1.cellml<../code/import_debugger/resources/importExample1.cellml>`
+|       ├ :download:`importerExample2a.cellml<../code/import_debugger/resources/importExample2a.cellml>`
+|       ├ :download:`importerExample2b.cellml<../code/import_debugger/resources/importExample2b.cellml>`
+|       └ :download:`importerExample3.cellml<../code/import_debugger/resources/importExample3.cellml>`
 
 
 Parse an existing CellML model 

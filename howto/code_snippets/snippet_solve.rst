@@ -10,18 +10,18 @@
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+      .. literalinclude:: ../code/solver/solveGeneratedModel.cpp
         :language: c++
         :start-after: // STEP 5
-        :end-before: // STEP 6
+        :end-before: // END
 
-      Full context: :download:`example_solveGeneratedModel.cpp<../code/example_solveGeneratedModel.cpp>`
+      Full context: :download:`example_solveGeneratedModel.cpp<../code/solver/solveGeneratedModel.cpp>`
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :start-after: # STEP 5
         :end-before: # END
       
-      Full context: :download:`example_solveGeneratedModel.py<../code/example_solveGeneratedModel.py>`
+      Full context: :download:`example_solveGeneratedModel.py<../code/solver/solveGeneratedModel.py>`

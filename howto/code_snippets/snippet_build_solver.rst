@@ -1,4 +1,4 @@
-.. _snippet_allocate_arrays:
+.. _snippet_build_solver:
 
 .. container:: toggle
 
@@ -12,16 +12,16 @@
 
       This file should be saved as a CMakeLists.txt file for generation with CMake.
 
-      .. literalinclude:: ../code/CMakeLists_Solver.txt
+      .. literalinclude:: ../code/solver/CMakeLists.txt
         :language: cmake
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :linenos:
         :lineno-start: 67
         :start-after: # MODULE FROM FILE
         :end-before: # END MODULE FROM FILE
       
-      Full context: :download:`example_solveGeneratedModel.py<../code/example_solveGeneratedModel.py>`
+      Full context: :download:`solveGeneratedModel.py<../code/solver/solveGeneratedModel.py>`

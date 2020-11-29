@@ -24,7 +24,7 @@ Hodgkin-Huxley 4: Generating code from a model
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`generateMembraneModel.cpp<generateMembraneModel.cpp>` Either the skeleton code, or ..
     - :download:`generateMembraneModel_completed.cpp<generateMembraneModel_completed.cpp>` the completed tutorial code; and
-    - :download:`utilities.cpp<code/utilities.cpp>` and :download:`utilities.h<code/utilities.h>` Helper functions.
+    - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
 .. container:: shortlist
 
@@ -32,6 +32,8 @@ Hodgkin-Huxley 4: Generating code from a model
 
     - :download:`generateMembraneModel.py<generateMembraneModel.py>` Either the skeleton code, or ..
     - :download:`generateMembraneModel_completed.py<generateMembraneModel_completed.py>` the completed tutorial code;
+    - :download:`utilities.py<../code/utilities.py>` Helper functions.
+
 
 .. container:: shortlist
 
@@ -270,11 +272,11 @@ Two profiles are already defined; for C++ and for Python.
     .. literalinclude:: generateMembraneModel_completed.cpp
         :language: c++
         :start-at: //  4.a
-        :end-before: //  end 4.b
+        :end-before: //  end 4.a
 
     .. literalinclude:: generateMembraneModel_completed.cpp
         :language: c++
-        :start-at: //  4.c
+        :start-at: //  4.b
         :end-before: //  end 4.c
 
 .. container:: toggle
@@ -286,12 +288,12 @@ Two profiles are already defined; for C++ and for Python.
     .. literalinclude:: generateMembraneModel_completed.py
         :language: python
         :start-at: #  4.a
-        :end-before: #  end 4.b
+        :end-before: #  4.b
 
     .. literalinclude:: generateMembraneModel_completed.py
         :language: python
-        :start-at: #  4.c
-        :end-before: #  end 4.c
+        :start-at: #  4.b
+        :end-before: #  4.d
 
 Instead of submitting a :code:`Model` item (as we do for all other classes), the :code:`Generator` class will work from something which has already been processed by the :code:`Analyser` class: an :code:`AnalyserModel` object.
     
@@ -347,18 +349,18 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
     .. literalinclude:: generateMembraneModel_completed.py
         :language: python
         :start-at: #  4.d
-        :end-before: #  end 4.d
+        :end-before: #  4.e
 
 .. container:: dothis
 
     **4.f** Implementation code is the bulk of the model, and contains all the equations, variables, units etc.
-    This is needed for both of the available profiles, and would normally be stored in a *.cpp or *.py file.  
+    This is needed for both of the available profiles, and would normally be stored in a :code:`*.cpp` or :code:`*.py` file.  
     Use the :code:`implementationCode` function to return the implementation code as a string, and write it to a file with the appropriate extension.
 
 .. container:: dothis
 
     **4.g** (C only) Interface code is the header needed by the C profile to define data types.
-    Use the :code:`interfaceCode` function to return interface code as a string and write it to a *.h header file.
+    Use the :code:`interfaceCode` function to return interface code as a string and write it to a :code:`*.h` header file.
     This needs to be the same filename as you specified in step 4.e above.
 
 .. container:: toggle

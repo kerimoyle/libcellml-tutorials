@@ -1,6 +1,5 @@
 .. _tutorial4:
 
-
 Tutorial 4: Using generated code to run a simulation
 ====================================================
 
@@ -13,7 +12,6 @@ This tutorial assumes that you are comfortable with:
 
 - Interacting with a model and its entities using the API (see :ref:`Tutorial 1<tutorial1>` and :ref:`Tutorial 2<tutorial2>`); and
 - Using the :code:`Generator` functionality to output files in C or Python (see :ref:`Tutorial 3<tutorial3>`).
-
 
 Requirements
 ------------
@@ -52,7 +50,7 @@ Either :download:`download the whole folder<tutorial4.zip>`, or:
 Overview
 --------
 During this tutorial you will take the code you generated during :ref:`Tutorial 3<tutorial3>` which represented the population dynamics of two species - a predator, the sharks, and their prey, the fish - and investigate the files' contents.
-Once the :ref:`Generator` output is understood, you will use a simple numerical integrator to solve the system of equations which governs the model's behaviour.
+Once the :code:`Generator` output is understood, you will use a simple numerical integrator to solve the system of equations which governs the model's behaviour.
 
 Step 1: Link to the generated code
 ----------------------------------
@@ -65,15 +63,15 @@ There are necessarily big differences between C++ and Python for this tutorial!
 
         .. container:: dothis
         
-            **1.a** Enter the path to the generated header/interface *.h file in the #include block above.
+            **1.a** Enter the path to the generated header/interface :code:`*.h` file in the #include block above.
 
         .. container:: dothis
         
-            **1.b** Add the name and path of the implementation *.cpp file in the CMakeLists.txt file, (or whatever your local toolchain requires).
+            **1.b** Add the name and path of the implementation :code:`*.cpp` file in the CMakeLists.txt file, (or whatever your local toolchain requires).
 
         .. container:: dothis
         
-            **1.c** Open the implementation file *.cpp file and verify that the #include statement in line 3 has the filename of your interface *.h file.  
+            **1.c** Open the implementation file :code:`*.cpp` file and verify that the #include statement in line 3 has the filename of your interface :code:`*.h` file.  
             Amend if needed and close the file.
 
         .. container:: dothis
@@ -117,7 +115,7 @@ There are necessarily big differences between C++ and Python for this tutorial!
 Step 2: Access the variables in the generated files
 ---------------------------------------------------
 Probably the best way to understand the contents of the generated files is to open them and look!
-The implementation file (*.cpp) has two types of items:
+The implementation file :code:`*.cpp` has two types of items:
 
 - information structures (in all-caps); and
 - access functions.
@@ -267,6 +265,7 @@ Step 3: Access the functions in the generated files
     - the variables (which here includes constants)
     - the states (the integrated variables)
     - the rates 
+    
     Create and initialise a variable of integration, time. 
 
 .. container:: toggle

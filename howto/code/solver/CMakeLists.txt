@@ -31,7 +31,7 @@ configure_file("${INPUTDIR}/${INPUTNAME}.h" "${CMAKE_BINARY_DIR}/${INPUTNAME}.h"
 configure_file("${INPUTDIR}/${INPUTNAME}.h" "${CMAKE_BINARY_DIR}/model.h" COPYONLY)
 
 set (PROJECT_SRC
-        simpleSolver.cpp
+        solveGeneratedModel.cpp
         modelToSolve.cpp
      )
 

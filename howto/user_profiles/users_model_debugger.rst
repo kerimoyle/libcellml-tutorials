@@ -13,14 +13,14 @@ This example walks through the process of using the :code:`Validator` and :code:
 |    ├ :download:`CMakeLists.txt<../code/model_debugger/CMakeLists.txt>`
 |    ├ :download:`example_modelDebugger.cpp<../code/model_debugger/modelDebugger.cpp>`
 |    └ resources/
-|        ├ :download:`debugAnalysisExample.cellml<../code/resources/debugAnalysisExample.cellml>`
-|        └ :download:`debugAnalysisExampleImport.cellml<../code/resources/debugAnalysisExampleImport.cellml>`
+|        ├ :download:`debugAnalysisExample.cellml<../code/model_debugger/debugAnalysisExample.cellml>`
+|        └ :download:`debugAnalysisExampleImport.cellml<../code/model_debugger/debugAnalysisExampleImport.cellml>`
 
 | **Python resources**
 |    ├ :download:`example_modelDebugger.py<../code/model_debugger/modelDebugger.py>`
 |    └ resources/
-|        ├ :download:`debugAnalysisExample.cellml<../code/resources/debugAnalysisExample.cellml>`
-|        └ :download:`debugAnalysisExampleImport.cellml<../code/resources/debugAnalysisExampleImport.cellml>`
+|        ├ :download:`debugAnalysisExample.cellml<../code/model_debugger/debugAnalysisExample.cellml>`
+|        └ :download:`debugAnalysisExampleImport.cellml<../code/model_debugger/debugAnalysisExampleImport.cellml>`
 
 Parse an existing CellML model 
 ------------------------------

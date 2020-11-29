@@ -1,5 +1,7 @@
 .. _solve_model:
 
+:orphan:
+
 Interact with generated code
 ============================
 

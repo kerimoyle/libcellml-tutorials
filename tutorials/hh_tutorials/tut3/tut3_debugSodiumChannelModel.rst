@@ -21,7 +21,7 @@ Hodgkin-Huxley 3: Debugging a model
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`debugSodiumChannelModel.cpp<debugSodiumChannelModel.cpp>` Either the skeleton code, or ..
     - :download:`debugSodiumChannelModel_completed.cpp<debugSodiumChannelModel_completed.cpp>` the completed tutorial code; and
-    - :download:`utilities.cpp<code/utilities.cpp>` and :download:`utilities.h<code/utilities.h>` Helper functions.
+    - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
 .. container:: shortlist
 
@@ -50,7 +50,7 @@ This tutorial looks at how a "broken" model can be investigated and debugged usi
 Step 1: Parse the existing sodium channel model
 -----------------------------------------------
 The :code:`Parser` class is used to deserialise a CellML string into a :code:`Model` instance.
-This means that you're responsible for finding, opening and reading the *.cellml file into a single string.
+This means that you're responsible for finding, opening and reading the :code:`*.cellml` file into a single string.
 The parser will then read that string and return a model.
 
 .. container:: dothis
@@ -377,10 +377,11 @@ As with 3.a, here we have more than one issue generated from the same cause: in 
     
 Each issue generated contains a pointer to the item to which it refers. 
 We can retrieve the affected item directly from the issue in one of two ways:
-     - retrieving an :code:`AnyItem` structure (whose "first" attribute is an enum of the :code:`CellmlElementType`; 
-       and "second" attribute is an std::any cast of the item itself); and casting it appropriately, or
-     - since we know that the type of item in this error is a :code:`VARIABLE`, we can call the convenience method Issue::variable() to return the variable which needs attention.
- (Of course you could retrieve it using the name of its parent component and its name too - this is just another way!)
+
+- retrieving an :code:`AnyItem` structure (whose "first" attribute is an enum of the :code:`CellmlElementType`; 
+  and "second" attribute is an std::any cast of the item itself); and casting it appropriately, or
+- since we know that the type of item in this error is a :code:`VARIABLE`, we can call the convenience method :code:`Issue::variable()` to return the variable which needs attention.
+  (Of course you could retrieve it using the name of its parent component and its name too - this is just another way!)
 
 .. container:: dothis
 

@@ -12,14 +12,14 @@ This example works through that process.
 
 | **C++ resources**
 |    ├ :download:`CMakeLists.txt<../code/simulation_tool_dev/CMakeLists.txt>`
-|    ├ :download:`example_simulationToolDev.cpp<../code/example_simulationToolDev.cpp>`
+|    ├ :download:`example_simulationToolDev.cpp<../code/simulation_tool_dev/simulationToolDev.cpp>`
 |    └ resources/
-|        └ :download:`simulationExample.cellml<../code/resources/simulationExample.cellml>`
+|        └ :download:`simulationExample.cellml<../code/simulation_tool_dev/simulationExample.cellml>`
 
 | **Python resources**
-|    ├ :download:`example_simulationToolDev.py<../code/example_simulationToolDev.py>`
+|    ├ :download:`example_simulationToolDev.py<../code/simulation_tool_dev/simulationToolDev.py>`
 |    └ resources/
-|        └ :download:`simulationExample.cellml<../code/resources/simulationExample.cellml>`
+|        └ :download:`simulationExample.cellml<../code/simulation_tool_dev/simulationExample.cellml>`
 
 Parse an existing model from a file
 -----------------------------------
@@ -31,14 +31,14 @@ You'll need to read the file into a string, and then use the string as input to 
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_simulationToolDev.cpp
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
         :language: c++
         :start-after: // STEP 1
         :end-before: // STEP 2
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_simulationToolDev.py
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
         :language: python
         :start-after: # STEP 1
         :end-before: # STEP 2
@@ -56,14 +56,14 @@ The :code:`Importer` class supports all functionality to do with imports, and co
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_simulationToolDev.cpp
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
         :language: c++
         :start-after: // STEP 2
         :end-before: // STEP 3
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_simulationToolDev.py
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
         :language: python
         :start-after: # STEP 2
         :end-before: # STEP 3
@@ -77,14 +77,14 @@ Thus even if a model is valid, it could still be the equivalent of correctly-spe
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_simulationToolDev.cpp
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
         :language: c++
         :start-after: // STEP 3
         :end-before: // STEP 4
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_simulationToolDev.py
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
         :language: python
         :start-after: # STEP 3
         :end-before: # STEP 4
@@ -112,14 +112,14 @@ There are four steps to code generation:
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_simulationToolDev.cpp
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
         :language: c++
         :start-after: // STEP 4
         :end-before: // STEP 5
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_simulationToolDev.py
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
         :language: python
         :start-after: # STEP 4
         :end-before: # STEP 5

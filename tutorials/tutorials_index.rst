@@ -26,11 +26,11 @@ It is aimed at users who are already familiar with the concept of CellML and mod
     :maxdepth: 2
     :titlesonly:
 
-    hh_tutorials/tut1_createGateModel.rst
-    hh_tutorials/tut2_createPotassiumChannelModel.rst
-    hh_tutorials/tut3_debugSodiumChannelModel.rst
-    hh_tutorials/tut4_generateMembraneModel.rst
-    hh_tutorials/tut5_solveGeneratedCode.rst
+    hh_tutorials/tut1/tut1_createGateModel.rst
+    hh_tutorials/tut2/tut2_createPotassiumChannelModel.rst
+    hh_tutorials/tut3/tut3_debugSodiumChannelModel.rst
+    hh_tutorials/tut4/tut4_generateMembraneModel.rst
+    hh_tutorials/tut5/tut5_solveGeneratedCode.rst
     
 
 

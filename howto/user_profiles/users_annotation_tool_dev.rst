@@ -18,12 +18,12 @@ The class makes use of casting to and from the (C++ only) :cpp_reference:`std::a
 |    ├ :download:`CMakeLists.txt<../code/annotation_tool_dev/CMakeLists.txt>`
 |    ├ :download:`annotationToolDev.cpp<../code/annotation_tool_dev/annotationToolDev.cpp>`
 |    └ resources/
-|        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationToolDev.cellml>`
+|        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
 
 | **Python resources**
 |    ├ :download:`annotationToolDev.py<../code/annotation_tool_dev/annotationToolDev.py>`
 |    └ resources/
-|        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationToolDev.cellml>`
+|        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
 
 Parse an existing CellML model 
 ------------------------------

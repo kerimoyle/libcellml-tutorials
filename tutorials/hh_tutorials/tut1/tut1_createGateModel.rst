@@ -19,7 +19,7 @@ Hodgkin-Huxley 1: Creating a model using the API
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`createGateModel.cpp<createGateModel.cpp>` Either the skeleton code, or ..
     - :download:`createGateModel_completed.cpp<createGateModel_completed.cpp>` the completed tutorial code; and
-    - :download:`utilities.cpp<code/utilities.cpp>` and :download:`utilities.h<code/utilities.h>` Helper functions.
+    - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
 .. container:: shortlist
 
@@ -109,7 +109,7 @@ All other components will then need to be added to this component, rather than t
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  1.a
         :end-before: // end 1
@@ -120,7 +120,7 @@ All other components will then need to be added to this component, rather than t
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  1.a
         :end-before: # end 1
@@ -154,7 +154,7 @@ In this step we'll construct the equations component.
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  2.a
         :end-before: //  2.c
@@ -165,7 +165,7 @@ In this step we'll construct the equations component.
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  2.a
         :end-before: #  2.c
@@ -206,7 +206,7 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  2.c
         :end-before: // end 2
@@ -217,7 +217,7 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  2.c
         :end-before: # end 2
@@ -286,7 +286,7 @@ Once the mathematics has been added to the component, and the component to the m
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  3.a
         :end-before: // end 3.a
@@ -297,7 +297,7 @@ Once the mathematics has been added to the component, and the component to the m
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  3.a
         :end-before: # end 3.a
@@ -345,7 +345,7 @@ The simplest way is to print the descriptions to the terminal.
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  3.b
         :end-before: //  end 3
@@ -356,7 +356,7 @@ The simplest way is to print the descriptions to the terminal.
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  3.b
         :end-before: #  end 3
@@ -417,7 +417,7 @@ These must be created, named, and added to their parent component.
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.a 
         :end-before: //  4.b
@@ -428,7 +428,7 @@ These must be created, named, and added to their parent component.
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  4.a
         :end-before: #  4.b
@@ -452,7 +452,7 @@ These must be created, named, and added to their parent component.
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  4.b 
         :end-before: //  end 4
@@ -463,7 +463,7 @@ These must be created, named, and added to their parent component.
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  4.b
         :end-before: #  end 4
@@ -487,11 +487,11 @@ In this example none of the units exist yet, so we need to create all of them.
 
 .. container:: shortlist
 
-The variables' units should be:
+    The variables' units should be:
 
-- t, time has units of *milliseconds*
-- X, gate status has units of *dimensionless*
-- alpha_X and beta_X, rates, have units of *per millisecond*.
+    - t, time has units of *milliseconds*
+    - X, gate status has units of *dimensionless*
+    - alpha_X and beta_X, rates, have units of *per millisecond*.
 
 .. container:: useful
 
@@ -557,7 +557,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  5.a 
         :end-before: //  5.c
@@ -568,7 +568,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  5.a
         :end-before: #  5.c
@@ -595,7 +595,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  5.c
         :end-before: //  end 5
@@ -606,7 +606,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  5.c
         :end-before: #  end 5
@@ -656,7 +656,7 @@ Step 6: Analyse the mathematical construction of the model
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  6.a
         :end-before: //  end 6.b
@@ -667,7 +667,7 @@ Step 6: Analyse the mathematical construction of the model
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  6.a
         :end-before: #  end 6.b
@@ -730,7 +730,7 @@ This is the reason for the second internal component, the *parameters* component
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  6.d
         :end-before: //  6.e
@@ -741,7 +741,7 @@ This is the reason for the second internal component, the *parameters* component
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  6.d
         :end-before: #  6.e
@@ -788,10 +788,10 @@ Two particularly useful idioms are shown below.
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
-        :start-at: //  4.e
-        :end-before: //  4.f
+        :start-at: //  6.e
+        :end-before: //  6.f
 
 .. container:: toggle
 
@@ -799,10 +799,10 @@ Two particularly useful idioms are shown below.
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
-        :start-at: #  4.e
-        :end-before: #  4.f
+        :start-at: #  6.e
+        :end-before: #  6.f
 
 .. code-block:: terminal
 
@@ -835,7 +835,7 @@ Two particularly useful idioms are shown below.
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  6.e
         :end-before: //  end 6
@@ -846,7 +846,7 @@ Two particularly useful idioms are shown below.
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  6.e
         :end-before: #  end 6
@@ -907,7 +907,7 @@ We need to make sure that any input and output variables are also connected into
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  7.b
         :end-before: //  7.c
@@ -918,7 +918,7 @@ We need to make sure that any input and output variables are also connected into
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  7.b
         :end-before: #  7.c
@@ -933,7 +933,7 @@ We need to make sure that any input and output variables are also connected into
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  7.c
         :end-before: //  end 7
@@ -944,7 +944,7 @@ We need to make sure that any input and output variables are also connected into
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  7.c
         :end-before: #  end 7
@@ -964,7 +964,7 @@ The :code:`Printer` class in libCellML takes the stored instance of a :code:`Mod
 
         Show C++ snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.cpp
+    .. literalinclude:: ./createGateModel_completed.cpp
         :language: c++
         :start-at: //  8.a
         :end-before: //  end 8
@@ -975,7 +975,7 @@ The :code:`Printer` class in libCellML takes the stored instance of a :code:`Mod
 
         Show Python snippet
 
-    .. literalinclude:: ../hh_tutorials/createGateModel_completed.py
+    .. literalinclude:: ./createGateModel_completed.py
         :language: python
         :start-at: #  8.a
         :end-before: #  end 8
