@@ -22,11 +22,13 @@ Tutorial 3: Create a model and generate code using the API
     - Accessing the errors produced by a validator and using them to correct the model (see :ref:`Tutorial 2<tutorial2>`); and
     - Serialising and printing a model to a CellML2 file (see :ref:`Tutorial 1<tutorial1>`).
 
+Requirements
+------------
+Either :download:`download the whole folder<tutorial3.zip>`, or:
+
 .. container:: shortlist
 
-    **Requirements (C++)**
-
-    :download:`Everything<tutorial3.zip>` Download the whole folder, or:
+    **C++**
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial3.cpp` The skeleton code; or
@@ -35,10 +37,8 @@ Tutorial 3: Create a model and generate code using the API
 
 .. container:: shortlist
 
-    **Requirements (C++)**
-
-    :download:`Everything<tutorial3.zip>` Download the whole folder, or:
-
+    **Python**
+    
     - :download:`tutorial3.py` Either the skeleton code; or
     - :download:`tutorial3_complete.py` the completed tutorial code; and
     - :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.

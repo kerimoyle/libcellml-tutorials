@@ -21,25 +21,32 @@ You'll be taking a CellML2.0 file which has some mistakes in it, using the valid
     - Navigate through the hierarchy of the model and its subsidiary elements (components, variables, units and MathML blocks); and
     - Serialise and print a :code:`Model` structure to a CellML file.
 
+
+Requirements
+------------
+Either :download:`download the whole folder<tutorial2.zip>`, or:
+
 .. container:: shortlist
 
-    **Requirements (C++)**
-    
-    :download:`Everything<tutorial2.zip>` Download the whole folder, or:
+    **C++**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building;
     - :download:`tutorial2.cpp<tutorial2.cpp>` The skeleton code or
     - :download:`tutorial2_complete.cpp<tutorial2_complete.cpp>` the completed code; and
-    - :download:`tutorial2.cellml<tutorial2.cellml>` the input CellML file.
+    - :download:`tutorial_utilities.cpp<../tutorial_utilities.cpp>` and :download:`tutorial_utilities.h<../tutorial_utilities.h>` Utility functions for use in the tutorials.
 
 .. container:: shortlist
 
-    **Requirements (Python)**
-
-    :download:`Everything<tutorial2.zip>` Download the whole folder, or:
+    **Python**
 
     - :download:`tutorial2.py` The skeleton code or
     - :download:`tutorial2_complete.py` or the completed code; and
+    - :download:`tutorial_utilities.py<../tutorial_utilities.py>` Utility functions for use in the tutorials.
+
+.. container:: shortlist
+
+    **Resources**
+
     - :download:`tutorial2.cellml<tutorial2.cellml>` the input CellML file.
 
 .. contents:: Contents
