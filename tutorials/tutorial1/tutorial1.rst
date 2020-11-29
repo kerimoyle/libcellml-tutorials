@@ -131,7 +131,7 @@ The hard work of this transformation is done by the :code:`Parser` object which 
     .. literalinclude:: tutorial1_complete.cpp
         :language: c++
         :start-at: //  1.a
-        :end-before: // end 1
+        :end-before: //  end 1
 
 .. container:: toggle
 
@@ -142,7 +142,7 @@ The hard work of this transformation is done by the :code:`Parser` object which 
     .. literalinclude:: tutorial1_complete.py
         :language: python
         :start-at: #  1.a
-        :end-before: # end 1
+        :end-before: #  end 1
 
 Now we have a *deserialised* CellML model which we can manipulate using the libCellML library.
 
@@ -179,7 +179,8 @@ For example, to find the name of the model we simply call its :code:`name()` fun
 
 .. code-block:: terminal
 
-    TODO
+    The model name is: tutorial_1_model
+    The model id is: tutorial_1_model_id_is_here
 
 The :code:`Model` itself stores two kinds of objects: a set of :code:`Units` objects, and a set of :code:`Component` objects.
 There are generic :code:`somethingCount()` functions which will return the number of :code:`Something` items within that object:
@@ -200,7 +201,7 @@ There are generic :code:`somethingCount()` functions which will return the numbe
 
 .. code-block:: terminal
 
-    TODO
+    The tutorial_1_model model has 1 component(s)
 
 Items like components and units (and later, variables) which are stored in sets can be accessed by their index as well as by their name.
 At this stage, since we don't *know* the name of the components, we'll have to use their indices to access them for printing to the terminal.
@@ -226,7 +227,9 @@ Each :code:`Component` itself (or later, :code:`Units` or :code:`Variable`) is r
 
 .. code-block:: terminal
 
-    TODO
+    The tutorial_1_model model has 1 component(s):
+        Component[0] has name: i_am_a_component
+        Component[0] has id: my_component_id
 
 :code:`Component` items in turn contain four kinds of items, these being:
 
@@ -241,17 +244,16 @@ In this tutorial we'll only look at the variables and maths.
 
     **2.d** Retrieve the number of variables inside your component, and print it to the screen.
 
-.. code-block:: terminal
-
-    TODO
-
 .. container:: dothis
 
     **2.e** Create a loop through the variables, retrieve each, and print their names to the screen.
 
 .. code-block:: terminal
 
-    TODO
+    The i_am_a_component component has 3 variable(s):
+        Variable[0] has name: a
+        Variable[1] has name: b
+        Variable[2] has name: c
 
 .. container:: dothis
 
@@ -259,7 +261,18 @@ In this tutorial we'll only look at the variables and maths.
 
 .. code-block:: terminal
 
-    TODO
+    Component i_am_a_component has a MathML string of: 
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+        <apply>
+            <eq/>
+            <ci>a</ci>
+            <apply>
+            <plus/>
+            <ci>b</ci>
+            <ci>c</ci>
+            </apply>
+        </apply>
+        </math>
 
 .. container:: toggle
 
@@ -270,7 +283,7 @@ In this tutorial we'll only look at the variables and maths.
     .. literalinclude:: tutorial1_complete.cpp
         :language: c++
         :start-at: //  2.a
-        :end-before: // end 2
+        :end-before: //  end 2
 
 .. container:: toggle
 
@@ -281,7 +294,7 @@ In this tutorial we'll only look at the variables and maths.
     .. literalinclude:: tutorial1_complete.py
         :language: python
         :start-at: #  2.a
-        :end-before: # end 2
+        :end-before: #  end 2
 
 Step 3: Serialise the model and output to a file
 ------------------------------------------------
