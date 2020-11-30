@@ -1,6 +1,6 @@
 .. _aside_units:
 
-..container:: heading3
+.. container:: heading3
 
     Understanding units
 
