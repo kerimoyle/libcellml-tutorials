@@ -17,26 +17,29 @@ These are listed in the second section.
 How to do stuff
 ---------------
 
-.. toctree::  List by actions
+.. toctree:: 
     :maxdepth: 2
 
     actions/examples_include_libcellml.rst
-    actions/examples_create_model.rst
-    actions/examples_parse_model.rst
+    actions/parse_model.rst
     actions/examples_edit_model.rst
     actions/examples_print_model.rst
     actions/examples_view_model.rst
-    actions/examples_validate_model.rst
-    actions/examples_analyse_model.rst
-    actions/examples_trace_imports.rst
+    actions/validate_model.rst
+    actions/analyse_model.rst
     actions/examples_annotate_model.rst
-    actions/examples_get_issues.rst
-    snippets/snippet_parse_model.rst
+    actions/get_issues.rst
+    actions/understand_collections.rst
+
+
+.. snippets/snippet_parse_model.rst TODO ?
+.. actions/examples_create_model.rst TODO
+.. actions/examples_trace_imports.rst TODO
 
 Common user pathways
 --------------------
 
-.. toctree:: List by user profiles
+.. toctree:: 
     :maxdepth: 2
 
     user_profiles/users_model_debugger.rst
@@ -46,5 +49,6 @@ Common user pathways
     user_profiles/users_solver.rst
     
 .. user_profiles/users_package_dev.rst
+
 
 

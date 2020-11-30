@@ -1,6 +1,6 @@
 .. _aside_units:
 
-..container:: heading3
+.. container:: heading3
 
     Understanding units
 
@@ -9,7 +9,7 @@ Some basic units have been defined and built into libCellML, others you can defi
 There are four different kinds of units used here: irreducible units, built-in units, derived or combination units, and custom irreducible units.
 
 Irreducible units
------------------
+~~~~~~~~~~~~~~~~~
 The first are called *irreducible* because they represent the physical base quantities which cannot be further simplified:
 
 - length (:code:`metre`)
@@ -24,7 +24,7 @@ The first are called *irreducible* because they represent the physical base quan
 These *irreducible* units can be used to create all other physically-based units by combining them using different exponents, multipliers, and prefixes.
 
 Built-in units
---------------
+~~~~~~~~~~~~~~
 Some of these combinations form our second type of units, the *built-in units*, these being common relationships which have been constructed from combinations of the irreducible units.
 The combinations can involve:
 
@@ -39,7 +39,7 @@ The combinations can involve:
 A list of pre-existing *built-in* convenience units is shown in the :ref:`Built-in Units page<builtinunits>`, along with their relationships to the irreducible units.
 
 Combination or derived units
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The third type of units are those *combinations* which users can define for themselves based on the built-in units, the irreducible units, any other units already created, or (see below) their own custom irreducible units.
 
 For example, let's say that you want to simulate the time variable, :math:`t`, in units of milliseconds.
@@ -127,7 +127,7 @@ For example, after defining our :code:`millisecond` units, we could then use thi
         per_ms.addUnit(ms, -1.0)  # reference unit, exponent
 
 Custom irreducible units
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 The final type of unit is a custom irreducible unit.
 While this is not common in purely physical models (all of the seven physical attributes are already included), for times when you're modelling something non-physical (such as our numbers of sharks or fishes), you're able to define your own.
 Here's an example.

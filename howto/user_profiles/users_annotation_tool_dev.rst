@@ -15,15 +15,15 @@ The class makes use of casting to and from the (C++ only) :cpp_reference:`std::a
    :local:
 
 | **C++ resources**
-|    ├ :download:`CMakeLists.txt<../code/example_annotationToolDev_CMakeLists.txt>`
-|    ├ :download:`example_annotationToolDev.cpp<../code/example_annotationToolDev.cpp>`
+|    ├ :download:`CMakeLists.txt<../code/annotation_tool_dev/CMakeLists.txt>`
+|    ├ :download:`annotationToolDev.cpp<../code/annotation_tool_dev/annotationToolDev.cpp>`
 |    └ resources/
-|        └ :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`
+|        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
 
 | **Python resources**
-|    ├ :download:`example_annotationToolDev.py<../code/example_annotationToolDev.py>`
+|    ├ :download:`annotationToolDev.py<../code/annotation_tool_dev/annotationToolDev.py>`
 |    └ resources/
-|        └ :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`
+|        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
 
 Parse an existing CellML model 
 ------------------------------
@@ -34,14 +34,14 @@ Here we use the :code:`Parser` class to read the file, and deserialise the CellM
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.cpp
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.cpp
         :language: c++
         :start-after: // STEP 1
         :end-before: // STEP 2
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.py
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.py
         :language: python
         :start-after: # STEP 1
         :end-before: # STEP 2
@@ -55,14 +55,14 @@ It can be used to retrieve the ID string and item type to which it pertains, usi
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.cpp
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.cpp
         :language: c++
         :start-after: // STEP 2
         :end-before: // STEP 3
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.py
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.py
         :language: python
         :start-after: # STEP 2
         :end-before: # STEP 3
@@ -102,14 +102,14 @@ A null pointer will be returned if the item does not have the type requested, or
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.cpp
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.cpp
         :language: c++
         :start-after: // STEP 3
         :end-before: // STEP 4
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.py
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.py
         :language: python
         :start-after: # STEP 3
         :end-before: # STEP 4
@@ -128,14 +128,14 @@ In Python, the returned item requires no further transformation.
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.cpp
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.cpp
         :language: c++
         :start-after: // STEP 4
         :end-before: // STEP 5
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.py
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.py
         :language: python
         :start-after: # STEP 4
         :end-before: # STEP 5
@@ -156,14 +156,14 @@ Of course, you can also set the id of these items manually too if you'd rather.
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.cpp
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.cpp
         :language: c++
         :start-after: // STEP 5
         :end-before: // STEP 6
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.py
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.py
         :language: python
         :start-after: # STEP 5
         :end-before: # STEP 6
@@ -190,14 +190,14 @@ Finally, IDs for every item in a model can be set with the *assignAllIds* functi
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.cpp
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.cpp
         :language: c++
         :start-after: // STEP 6
         :end-before: // END
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_annotationToolDev.py
+      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.py
         :language: python
         :start-after: # STEP 6
         :end-before: # END

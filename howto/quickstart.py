@@ -6,7 +6,7 @@
 
 from libcellml import Generator, GeneratorProfile, Parser, Printer, Validator
 
-from tutorial_utilities import print_errors_to_terminal, print_model_to_terminal, get_issue_level_from_enum, \
+from utilities import print_errors_to_terminal, print_model_to_terminal, get_issue_level_from_enum, \
     get_issue_cause_from_enum
 
 if __name__ == "__main__":

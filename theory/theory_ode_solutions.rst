@@ -268,8 +268,8 @@ Simple implementations are provided which will take the generated files, from bo
 Simple solver routines have been provided for you for both the C and Python profiles.
 Please see the relevant tutorial for details:
 
-  - :ref:`Simple solver for C profile<simplesolver_cpp>`
-  - :ref:`Simple solver for Python profile<simplesolver_py>`
+  - :ref:`Simple solver for C profile<solveGeneratedModel_cpp>`
+  - :ref:`Simple solver for Python profile<solveGeneratedModel_py>`
 
 Solving the model reveals the cyclical interaction between the populations of fish and sharks, as shown in :numref:`sharks_and_fishes`.
 

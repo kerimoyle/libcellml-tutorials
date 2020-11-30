@@ -8,15 +8,15 @@ Software developer for a package
 ..    :local:
 
 .. **C++ resources**
-..     ├ :download:`CMakeLists.txt<../code/example_annotationToolDev_CMakeLists.txt>`
-..     ├ :download:`example_annotationToolDev.cpp<../code/example_annotationToolDev.cpp>`
+..     ├ :download:`CMakeLists.txt<../code/annotation_tool_dev/CMakeLists.txt>`
+..     ├ :download:`annotationToolDev.cpp<../code/annotation_tool_dev/annotationToolDev.cpp>`
 ..     └ resources/
-..         └ :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`
+..         └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationToolDev.cellml>`
 
 .. **Python resources**
-..     ├ :download:`example_annotationToolDev.py<../code/example_annotationToolDev.py>`
+..     ├ :download:`annotationToolDev.py<../code/annotation_tool_dev/annotationToolDev.py>`
 ..     └ resources/
-..         └ :download:`annotationExample.cellml<../code/resources/annotationExample.cellml>`
+..         └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationToolDev.cellml>`
 
 
 

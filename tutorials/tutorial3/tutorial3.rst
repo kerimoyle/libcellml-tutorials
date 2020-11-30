@@ -33,7 +33,7 @@ Either :download:`download the whole folder<tutorial3.zip>`, or:
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial3.cpp` The skeleton code; or
     - :download:`tutorial3_complete.cpp` the completed tutorial code; and
-    - :download:`tutorial_utilities.h<../tutorial_utilities.h>` and :download:`tutorial_utilities.cpp<../tutorial_utilities.cpp>` Utility functions for use in the tutorials.
+    - :download:`utilities.h<../utilities/utilities.h>` and :download:`utilities.cpp<../utilities/utilities.cpp>` Utility functions for use in the tutorials.
 
 .. container:: shortlist
 
@@ -41,7 +41,7 @@ Either :download:`download the whole folder<tutorial3.zip>`, or:
     
     - :download:`tutorial3.py` Either the skeleton code; or
     - :download:`tutorial3_complete.py` the completed tutorial code; and
-    - :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.
+    - :download:`utilities.py<../utilities/utilities.py>`  Utility functions for use in the tutorials.
 
 .. contents:: Contents
     :local:
@@ -1040,7 +1040,7 @@ This language choice is called the "profile", and is stored in a :code:`Generato
 
 .. container:: dothis
     
-    **5.e** Retrieve the Python implementation code (there is no header file) and write to a *.py file.
+    **5.e** Retrieve the Python implementation code (there is no header file) and write to a :code:`*.py` file.
 
 .. container:: toggle
 

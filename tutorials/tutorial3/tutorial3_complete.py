@@ -17,7 +17,7 @@
 
 from libcellml import Analyser, Component, Generator, GeneratorProfile, Model, Units, Validator, Variable
 
-from tutorial_utilities import print_issues, print_model
+from utilities import print_issues, print_model
 
 if __name__ == "__main__":
     print("-------------------------------------------------------------")

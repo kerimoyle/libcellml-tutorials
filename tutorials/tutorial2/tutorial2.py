@@ -17,7 +17,7 @@
 
 from libcellml import CellmlElementType, Issue, Parser, Printer, Validator
 
-from tutorial_utilities import print_model, get_cellml_element_type_from_enum
+from utilities import print_model, get_cellml_element_type_from_enum
 
 if __name__ == '__main__':
 
