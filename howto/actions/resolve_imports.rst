@@ -1,5 +1,7 @@
 .. _actions_resolve_imports:
 
+:orphan:
+
 Resolve the imported items in a model
 =====================================
 

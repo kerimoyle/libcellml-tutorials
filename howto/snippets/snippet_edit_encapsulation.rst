@@ -29,7 +29,7 @@
       #include <fstream>
       #include <sstream>
       #include <libcellml>
-      #include "../../utilities/tutorial_utilities.h"
+      #include "../../utilities/utilities.h"
 
       int main()
       {
@@ -59,7 +59,7 @@
     .. code-tab:: py
 
       from libcellml import Parser
-      from tutorial_utilities import print_encapsulation_structure_to_terminal
+      from utilities import print_encapsulation_structure_to_terminal
 
       if __name__ == "__main__":
 

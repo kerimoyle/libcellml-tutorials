@@ -11,14 +11,14 @@ This example works through that process.
    :local:
 
 | **C++ resources**
-|    ├ :download:`CMakeLists.txt<../code/example_solveGeneratedModel_CMakeLists.txt>`
-|    ├ :download:`example_solveGeneratedModel.cpp<../code/example_solveGeneratedModel.cpp>`
+|    ├ :download:`CMakeLists.txt<../code/solver/CMakeLists.txt>`
+|    ├ :download:`example_solveGeneratedModel.cpp<../code/solver/solveGeneratedModel.cpp>`
 |    └ resources/
 |        ├ :download:`sineComparisonExample.c<../code/generated_code/sineComparisonExample.c>`
 |        └ :download:`sineComparisonExample.h<../code/generated_code/sineComparisonExample.h>`
 
 | **Python resources**
-|    ├ :download:`example_solveGeneratedModel.py<../code/example_solveGeneratedModel.py>`
+|    ├ :download:`example_solveGeneratedModel.py<../code/solver/solveGeneratedModel.py>`
 |    └ resources/
 |        └ :download:`sineComparisonExample.py<../code/generated_code/sineComparisonExample.py>`
 
@@ -32,14 +32,14 @@ This is done using a simple function, as below.
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+      .. literalinclude:: ../code/solver/solveGeneratedModel.cpp
         :language: c++
         :start-after: // COMMAND LINE FUNCTION
         :end-before: // END COMMAND LINE FUNCTION
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :start-after: # MODULE FROM FILE
         :end-before: # END MODULE FROM FILE
@@ -50,14 +50,14 @@ Once the function exists, we can call it from the main function to process the c
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+      .. literalinclude:: ../code/solver/solveGeneratedModel.cpp
         :language: c++
         :start-after: // STEP 0 
         :end-before: // STEP 1 
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :start-after: # STEP 0
         :end-before: # STEP 1
@@ -117,7 +117,7 @@ This step is required so that within the solver code we can :code:`#include` a k
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :start-after: # MODULE FROM FILE
         :end-before: # END MODULE FROM FILE
@@ -135,14 +135,14 @@ These are:
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+      .. literalinclude:: ../code/solver/solveGeneratedModel.cpp
         :language: c++
         :start-after: // STEP 1
         :end-before: // STEP 2
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :start-after: # STEP 1
         :end-before: # STEP 2
@@ -158,14 +158,14 @@ Also within the generated code are functions to allocate space for the variables
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+      .. literalinclude:: ../code/solver/solveGeneratedModel.cpp
         :language: c++
         :start-after: // STEP 2
         :end-before: // STEP 3
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :start-after: # STEP 2
         :end-before: # STEP 3
@@ -188,14 +188,14 @@ Before we begin iterating, the values of all variables are calculated.
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+      .. literalinclude:: ../code/solver/solveGeneratedModel.cpp
         :language: c++
         :start-after: // STEP 3
         :end-before: // STEP 4
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :start-after: # STEP 3
         :end-before: # STEP 4
@@ -209,14 +209,14 @@ Here we create a simple text-delimited file into which the solution can be writt
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+      .. literalinclude:: ../code/solver/solveGeneratedModel.cpp
         :language: c++
         :start-after: // STEP 4
         :end-before: // STEP 5
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :start-after: # STEP 4
         :end-before: # STEP 5
@@ -230,14 +230,14 @@ The solution values and calculated variables are written to the output file.
 
     .. tab:: C++ 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+      .. literalinclude:: ../code/solver/solveGeneratedModel.cpp
         :language: c++
         :start-after: // STEP 5
         :end-before: // END
 
     .. tab:: Python 
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
         :start-after: # STEP 5
         :end-before: # END

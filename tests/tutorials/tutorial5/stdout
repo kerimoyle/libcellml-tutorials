@@ -1,0 +1,81 @@
+----------------------------------------------------------
+   STEP 1: Parse a mystery model                          
+----------------------------------------------------------
+Recorded 0 issues!
+
+----------------------------------------------------------
+   STEP 2: Find 'marco'		                            
+----------------------------------------------------------
+The item with ID 'marco' is a VARIABLE
+Recorded 0 issues!
+
+----------------------------------------------------------
+   STEP 3: Find 'polo'		                            
+----------------------------------------------------------
+The type of item with ID 'polo' is UNDEFINED
+Recorded 1 issues:
+Issue 0 is a WARNING:
+    description: The id 'polo' occurs 6 times in the model so a unique item cannot be located.
+    stored item type: UNDEFINED
+
+
+The items with an id of 'polo' have types of:
+  - [0] UNITS
+  - [1] UNITS
+  - [2] UNIT
+  - [3] VARIABLE
+  - [4] RESET
+  - [5] RESET_VALUE
+----------------------------------------------------------
+   STEP 4: See who else is lurking in this pool            
+----------------------------------------------------------
+The id strings used in the model are:
+  - 'b4da55'
+  - 'b4da56'
+  - 'b4da57'
+  - 'b4da58'
+  - 'b4da59'
+  - 'i_am_a_component'
+  - 'marco'
+  - 'me_too'
+  - 'polo'
+  - 'someOtherDuplicatedId'
+  - 'someOtherId'
+  - 'whoAmIAndWhereDidIComeFrom'
+Duplicated id strings are:
+  - 'someOtherDuplicatedId' occurs 3times.
+----------------------------------------------------------
+   STEP 5: See who else is lurking around the corner      
+----------------------------------------------------------
+The type of item with ID 'whoAmIAndWhereDidIComeFrom' is UNITS
+Recorded 0 issues!
+
+The units with id 'whoAmIAndWhereDidIComeFrom' came from:
+  - url: AnotherMysteryModel.cellml
+  - id: i_am_a_units_item
+----------------------------------------------------------
+   STEP 6: Give up and go home                            
+----------------------------------------------------------
+Before automatic assigning the components have ids:
+  - 'i_am_a_component'
+  - ''
+  - ''
+  - ''
+  - 'me_too'
+  - ''
+After automatic assigning components have ids:
+  - 'i_am_a_component'
+  - 'b4da5a'
+  - 'b4da5b'
+  - 'b4da5c'
+  - 'me_too'
+  - 'b4da5d'
+There are 0 ids in the model.
+The type of item with ID 'marco' is UNDEFINED
+Recorded 1 issues:
+Issue 0 is a WARNING:
+    description: Could not find an item with an id of 'marco' in the model.
+    stored item type: UNDEFINED
+
+
+There are 0 duplicated ids left in the model.

@@ -26,10 +26,8 @@ For any item type, each attribute :code:`xyz` may be edited using the general :c
 Note that this is distinct from editing collections of items, which is discussed below.
 
 .. Some example snippets are shown below:
-
-.. include :: ../snippets/snippet_edit_names.rst  **TODO**
-
-.. include :: ../snippets/snippet_edit_mathml.rst
+   include :: ../snippets/snippet_edit_names.rst  **TODO**
+   include :: ../snippets/snippet_edit_mathml.rst
 
 Editing collections
 -------------------
@@ -60,7 +58,7 @@ The success of the :code:`addEquivalence` function depends on:
 
 - the variable pointers being non-null;
 - the two variables having parent components;
-- there being no previously existing conenction between the two variables already.
+- there being no previously existing connection between the two variables already.
 
 Creating a *valid* connection also depends on the two variables having compatible units, appropriate interface types, and being in components which are accessible to one another (parent-child or sibling relationship).
 

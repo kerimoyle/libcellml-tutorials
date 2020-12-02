@@ -152,7 +152,7 @@ Your directory structure should now look like:
     make test
 
 3: Test the installation: C++
-============================
+=============================
 
 If you are intending to use the Python library only, please skip to :ref:`Test the installation: Python<test_python_installation>`.
 
@@ -235,7 +235,7 @@ You should see the output of:
 .. _test_python_installation:
 
 4: Test the installation: Python
-===============================
+================================
 
 .. container:: dothis
 

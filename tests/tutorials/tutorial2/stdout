@@ -1,0 +1,90 @@
+-----------------------------------------------
+   TUTORIAL 2: ERROR CHECKING AND VALIDATION   
+-----------------------------------------------
+-----------------------------------------------
+   STEP 1: Parse a file into a model           
+-----------------------------------------------
+Opening the CellML file: 'tutorial2.cellml'
+ MODEL: 'tutorial_2_model', id: 'tutorial 2 id has spaces'
+    UNITS: 1 custom units
+        [0]: i_am_a_units_item
+    COMPONENTS: 1 components
+        [0]: i_am_a_component id: my_component_id
+            VARIABLES: 4 variables
+                [0]: 1st [dimensionless]
+                [1]: b
+                [2]: c [dimensionless], initial = this_variable_doesnt_exist
+                [3]: d [i_dont_exist]
+          Maths in the component is:
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <eq/>
+    <ci>a</ci>
+    <apply>
+      <plus/>
+      <ci>b</ci>
+      <ci>c</ci>
+    </apply>
+  </apply>
+</math>
+
+-----------------------------------------------
+   STEP 2: Validate the model                  
+-----------------------------------------------
+The validator has found 5 issues!
+  Validator issue[0]:
+     Description: Variable '1st' in component 'i_am_a_component' does not have a valid name attribute. CellML identifiers must not begin with a European numeric character [0-9].
+     Type of item stored: VARIABLE
+     URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.1
+    See section 2.8.1.1 in the CellML specification.
+  Validator issue[1]:
+     Description: Variable 'b' in component 'i_am_a_component' does not have any units specified.
+     Type of item stored: VARIABLE
+     URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+    See section 2.8.1.2 in the CellML specification.
+  Validator issue[2]:
+     Description: Variable 'c' in component 'i_am_a_component' has an invalid initial value 'this_variable_doesnt_exist'. Initial values must be a real number string or a variable reference.
+     Type of item stored: VARIABLE
+     URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.2.2
+    See section 2.8.2.2 in the CellML specification.
+  Validator issue[3]:
+     Description: Variable 'd' in component 'i_am_a_component' has a units reference 'i_dont_exist' which is neither standard nor defined in the parent model.
+     Type of item stored: VARIABLE
+     URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB08.html?issue=2.8.1.2
+    See section 2.8.1.2 in the CellML specification.
+  Validator issue[4]:
+     Description: MathML ci element has the child text 'a' which does not correspond with any variable names present in component 'i_am_a_component'.
+     Type of item stored: MATH
+     URL: https://cellml-specification.readthedocs.io/en/latest/reference/formal_and_informative/specB12.html?issue=2.12.3
+    See section 2.12.3 in the CellML specification.
+-----------------------------------------------
+   STEP 3: Fix the issues reported             
+-----------------------------------------------
+-----------------------------------------------
+  STEP 4: Check and output the corrected model 
+-----------------------------------------------
+The validator found 0 issues in the model.
+ MODEL: 'tutorial_2_model', id: 'tutorial 2 id has spaces'
+    UNITS: 1 custom units
+        [0]: i_am_a_units_item
+    COMPONENTS: 1 components
+        [0]: i_am_a_component id: my_component_id
+            VARIABLES: 4 variables
+                [0]: a [dimensionless]
+                [1]: b [dimensionless]
+                [2]: c [dimensionless], initial = 20
+                [3]: d [i_am_a_units_item]
+          Maths in the component is:
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <eq/>
+    <ci>a</ci>
+    <apply>
+      <plus/>
+      <ci>b</ci>
+      <ci>c</ci>
+    </apply>
+  </apply>
+</math>
+
+The corrected 'tutorial_2_model' model has been printed to: tutorial2_printed.cellml

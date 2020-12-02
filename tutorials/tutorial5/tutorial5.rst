@@ -25,7 +25,7 @@ Either :download:`download the entire folder<tutorial5.zip>`, or:
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`tutorial5.cpp<tutorial5.cpp>` Either the skeleton code, or ..
     - :download:`tutorial5_complete.cpp<tutorial5_complete.cpp>` the completed tutorial code; and
-    - :download:`tutorial_utilities.h<../tutorial_utilities.h>` and :download:`tutorial_utilities.cpp<../tutorial_utilities.cpp>` Utility functions for use in the tutorials.
+    - :download:`utilities.h<../utilities/utilities.h>` and :download:`utilities.cpp<../utilities/utilities.cpp>` Utility functions for use in the tutorials.
 
 .. container:: shortlist
 
@@ -33,7 +33,7 @@ Either :download:`download the entire folder<tutorial5.zip>`, or:
 
     - :download:`tutorial5.py<tutorial5.py>` Either the skeleton code, or ..
     - :download:`tutorial5_complete.py<tutorial5_complete.py>` the completed tutorial code; and
-    - :download:`tutorial_utilities.py<../tutorial_utilities.py>`  Utility functions for use in the tutorials.
+    - :download:`utilities.py<../utilities/utilities.py>`  Utility functions for use in the tutorials.
 
 .. container:: shortlist
 
@@ -337,8 +337,9 @@ In circumstances where you know the type of the item with the id you're fetching
 
     **3.f** Retrieve the :code:`Unit` with id "polo" directly.
     The :code:`Unit` class has two attributes:
-         - :code:`units()` returns the parent :code:`Units` item; and
-         - :code:`index()` returns the index of this unit within its parent.
+
+        - :code:`units()` returns the parent :code:`Units` item; and
+        - :code:`index()` returns the index of this unit within its parent.
 
 .. container:: toggle
 

@@ -1,6 +1,6 @@
 .. _aside_units:
 
-..container:: heading3
+.. container:: heading3
 
     Understanding units
 
@@ -8,8 +8,10 @@ Some basic units have been defined and built into libCellML, others you can defi
 
 There are four different kinds of units used here: irreducible units, built-in units, derived or combination units, and custom irreducible units.
 
-Irreducible units
------------------
+.. container:: heading4
+
+    Irreducible units
+
 The first are called *irreducible* because they represent the physical base quantities which cannot be further simplified:
 
 - length (:code:`metre`)
@@ -23,8 +25,10 @@ The first are called *irreducible* because they represent the physical base quan
 
 These *irreducible* units can be used to create all other physically-based units by combining them using different exponents, multipliers, and prefixes.
 
-Built-in units
---------------
+.. container:: heading4
+
+    Built-in units
+
 Some of these combinations form our second type of units, the *built-in units*, these being common relationships which have been constructed from combinations of the irreducible units.
 The combinations can involve:
 
@@ -36,10 +40,12 @@ The combinations can involve:
   exponent of -1); and
 - Any combination of the above.
 
-A list of pre-existing *built-in* convenience units is shown in the :ref:`Built-in Units page<builtinunits>`, along with their relationships to the irreducible units.
+A list of pre-existing *built-in* convenience units is shown in the :cellml2:`Built-in Units table</reference/formal_and_informative/specC02_units_reference.html#table-built-in-units>`, along with their relationships to the irreducible units.
 
-Combination or derived units
-----------------------------
+.. container:: heading4
+
+    Combination or derived units
+
 The third type of units are those *combinations* which users can define for themselves based on the built-in units, the irreducible units, any other units already created, or (see below) their own custom irreducible units.
 
 For example, let's say that you want to simulate the time variable, :math:`t`, in units of milliseconds.
@@ -47,7 +53,7 @@ This isn't one of the built-in units, so you'll need to define it, but it's easy
 
 For convenience libCellML gives a variety of options for defining such scaling factors:
 
--  Either through the use of named prefixes which are listed on the :ref:`Prefix page<prefixes>`, eg: :code:`millisecond` is :code:`second` with :code:`prefix="milli"`;
+-  Either through the use of named prefixes which are listed on the :cellml2:`Interpretation of Units page</reference/formal_and_informative/specC03_interpretation_of_units.html>`, eg: :code:`millisecond` is :code:`second` with :code:`prefix="milli"`;
 -  By defining an integer or integer string as a prefix which represents the :math:`log_{10}` of the scaling factor, eg: :code:`millisecond` is :code:`second` with :code:`prefix=-3` gives a scaling factor of :math:`10^{-3}=0.001`.
    NB: using an integer string like :code:`prefix="-3"` gives the same result; and
 -  By defining the scaling factor directly, as a multiplier, eg: :code:`millisecond` is :code:`second` with :code:`multiplier=0.001`.
@@ -126,8 +132,10 @@ For example, after defining our :code:`millisecond` units, we could then use thi
         # Defining a per_millisecond unit based on millisecond^-1.
         per_ms.addUnit(ms, -1.0)  # reference unit, exponent
 
-Custom irreducible units
-------------------------
+.. container:: heading4
+
+    Custom irreducible units
+
 The final type of unit is a custom irreducible unit.
 While this is not common in purely physical models (all of the seven physical attributes are already included), for times when you're modelling something non-physical (such as our numbers of sharks or fishes), you're able to define your own.
 Here's an example.

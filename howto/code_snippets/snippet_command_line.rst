@@ -10,18 +10,18 @@
 
     .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.cpp
+      .. literalinclude:: ../code/solver/solveGeneratedModel.cpp
         :language: c++
         :start-after: // COMMAND LINE FUNCTION
         :end-before: // END COMMAND LINE FUNCTION
 
-      Full context: :download:`example_solveGeneratedModel.cpp<../code/example_solveGeneratedModel.cpp>`
+      Full context: :download:`example_solveGeneratedModel.cpp<../code/solver/solveGeneratedModel.cpp>`
 
     .. tab:: Python snippet
 
-      .. literalinclude:: ../code/example_solveGeneratedModel.py
+      .. literalinclude:: ../code/solver/solveGeneratedModel.py
         :language: python
-        :start-after: # Command line function
-        :end-before: # End command line function
+        :start-after: # COMMAND LINE FUNCTION
+        :end-before: # END COMMAND LINE FUNCTION
       
-      Full context: :download:`example_solveGeneratedModel.py<../code/example_solveGeneratedModel.py>`
+      Full context: :download:`example_solveGeneratedModel.py<../code/solver/solveGeneratedModel.py>`

@@ -1,5 +1,7 @@
 .. _actions_generate_code:
 
+:orphan:
+
 Generate runnable code from a model
 ===================================
 

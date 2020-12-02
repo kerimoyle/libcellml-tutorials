@@ -1,0 +1,16 @@
+Opening the CellML file
+Recorded 0 issues!
+
+Recorded 0 issues!
+
+ Model 'sin_approximations_import' imports:
+    From sine_exact.cellml:
+     - component actual_sin <- sin
+    From sine_derivative_approx.cellml:
+     - component deriv_approx_sin <- sin
+    From sine_parabolic_approx.cellml:
+     - component parabolic_approx_sin <- sin
+Recorded 0 issues!
+
+Recorded 0 issues!
+

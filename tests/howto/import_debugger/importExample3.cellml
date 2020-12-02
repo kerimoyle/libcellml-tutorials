@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.cellml.org/cellml/2.0#" name="importExample3">
+  <component name="shared">
+    <variable name="i_need_units" units="dimensionless"/>
+    <variable name="some_other_variable" units="dimensionless" initial_value="3"/>
+    <math xmlns="http://www.w3.org/1998/Math/MathML" xmlns:cellml="http://www.cellml.org/cellml/2.0#">
+      <apply>
+        <eq/>
+        <ci>i_need_units</ci>
+        <apply>
+          <plus/>
+          <ci>some_other_variable</ci>
+          <cn cellml:units="dimensionless">1</cn>
+        </apply>
+      </apply>
+    </math>
+  </component>
+</model>

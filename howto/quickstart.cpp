@@ -8,7 +8,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "../../utilities/tutorial_utilities.h"
+#include "../../utilities/utilities.h"
 #include <libcellml>
 
 int main()
@@ -27,7 +27,7 @@ int main()
     libcellml::ModelPtr model = parser->parseModel(inFileContents.str());
 
     //  1.c   Print to the terminal to see the model contents
-    printModelToTerminal(model);
+    printModel(model);
 
     // ----------------------------------------------------------------------------
     //  STEP 2:   Validate the contents of a model
@@ -39,7 +39,7 @@ int main()
 
     //  2.b   Retrieve the errors from the validator and access their
     //        specification reference and description.
-    // printErrorsToTerminal(validator);
+    // printIssues(validator);
 
     for (size_t e = 0; e < validator->issueCount(); ++e) {
         libcellml::IssuePtr issue = validator->issue(e);
@@ -138,8 +138,8 @@ int main()
     //  this error will be fixed already.
 
     validator->validateModel(model);
-    printModelToTerminal(model);
-    printErrorsToTerminal(validator);
+    printModel(model);
+    printIssues(validator);
 
     // ---------------------------------------------------------------------------
     //  STEP 4: Call the Generator to process the model to a C or Python format
@@ -148,12 +148,12 @@ int main()
     //       check for errors
     auto generator = libcellml::Generator::create();
     generator->processModel(model);
-    printErrorsToTerminal(generator);
+    printIssues(generator);
 
     //  4.b  Fix the errors thrown by the generator by giving variable 'b' an intitial value
     model->component(0)->variable("b")->setInitialValue(20.0);
     generator->processModel(model);
-    printErrorsToTerminal(generator);
+    printIssues(generator);
 
     //  4.d  Retrieve the generated strings for output.  In Python you need only
     //       retrieve the implementationCode (suitable for a single *.py file), but

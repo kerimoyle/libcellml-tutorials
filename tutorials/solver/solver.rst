@@ -127,7 +127,7 @@ The script can be run from the command line as below:
 
 .. code-block:: text
 
-    python3 simplesolver.py -m path_to_your_file -n number_of_steps -dt step_size
+    python3 solveGeneratedModel.py -m path_to_your_file -n number_of_steps -dt step_size
 
 You should see output to the terminal which echoes the settings and initial conditions, as below.
 An example file for running is provided for you in the :code:`resources/tutorial3_PredatorPrey_generated.py` file, which can be run for 2000 steps and a step size of 0.01.
@@ -135,7 +135,7 @@ Running this will give you the terminal output:
 
 .. code-block:: text
 
-    python3 simplesolver.py -m ../resources/tutorial3_PredatorPrey_generated.py -dt 0.01 -n 2000
+    python3 solveGeneratedModel.py -m ../resources/tutorial3_PredatorPrey_generated.py -dt 0.01 -n 2000
 
     ====================================================================
        SIMPLE SOLVER: ../resources/tutorial3_PredatorPrey_generated
