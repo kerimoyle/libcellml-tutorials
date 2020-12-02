@@ -82,7 +82,7 @@ Step 1: Parse the existing membrane model
         :start-at: #  1.a
         :end-before: #  end 1
 
-.. code-block:: terminal
+.. code-block:: text
 
     MODEL: 'MembraneModel'
     UNITS: 5 custom units

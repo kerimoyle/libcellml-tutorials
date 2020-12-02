@@ -1,4 +1,4 @@
-.. _snippet_allocate_arrays:
+.. _snippet_build_solver:
 
 .. container:: toggle
 

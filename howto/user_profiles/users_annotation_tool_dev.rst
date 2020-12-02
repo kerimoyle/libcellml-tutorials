@@ -67,7 +67,7 @@ It can be used to retrieve the ID string and item type to which it pertains, usi
         :start-after: # STEP 2
         :end-before: # STEP 3
 
-      .. code-block:: terminal
+      .. code-block:: text
 
          Existing id strings are:
             beige = connection
@@ -114,7 +114,7 @@ A null pointer will be returned if the item does not have the type requested, or
         :start-after: # STEP 3
         :end-before: # STEP 4
 
-      .. code-block:: terminal
+      .. code-block:: text
 
          The name of the component with id of "yellow" is "component3".
       
@@ -140,7 +140,7 @@ In Python, the returned item requires no further transformation.
         :start-after: # STEP 4
         :end-before: # STEP 5
 
-      .. code-block:: terminal
+      .. code-block:: text
 
          The item with id of "green" has type of "units".
 
@@ -168,7 +168,7 @@ Of course, you can also set the id of these items manually too if you'd rather.
         :start-after: # STEP 5
         :end-before: # STEP 6
 
-      .. code-block:: terminal
+      .. code-block:: text
 
          There are 4 duplicated ids in the model.
          - duplicateId1
@@ -202,7 +202,7 @@ Finally, IDs for every item in a model can be set with the *assignAllIds* functi
         :start-after: # STEP 6
         :end-before: # END
       
-      .. code-block:: terminal
+      .. code-block:: text
 
          Before automatic ids are assigned by type:
             Component 1: b4da56

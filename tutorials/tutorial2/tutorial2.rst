@@ -63,20 +63,20 @@ If you'd rather not work through the tutorial yourself and want to skip to the c
 
         Navigate into the directory and check that you can build the template against the libCellML library successfully:
 
-        .. code-block:: console
+        .. code-block:: text
 
             cmake -DINSTALL_PREFIX=../../install
             make -j
 
         Running the template:
 
-        .. code-block:: console
+        .. code-block:: text
 
             ./tutorial2
 
         ... should give the output:
 
-        .. code-block:: console
+        .. code-block:: text
 
             -----------------------------------------------
             TUTORIAL 2: ERROR CHECKING AND VALIDATION
@@ -86,13 +86,13 @@ If you'd rather not work through the tutorial yourself and want to skip to the c
 
         Confirm that you're able to run the :code:`tutorial2.py` template against the libCellML library.
 
-        .. code-block:: console
+        .. code-block:: text
 
             python3 tutorial2.py
 
         This should give the output:
 
-        .. code-block:: console
+        .. code-block:: text
 
             ------------------------------------------------------------
                 TUTORIAL 2: ERROR CHECKING AND VALIDATION
@@ -126,7 +126,7 @@ Instead of duplicating the work you did throughout the middle steps of :ref:`Tut
 
     **1.b** Use the utility function :code:`printModel(yourModelHere)` (in C++) or :code:`print_model(your_model_here)` to output the contents of the model you just created to the terminal so that you can see it all properly.
 
-.. code-block:: console
+.. code-block:: text
 
     MODEL: 'tutorial_2_model', id: 'tutorial 2 id has spaces'
     UNITS: 1 custom units
@@ -236,7 +236,7 @@ In the :code:`Validator`, only those issues which are errors indicate validation
         :start-at: #  2.a
         :end-before: #  2.c
 
-.. code-block:: terminal
+.. code-block:: text
 
     The validator has found 5 issues!
 
@@ -332,7 +332,7 @@ Two utility functions have been provided which will convert the enums for error 
         :start-at: #  2.c
         :end-before: #  end 2
 
-.. code-block:: terminal
+.. code-block:: text
 
     Validator issue[0]:
         Description: Variable '1st' in component 'i_am_a_component' does not have a valid name attribute. CellML identifiers must not begin with a European numeric character [0-9].
@@ -395,7 +395,7 @@ You'll notice that the name of the component is given too.
 Because component names are unique in the model, this means that we can use the combination of component name and variable name to retrieve the variable.
 The :code:`component` function of the :code:`Model` class takes an optional second argument: this is a boolean indicating whether to search for the given component name in the model's top level components (:code:`false`, the default), or the entirety of the component tree (:code:`true`).
 
-.. code-block:: terminal
+.. code-block:: text
 
     Validator issue[0]:
         Description: Variable '1st' in component 'i_am_a_component' does not have a valid name attribute. CellML identifiers must not begin with a European numeric character [0-9].
@@ -429,7 +429,7 @@ The :code:`component` function of the :code:`Model` class takes an optional seco
         :start-at: #  3.a
         :end-before: #  end 3.a
 
-.. code-block:: terminal
+.. code-block:: text
 
     Validator issue[1]:
         Description: Variable 'b' in component 'i_am_a_component' does not have any units specified.
@@ -501,7 +501,7 @@ The functions and the types they return are shown below.
         :start-at: #  3.b
         :end-before: #  end 3.b
 
-.. code-block:: terminal
+.. code-block:: text
 
     Validator issue[2]:
         Description: Variable 'c' in component 'i_am_a_component' has an invalid initial value 'this_variable_doesnt_exist'. Initial values must be a real number string or a variable reference.
@@ -586,7 +586,7 @@ This differs between C++ and Python so please refer to the appropriate tab for i
         :start-at: #  3.c
         :end-before: #  end 3.c
 
-.. code-block:: terminal
+.. code-block:: text
 
     Validator issue[3]:
         Description: Variable 'd' in component 'i_am_a_component' has a units reference 'i_dont_exist' which is neither standard nor defined in the parent model.
@@ -627,7 +627,7 @@ This issue was actually also caught by the parser, which, like the validator, is
 This means that it will keep track of anything it encounters when parsing a model.
 You can try calling the :code:`issueCount` and :code:`issue` functions on the parser and iterating through them (just like in 2.c) to see what you find.
 
-.. code-block:: terminal
+.. code-block:: text
 
     Validator issue[4]:
         Description: MathML ci element has the child text 'a' which does not correspond with any variable names present in component 'i_am_a_component'.

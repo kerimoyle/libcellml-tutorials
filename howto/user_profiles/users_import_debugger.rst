@@ -73,7 +73,7 @@ Since the :code:`Importer` class contains a logger, we can check that the proces
 
 The code above prints to the terminal:
 
-.. code-block:: terminal
+.. code-block:: text
 
     The importer found 0 issues.
 
@@ -99,7 +99,7 @@ This can be used to identify mistakes in the original version of the model.
         :start-after: # STEP 3
         :end-before: # STEP 4
 
-.. code-block:: terminal
+.. code-block:: text
 
     Investigating the original model:
     The validator found 0 issues.
@@ -140,7 +140,7 @@ We can make use of the library of import dependencies which is stored in the :co
 
 The code above will print the following to the terminal:
 
-.. code-block:: terminal
+.. code-block:: text
 
     The validator found 0 issues in resources/importExample2a.cellml
     The validator found 0 issues in resources/importExample2b.cellml

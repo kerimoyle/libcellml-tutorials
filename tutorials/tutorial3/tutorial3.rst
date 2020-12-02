@@ -383,7 +383,7 @@ The functions available to manipulate maths are:
 
 You should see an output similar to that shown below:
 
-.. code-block:: console
+.. code-block:: text
 
     Recorded 17 issues:
 
@@ -485,7 +485,7 @@ Step 2: Create the variables
         :start-at: #  2.b
         :end-before: #  end 2
 
-.. code-block:: console
+.. code-block:: text
 
     Recorded 8 issues:
 
@@ -743,7 +743,7 @@ The final two steps are to associate each variable with its appropriate units, a
         :start-at: #  3.f
         :end-before: #  3.g
 
-.. code-block:: console
+.. code-block:: text
 
     Recorded 1 issues:
 
