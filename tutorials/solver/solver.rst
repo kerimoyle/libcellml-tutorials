@@ -25,7 +25,7 @@ You will need to download:
 
   **1.a** Assuming you've already generated code using the C profile, open a terminal window and navigate into the :code:`tutorials/solver` directory.
 
-.. code-block:: console
+.. code-block:: text
 
   cd your_base_path/tutorials/solver
 
@@ -38,7 +38,7 @@ Because the code you've generated needs to be built at the same time as the solv
   **NB** It's assumed that both of the header and source files have the same base filename (eg: baseFileName.c and baseFileName.h).
   The general CMake command is below.
 
-.. code-block:: console
+.. code-block:: text
 
   cmake -DINPUT=/path/to/your/files/baseFileName .
 
@@ -49,7 +49,7 @@ Because the code you've generated needs to be built at the same time as the solv
 
 If all has gone well you should see the output similar to:
 
-.. code-block:: console
+.. code-block:: text
 
     -- The C compiler identification is AppleClang 10.0.1.10010046
     -- The CXX compiler identification is AppleClang 10.0.1.10010046
@@ -80,7 +80,7 @@ If all has gone well you should see the output similar to:
   **1.c** Following the instructions in the output, next you need to build the
   executable by entering:
 
-  .. code-block:: console
+  .. code-block:: text
 
     make -j
 
@@ -90,7 +90,7 @@ If all has gone well you should see the output similar to:
   The executable will have been given the prefix :code:`solve_` and then your :code:`baseFileName`, and can be run using the command line flags :code:`-n` to indicate the number of steps to run, and :code:`-dt` to indicate the step size.
   For example:
 
-  .. code-block:: console
+  .. code-block:: text
 
     ./solve_baseFileName -n 20000 -dt 0.001
 
@@ -113,7 +113,7 @@ The script can be run from the command line as below:
 
     **1.**  Navigate into the "solver" directory
 
-.. code-block:: console
+.. code-block:: text
 
     cd your_base_path/tutorials/solver
 
@@ -125,7 +125,7 @@ The script can be run from the command line as below:
         - :code:`-dt` the step size for the integration variable to take; and
         - :code:`-n` the total number of steps to take.
 
-.. code-block:: console
+.. code-block:: text
 
     python3 solveGeneratedModel.py -m path_to_your_file -n number_of_steps -dt step_size
 
@@ -133,7 +133,7 @@ You should see output to the terminal which echoes the settings and initial cond
 An example file for running is provided for you in the :code:`resources/tutorial3_PredatorPrey_generated.py` file, which can be run for 2000 steps and a step size of 0.01.
 Running this will give you the terminal output:
 
-.. code-block:: console
+.. code-block:: text
 
     python3 solveGeneratedModel.py -m ../resources/tutorial3_PredatorPrey_generated.py -dt 0.01 -n 2000
 

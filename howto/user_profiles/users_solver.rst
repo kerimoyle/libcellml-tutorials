@@ -81,13 +81,13 @@ This step is required so that within the solver code we can :code:`#include` a k
 
         Navigate into the folder containing the generated code :code:`sineComparisonExample.[c,h]` as well as the :code:` example_solveGeneratedModel.cpp` source code from above.
 
-        .. code-block:: terminal
+        .. code-block:: text
         
             cmake -DINPUT=sineComparisonExample .
 
         You should see an output similar to this:
 
-        .. code-block:: terminal
+        .. code-block:: text
 
             -- The C compiler identification is AppleClang 10.0.1.10010046
             -- The CXX compiler identification is AppleClang 10.0.1.10010046

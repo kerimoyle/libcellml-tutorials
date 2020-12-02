@@ -91,7 +91,7 @@ The parser will then read that string and return a model.
         :start-at: #  1.a
         :end-before: #  end 1
 
-.. code-block:: terminal
+.. code-block:: text
 
     MODEL: 'SodiumChannelModel'
         UNITS: 5 custom units
@@ -285,7 +285,7 @@ In the case of the validator class, the URL listed contains additional resources
 
 In some situations more than one :code:`Issue` will be generated from a single cause: this is the case with issues 0 and 1 here:
 
-.. code-block:: terminal
+.. code-block:: text
 
     Issue 0: CellML identifiers must not contain any characters other than [a-zA-Z0-9_].
         reference: 1.3.1.1
@@ -322,7 +322,7 @@ In some situations more than one :code:`Issue` will be generated from a single c
         :start-at: #  3.a
         :end-before: #  end 3.a
 
-.. code-block:: terminal
+.. code-block:: text
 
     Issue 2: Variable 'Na_conductance' in component 'sodiumChannelEquations' has a units reference 'mS_per_cm2' which is neither standard nor defined in the parent model.
         reference: 2.8.1.2
@@ -361,7 +361,7 @@ In some situations more than one :code:`Issue` will be generated from a single c
         :start-at: #  3.b
         :end-before: #  end 3.b
 
-.. code-block:: terminal
+.. code-block:: text
 
     Issue 5: CellML identifiers must contain one or more basic Latin alphabetic characters.
         reference: 1.3.1.1
@@ -413,7 +413,7 @@ We can retrieve the affected item directly from the issue in one of two ways:
 
 The error below indicates that a child :code:`Unit` references something which can't be found.
 
-.. code-block:: terminal
+.. code-block:: text
 
     Issue 7: Units reference 'i_dont_exist' in units 'mV' is not a valid reference to a local units or a standard unit type.
         reference: 2.6.1
@@ -468,7 +468,7 @@ You have a few different options for how to fix this one.
 
 The final validator issue refers to the fact that we need to explicitly specify how other components can access each of the variables in this component.
 
-.. code-block:: terminal
+.. code-block:: text
 
     Issue 9: Variable 't' in component 'sodiumChannelEquations' has no interface type set. The interface type required is 'public_and_private'.
         reference: 3.10.8
@@ -550,7 +550,7 @@ The final validator issue refers to the fact that we need to explicitly specify 
         :start-at: #  3.g
         :end-before: #  end 3
 
-.. code-block:: terminal
+.. code-block:: text
 
     Model 'SodiumChannelModel' has 2 components
     - Component 'controller' has 0 child components
@@ -617,7 +617,7 @@ For this tutorial, the files are in the same directory as the code, so simply us
         :start-at: #  4.a
         :end-before: #  end 4.b
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 2 issues:
 
@@ -662,7 +662,7 @@ This needs to be an iterative process because as more files become available to 
         :start-at: #  4.c
         :end-before: #  end 4.c
 
-.. code-block:: terminal
+.. code-block:: text
 
     Issue [1] is a WARNING:
         description: Cyclic dependencies were found when attempting to resolve components in model 'CircularReferences'. The dependency loop is:
@@ -750,7 +750,7 @@ These dependencies are stored in the importer's library, and have not yet been v
         :start-at: #  5.a
         :end-before: #  end 5.a
 
-.. code-block:: terminal
+.. code-block:: text
 
     Imported model at key: CircularControllerReference.cellml
     Recorded 0 issues!
@@ -809,7 +809,7 @@ As soon as the model's imports have been resolved, all these will point to insta
         :end-before: #  end 5
 
 
-.. code-block:: terminal
+.. code-block:: text
 
     Import source [0]:
         url = GateModel.cellml
@@ -845,7 +845,7 @@ If the flat model meets the analyser's checks, then the importing version will t
     **6.b** Retrieve and print the issues from the analysis to the screen.
     We expect to see messages related to un-computed variables, since anything which is imported is missing from this model.
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 19 issues:
     Issue [0] is an ERROR:
@@ -891,7 +891,7 @@ If the flat model meets the analyser's checks, then the importing version will t
         :start-at: #  6.a
         :end-before: #  end 6.d
 
-.. code-block:: terminal
+.. code-block:: text
 
     Issue [0] is an ERROR:
         description: Variable 't' in component 'importedGateM' and variable 't' in component
@@ -939,7 +939,7 @@ In this example, the real problem is that these two variables are talking about 
         :start-at: #  6.e
         :end-before: #  end 6.f
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 13 issues:
     Issue [0] is an ERROR:

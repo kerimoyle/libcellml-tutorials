@@ -53,7 +53,7 @@
 
   The example should output the connections between the variables, including discerning that :code:`A` is connected to :code:`C`, even though no direct relationship is specified in the model.
 
-  .. code-block:: console
+  .. code-block:: text
 
     Variable 'A' in component 'componentA' is connected to:
      - variable 'B' [dimensionless] in component 'componentB'

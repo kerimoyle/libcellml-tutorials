@@ -56,20 +56,20 @@ If you'd rather see the completed code instead of working through the tasks your
 
             **0.a** Navigate into the :code:`tutorial1` folder and confirm that you're able to compile and run this template against the libCellML library.
 
-        .. code-block:: console
+        .. code-block:: text
 
             cmake -DINSTALL_PREFIX=../../install
             make -j
 
         Running the template:
 
-        .. code-block:: console
+        .. code-block:: text
 
             ./tutorial1
 
         ... should give the output:
 
-        .. code-block:: console
+        .. code-block:: text
 
             -----------------------------------------------
              TUTORIAL 1: READING AND WRITING CELLML FILES
@@ -84,14 +84,14 @@ If you'd rather see the completed code instead of working through the tasks your
             **0.a** Confirm that you're able to run the :code:`tutorial1.py` template against the libCellML library.
             Navigate into the directory and run the skeleton code file, :code:`tutorial1.py`.
 
-        .. code-block:: console
+        .. code-block:: text
 
             cd tutorial1
             python3 tutorial1.py
 
         This should give the output:
 
-        .. code-block:: console
+        .. code-block:: text
 
             -----------------------------------------------------
                 TUTORIAL 1: READING AND WRITING CellML2 FILES
@@ -177,7 +177,7 @@ For example, to find the name of the model we simply call its :code:`name()` fun
 
     **2.a** Find out the name and id of your model and print them to the terminal.
 
-.. code-block:: terminal
+.. code-block:: text
 
     The model name is: tutorial_1_model
     The model id is: tutorial_1_model_id_is_here
@@ -199,7 +199,7 @@ There are generic :code:`somethingCount()` functions which will return the numbe
 
     **2.b** Find out the number of :code:`Component` items in the model, and print it to the terminal.
 
-.. code-block:: terminal
+.. code-block:: text
 
     The tutorial_1_model model has 1 component(s)
 
@@ -225,7 +225,7 @@ Each :code:`Component` itself (or later, :code:`Units` or :code:`Variable`) is r
 
     **2.c** Retrieve the first component from the model, and print its name and id to the terminal.
 
-.. code-block:: terminal
+.. code-block:: text
 
     The tutorial_1_model model has 1 component(s):
         Component[0] has name: i_am_a_component
@@ -248,7 +248,7 @@ In this tutorial we'll only look at the variables and maths.
 
     **2.e** Create a loop through the variables, retrieve each, and print their names to the screen.
 
-.. code-block:: terminal
+.. code-block:: text
 
     The i_am_a_component component has 3 variable(s):
         Variable[0] has name: a
@@ -259,7 +259,7 @@ In this tutorial we'll only look at the variables and maths.
 
     **2.f** We will look more at what the MathML string actually *means* in later tutorials, but for now, retrieve the MathML string from your component using the :code:`math()` function, and print it to the screen.
 
-.. code-block:: terminal
+.. code-block:: text
 
     Component i_am_a_component has a MathML string of: 
         <math xmlns="http://www.w3.org/1998/Math/MathML">

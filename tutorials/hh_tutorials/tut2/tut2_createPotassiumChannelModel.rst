@@ -249,7 +249,7 @@ The simplest way is to print the descriptions to the terminal.
         :start-at: #  2.d
         :end-before: #  2.e
 
-.. code-block:: terminal
+.. code-block:: text
 
     The validator has found 5 issues.
     MathML ci element has the child text 'i_K' which does not correspond with any variable names present in component 'potassiumChannelEquations'.
@@ -306,7 +306,7 @@ The simplest way is to print the descriptions to the terminal.
         :start-at: #  2.e
         :end-before: #  2.f
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 12 issues:
     Issue [0] is an ERROR:
@@ -441,7 +441,7 @@ The nGateParameters component allows us to specify those parameters specific to 
         :start-at: #  3.c
         :end-before: #  3.d
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 7 issues:
     Issue [0] is an ERROR:
@@ -486,7 +486,7 @@ The nGateParameters component allows us to specify those parameters specific to 
         :start-at: #  3.d
         :end-before: #  end 3.d
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 12 issues:
     Issue [0] is an ERROR:
@@ -714,7 +714,7 @@ The analyser is similar to the :code:`Validator` class and keeps a record of iss
     **6.b** Retrieve the analyser's issues and print them to the terminal, just as you've done for the validator.
     Expect messages related to un-computed variables.
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 11 issues:
     Issue [0] is an ERROR:
@@ -842,7 +842,7 @@ You can either do this by creating the variables from scratch (as in Step 3.d) b
     **7.d** Create variable connections between these variables and their counterparts in the equations components.
     Validate, expecting errors related to missing or incorrect interface types.
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 6 issues:
     Issue [0] is an ERROR:
@@ -933,7 +933,7 @@ Voltage is needed by the potassium channel and nGate equations components.
 
     **8.a** Print the model to the terminal and notice the components which contain V and t variables.  
 
-.. code-block:: terminal
+.. code-block:: text
 
     MODEL: 'PotassiumChannelModel'
         UNITS: 7 custom units
@@ -1200,7 +1200,7 @@ The models which have the source components that we wanted to reuse from the Gat
         :start-at: #  10.d
         :end-before: #  10.e
 
-.. code-block:: terminal
+.. code-block:: text
 
     The importer has 2 models in the library.
         library(0) = GateModel.cellml

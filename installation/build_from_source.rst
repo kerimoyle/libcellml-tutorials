@@ -23,7 +23,7 @@ If you will only be working in C++ then you don't need this step.
 
   **1.a** Create an empty folder and navigate into it.
 
-  .. code-block:: console
+  .. code-block:: text
 
     mkdir MyLibCellMLDirectory
     cd MyLibCellMLDirectory
@@ -33,7 +33,7 @@ If you will only be working in C++ then you don't need this step.
   **1.b** Clone the branch from the libCellML library github repository.
   This will create and populate a folder called :code:`libcellml`.
 
-  .. code-block:: console
+  .. code-block:: text
 
     git clone -b develop --single-branch https://github.com/cellml/libcellml.git
 
@@ -49,7 +49,7 @@ Your folder structure is now:
 
   **1.c** Rename the cloned :code:`libcellml` folder to be :code:`source`, and create sibling folders called :code:`build` and :code:`install`:
 
-  .. code-block:: console
+  .. code-block:: text
 
     mv libcellml source
     mkdir build
@@ -74,7 +74,7 @@ Your folder structure should now look like this:
 
   **2.a** Navigate into the :code:`MyLibCellMLDirectory/build` directory to make the library:
 
-  .. code-block:: console
+  .. code-block:: text
 
     cd build
     cmake -DINSTALL_PREFIX=../install -S=../source -B=.
@@ -87,7 +87,7 @@ Your folder structure should now look like this:
     By default, if these flags are not present, CMake will take the first unflagged item as the source directory (if there are none then it uses the current directory), and the second (if there is no second then it uses the current directory) as the build directory.
     Thus, if called from the build directory, then these are equivalent:
 
-    .. code-block:: console
+    .. code-block:: text
 
       cmake -DINSTALL_PREFIX=../install -S=../source -B=.  # Explicitly specifying directories.
       cmake -DINSTALL_PREFIX=../install ../source .        # First argument is the source, second argument is the build.
@@ -95,7 +95,7 @@ Your folder structure should now look like this:
 
 You should see output which runs through some checks (make sure they all pass), and finishes with a message like this:
 
-.. code-block:: console
+.. code-block:: text
 
      ( ... lots of checks ... )
   -- Configuring done
@@ -106,13 +106,13 @@ You should see output which runs through some checks (make sure they all pass), 
 
   **2.b** From the same location, install the library:
 
-  .. code-block:: console
+  .. code-block:: text
 
       make -j install
 
 You should see output which finishes with a list of library and include files like this:
 
-.. code-block:: console
+.. code-block:: text
 
   Install the project...
   -- Install configuration: "Debug"
@@ -138,7 +138,7 @@ Your directory structure should now look like:
   **2.c (optional)** If you intend to use the Python bindings, you will need to install the Python version of the local library using pip3.
   Again, this expects that you are still in the :code:`build` directory.
 
-  .. code-block:: console
+  .. code-block:: text
 
     pip3 install -e src/bindings/python
 
@@ -147,12 +147,12 @@ Your directory structure should now look like:
   **2.d (optional)** Run the tests on the library from the :code:`build` directory.
   Expect to see that all tests have passed.
 
-  .. code-block:: console
+  .. code-block:: text
 
     make test
 
 3: Test the installation: C++
-============================
+=============================
 
 If you are intending to use the Python library only, please skip to :ref:`Test the installation: Python<test_python_installation>`.
 
@@ -163,7 +163,7 @@ If you are intending to use the Python library only, please skip to :ref:`Test t
   - :download:`CMakeLists.txt<CMakeLists.txt>` 
   - :download:`test_install.cpp<test_install.cpp>` 
 
-  .. code-block:: console
+  .. code-block:: text
 
     cd wherever/you/downloaded/them
 
@@ -172,13 +172,13 @@ If you are intending to use the Python library only, please skip to :ref:`Test t
   **3.b** Run CMake to create the Makefile.
   Note that you will need to specify the path to the :code:`install` directory you created in step 2.b using the :code:`-DINSTALL_PREFIX` flag.
 
-  .. code-block:: console
+  .. code-block:: text
 
     cmake -DINSTALL_PREFIX=path/to/your/install 
 
 If this is correct you should see an output ending similar to this:
 
-.. code-block:: console
+.. code-block:: text
 
     -- The C compiler identification is AppleClang 10.0.1.10010046
     -- The CXX compiler identification is AppleClang 10.0.1.10010046
@@ -202,13 +202,13 @@ If this is correct you should see an output ending similar to this:
 
   **3.c** Now build the :code:`test_install` example
 
-  .. code-block:: console
+  .. code-block:: text
 
     make -j
 
 You should see an output similar to this:
 
-.. code-block:: console
+.. code-block:: text
 
     Scanning dependencies of target test_install
     [ 50%] Building CXX object CMakeFiles/test_install.dir/test_install.cpp.o
@@ -219,13 +219,13 @@ You should see an output similar to this:
 
     **3.d** Finally, run the program to output the welcome and version number of the linked libCellML installation:
 
-  .. code-block:: console
+  .. code-block:: text
 
     ./test_install
 
 You should see the output of:
 
-.. code-block:: console
+.. code-block:: text
 
   -----------------------------------------------
       Welcome to libCellML!
@@ -235,7 +235,7 @@ You should see the output of:
 .. _test_python_installation:
 
 4: Test the installation: Python
-===============================
+================================
 
 .. container:: dothis
 
@@ -244,7 +244,7 @@ You should see the output of:
   
   - :download:`test_install.py<test_install.py>` 
 
-  .. code-block:: console
+  .. code-block:: text
 
     cd wherever/you/downloaded/it
 
@@ -252,13 +252,13 @@ You should see the output of:
 
   **4.b** Run the test script from here.
 
-  .. code-block:: console
+  .. code-block:: text
 
     python3 test_install.py
 
 You should see the output of:
 
-.. code-block:: console
+.. code-block:: text
 
   -----------------------------------------------
       Welcome to libCellML!
