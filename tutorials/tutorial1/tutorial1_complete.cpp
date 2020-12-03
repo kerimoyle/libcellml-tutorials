@@ -15,7 +15,7 @@
 
 #include <libcellml>
 
-int main()
+int main(int argc, char* argv[])
 {
     std::cout << "-----------------------------------------------" << std::endl;
     std::cout << " TUTORIAL 1: READING AND WRITING CELLML FILES" << std::endl;
@@ -26,7 +26,10 @@ int main()
     //  1.a   
     //      Open the file and read its contents into a buffer stream.
 
-    std::string inFileName = "tutorial1.cellml";
+    if (argc < 2) {
+        return 1;
+    }
+    std::string inFileName = argv[1];
     std::ifstream inFile(inFileName);
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
@@ -126,4 +129,5 @@ int main()
 
     //  3.c 
     //      Go and have a cuppa, you're done!
+    return 0;
 }
