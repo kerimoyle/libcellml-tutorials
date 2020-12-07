@@ -1,0 +1,27 @@
+-----------------------------------------------
+ TUTORIAL 1: READING AND WRITING CELLML FILES
+-----------------------------------------------
+Opening the CellML file
+The model name is: tutorial_1_model
+The model id is: tutorial_1_model_id_is_here
+The tutorial_1_model model has 1 component(s):
+  Component[0] has name: i_am_a_component
+  Component[0] has id: my_component_id
+  The i_am_a_component component has 3 variable(s):
+    Variable[0] has name: a
+    Variable[1] has name: b
+    Variable[2] has name: c
+  Component i_am_a_component has a MathML string of: 
+  <math xmlns="http://www.w3.org/1998/Math/MathML">
+  <apply>
+    <eq/>
+    <ci>a</ci>
+    <apply>
+      <plus/>
+      <ci>b</ci>
+      <ci>c</ci>
+    </apply>
+  </apply>
+</math>
+
+The tutorial_1_model has been printed to: tutorial1_printed.cellml
