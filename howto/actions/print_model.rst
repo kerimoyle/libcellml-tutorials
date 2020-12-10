@@ -1,4 +1,4 @@
-.. _examples_print_model:
+.. _print_model:
 
 ============================================================
 Serialise a ``Model`` into CellML 2.0 for printing to a file

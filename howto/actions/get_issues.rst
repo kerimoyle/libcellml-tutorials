@@ -176,7 +176,3 @@ Each :code:`Issue` also contains the following attributes:
     # Retrieve and print the level - a libcellml.Issue.LEVEL enum - for the issue.
     print(get_issue_level_from_enum(issue.level()))
 
-
-.. Useful snippets for dealing with issues
-.. =======================================
-.. **TODO**

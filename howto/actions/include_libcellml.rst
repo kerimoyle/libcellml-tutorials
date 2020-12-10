@@ -1,4 +1,4 @@
-.. _examples_include_libcellml:
+.. _include_libcellml:
 
 =============================================
 Include the libCellML library in your project

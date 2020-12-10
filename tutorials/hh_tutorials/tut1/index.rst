@@ -749,7 +749,7 @@ This is the reason for the second internal component, the *parameters* component
 So far in this tutorial we've only been creating items, defining them, and adding to their parent items.
 Now for the first time we will need to retrieve a child item from its parent.
 This can be done in one of two ways: either by the child's index or by its name.
-There is more information about interacting with collections of items on the :ref:`Understanding collections of items<examples_understand_collections>` page.
+There is more information about interacting with collections of items on the :ref:`Understanding collections of items<understand_collections>` page.
 
 Two particularly useful idioms are shown below.
 

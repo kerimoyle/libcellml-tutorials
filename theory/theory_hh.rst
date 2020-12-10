@@ -173,15 +173,7 @@ functionality requires *imports*; their use is demonstrated in
 Importing allows all or part of a model to be used in-situ, without
 needing to manually parse its CellML file and instantiate it as an
 additional model (as has been the procedure in :ref:`Tutorial 6<tutorial6>`
-and :ref:`Tutorial 7<tutorial7>`).  There are some points to note.
-
-  - I
-
-
-
-
-
-
+and :ref:`Tutorial 7<tutorial7>`).  
 
 Simulation and results
 ----------------------

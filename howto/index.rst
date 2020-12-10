@@ -18,37 +18,16 @@ How to do stuff
 ---------------
 
 .. toctree:: 
-    :maxdepth: 2
+   :maxdepth: 2
+   :glob:
 
-    actions/examples_include_libcellml.rst
-    actions/parse_model.rst
-    actions/examples_edit_model.rst
-    actions/examples_print_model.rst
-    actions/examples_view_model.rst
-    actions/validate_model.rst
-    actions/analyse_model.rst
-    actions/examples_annotate_model.rst
-    actions/get_issues.rst
-    actions/understand_collections.rst
-
-
-.. snippets/snippet_parse_model.rst TODO ?
-.. actions/examples_create_model.rst TODO
-.. actions/examples_trace_imports.rst TODO
+   actions/*
 
 Common user pathways
 --------------------
 
 .. toctree:: 
     :maxdepth: 2
+    :glob:
 
-    user_profiles/users_model_debugger.rst
-    user_profiles/users_import_debugger.rst
-    user_profiles/users_annotation_tool_dev.rst
-    user_profiles/users_simulation_tool_dev.rst
-    user_profiles/users_solver.rst
-    
-.. user_profiles/users_package_dev.rst
-
-
-
+    user_profiles/*
