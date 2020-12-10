@@ -1,4 +1,4 @@
-.. _examples_annotate_model:
+.. _annotate_model:
 
 ================
 Annotate a model
@@ -286,7 +286,7 @@ Annotator ``Type`` and returned types
 +-------------------+-----------------------------------------------------------------------------------------------------+
 | TEST_VALUE        | Pointer to the parent :code:`Reset` item containing a test value with the given :code:`id`.         |
 +-------------------+-----------------------------------------------------------------------------------------------------+
-| UNIT              | :code:`Unit` pair, when the first attribute is a :code:`Units` pointer to the parent of         |
+| UNIT              | :code:`Unit` pair, when the first attribute is a :code:`Units` pointer to the parent of             |
 |                   | the unit with the given :code:`id`, and the second attribute is the index within the                |
 |                   | :code:`Units` item at which the unit can be found.                                                  |
 +-------------------+-----------------------------------------------------------------------------------------------------+

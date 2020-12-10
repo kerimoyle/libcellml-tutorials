@@ -1,4 +1,4 @@
-.. _snippet_annotator_auto_ids:
+.. _snippet_annotator_find_duplicate_ids:
 
 .. container:: toggle
 

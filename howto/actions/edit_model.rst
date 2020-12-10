@@ -1,4 +1,4 @@
-.. _examples_edit_model:
+.. _edit_model:
 
 =====================
 Edit items in a model
@@ -31,7 +31,7 @@ Note that this is distinct from editing collections of items, which is discussed
 
 Editing collections
 -------------------
-General families of functions are available for editing collections, but take the form of :code:`addXyz` and :code:`removeXyz`, :code:`takeXyz` and :code:`replaceXyz`, as explained in :ref:`Understanding collections<examples_understand_collections>`.
+General families of functions are available for editing collections, but take the form of :code:`addXyz` and :code:`removeXyz`, :code:`takeXyz` and :code:`replaceXyz`, as explained in :ref:`Understanding collections<understand_collections>`.
 
 Some example snippets are shown below:
 
@@ -105,7 +105,6 @@ Another variable :code:`vegetable` is equivalent to variables :code:`tomato`, :c
 At this time, there are two sets of equivalent variables: all of the fruit are equivalent to one another, and all of the vegetables are equivalent to one another.
 Adding a variable :code:`produce` with an equivalence to :code:`fruit` and to :code:`vegetable` effectively merges the two sets, so that now the variable :code:`peach` is equivalent to :code:`spinach`.
 
-.. **TODO** Need better examples and use cases here once the API issue #619 is clarified.
 
 Editing an encapsulation hierarchy
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
