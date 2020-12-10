@@ -10,7 +10,7 @@
   This example shows how the component :code:`tomatoes` which was orininally a child of the :code:`vegetables` component, could be moved to become a child of the :code:`fruit` component instead.
   When run, this snippet will give the output:
 
-  .. code-block:: terminal
+  .. code-block:: text
 
     Model 'quickstart_editEncapsulation' has 2 components
       - Component 'fruit' has 0 child components

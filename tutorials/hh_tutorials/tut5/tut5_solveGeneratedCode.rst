@@ -48,15 +48,15 @@ There are necessarily big differences between C++ and Python for this tutorial!
 
         .. container:: dothis
         
-            **1.a** Enter the path to the generated header/interface *.h file in the #include block above.
+            **1.a** Enter the path to the generated header/interface :code:`*.h` file in the #include block above.
 
         .. container:: dothis
         
-            **1.b** Add the name and path of the implementation *.cpp file in the CMakeLists.txt file, (or whatever your local toolchain requires).
+            **1.b** Add the name and path of the implementation :code:`*.cpp` file in the CMakeLists.txt file, (or whatever your local toolchain requires).
 
         .. container:: dothis
         
-            **1.c** Open the implementation file *.cpp file and verify that the #include statement in line 3 has the filename of your interface *.h file.  
+            **1.c** Open the implementation file :code:`*.cpp` file and verify that the :code:`#include` statement in line 3 has the filename of your interface :code:`*.h` file.  
             Amend if needed and close the file.
 
         .. container:: dothis
@@ -100,7 +100,7 @@ There are necessarily big differences between C++ and Python for this tutorial!
 Step 2: Access the variables in the generated files
 ---------------------------------------------------
 Probably the best way to understand the contents of the generated files is o open them and look!
-The implementation file (*.cpp) has two types of items:
+The implementation file :code:`*.cpp` has two types of items:
 
 - information structures (in all-caps); and
 - access functions.
@@ -247,9 +247,10 @@ Step 3: Access the functions in the generated files
 
     **3.a** Create three arrays representing:
     
-    - the variables (which here includes constants)
-    - the states (the integrated variables)
-    - the rates 
+    - the variables (which here includes constants);
+    - the states (the integrated variables); and
+    - the rates.
+
     Create and initialise a variable of integration, time. 
 
 .. container:: toggle
@@ -373,6 +374,7 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
         - Compute the state variables using the update method above; 
         - Compute the variables; **
         - Print to a file.
+        
     ** We only need to compute these each timestep here because we're also writing the values to the file at each timestep.
 
 .. container:: toggle

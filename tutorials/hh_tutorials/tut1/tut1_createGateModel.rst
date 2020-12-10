@@ -125,7 +125,7 @@ All other components will then need to be added to this component, rather than t
         :start-at: #  1.a
         :end-before: # end 1
 
-.. code-block:: terminal
+.. code-block:: text
 
     MODEL: 'GateModel'
         UNITS: 0 custom units
@@ -222,7 +222,7 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
         :start-at: #  2.c
         :end-before: # end 2
 
-.. code-block:: terminal
+.. code-block:: text
 
     MODEL: 'GateModel'
     UNITS: 0 custom units
@@ -361,7 +361,7 @@ The simplest way is to print the descriptions to the terminal.
         :start-at: #  3.b
         :end-before: #  end 3
 
-.. code-block:: terminal
+.. code-block:: text
 
     The validator has found 6 issues.
     Issue [0] is an ERROR:
@@ -468,7 +468,7 @@ These must be created, named, and added to their parent component.
         :start-at: #  4.b
         :end-before: #  end 4
 
-.. code-block:: terminal
+.. code-block:: text
 
     Issue [0] is an ERROR:
         description: CellML identifiers must contain one or more basic Latin alphabetic characters.
@@ -611,7 +611,7 @@ Please read the :ref:`Understanding units<aside_units>` page for more detailed i
         :start-at: #  5.c
         :end-before: #  end 5
 
-.. code-block:: terminal
+.. code-block:: text
 
     MODEL: 'GateModel'
     UNITS: 2 custom units
@@ -672,7 +672,7 @@ Step 6: Analyse the mathematical construction of the model
         :start-at: #  6.a
         :end-before: #  end 6.b
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 3 issues:
     Issue [0] is an ERROR:
@@ -804,7 +804,7 @@ Two particularly useful idioms are shown below.
         :start-at: #  6.e
         :end-before: #  6.f
 
-.. code-block:: terminal
+.. code-block:: text
 
     Recorded 6 issues:
     Issue [0] is an ERROR:
@@ -864,7 +864,7 @@ Step 7: Sanity check
 
     **7.a** Print the model to the terminal using the helper function.
 
-.. code-block:: terminal
+.. code-block:: text
 
     MODEL: 'GateModel'
     UNITS: 2 custom units

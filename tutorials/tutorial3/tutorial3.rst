@@ -66,7 +66,7 @@ In order to model these unusual populations you'll need to create your own custo
 
 Step 1: Set up the governing equations
 --------------------------------------
-Just as you did in :ref:`Tutorial 2<tutorial2_cpp>`, we need to start by setting up a :code:`Model` instance, and creating a :code:`Component` inside it.
+Just as you did in :ref:`Tutorial 2<tutorial2>`, we need to start by setting up a :code:`Model` instance, and creating a :code:`Component` inside it.
 
 .. container:: dothis
 
@@ -102,7 +102,7 @@ Just as you did in :ref:`Tutorial 2<tutorial2_cpp>`, we need to start by setting
 
 Now for the real bit.
 In order to actually model anything, we need to include the mathematical equations which represent the physical situation of interest.
-As you saw in :ref:`Tutorial 2<tutorial2_cpp>`, the maths and the :code:`Variable` items which it references live inside a parent :code:`Component` item.
+As you saw in :ref:`Tutorial 2<tutorial2>`, the maths and the :code:`Variable` items which it references live inside a parent :code:`Component` item.
 
 .. container:: gotcha
 
@@ -383,7 +383,7 @@ The functions available to manipulate maths are:
 
 You should see an output similar to that shown below:
 
-.. code-block:: console
+.. code-block:: text
 
     Recorded 17 issues:
 
@@ -485,7 +485,7 @@ Step 2: Create the variables
         :start-at: #  2.b
         :end-before: #  end 2
 
-.. code-block:: console
+.. code-block:: text
 
     Recorded 8 issues:
 
@@ -743,7 +743,7 @@ The final two steps are to associate each variable with its appropriate units, a
         :start-at: #  3.f
         :end-before: #  3.g
 
-.. code-block:: console
+.. code-block:: text
 
     Recorded 1 issues:
 
