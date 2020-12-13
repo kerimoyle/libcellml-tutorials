@@ -23,6 +23,12 @@ How to do stuff
 
    actions/*
 
+.. toctree::
+   :hidden:
+
+   actions/index
+
+
 Common user pathways
 --------------------
 
