@@ -18,16 +18,20 @@ How to do stuff
 ---------------
 
 .. toctree:: 
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
 
-   actions/*
+   actions/index.rst
 
 Common user pathways
 --------------------
 
 .. toctree:: 
-    :maxdepth: 2
+    :maxdepth: 3
     :glob:
 
-    user_profiles/*
+    user_profiles/index.rst
+
+
+
+
