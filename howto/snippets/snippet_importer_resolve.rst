@@ -1,4 +1,4 @@
-.. _snippet_analyser_analyse:
+.. _snippet_importer_resolve:
 
 .. tabs::
 
@@ -6,8 +6,8 @@
 
     .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
       :language: c++
-      :start-after: // STEP 4
-      :end-before: // STEP 5
+      :start-after: // STEP 2
+      :end-before: // STEP 3
 
     Full context: :download:`example_simulationToolDev.cpp<../code/simulation_tool_dev/simulationToolDev.cpp>`
 
@@ -15,7 +15,7 @@
 
     .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
       :language: python
-      :start-after: # STEP 4
-      :end-before: # STEP 5
+      :start-after: # STEP 2
+      :end-before: # STEP 3
     
     Full context: :download:`example_simulationToolDev.py<../code/simulation_tool_dev/simulationToolDev.py>`
