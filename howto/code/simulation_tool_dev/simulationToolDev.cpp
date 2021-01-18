@@ -82,7 +82,9 @@ int main()
 
     // Pass the generator the model for processing.
     generator->setModel(analyser->model());
+    printIssues(generator);
 
+    // STEP 6
     // Retrieve and write the interface code (*.h) and implementation code (*.c) to files.
     std::ofstream outFile("sineComparisonExample.h");
     outFile << generator->interfaceCode();

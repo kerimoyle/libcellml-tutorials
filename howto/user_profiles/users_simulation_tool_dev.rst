@@ -94,19 +94,15 @@ A model can be said to be valid - that is, conforming to the :cellml2:`CellML no
 
 For more information on how to use any of the classes which record issues, please see the :ref:`Get Issues<actions_get_issues>` section.
 
-Generate code
+Analyse model
 -------------
-Code generation is the process of representing the CellML model in another language format.
-At the time of writing, two profiles are available: C (default) and Python.
-There are four steps to code generation:
+Before code can be generated from this model, its mathematics must be checked.
+The :code:`Validator` checks that the syntax of the model is correct; the :code:`Analyser` checks that the maths is sensible, and that all the required information is available. 
+There are three steps to model analysis:
 
-1. Create a :code:`Generator` item and select the profile language.
-   (The default profile is C).
-2. Pass a model to the generator for processing.
-3. Retrieve the generated implementation code. 
-   This is the contents of the :code:`*.c` file (if C is the profile) or :code:`*.py` if Python is selected.
-4. (optional) Retrieve the generated interface code. 
-   This is the contents of the :code:`*.h` file, and is not required for the Python profile.
+1. Create an :code:`Analyser` item and submit the model for analysis.
+2. Address any issues reported (see the :ref:`Get Issues<actions_get_issues>` section for details).
+3. Use the :code:`AnalyserModel` item that's constructed as input to the :code:`Generator` (see next section).
 
 .. tabs::
 
@@ -123,6 +119,46 @@ There are four steps to code generation:
         :language: python
         :start-after: # STEP 4
         :end-before: # STEP 5
+
+Generate code
+-------------
+Code generation is the process of representing the CellML model in another language format.
+At the time of writing, two profiles are available: C (default) and Python.
+There are four steps to code generation:
+
+1. Create a :code:`Generator` item and select the profile language.
+   (The default profile is C).
+2. Pass the :code:`AnalyserModel` output from the :code:`Analyser` to the :code:`Generator` for processing.
+3. Retrieve the generated implementation code. 
+   This is the contents of the :code:`*.c` file (if C is the profile) or :code:`*.py` if Python is selected.
+4. (optional) Retrieve the generated interface code. 
+   This is the contents of the :code:`*.h` file, and is not required for the Python profile.
+
+.. tabs::
+
+    .. tab:: C++ snippet
+
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
+        :language: c++
+        :start-after: // STEP 5
+        :end-before: // STEP 6
+
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
+        :language: c++
+        :start-after: // STEP 6
+        :end-before: // END
+
+    .. tab:: Python snippet
+
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
+        :language: python
+        :start-after: # STEP 5
+        :end-before: # STEP 6
+
+      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
+        :language: python
+        :start-after: # STEP 6
+        :end-before: # END
 
 Use the generated code to simulate the model
 --------------------------------------------
