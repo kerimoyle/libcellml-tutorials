@@ -104,21 +104,23 @@ There are three steps to model analysis:
 2. Address any issues reported (see the :ref:`Get Issues<actions_get_issues>` section for details).
 3. Use the :code:`AnalyserModel` item that's constructed as input to the :code:`Generator` (see next section).
 
-.. tabs::
+.. include:: ../snippets/snippet_analyser_analyse.rst
 
-    .. tab:: C++ snippet
+.. .. tabs::
 
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
-        :language: c++
-        :start-after: // STEP 4
-        :end-before: // STEP 5
+..     .. tab:: C++ snippet
 
-    .. tab:: Python snippet
+..       .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
+..         :language: c++
+..         :start-after: // STEP 4
+..         :end-before: // STEP 5
 
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
-        :language: python
-        :start-after: # STEP 4
-        :end-before: # STEP 5
+..     .. tab:: Python snippet
+
+..       .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
+..         :language: python
+..         :start-after: # STEP 4
+..         :end-before: # STEP 5
 
 Generate code
 -------------
