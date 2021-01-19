@@ -1234,7 +1234,7 @@ The models which have the source components that we wanted to reuse from the Gat
         :start-at: #  10.e
         :end-before: #  10.f 
 
-.. container:: gotcha
+.. container:: nb
 
     **GOTCHA:** Note that when an item is added to a new parent, it is automatically removed from its original parent.  
     Iterating through a set of children is best done in descending index order or using a while loop so that child items are not skipped as the indices change.

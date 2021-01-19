@@ -9,7 +9,7 @@ Each annotation is attached to a unique ID locator which can be retrieved and ed
 Since CellML is a subset of XML, any item may have an ID attribute, including operations within the MathML blocks, CellML entities, and CellML non-entity items (connections, encapsulations etc).
 These ID attributes themselves must follow the specification rules: please see :cellml2:`1.2.5 XML ID attributes<specA2.html?issue=1.2.5>` for details.
 
-.. container:: gotcha
+.. container:: nb
 
   At present, items within MathML blocks which have :code:`id` attributes are not retrieved or edited by the annotation class.
   Any editing or manipulation must be done external to libCellML.

@@ -9,21 +9,18 @@ In the :code:`Annotator`, the ID string is used instead.
 Because an item of any type could have an ID attribute, there is no way of knowing what kind of will be returned.
 The class makes use of casting to and from the (C++ only) :cpp_reference:`std::any type<w/cpp/utility/any>` to handle this uncertainty.
 
-**Contents**
+.. container:: lineblocks
 
-.. contents::
-   :local:
+    | **C++ resources**
+    |    ├ :download:`CMakeLists.txt<../code/annotation_tool_dev/CMakeLists.txt>`
+    |    ├ :download:`annotationToolDev.cpp<../code/annotation_tool_dev/annotationToolDev.cpp>`
+    |    └ resources/
+    |        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
 
-| **C++ resources**
-|    ├ :download:`CMakeLists.txt<../code/annotation_tool_dev/CMakeLists.txt>`
-|    ├ :download:`annotationToolDev.cpp<../code/annotation_tool_dev/annotationToolDev.cpp>`
-|    └ resources/
-|        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
-
-| **Python resources**
-|    ├ :download:`annotationToolDev.py<../code/annotation_tool_dev/annotationToolDev.py>`
-|    └ resources/
-|        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
+    | **Python resources**
+    |    ├ :download:`annotationToolDev.py<../code/annotation_tool_dev/annotationToolDev.py>`
+    |    └ resources/
+    |        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
 
 Parse an existing CellML model 
 ------------------------------
@@ -32,19 +29,19 @@ Here we use the :code:`Parser` class to read the file, and deserialise the CellM
 
 .. tabs::
 
-    .. tab:: C++ snippet
+  .. tab:: C++ snippet
 
-      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.cpp
-        :language: c++
-        :start-after: // STEP 1
-        :end-before: // STEP 2
+    .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.cpp
+      :language: c++
+      :start-after: // STEP 1
+      :end-before: // STEP 2
 
-    .. tab:: Python snippet
+  .. tab:: Python snippet
 
-      .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.py
-        :language: python
-        :start-after: # STEP 1
-        :end-before: # STEP 2
+    .. literalinclude:: ../code/annotation_tool_dev/annotationToolDev.py
+      :language: python
+      :start-after: # STEP 1
+      :end-before: # STEP 2
       
 Use an annotator to investigate the model 
 -----------------------------------------
@@ -218,4 +215,3 @@ Finally, IDs for every item in a model can be set with the *assignAllIds* functi
          Before assigning all automatic ids, there are 24 items with an id attribute.
          After assigning all automatic ids, there are 31 items with an id attribute.
          After clearing all ids, there are 0 items with an id attribute.
-      

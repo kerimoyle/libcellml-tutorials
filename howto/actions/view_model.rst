@@ -28,9 +28,9 @@ In some circumstances additional links are made between items (equivalent variab
         │   └─ TestValue item
         │
         ├─ Math item
-        ╎
+        │
         └─ Child Component item(s)
-             ╎
+             │
              └─ Grandchild Component item(s)
 
 Within the structure each item has two parts:
@@ -81,7 +81,7 @@ View collections owned by an item
 In order to access items within a collection use the same general format as above, but with an indicator (name or index) of the child item to be retrieved from the collection.
 In other words, get the child item of type :code:`xyz` using the camelCase function :code:`xyx(myIndex)` or :code:`xyz(myName)`.
 
-.. container:: gotcha
+.. container:: nb
 
     Before accessing a collection item using an index, you can use the :code:`xyzCount()` function to return the number of items in the collection.
 
