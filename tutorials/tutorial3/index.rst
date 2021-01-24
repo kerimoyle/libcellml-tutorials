@@ -104,7 +104,7 @@ Now for the real bit.
 In order to actually model anything, we need to include the mathematical equations which represent the physical situation of interest.
 As you saw in :ref:`Tutorial 2<tutorial2>`, the maths and the :code:`Variable` items which it references live inside a parent :code:`Component` item.
 
-.. container:: gotcha
+.. container:: nb
 
     At this point it should be noted that the *order* in which you add your components, or models, or variables (or anything) is not important to the final product, but it *can* affect how quickly you're able to find and fix bugs along the way.
     In these tutorials, we have suggested that you add the mathematics first and use a :code:`Validator` to notify you of the
@@ -130,7 +130,7 @@ The basic structure for these is described in the :mathml2help:`W3 resource page
 
 It's highly unlikely that you - the user - will actually be required to write MathML2 code directly, so this part of the tutorial is more about understanding what's going on under the hood than practising fundamentally necessary skills.
 
-.. container:: gotcha
+.. container:: nb
 
     **Note** that libCellML will **only** accept MathML2 markup, even though later versions (3 and 4) are now available.
 
@@ -349,7 +349,7 @@ The functions available to manipulate maths are:
         :start-at: #  1.g
         :end-before: #  1.h
 
-.. container:: gotcha
+.. container:: nb
 
     Note that the order in which strings are added might be important, as they are stored as a single concatenated string.
     However, the order in which complete MathML equations occur in the overall MathML string is not important.
@@ -679,7 +679,7 @@ These will be combinations of those which we've already created, as defined by t
 
 The final two steps are to associate each variable with its appropriate units, and to include the units in the model.
 
-.. container:: gotcha
+.. container:: nb
 
     - When you add different sub-unit parts into a :code:`Units` item, the function is :code:`addUnit` (singular), and it takes as argument the *name* of the sub-unit as a string (eg: :code:`"second"` used above).
     - When you add the final created combination into the :code:`Model` item, the function is :code:`addUnits` (plural), and it takes as argument the *reference* of the combined units (eg: :code:`ms`).
@@ -711,7 +711,7 @@ The final two steps are to associate each variable with its appropriate units, a
         :start-at: #  3.e
         :end-before: #  3.f
 
-.. container:: gotcha
+.. container:: nb
 
     **Gotcha!** When you specify the :code:`Units` for a :code:`Variable` using its name then you may need to call the model's :code:`linkUnits` function before validating the model.
     If you see errors related to missing units which do in fact exist, this indicates that a call to the :code:`linkUnits` function is needed.

@@ -156,7 +156,7 @@ When the importer resolves imports, any dependencies it needs are instantiated i
 These models can be accessed within the library by their key (the URL from which they were read) or by their index.
 Here we print the list of the importer's library keys to demonstrate, and then retrieve the model containing the error so it can be fixed.
 
-.. container:: gotcha
+.. container:: nb
 
     Note that altering a model instance returned from the :code:`Importer` changes the model instance which is used to resolve the original model's dependencies. 
     The :code:`Importer` checks its own library first before opening and parsing external files, so once we've fixed the error in the library's model, re-flattening the original model uses the fixed version too.
@@ -205,7 +205,7 @@ The ability to use imports to combine model items is useful, so we want to retai
 For this reason, we will write all of the files involved - whether altered or not - to a new directory.
 By doing this, we maintain the same relationship between the model files as was there in the beginning.
 
-.. container:: gotcha
+.. container:: nb
 
   For this example you will need to have created a directory structure ahead of time since the functions used here do not create those directories.  
   You will need to create two nested directories: :code:`repaired/resources` within your working directory before continuing.

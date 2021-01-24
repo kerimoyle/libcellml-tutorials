@@ -70,6 +70,7 @@ if __name__ == '__main__':
     generator.processModel(analyser.model())
     print_issues_to_terminal(generator)
 
+    # STEP 6
     # Retrieve and write the interface code (*.h) and implementation code (*.cpp) to files.
     write_file = open("sineComparisonExample.h", "w")
     write_file.write(generator.interfaceCode())

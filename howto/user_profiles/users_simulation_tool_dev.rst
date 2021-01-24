@@ -27,21 +27,7 @@ The following code will read a file called :code:`simulationExample.cellml` and 
 Note that both the :code:`Parser` class and its opposite number, the :code:`Printer` class, deal with strings rather than files.
 You'll need to read the file into a string, and then use the string as input to the :code:`Parser` item.
 
-.. tabs::
-
-    .. tab:: C++ snippet
-
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
-        :language: c++
-        :start-after: // STEP 1
-        :end-before: // STEP 2
-
-    .. tab:: Python snippet
-
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
-        :language: python
-        :start-after: # STEP 1
-        :end-before: # STEP 2
+.. include:: ../snippets/snippet_parser_parse_file.rst
       
 Resolve imports and flatten model
 ---------------------------------
@@ -52,47 +38,31 @@ The process of resolving the imports (telling libCellML where to look for these 
 
 The :code:`Importer` class supports all functionality to do with imports, and contains its own logger which can be used to report anything that might have gone wrong. 
 
-.. tabs::
-
-    .. tab:: C++ snippet
-
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
-        :language: c++
-        :start-after: // STEP 2
-        :end-before: // STEP 3
-
-    .. tab:: Python snippet
-
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
-        :language: python
-        :start-after: # STEP 2
-        :end-before: # STEP 3
+.. include:: ../snippets/snippet_importer_resolve.rst
 
 Validate model
 --------------
 The :code:`Validator` is the equivalent of a spelling checker: it can check that each item in a model has all of the information it needs, but it can't check whether it means what you intend it to.
 Thus even if a model is valid, it could still be the equivalent of correctly-spelled nonsense.
 
-.. tabs::
-
-    .. tab:: C++ snippet
-
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
-        :language: c++
-        :start-after: // STEP 3
-        :end-before: // STEP 4
-
-    .. tab:: Python snippet
-
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
-        :language: python
-        :start-after: # STEP 3
-        :end-before: # STEP 4
+.. include:: ../snippets/snippet_validate_model.rst
 
 Once a model has been passed to a :code:`Validator` instance, the validator's internal logger will contain a list of any of the issues which have been encountered during the checking process. 
 A model can be said to be valid - that is, conforming to the :cellml2:`CellML normative specification <>` - if the validator's logger contains no issues with a level of :code:`ERROR`.
 
 For more information on how to use any of the classes which record issues, please see the :ref:`Get Issues<actions_get_issues>` section.
+
+Analyse model
+-------------
+Before code can be generated from this model, its mathematics must be checked.
+The :code:`Validator` checks that the syntax of the model is correct; the :code:`Analyser` checks that the maths is sensible, and that all the required information is available. 
+There are three steps to model analysis:
+
+1. Create an :code:`Analyser` item and submit the model for analysis.
+2. Address any issues reported (see the :ref:`Get Issues<actions_get_issues>` section for details).
+3. Use the :code:`AnalyserModel` item that's constructed as input to the :code:`Generator` (see next section).
+
+.. include:: ../snippets/snippet_analyser_analyse.rst
 
 Generate code
 -------------
@@ -102,27 +72,13 @@ There are four steps to code generation:
 
 1. Create a :code:`Generator` item and select the profile language.
    (The default profile is C).
-2. Pass a model to the generator for processing.
+2. Pass the :code:`AnalyserModel` output from the :code:`Analyser` to the :code:`Generator` for processing.
 3. Retrieve the generated implementation code. 
    This is the contents of the :code:`*.c` file (if C is the profile) or :code:`*.py` if Python is selected.
 4. (optional) Retrieve the generated interface code. 
    This is the contents of the :code:`*.h` file, and is not required for the Python profile.
 
-.. tabs::
-
-    .. tab:: C++ snippet
-
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.cpp
-        :language: c++
-        :start-after: // STEP 4
-        :end-before: // STEP 5
-
-    .. tab:: Python snippet
-
-      .. literalinclude:: ../code/simulation_tool_dev/simulationToolDev.py
-        :language: python
-        :start-after: # STEP 4
-        :end-before: # STEP 5
+.. include:: ../snippet/snippet_generator_generate_and_output.rst
 
 Use the generated code to simulate the model
 --------------------------------------------

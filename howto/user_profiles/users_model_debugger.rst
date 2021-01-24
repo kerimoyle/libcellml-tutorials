@@ -126,7 +126,7 @@ The :code:`Analyser` works in the same way as the other service classes: we crea
         :start-after: # STEP 5
         :end-before: # STEP 6
 
-.. container:: gotcha
+.. container:: nb
 
     In some situations both the :code:`Validator` and :code:`Analyser` classes may encounter errors that mean they're unable to continue processing the model. 
     For this reason, you may need several iterations of checking and fixing before all of the issues are addressed.
