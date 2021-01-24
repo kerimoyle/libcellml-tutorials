@@ -23,6 +23,32 @@ Each issue contains a severity level indicator, one of four levels (:code:`ERROR
 
 Issues can also be retrieved from subgroups based on their severity, as shown in the examples below.
 
+Each :code:`Issue` also contains the following attributes:
+
+- A description: a brief statement about the problem and how it might be fixed;
+- A reference heading: a chapter number pertaining to the formal :cellml2:`CellML 2.0 Specification` document, for issues related to formatting and specification;
+- A URL: a web address at which more detailed information and examples pertaining to the issue are available;
+- A cause: an :code:`enum` which reports the type of item responsible for the issue.
+  This is one of the enums:
+
+  - :code:`COMPONENT`,
+  - :code:`CONNECTION`,
+  - :code:`ENCAPSULATION`,
+  - :code:`IMPORT`,
+  - :code:`MAP_VARIABLES`,
+  - :code:`MATHML`,
+  - :code:`MODEL`,
+  - :code:`RESET`,
+  - :code:`RESET_VALUE`,
+  - :code:`TEST_VALUE`,
+  - :code:`UNDEFINED`,
+  - :code:`UNIT`,
+  - :code:`UNITS`,
+  - :code:`VARIABLE`, and
+  - :code:`XML`.
+
+.. include:: ../code_snippets/snippet_get_issues.rst
+
 .. container:: toggle
 
   .. container:: header
@@ -57,7 +83,7 @@ Issues can also be retrieved from subgroups based on their severity, as shown in
       auto lastWarning = parser->warning(parser->warningCount()-1);
 
       // Iterate through all HINT level issues in a Generator.
-      for (size_t h = 0; h < generator->hintCount(); ++i) {
+      for (size_t h = 0; h < generator->hintCount(); ++h) {
         // Retrieve the h-th hint and store it in the variable "myHint".
         auto myHint = generator->hint(h);
       }
@@ -99,29 +125,6 @@ Issues can also be retrieved from subgroups based on their severity, as shown in
         # Retrieve the h-th hint and store it in the variable "my_hint".
         my_hint = generator.hint(h)
 
-Each :code:`Issue` also contains the following attributes:
-
-- A description: a brief statement about the problem and how it might be fixed;
-- A reference heading: a chapter number pertaining to the formal :cellml2:`CellML 2.0 Specification` document, for issues related to formatting and specification;
-- A URL: a web address at which more detailed information and examples pertaining to the issue are available;
-- A cause: an :code:`enum` which reports the type of item responsible for the issue.
-  This is one of the enums:
-
-  - :code:`COMPONENT`,
-  - :code:`CONNECTION`,
-  - :code:`ENCAPSULATION`,
-  - :code:`IMPORT`,
-  - :code:`MAP_VARIABLES`,
-  - :code:`MATHML`,
-  - :code:`MODEL`,
-  - :code:`RESET`,
-  - :code:`RESET_VALUE`,
-  - :code:`TEST_VALUE`,
-  - :code:`UNDEFINED`,
-  - :code:`UNIT`,
-  - :code:`UNITS`,
-  - :code:`VARIABLE`, and
-  - :code:`XML`.
 
 .. container:: toggle
 
@@ -129,22 +132,22 @@ Each :code:`Issue` also contains the following attributes:
 
     See C++ examples
 
-      .. code-block:: cpp
+  .. code-block:: cpp
 
-        // Retrieve and print the description of the issue.
-        std::cout << issue->description() << std::endl;
+    // Retrieve and print the description of the issue.
+    std::cout << issue->description() << std::endl;
 
-        // Retrieve and print the reference heading number, if related to CellML2.0 specification and format.
-        std::cout << issue->referenceHeading() << std::endl;
+    // Retrieve and print the reference heading number, if related to CellML2.0 specification and format.
+    std::cout << issue->referenceHeading() << std::endl;
 
-        // Retrieve and print the URL for more help and information about the issue. 
-        std::cout << issue->url() << std::endl;
+    // Retrieve and print the URL for more help and information about the issue. 
+    std::cout << issue->url() << std::endl;
 
-        // Retrieve and print the item type - a libcellml::CellmlElementType enum - for the issue.
-        std::cout << getElementTypeFromEnum(issue->CellmlElementType()) << std::endl;
+    // Retrieve and print the item type - a libcellml::CellmlElementType enum - for the issue.
+    std::cout << getElementTypeFromEnum(issue->CellmlElementType()) << std::endl;
 
-        // Retrieve and print the level - a libcellml::Issue::LEVEL enum - for the issue.
-        std::cout << getIssueLevelFromEnum(issue->level()) << std::endl;
+    // Retrieve and print the level - a libcellml::Issue::LEVEL enum - for the issue.
+    std::cout << getIssueLevelFromEnum(issue->level()) << std::endl;
 
 
 .. container:: toggle

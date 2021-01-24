@@ -134,24 +134,45 @@ void printComponentToTerminal(const libcellml::ComponentPtr &component, size_t c
     }
 }
 
+// START printIssues
 void printIssues(const libcellml::LoggerPtr &item) {
-    int num = item->issueCount();
+
+    // Get the number of issues attached to the logger item.  Note that this will 
+    // return issues of all levels.  To retrieve the total number of a specific level
+    // of issues, use the errorCount(), warningCount(), hintCount(), or messageCount() functions. 
+    size_t num = item->issueCount();
     std::cout << "Recorded " << num << " issues";
+
     if (num != 0) {
         std::cout << ":" << std::endl;
         for (size_t i = 0; i < num; ++i) {
+
+            // Retrieve the issue at index i.  Note that this is agnostic as to the level of issue.
+            // Specific issue levels can be retrieved using the functions item->error(i), item->warning(i) 
+            // etc, where the index must be within appropriate limits.
             libcellml::IssuePtr issue = item->issue(i);
+
+            // Issues created by the Validator class contain a reference heading number, which indicates
+            // the section reference within the normative specification relevant to the issue.
             std::string errorReference = issue->referenceHeading();
 
+            // The level of an issue is retrieved using the level() function as an enum value.  
             std::cout << "Issue " << i << " is " << getIssueLevelFromEnum(issue->level()) << ":" << std::endl;
+
+            // Each issue has a descriptive text field, accessible through the description() function.
             std::cout << "    description: " << issue->description() << std::endl;
             if (errorReference != "") {
                 std::cout << "    see section " << errorReference
                           << " in the CellML specification." << std::endl;
             }
+
+            // An optional URL is given for some issues which directs the user to more detailed information.
             if(!issue->url().empty()){
                 std::cout << "    more information at: " <<issue->url() << std::endl;
             }
+
+            // Each issue is associated with an item.  In order to properly deal with the item stored, its type is 
+            // recorded too in an enumeration.
             std::cout << "    stored item type: " << getCellmlElementTypeFromEnum(issue->cellmlElementType()) << std::endl;
         }
         std::cout << std::endl << std::endl;
@@ -160,6 +181,7 @@ void printIssues(const libcellml::LoggerPtr &item) {
         std::cout << "!" << std::endl << std::endl;
     }
 }
+// END printIssues
 
 std::string fileContents(const std::string &fileName)
 {
@@ -171,6 +193,7 @@ std::string fileContents(const std::string &fileName)
     return buffer.str();
 }
 
+// START getCellmlElementTypeFromEnum
 std::map<libcellml::CellmlElementType, std::string> itemTypeToString = 
     {{libcellml::CellmlElementType::COMPONENT, "COMPONENT"},
     {libcellml::CellmlElementType::COMPONENT_REF, "COMPONENT_REF"},
@@ -191,7 +214,10 @@ std::map<libcellml::CellmlElementType, std::string> itemTypeToString =
 std::string getCellmlElementTypeFromEnum(libcellml::CellmlElementType t) {
     return itemTypeToString.at(t);
 }
+// END getCellmlElementTypeFromEnum
 
+
+// START getIssueLevelFromEnum
 std::string getIssueLevelFromEnum(libcellml::Issue::Level myLevel)
 {
     std::string myTypeAsString = "dunno";
@@ -212,6 +238,7 @@ std::string getIssueLevelFromEnum(libcellml::Issue::Level myLevel)
     }
     return myTypeAsString;
 }
+// END getIssueLevelFromEnum
 
 void printComponentOnlyToTerminal(libcellml::ComponentPtr &component, std::string spacer)
 {
@@ -237,6 +264,7 @@ void printEncapsulation(libcellml::ModelPtr &model)
     }
 }
 
+// START printEquivalentVariableSet
 void listEquivalentVariables(const libcellml::VariablePtr &variable, std::vector<libcellml::VariablePtr> &variableList)
 {
     if (variable == nullptr) {
@@ -296,7 +324,9 @@ void printEquivalentVariableSet(const libcellml::VariablePtr &variable)
         std::cout << "    - Not connected to any equivalent variables." << std::endl;
     }
 }
+// END printEquivalentVariableSet
 
+// START printImportDependencies
 void doPrintImportDependencies(const libcellml::ModelPtr &model, std::string &spacer) {
     // Function to recursively iterate through the import dependencies in this model, and 
     // print their URL and what they require to the terminal.
@@ -323,6 +353,7 @@ void printImportDependencies(const libcellml::ModelPtr &model){
     std::string spacer = " ";
     doPrintImportDependencies(model, spacer);
 }
+// END printImportDependencies
 
 bool makeDirectory(const std::string &sPath) {
     // std::string sPath = "/tmp/test";
