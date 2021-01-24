@@ -1,4 +1,4 @@
-.. _users_importer_debugger:
+.. _users_import_debugger:
 
 Import debugger
 ===============

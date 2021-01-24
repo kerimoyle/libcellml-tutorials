@@ -24,4 +24,4 @@ It is aimed at users who are already familiar with the concept of CellML and mod
     :titlesonly:
     :glob:
 
-    hh_tutorials/*/index
+    hh_tutorials/index
