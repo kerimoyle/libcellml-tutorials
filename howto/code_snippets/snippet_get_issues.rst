@@ -44,4 +44,4 @@
         :start-after: # START get_issue_level_from_enum
         :end-before: # END get_issue_level_from_enum
     
-    Full context: :download:`utilities.py<../../tutorials/utilities/utilities.py>`
+      Full context: :download:`utilities.py<../../tutorials/utilities/utilities.py>`
