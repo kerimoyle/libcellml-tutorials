@@ -4,7 +4,7 @@
 
   .. container:: header-left
 
-    Retrieve issues from a logger
+    Utility functions to retrieve issues
 
   .. tabs::
 
