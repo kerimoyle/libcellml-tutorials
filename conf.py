@@ -57,7 +57,7 @@ autosectionlabel_prefix_document = True
 # Declare below as:
 #   'shortcut': ('http://linkhere/%s',''), NB have to put the string insertion %s to make it work
 extlinks = {
-    'api': ('https://libcellml.github.io/help/api/v0.2.0/classlibcellml_1_1%s', ''),
+    'api': ('https://staging.libcellml.org/documentation/api/latest/classlibcellml_1_1%s', ''), # TODO remove 'staging'
     'buildbot': ('https://buildbot.net%s', ''),
     'ccache': ('https://ccache.dev/%s', ''),
     'cellml1to2': ('https://github.com/hsorby/cellml1to2%s', ''),
