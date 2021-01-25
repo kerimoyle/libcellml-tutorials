@@ -443,8 +443,6 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
 
 Step 5: Sanity check
 --------------------
-The file that results from running the completed version of this tutorial can be downloaded from :download:`solution.txt<solution.txt>`; a tab-delimited file that can be easily read into your favourite plotting program.
-
 You should find results similar to the figure below, where the cyclical dependency of the shark and fish populations can be seen.
 
 .. figure:: ../images/sharks_and_fish.png

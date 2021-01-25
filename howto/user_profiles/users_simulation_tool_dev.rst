@@ -78,7 +78,7 @@ There are four steps to code generation:
 4. (optional) Retrieve the generated interface code. 
    This is the contents of the :code:`*.h` file, and is not required for the Python profile.
 
-.. include:: ../snippet/snippet_generator_generate_and_output.rst
+.. include:: ../snippets/snippet_generator_generate_and_output.rst
 
 Use the generated code to simulate the model
 --------------------------------------------

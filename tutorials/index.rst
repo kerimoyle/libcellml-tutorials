@@ -4,7 +4,7 @@
 libCellML Tutorials
 ===================
 
-Please follow the :ref:`Installation instructions<installation_index>` first to get yourself a copy of libCellML.
+Please follow the :ref:`Installation instructions<installation>` first to get yourself a copy of libCellML.
 
 The first set is a simple starting point for users who are unfamiliar with CellML and/or modelling in general.
 

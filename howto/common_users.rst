@@ -9,6 +9,5 @@ If that doesn't sound like you and you'd rather begin with a gentler introductio
 
 .. toctree:: 
     :maxdepth: 2
-    :glob:
 
     user_profiles/index.rst

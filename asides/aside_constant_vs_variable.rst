@@ -1,7 +1,8 @@
 .. _aside_constant_vs_variable:
 
-Aside: Constants vs variables
-=============================
+.. container:: heading3
+
+    Constants vs Variables
 
 In your model, there is mathematics.
 And in your mathematics, there are variables.
