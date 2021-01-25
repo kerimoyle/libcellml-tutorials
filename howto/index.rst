@@ -11,12 +11,18 @@ How to do stuff
 ---------------
 
 .. toctree:: 
-   :maxdepth: 3
-   :glob:
-
-   actions/*
-
-.. toctree::
-   :hidden:
-
-   actions/index.rst
+   :maxdepth: 2
+   
+   actions/include_libcellml.rst
+   actions/parse_model.rst
+   actions/view_model.rst
+   actions/understand_collections.rst
+   actions/edit_model.rst
+   actions/print_model.rst
+   actions/resolve_imports.rst
+   actions/validate_model.rst
+   actions/get_issues.rst
+   actions/analyse_model.rst
+   actions/generate_code.rst
+   actions/solve_model.rst
+   actions/annotate_model.rst
