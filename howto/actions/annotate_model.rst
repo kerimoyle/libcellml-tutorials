@@ -17,11 +17,8 @@ These ID attributes themselves must follow the specification rules: please see :
 .. contents::
     :local:
 
-About the annotation tools
-==========================
-
 Annotation tools for entity items
----------------------------------
+=================================
 
 Entity item types are:
 
@@ -53,7 +50,7 @@ The :code:`id` attribute for each of these entity types can be retrieved using t
     my_model_id_string = model.id()
 
 Annotation tools for other item types
--------------------------------------
+=====================================
 
 Connections and variable equivalence
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -258,7 +255,7 @@ Note that there are several overloads of the arguments for this function; please
     mm3PerSecond.unitAttributes(0, unitReference, unitPrefix, unitExponent, unitMultiplier, unitId)
 
 Annotator ``Type`` and returned types
--------------------------------------
+=====================================
 
 +-------------------+-----------------------------------------------------------------------------------------------------+
 | enumeration value | Object type in the "any" container.                                                                 |
