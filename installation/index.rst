@@ -1,4 +1,4 @@
-.. _installation_index:
+.. _installation:
 
 =======================================
 Installation instructions for libCellML
