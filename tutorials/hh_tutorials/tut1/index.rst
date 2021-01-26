@@ -326,13 +326,13 @@ The simplest way is to print the descriptions to the terminal.
 
         **C++**
 
-        - getIssueLevelFromEnum; and
-        - getCellmlElementTypeFromEnum. 
+        - :code:`getIssueLevelFromEnum` ; and
+        - :code:`getCellmlElementTypeFromEnum` . 
 
         **Python**
 
-        - get_issue_level_from_enum; and
-        - get_cellml_element_type_from_enum.
+        - :code:`get_issue_level_from_enum` ; and
+        - :code:`get_cellml_element_type_from_enum` .
 
 .. container:: dothis
 
@@ -437,8 +437,8 @@ These must be created, named, and added to their parent component.
 
     Helper functions for retrieving and printing any issues from any of the logger classes:
 
-    - printIssues (C++)
-    - print_issues (Python)
+    - :code:`printIssues` (C++)
+    - :code:`print_issues` (Python)
 
 .. container:: dothis
 

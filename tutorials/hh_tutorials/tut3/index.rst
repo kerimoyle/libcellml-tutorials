@@ -995,8 +995,8 @@ Because the "is not computed" errors are cascading by nature, frequently fixing 
 
 .. container:: useful
 
-    - C++: printEquivalentVariableSet with the variable argument
-    - Python: print_equivalent_variable_set with the variable argument
+    - C++: :code:`printEquivalentVariableSet` with the variable argument
+    - Python: :code:`print_equivalent_variable_set` with the variable argument
 
 Hints for this tutorial: 
 
