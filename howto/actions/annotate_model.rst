@@ -203,7 +203,7 @@ Some items are most readily accessed through their entity-type parents, these be
 - :code:`test_value` and :code:`reset_value` children of :code:`Reset` items.
 
 Unit children of :code:`Units` items can be accessed either through the streamlined ID-only functions :code:`unitId(index)` and :code:`setUnitId(index)`, or through the :code:`unitAttributes` family of functions.
-Note that there are several overloads of the arguments for this function; please see the complete documentation on the :api:`Units functions API page <Units>`.
+Note that there are several overloads of the arguments for this function; please see the complete documentation on the :api:`Units functions API page <Units?fName=addUnit>`.
 
 .. tabs::
 

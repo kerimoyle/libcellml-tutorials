@@ -102,16 +102,16 @@ Step 2: Retrieve an item with a unique id
 
     :api:`Annotator class <Annotator>`
 
-    - create
-    - setModel
-    - item
-    - issueCount
-    - issue
+    - :api:`create <Annotator?fName=create>`
+    - :api:`setModel <Annotator?fName=setModel>`
+    - :api:`item <Annotator?fName=item>`
+    - :api:`issueCount <Annotator?fName=issueCount>`
+    - :api:`issue <Annotator?fName=issue>`
 
     Tutorial functions
 
-    - C++: getCellmlElementTypeFromEnum will return a string version of the CellmlElementType enumeration
-    - Python: get_cellml_element_type_from_enum
+    - C++: :code:`getCellmlElementTypeFromEnum` will return a string version of the :code:`CellmlElementType` enumeration
+    - Python: :code:`get_cellml_element_type_from_enum`
 
 .. container:: dothis
 
@@ -189,9 +189,9 @@ Step 3: Retrieve items whose id are not unique
 
     :api:`Annotator class <Annotator>`
 
-    - items
-    - isUnique
-    - assignId
+    - :api:`items <Annotator?fName=items>`
+    - :api:`isUnique <Annotator?fName=isUnique>`
+    - :api:`assignId <Annotator?fName=assignId>`
 
 .. container:: dothis
 
@@ -314,24 +314,24 @@ In circumstances where you know the type of the item with the id you're fetching
 
     :api:`Annotator class <Annotator>`
 
-    - component
-    - componentRef
-    - connection
-    - encapsulation
-    - import
-    - mapVariables
-    - model
-    - reset
-    - resetValue
-    - testValue
-    - unit
-    - units
-    - variable
+    - :api:`component <Annotator?fName=component>`
+    - :api:`componentRef <Annotator?fName=componentRef>`
+    - :api:`connection <Annotator?fName=connection>`
+    - :api:`encapsulation <Annotator?fName=encapsulation>`
+    - :api:`import <Annotator?fName=import>`
+    - :api:`mapVariables <Annotator?fName=mapVariables>`
+    - :api:`model <Annotator?fName=model>`
+    - :api:`reset <Annotator?fName=reset>`
+    - :api:`resetValue <Annotator?fName=resetValue>`
+    - :api:`testValue <Annotator?fName=testValue>`
+    - :api:`unit <Annotator?fName=unit>`
+    - :api:`units <Annotator?fName=units>`
+    - :api:`variable <Annotator?fName=variable>`
 
     :api:`Unit class <Unit>`
 
-    - units
-    - index
+    - :api:`units <Unit?fName=units>`
+    - :api:`index <Unit?fName=index>`
 
 .. container:: dothis
 
@@ -371,9 +371,9 @@ Now that we've found Marco and fixed the duplicates of Polo, we'd like to know w
 
     :api:`Annotator class <Annotator>`
 
-    - ids
-    - duplicateIds
-    - itemCount
+    - :api:`ids <Annotator?fName=ids>`
+    - :api:`duplicateIds <Annotator?fName=duplicateIds>`
+    - :api:`itemCount <Annotator?fName=itemCount>`
 
 .. container:: dothis
 
@@ -460,19 +460,19 @@ The final step is to make sure that imported items can have their annotations tr
 
     :api:`Importer class <Importer>`
 
-    - create
-    - resolveImports
+    - :api:`create <Importer?fName=create>`
+    - :api:`resolveImports <Importer?fName=resolveImports>`
 
     :api:`ImportedEntity class <ImportedEntity>` (applies to both the :code:`Units` and the :code:`Component` class)
 
-    - isImport
-    - importReference
-    - importSource
+    - :api:`isImport <ImportedEntity?fName=isImport>`
+    - :api:`importReference <ImportedEntity?fName=importReference>`
+    - :api:`importSource <ImportedEntity?fName=importSource>`
 
     :api:`ImportSource class <ImportSource>`
 
-    - model
-    - url
+    - :api:`model <ImportSource?fName=model>`
+    - :api:`url <ImportSource?fName=url>`
 
 .. container:: dothis
 
@@ -609,8 +609,8 @@ Finally, we decide that it's too cold for swimming, and want to nuke all the ids
 
     :api:`Annotator class <Annotator>`
 
-    - clearAllIds
-    - assignAllIds
+    - :api:`clearAllIds <Annotator?fName=clearAllIds>`
+    - :api:`assignAllIds <Annotator?fName=clearAllIds>`
 
 .. container:: dothis
 

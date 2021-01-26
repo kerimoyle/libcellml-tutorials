@@ -105,8 +105,8 @@ Step 1: Parse a CellML file into a model
 
     :api:`Parser class <Parser>`
 
-    - create
-    - parseModel
+    - :api:`create <Parser?fName=create>`
+    - :api:`parseModel <Parser?fName=parseModel>`
 
     Utility functions (C++)
 
@@ -162,10 +162,10 @@ It doesn't judge the meaning of *what* you've written, just the nitty-gritty of 
 
 .. container:: useful
 
-    :api:`Validator class<Validator>`
+    :api:`Validator class <Validator>`
 
-    - create
-    - validateModel
+    - :api:`create <Validator?fName=create>`
+    - :api:`validateModel <Validator?fName=validateModel>`
 
 The validator can also help you as you create and edit models by pointing out what's missing or incorrect as you go.
 This is really easy:
@@ -195,16 +195,16 @@ To figure out what's going on, you need to retrieve the pointers to these :code:
 
     :api:`Validator class <Validator>`
 
-    - issueCount
-    - issue
-    - errorCount
-    - error
-    - warningCount
-    - warning
-    - hintCount
-    - hint
-    - messageCount
-    - message
+    - :api:`issueCount <Validator?fName=>issueCount`
+    - :api:`issue <Validator?fName=issue>`
+    - :api:`errorCount <Validator?fName=errorCount>`
+    - :api:`error <Validator?fName=error>`
+    - :api:`warningCount <Validator?fName=warningCount>`
+    - :api:`warning <Validator?fName=warning>`
+    - :api:`hintCount <Validator?fName=hintCount>`
+    - :api:`hint <Validator?fName=hint>`
+    - :api:`messageCount <Validator?fName=messageCount>`
+    - :api:`message <Validator?fName=message>`
 
 As in :ref:`Tutorial 1<tutorial1>`, we can call a :code:`count` function (in the case of a validator, this is the :code:`issueCount()` function to determine whether any issues have been raised.
 Note that an issue a can have different levels: errors, warnings, hints, and messages.
@@ -257,11 +257,11 @@ Again following the same retrieval idiom as in Tutorial 1 for items in sets, we 
 
     :api:`Issue class <Issue>`
 
-    - description
-    - url
-    - referenceHeading
-    - cellmlElementType
-    - cellmlElement
+    - :api:`description <Issue?fName=description>`
+    - :api:`url <Issue?fName=url>`
+    - :api:`referenceHeading <Issue?fName=referenceHeading>`
+    - :api:`cellmlElementType <Issue?fName=cellmlElementType>`
+    - :api:`cellmlElement <Issue?fName=cellmlElement>`
 
     Utility functions (C++)
 
@@ -278,30 +278,34 @@ These are the :code:`description` (which does what you'd think) and the :code:`r
 
 Each issue also has a level indicator, one of:
 
-  - ERROR,
-  - WARNING,
-  - HINT, and
-  - MESSAGE.
+.. container:: shortlist 
+
+    - :code:`ERROR`,
+    - :code:`WARNING`,
+    - :code:`HINT`, and
+    - :code:`MESSAGE`.
 
 As well as storing text-based information, the issue also keeps track of which item has the problem.  
 This can be accessed using the :code:`item` function, and has a type given by the enumeration in :code:`cellmlElementType` function.
 The :code:`CellmlElementType` enumeration contains:
 
-    - COMPONENT,
-    - COMPONENT_REF,
-    - CONNECTION,
-    - ENCAPSULATION,
-    - IMPORT,
-    - MAP_VARIABLES,
-    - MATH,
-    - MODEL,
-    - RESET,
-    - RESET_VALUE,
-    - TEST_VALUE,
-    - UNDEFINED,
-    - UNIT,
-    - UNITS, and
-    - VARIABLE.
+.. container:: shortlist 
+
+    - :code:`COMPONENT` ,
+    - :code:`COMPONENT_REF` ,
+    - :code:`CONNECTION` ,
+    - :code:`ENCAPSULATION` ,
+    - :code:`IMPORT` ,
+    - :code:`MAP_VARIABLES` ,
+    - :code:`MATH` ,
+    - :code:`MODEL` ,
+    - :code:`RESET` ,
+    - :code:`RESET_VALUE` ,
+    - :code:`TEST_VALUE` ,
+    - :code:`UNDEFINED` ,
+    - :code:`UNIT` ,
+    - :code:`UNITS` , and
+    - :code:`VARIABLE` .
 
 Two utility functions have been provided which will convert the enums for error level or element type into a string for printing.
 
@@ -374,19 +378,19 @@ This section will work through the issues reported by the validator, and demonst
 
     :api:`Issue class <Issue>`
 
-    - item
-    - variable
-    - math
+    - :api:`item <Issue?fName=item>`
+    - :api:`variable <Issue?fName=variable>`
+    - :api:`math <Issue?fName=math>`
 
     :api:`Variable class <Variable>`
 
-    - setName
-    - setUnits
-    - setInitialValue
+    - :api:`setName <Variable?fName=setName>`
+    - :api:`setUnits <Variable?fName=setUnits>`
+    - :api:`setInitialValue <Variable?fName=setInitialValue>`
 
     :api:`Model class <Model>`
 
-    - component(name, True) Retrieving a component by its name with the optional second argument true will search the entire   component tree for the component name.
+    - :api:`component(name, True) <Model?fName=component>` Retrieving a component by its name with the optional second argument true will search the entire component tree for the component name.
 
 The first issue raised involves the name of a variable.
 Note that even though the name is invalid (as per CellML specification), it can still be used to access the item.

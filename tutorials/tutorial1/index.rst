@@ -108,8 +108,8 @@ The hard work of this transformation is done by the :code:`Parser` object which 
 
     :api:`Parser class <Parser>`
 
-    - create
-    - parseModel
+    - :api:`create <Parser?fName=create>`
+    - :api:`parseModel <Parser?fName=parseModel>`
 
 .. container:: dothis
 
@@ -155,21 +155,21 @@ All retrieval functions - where you want to read something about any item - are 
 
     :api:`Model class <Model>`
 
-    - name
-    - id
-    - componentCount
-    - unitsCount
+    - :api:`name <Model?fName=name>`
+    - :api:`id <Model?fName=id>`
+    - :api:`componentCount <Model?fName=componentCount>`
+    - :api:`unitsCount <Model?fName=unitsCount>`
 
     :api:`Component class <Component>`
 
-    - name
-    - id
-    - variableCount
+    - :api:`name <Component?fName=name>`
+    - :api:`id <Component?fName=id>`
+    - :api:`variableCount <Component?fName=variableCount>`
 
     :api:`Variable class <Variable>`
 
-    - name
-    - id
+    - :api:`name <Variable?fName=name>`
+    - :api:`id <Variable?fName=id>`
 
 For example, to find the name of the model we simply call its :code:`name()` function to return the string of its name.
 
@@ -305,8 +305,8 @@ This reverse operation is handled by the :code:`Printer`, which will transform a
 
     :api:`Printer class <Printer>`
 
-    - create
-    - printModel
+    - :api:`create <Printer?fName=create>`
+    - :api:`printModel <Printer?fName=printModel>`
 
 .. tabs::
 

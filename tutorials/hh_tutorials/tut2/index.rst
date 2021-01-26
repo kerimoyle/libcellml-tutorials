@@ -59,15 +59,15 @@ The final structure of this model is shown in the diagram below.
 
     :api:`Model class <Model>`
 
-    - create
-    - setName
-    - addComponent
+    - :api:`create <Model?fName=create>`
+    - :api:`setName <Model?fName=setName>`
+    - :api:`addComponent <Model?fName=addComponent>`
 
     :api:`Component class <Component>`
 
-    - create
-    - setName
-    - addComponent
+    - :api:`create <Component?fName=create>`
+    - :api:`setName <Component?fName=setName>`
+    - :api:`addComponent <Component?fName=addComponent>`
 
 .. container:: dothis
 
@@ -110,10 +110,10 @@ Step 2: Create a potassium channel equations component
 
     :api:`Component class <Component>`
 
-    - create
-    - setName
-    - setMath
-    - appendMath
+    - :api:`create <Component?fName=create>`
+    - :api:`setName <Component?fName=setName>`
+    - :api:`setMath <Component?fName=setMath>`
+    - :api:`appendMath <Component?fName=appendMath>`
 
 .. container:: dothis
 
@@ -176,10 +176,10 @@ Once the mathematics has been added to the component, and the component to the m
 
     :api:`Validator class <Validator>`
 
-    - create
-    - validateModel
-    - issueCount
-    - issue
+    - :api:`create <Validator?fName=create>`
+    - :api:`validateModel <Validator?fName=validateModel>`
+    - :api:`issueCount <Validator?fName=issueCount>`
+    - :api:`issue <Validator?fName=issue>`
 
 .. container:: dothis
 
@@ -262,22 +262,22 @@ The simplest way is to print the descriptions to the terminal.
 
     :api:`Variable class <Variable>`
 
-    - create
-    - setUnits
+    - :api:`create <Variable?fName=create>`
+    - :api:`setUnits <Variable?fName=setUnits>`
 
     :api:`Component class <Component>`
 
-    - addVariable
+    - :api:`addVariable <Component?fName=addVariable>`
 
     :api:`Model class <Model>`
 
-    - addUnits
+    - :api:`addUnits <Model?fName=addUnits>`
 
     :api:`Units class <Units>`
 
-    - create
-    - setName
-    - addUnit
+    - :api:`create <Units?fName=create>`
+    - :api:`setName <Units?fName=setName>`
+    - :api:`addUnit <Units?fName=addUnit>`
 
 .. container:: dothis
 
@@ -595,17 +595,17 @@ Imports require three things:
 
     :api:`ImportSource class <ImportSource>`
 
-    - create
-    - setUrl
+    - :api:`create <ImportSource?fName=create>`
+    - :api:`setUrl <ImportSource?fName=setUrl>`
 
     :api:`Model class <Model>`
 
-    - addImportSource
+    - :api:`addImportSource <Model?fName=addImportSource>`
 
     :api:`ImportedEntity class <ImportedEntity>` (applies to components and units)
 
-    - setImportSource
-    - setImportReference
+    - :api:`setImportSource <ImportedEntity?fName=setImportSource>`
+    - :api:`setImportReference <ImportedEntity?fName=setImportReference>`
 
 .. container:: dothis
 

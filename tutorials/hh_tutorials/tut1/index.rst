@@ -58,15 +58,15 @@ Step 1: Set up the model
 
     :api:`Model class <Model>`
 
-    - create
-    - setName
-    - addComponent
+    - :api:`create <Model?fName=create>`
+    - :api:`setName <Model?fName=setName>`
+    - :api:`addComponent <Model?fName=addComponent>`
 
     :api:`Component class <Component>`
 
-    - create
-    - setName
-    - addComponent
+    - :api:`create <Component?fName=create>`
+    - :api:`setName <Component?fName=setName>`
+    - :api:`addComponent <Component?fName=addComponent>`
 
 .. container:: dothis
 
@@ -185,9 +185,9 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
     :api:`Component class <Component>`
 
-    - setMath
-    - appendMath
-    - math
+    - :api:`setMath <Component?fName=setMath>`
+    - :api:`appendMath <Component?fName=appendMath>`
+    - :api:`math <Component?fName=math>`
 
 .. container:: dothis
 
@@ -263,18 +263,18 @@ Once the mathematics has been added to the component, and the component to the m
 
     :api:`Validator class <Validator>`
 
-    - create
-    - validateModel
-    - issueCount
-    - issue
+    - :api:`create <Validator?fName=create>`
+    - :api:`validateModel <Validator?fName=validateModel>`
+    - :api:`issueCount <Validator?fName=issueCount>`
+    - :api:`issue <Validator?fName=issue>`
 
     :api:`Issue class <Issue>`
 
-    - description
-    - url
-    - referenceHeading
-    - level
-    - itemType
+    - :api:`description <Issue?fName=description>`
+    - :api:`url <Issue?fName=url>`
+    - :api:`referenceHeading <Issue?fName=referenceHeading>`
+    - :api:`level <Issue?fName=level>`
+    - :api:`itemType <Issue?fName=itemType>`
 
 .. container:: dothis
 
@@ -398,13 +398,13 @@ These must be created, named, and added to their parent component.
 
     :api:`Variable class <Variable>`
 
-    - create
-    - setName
-    - setUnits
+    - :api:`create <Variable?fName=create>`
+    - :api:`setName <Variable?fName=setName>`
+    - :api:`setUnits <Variable?fName=setUnits>`
 
     :api:`Component class <Component>`
 
-    - addVariable
+    - :api:`addVariable <Component?fName=addVariable>`
 
 .. container:: dothis
 
@@ -497,19 +497,19 @@ In this example none of the units exist yet, so we need to create all of them.
 
     :api:`Units class <Units>`
 
-    - create
-    - setName
-    - addUnit
-    - name
+    - :api:`create <Units?fName=create>`
+    - :api:`setName <Units?fName=setName>`
+    - :api:`addUnit <Units?fName=addUnit>`
+    - :api:`name <Units?fName=name>`
 
     :api:`Model class <Model>`
 
-    - addUnits
+    - :api:`addUnits <Model?fName=addUnits>`
 
     :api:`Variable class <Variable>`
 
-    - setUnits
-    - units
+    - :api:`setUnits <Variable?fName=setUnits>`
+    - :api:`units <Variable?fName=units>`
 
 .. container:: dothis
 
@@ -635,10 +635,10 @@ Step 6: Analyse the mathematical construction of the model
 
     :api:`Analyser class <Analyser>`
 
-    - create
-    - analyseModel
-    - issueCount
-    - issue
+    - :api:`create <Analyser?fName=create>`
+    - :api:`analyseModel <Analyser?fName=analyseModel>`
+    - :api:`issueCount <Analyser?fName=issueCount>`
+    - :api:`issue <Analyser?fName=issue>`
 
 .. container:: dothis
 
@@ -707,16 +707,16 @@ This is the reason for the second internal component, the *parameters* component
 
     :api:`Variable class <Variable>`
 
-    - setInitialValue
-    - addEquivalence
+    - :api:`setInitialValue <Variable?fName=setInitialValue>`
+    - :api:`addEquivalence <Variable?fName=addEquivalence>`
 
     :api:`Component class <Component>`
 
-    - variable
+    - :api:`variable <Component?fName=variable>`
 
     :api:`Model class <Model>`
 
-    - component
+    - :api:`component <Model?fName=component>`
 
 .. container:: dothis
 
@@ -817,11 +817,11 @@ Two particularly useful idioms are shown below.
 
     :api:`Model class <Model>`
 
-    - fixVariableInterfaces
+    - :api:`fixVariableInterfaces <Model?fName=fixVariableInterfaces>`
 
     :api:`Variable class <Variable>`
 
-    - setInterfaceType
+    - :api:`setInterfaceType <Variable?fName=setInterfaceType>`
 
 .. container:: dothis
 

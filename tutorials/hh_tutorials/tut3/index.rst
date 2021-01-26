@@ -435,9 +435,9 @@ You have a few different options for how to fix this one.
 
     :api:`Units class <Units>`
 
-    - unitAttributes
-    - removeUnit
-    - addUnit
+    - :api:`unitAttributes <Units?fName=unitAttributes>`
+    - :api:`removeUnit <Units?fName=removeUnit>`
+    - :api:`addUnit <Units?fName=addUnit>`
 
 .. container:: dothis
 
@@ -508,15 +508,15 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
     :api:`Model class <Model>`
 
-    - component("componentName", true) will search for the component's name in the whole of the encapsulation hierarchy.
+    - :api:`component <Model?fName=component>` ("componentName", true) will search for the component's name in the whole of the encapsulation hierarchy.
 
     :api:`Component class <Component>`
 
-    - addComponent
+    - :api:`addComponent <Component?fName=addComponent>`
 
     Tutorial functions
 
-    - printEncapsulation will output just the names of the components, nested in their encapsulation hierarchy.
+    - :code:`printEncapsulation` will output just the names of the components, nested in their encapsulation hierarchy.
 
 .. container:: dothis
 
@@ -583,8 +583,8 @@ For this tutorial, the files are in the same directory as the code, so simply us
     
     :api:`Importer class <Importer>`
     
-    - create
-    - resolveImports
+    - :api:`create <Importer?fName=create>`
+    - :api:`resolveImports <Importer?fName=create>`
 
 .. container:: dothis
 
@@ -632,7 +632,7 @@ This needs to be an iterative process because as more files become available to 
 
     :api:`Component class <Component>`
 
-    - setImportReference
+    - :api:`setImportReference  <Component?fName=setImportReference>`
 
 .. container:: dothis
 
@@ -720,9 +720,9 @@ These dependencies are stored in the importer's library, and have not yet been v
 
     :api:`Importer class <Importer>`
 
-    - libraryCount returns the number of stored models;
-    - library returns the model at the given index or given key string;
-    - key returns a key string at the given index;
+    - :api:`libraryCount <Importer?fName=libraryCount>` returns the number of stored models;
+    - :api:`library <Importer?fName=library>` returns the model at the given index or given key string;
+    - :api:`key <Importer?fName=key>` returns a key string at the given index;
 
 .. container:: dothis
 
@@ -772,13 +772,13 @@ As soon as the model's imports have been resolved, all these will point to insta
 
     :api:`Model class <Model>`
 
-    - importSourceCount
-    - importSource
+    - :api:`importSourceCount <Model?fName=importSourceCount>`
+    - :api:`importSource <Model?fName=importSource>`
 
     :api:`ImportSource class <ImportSource>`
 
-    - model
-    - url
+    - :api:`model <ImportSource?fName=model>`
+    - :api:`url <ImportSource?fName=url>`
 
 .. container:: dothis
 
@@ -833,8 +833,8 @@ If the flat model meets the analyser's checks, then the importing version will t
 
     :api:`Analyser class <Analyser>`
 
-    - analyseModel
-    - flattenModel
+    - :api:`analyseModel <Analyser?fName=analyseModel>`
+    - :api:`flattenModel <Analyser?fName=flattenModel>`
 
 .. container:: dothis
 
@@ -906,7 +906,7 @@ In this example, the real problem is that these two variables are talking about 
 
     :api:`Variable class <Variable>`
 
-    - addEquivalence
+    - :api:`addEquivalence <Variable?fName=addEquivalence>`
 
 .. container:: dothis
 

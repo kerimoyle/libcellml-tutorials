@@ -303,18 +303,18 @@ It's simple to do this once in your code using a string to represent the opening
 
     :api:`Component class <Component>`
 
-    - setMath
-    - appendMath
+    - :api:`setMath <Component?fName=setMath>`
+    - :api:`appendMath <Component?fName=appendMath>`
 
     Utility functions (C++)
 
-    - printIssues will write information on any issues from a given Logger to the terminal.  
-      Logger classes include the :code:`Validator`, :code:`Analyser`, and :code:`Parser`.
+    - :code:`printIssues` will write information on any issues from a given :code:`Logger` to the terminal.  
+      :code:`Logger` classes include the :code:`Validator`, :code:`Analyser`, and :code:`Parser`.
 
     Utility functions (Python)
 
-    - print_issues will write information on any issues from a given Logger to the terminal.  
-      Logger classes include the :code:`Validator`, :code:`Analyser`, and :code:`Parser`.
+    - :code:`print_issues` will write information on any issues from a given :code:`Logger` to the terminal.  
+      :code:`Logger` classes include the :code:`Validator`, :code:`Analyser`, and :code:`Parser`.
 
 Our last step in defining the mathematics is to link it into the component.
 The functions available to manipulate maths are:
@@ -417,12 +417,12 @@ Step 2: Create the variables
 
     :api:`Variable class <Variable>`
 
-    - create
-    - setName
+    - :api:`create <Variable?fName=create>`
+    - :api:`setName <Variable?fName=setName>`
 
     :api:`Component class <Component>`
 
-    - addVariable
+    - :api:`addVariable <Component?fName=addVariable>`
 
 .. container:: dothis
 
@@ -507,18 +507,18 @@ You can read more about units on the :ref:`Understanding units<aside_units>` pag
 
     :api:`Units class <Units>`
 
-    - create
-    - setName
-    - addUnit (note singular)
+    - :api:`create <Units?fName=create>`
+    - :api:`setName <Units?fName=setName>`
+    - :api:`addUnit <Units?fName=addUnit>` (note singular)
 
     :api:`Model class <Model>`
 
-    - addUnits (note plural)
-    - linkUnits
+    - :api:`addUnits <Model?fName=addUnits>` (note plural)
+    - :api:`linkUnits <Model?fName=linkUnits>`
 
     :api:`Variable class <Variable>`
 
-    - setUnits (note plural)
+    - :api:`setUnits <Variable?fName=setUnits>` (note plural)
 
 To create a :code:`Units` item you need will follow the same basic steps as other entities: declare it, name it, define it, and then add it in.
 For example:
@@ -796,9 +796,9 @@ The :code:`Validator` checks your "spelling" and syntax, and the :code:`Analyser
 
     :api:`Analyser class <Analyser>`
 
-    - create
-    - analyseModel
-    - model
+    - :api:`create <Analyser?fName=create>`
+    - :api:`analyseModel <Analyser?fName=analyseModel>`
+    - :api:`model <Analyser?fName=model>`
 
 .. container:: dothis
 
@@ -890,16 +890,16 @@ These are:
 
     :api:`Generator class <Generator>`
 
-    - create
-    - profile
-    - setModel
-    - interfaceCode
-    - implementationCode
+    - :api:`create <Generator?fName=create>`
+    - :api:`profile <Generator?fName=profile>`
+    - :api:`setModel <Generator?fName=setModel>`
+    - :api:`interfaceCode <Generator?fName=interfaceCode>`
+    - :api:`implementationCode <Generator?fName=implementationCode>`
 
     :api:`GeneratorProfile class <GeneratorProfile>`
 
-    - create
-    - setInterfaceFileNameString
+    - :api:`create <GeneratorProfile?fName=create>`
+    - :api:`setInterfaceFileNameString <GeneratorProfile?fName=setInterfaceFileNameString>`
     
     The GeneratorProfile class contains an enum indicating the language of profile to set.
     In C++ this is :code:`GeneratorProfile::Profile`.
