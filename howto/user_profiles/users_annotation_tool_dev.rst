@@ -7,7 +7,7 @@ Any item in the model which requires annotation needs to have a unique ID string
 In all other parts of libCellML, items are retrieved from their parents using either their index or their name.
 In the :code:`Annotator`, the ID string is used instead.
 Because an item of any type could have an ID attribute, there is no way of knowing what kind of will be returned.
-The class makes use of casting to and from the (C++ only) :cpp_reference:`std::any type<w/cpp/utility/any>` to handle this uncertainty.
+The class makes use of casting to and from the (C++ only) :cpp_reference:`std::any type <w/cpp/utility/any>` to handle this uncertainty.
 
 .. container:: lineblocks
 

@@ -57,13 +57,13 @@ The final structure of this model is shown in the diagram below.
 
 .. container:: useful
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
     - create
     - setName
     - addComponent
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
     - create
     - setName
@@ -108,7 +108,7 @@ Step 2: Create a potassium channel equations component
 
 .. container:: useful
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
     - create
     - setName
@@ -174,7 +174,7 @@ Once the mathematics has been added to the component, and the component to the m
 
 .. container:: useful
 
-    :api:`Validator class<Validator>`
+    :api:`Validator class <Validator>`
 
     - create
     - validateModel
@@ -260,20 +260,20 @@ The simplest way is to print the descriptions to the terminal.
 
 .. container:: useful
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
     - create
     - setUnits
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
     - addVariable
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
     - addUnits
 
-    :api:`Units class<Units>`
+    :api:`Units class <Units>`
 
     - create
     - setName
@@ -593,16 +593,16 @@ Imports require three things:
 
 .. container:: useful
 
-    :api:`ImportSource class<ImportSource>`
+    :api:`ImportSource class <ImportSource>`
 
     - create
     - setUrl
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
     - addImportSource
 
-    :api:`ImportedEntity class<ImportedEntity>` (applies to components and units)
+    :api:`ImportedEntity class <ImportedEntity>` (applies to components and units)
 
     - setImportSource
     - setImportReference

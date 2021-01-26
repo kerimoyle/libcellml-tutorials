@@ -433,7 +433,7 @@ You have a few different options for how to fix this one.
  
 .. container:: useful
 
-    :api:`Units class<Units>`
+    :api:`Units class <Units>`
 
     - unitAttributes
     - removeUnit
@@ -506,11 +506,11 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
 .. container:: useful
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
     - component("componentName", true) will search for the component's name in the whole of the encapsulation hierarchy.
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
     - addComponent
 
@@ -581,7 +581,7 @@ For this tutorial, the files are in the same directory as the code, so simply us
 
 .. container:: useful
     
-    :api:`Importer class<Importer>`
+    :api:`Importer class <Importer>`
     
     - create
     - resolveImports
@@ -630,7 +630,7 @@ This needs to be an iterative process because as more files become available to 
 
 .. container:: useful
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
     - setImportReference
 
@@ -718,7 +718,7 @@ These dependencies are stored in the importer's library, and have not yet been v
 
 .. container:: useful
 
-    :api:`Importer class<Importer>`
+    :api:`Importer class <Importer>`
 
     - libraryCount returns the number of stored models;
     - library returns the model at the given index or given key string;
@@ -770,12 +770,12 @@ As soon as the model's imports have been resolved, all these will point to insta
 
 .. container:: useful 
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
     - importSourceCount
     - importSource
 
-    :api:`ImportSource class<ImportSource>`
+    :api:`ImportSource class <ImportSource>`
 
     - model
     - url
@@ -831,7 +831,7 @@ If the flat model meets the analyser's checks, then the importing version will t
 
 .. container:: useful
 
-    :api:`Analyser class<Analyser>`
+    :api:`Analyser class <Analyser>`
 
     - analyseModel
     - flattenModel
@@ -904,7 +904,7 @@ In this example, the real problem is that these two variables are talking about 
 
 .. container:: useful
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
     - addEquivalence
 

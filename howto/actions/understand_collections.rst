@@ -165,7 +165,7 @@ For practical information about how they are used, please see the :ref:`Viewing 
   The replacement item overwrites what was previously stored at the position in the collection.
   In addition, the :code:`replaceComponent` takes an optional boolean argument indicating whether to search the encapsulated children for the item, if specified by name.
   By default this is set to :code:`true`.
-  For more information about replacement, please see the API documentation for :api:`Model<Model>` and :api:`Component<Component>` items directly.
+  For more information about replacement, please see the API documentation for :api:`Model <Model>` and :api:`Component <Component>` items directly.
 
   .. container:: nb
 

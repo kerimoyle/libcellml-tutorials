@@ -100,7 +100,7 @@ Step 2: Retrieve an item with a unique id
 
 .. container:: useful
 
-    :api:`Annotator class<Annotator>`
+    :api:`Annotator class <Annotator>`
 
     - create
     - setModel
@@ -187,7 +187,7 @@ Step 3: Retrieve items whose id are not unique
 
 .. container:: useful
 
-    :api:`Annotator class<Annotator>`
+    :api:`Annotator class <Annotator>`
 
     - items
     - isUnique
@@ -312,7 +312,7 @@ In circumstances where you know the type of the item with the id you're fetching
 
 .. container:: useful
 
-    :api:`Annotator class<Annotator>`
+    :api:`Annotator class <Annotator>`
 
     - component
     - componentRef
@@ -328,7 +328,7 @@ In circumstances where you know the type of the item with the id you're fetching
     - units
     - variable
 
-    :api:`Unit class<Unit>`
+    :api:`Unit class <Unit>`
 
     - units
     - index
@@ -369,7 +369,7 @@ Now that we've found Marco and fixed the duplicates of Polo, we'd like to know w
 
 .. container:: useful
 
-    :api:`Annotator class<Annotator>`
+    :api:`Annotator class <Annotator>`
 
     - ids
     - duplicateIds
@@ -458,18 +458,18 @@ The final step is to make sure that imported items can have their annotations tr
 
 .. container:: useful
 
-    :api:`Importer class<Importer>`
+    :api:`Importer class <Importer>`
 
     - create
     - resolveImports
 
-    :api:`ImportedEntity class<ImportedEntity>` (applies to both the :code:`Units` and the :code:`Component` class)
+    :api:`ImportedEntity class <ImportedEntity>` (applies to both the :code:`Units` and the :code:`Component` class)
 
     - isImport
     - importReference
     - importSource
 
-    :api:`ImportSource class<ImportSource>`
+    :api:`ImportSource class <ImportSource>`
 
     - model
     - url
@@ -607,7 +607,7 @@ Finally, we decide that it's too cold for swimming, and want to nuke all the ids
 
 .. container:: useful
 
-    :api:`Annotator class<Annotator>`
+    :api:`Annotator class <Annotator>`
 
     - clearAllIds
     - assignAllIds

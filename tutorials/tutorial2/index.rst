@@ -103,7 +103,7 @@ Step 1: Parse a CellML file into a model
 
 .. container:: useful
 
-    :api:`Parser class<Parser>`
+    :api:`Parser class <Parser>`
 
     - create
     - parseModel
@@ -193,7 +193,7 @@ To figure out what's going on, you need to retrieve the pointers to these :code:
 
 .. container:: useful
 
-    :api:`Validator class<Validator>`
+    :api:`Validator class <Validator>`
 
     - issueCount
     - issue
@@ -255,7 +255,7 @@ Again following the same retrieval idiom as in Tutorial 1 for items in sets, we 
 
 .. container:: useful
 
-    :api:`Issue class<Issue>`
+    :api:`Issue class <Issue>`
 
     - description
     - url
@@ -372,19 +372,19 @@ This section will work through the issues reported by the validator, and demonst
 
 .. container:: useful
 
-    :api:`Issue class<Issue>`
+    :api:`Issue class <Issue>`
 
     - item
     - variable
     - math
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
     - setName
     - setUnits
     - setInitialValue
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
     - component(name, True) Retrieving a component by its name with the optional second argument true will search the entire   component tree for the component name.
 

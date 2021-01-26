@@ -301,7 +301,7 @@ It's simple to do this once in your code using a string to represent the opening
 
 .. container:: useful
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
     - setMath
     - appendMath
@@ -415,12 +415,12 @@ Step 2: Create the variables
 
 .. container:: useful
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
     - create
     - setName
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
     - addVariable
 
@@ -505,18 +505,18 @@ You can read more about units on the :ref:`Understanding units<aside_units>` pag
 
 .. container:: useful
 
-    :api:`Units class<Units>`
+    :api:`Units class <Units>`
 
     - create
     - setName
     - addUnit (note singular)
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
     - addUnits (note plural)
     - linkUnits
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
     - setUnits (note plural)
 
@@ -794,7 +794,7 @@ The :code:`Validator` checks your "spelling" and syntax, and the :code:`Analyser
 
 .. container:: useful
 
-    :api:`Analyser class<Analyser>`
+    :api:`Analyser class <Analyser>`
 
     - create
     - analyseModel
@@ -888,7 +888,7 @@ These are:
 
 .. container:: useful
 
-    :api:`Generator class<Generator>`
+    :api:`Generator class <Generator>`
 
     - create
     - profile
@@ -896,7 +896,7 @@ These are:
     - interfaceCode
     - implementationCode
 
-    :api:`GeneratorProfile class<GeneratorProfile>`
+    :api:`GeneratorProfile class <GeneratorProfile>`
 
     - create
     - setInterfaceFileNameString

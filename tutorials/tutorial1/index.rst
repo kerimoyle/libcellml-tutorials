@@ -106,7 +106,7 @@ The hard work of this transformation is done by the :code:`Parser` object which 
 
 .. container:: useful
 
-    :api:`Parser class<Parser>`
+    :api:`Parser class <Parser>`
 
     - create
     - parseModel
@@ -153,20 +153,20 @@ All retrieval functions - where you want to read something about any item - are 
 
 .. container:: useful
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
     - name
     - id
     - componentCount
     - unitsCount
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
     - name
     - id
     - variableCount
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
     - name
     - id
@@ -303,7 +303,7 @@ This reverse operation is handled by the :code:`Printer`, which will transform a
 
 .. container:: useful
 
-    :api:`Printer class<Printer>`
+    :api:`Printer class <Printer>`
 
     - create
     - printModel

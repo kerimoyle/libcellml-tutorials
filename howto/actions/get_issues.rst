@@ -108,6 +108,8 @@ Each :code:`Issue` also contains the following attributes:
 - A cause: an :code:`enum` which reports the type of item responsible for the issue.
   This is one of the enums:
 
+.. container:: shortlist
+
   - :code:`COMPONENT`,
   - :code:`CONNECTION`,
   - :code:`ENCAPSULATION`,

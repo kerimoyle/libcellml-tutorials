@@ -55,7 +55,7 @@ For convenience libCellML gives a variety of options for defining such scaling f
 -  By defining the scaling factor directly, as a multiplier, eg: :code:`millisecond` is :code:`second` with :code:`multiplier=0.001`.
 
 The overloaded argument option list is shown below for each language.
-Please check the :api:`API Units documentation<Units>` for details.
+Please check the :api:`API Units documentation <Units>` for details.
 
 .. tabs::
 

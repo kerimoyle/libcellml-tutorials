@@ -242,11 +242,11 @@ Two profiles are already defined; for C++ and for Python.
 
 .. container:: useful
 
-	:api:`GeneratorProfile class<GeneratorProfile>`
+	:api:`GeneratorProfile class <GeneratorProfile>`
 
 	- create
 	
-	:api:`Generator class<Generator>`
+	:api:`Generator class <Generator>`
 
 	- create
 	- setProfile
@@ -299,17 +299,17 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
     
 .. container:: useful
 
-    :api:`Analyser class<GeneratorProfile>`
+    :api:`Analyser class <GeneratorProfile>`
 
     - model
 
-    :api:`Generator class<Generator>`
+    :api:`Generator class <Generator>`
 
     - setModel
     - implementationCode
     - interfaceCode
 
-    :api:`GeneratorProfile class<GeneratorProfile>`
+    :api:`GeneratorProfile class <GeneratorProfile>`
 
     - setInterfaceFileNameString
 
