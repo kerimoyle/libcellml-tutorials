@@ -26,4 +26,4 @@ For general discussions and information about the CellML model structure itself,
   :ref:`How-to guide<howto>`
   :ref:`Common scenarios<common_users>`
   :ref:`Notes on CellML structure<asides>`
-  :cellml2:`CellML 2.0 Normative Specification <>`
+  :cellml2:`CellML 2.0 Normative Specification<>`

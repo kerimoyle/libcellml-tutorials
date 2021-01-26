@@ -37,7 +37,7 @@ The combinations can involve:
   exponent of -1); and
 - Any combination of the above.
 
-A list of pre-existing *built-in* convenience units is shown in the :cellml2:`Built-in Units table</reference/formal_and_informative/specC02_units_reference.html#table-built-in-units>`, along with their relationships to the irreducible units.
+A list of pre-existing *built-in* convenience units is shown in the :cellml2:`Built-in Units table </reference/formal_and_informative/specC02_units_reference.html#table-built-in-units>`, along with their relationships to the irreducible units.
 
 Combination or derived units
 ----------------------------
@@ -49,7 +49,7 @@ This isn't one of the built-in units, so you'll need to define it, but it's easy
 
 For convenience libCellML gives a variety of options for defining such scaling factors:
 
--  Either through the use of named prefixes which are listed on the :cellml2:`Interpretation of Units page</reference/formal_and_informative/specC03_interpretation_of_units.html>`, eg: :code:`millisecond` is :code:`second` with :code:`prefix="milli"`;
+-  Either through the use of named prefixes which are listed on the :cellml2:`Interpretation of Units page </reference/formal_and_informative/specC03_interpretation_of_units.html>`, eg: :code:`millisecond` is :code:`second` with :code:`prefix="milli"`;
 -  By defining an integer or integer string as a prefix which represents the :math:`log_{10}` of the scaling factor, eg: :code:`millisecond` is :code:`second` with :code:`prefix=-3` gives a scaling factor of :math:`10^{-3}=0.001`.
    NB: using an integer string like :code:`prefix="-3"` gives the same result; and
 -  By defining the scaling factor directly, as a multiplier, eg: :code:`millisecond` is :code:`second` with :code:`multiplier=0.001`.

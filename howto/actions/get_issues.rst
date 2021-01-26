@@ -103,7 +103,7 @@ Issues can also be retrieved from subgroups based on their severity, as shown in
 Each :code:`Issue` also contains the following attributes:
 
 - A description: a brief statement about the problem and how it might be fixed;
-- A reference heading: a chapter number pertaining to the formal :cellml2:`CellML 2.0 Specification` document, for issues related to formatting and specification;
+- A reference heading: a chapter number pertaining to the formal :cellml2:`CellML 2.0 Specification <>` document, for issues related to formatting and specification;
 - A URL: a web address at which more detailed information and examples pertaining to the issue are available;
 - A cause: an :code:`enum` which reports the type of item responsible for the issue.
   This is one of the enums:

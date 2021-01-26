@@ -7,7 +7,7 @@ Annotate a model
 libCellML does not provide annotation functionality directly, but it can help with some of the things that you might need to know in order to implement your own.
 Each annotation is attached to a unique ID locator which can be retrieved and edited, or created automatically if you haven't already set them yourself.
 Since CellML is a subset of XML, any item may have an ID attribute, including operations within the MathML blocks, CellML entities, and CellML non-entity items (connections, encapsulations etc).
-These ID attributes themselves must follow the specification rules: please see :cellml2:`1.2.5 XML ID attributes<specA2.html?issue=1.2.5>` for details.
+These ID attributes themselves must follow the specification rules: please see :cellml2:`1.2.5 XML ID attributes <specA2.html?issue=1.2.5>` for details.
 
 .. container:: nb
 
@@ -203,7 +203,7 @@ Some items are most readily accessed through their entity-type parents, these be
 - :code:`test_value` and :code:`reset_value` children of :code:`Reset` items.
 
 Unit children of :code:`Units` items can be accessed either through the streamlined ID-only functions :code:`unitId(index)` and :code:`setUnitId(index)`, or through the :code:`unitAttributes` family of functions.
-Note that there are several overloads of the arguments for this function; please see the complete documentation on the :api:`Units functions API page<Units>`.
+Note that there are several overloads of the arguments for this function; please see the complete documentation on the :api:`Units functions API page <Units>`.
 
 .. tabs::
 

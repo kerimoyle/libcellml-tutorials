@@ -118,7 +118,7 @@ A null pointer will be returned if the item does not have the type requested, or
 Retrieve items by id (unknown type) 
 -----------------------------------
 It's more likely that you won't know the type of item to which a given ID relates, so will need to use the generic *item* function to retrieve it.  
-This returns two pieces of information: the first is the appropriate :code:`CellMLElements` enum value for the type, and the second is the item itself cast into the :cpp_reference:`std::any type<w/cpp/utility/any>` (in C++).
+This returns two pieces of information: the first is the appropriate :code:`CellMLElements` enum value for the type, and the second is the item itself cast into the :cpp_reference:`std::any type <w/cpp/utility/any>` (in C++).
 In Python, the returned item requires no further transformation.
 
 .. tabs::
