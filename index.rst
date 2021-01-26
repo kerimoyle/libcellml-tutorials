@@ -18,3 +18,12 @@ For general discussions and information about the CellML model structure itself,
   
 - :cellml2:`CellML 2.0 Normative Specification` The official specification of the CellML language.  
   Note that this also contains informative sections, CellML code examples, and thoughts about the structure of CellML models.
+
+.. container:: quicklinks
+
+  :ref:`Installation and setup<installation>`
+  :ref:`Tutorials<tutorials_index>`
+  :ref:`How-to guide<howto>`
+  :ref:`Common scenarios<common_users>`
+  :ref:`Notes on CellML structure<asides>`
+  :cellml2:`CellML 2.0 Normative Specification`

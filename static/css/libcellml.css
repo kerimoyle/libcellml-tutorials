@@ -246,3 +246,7 @@ div[class^="issue"], div[class*=" issue"] > ol {
     white-space: nowrap;
     font-family: monospace;
 }
+
+.quicklinks {
+    display: none;
+}

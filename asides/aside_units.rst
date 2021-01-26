@@ -1,16 +1,14 @@
 .. _aside_units:
 
-.. container:: heading3
-
-    Understanding units
+Understanding units
+===================
 
 Some basic units have been defined and built into libCellML, others you can define by combining the built-in ones using scaling factors and exponents, or you can define your own from scratch if need be.
 
 There are four different kinds of units used here: irreducible units, built-in units, derived or combination units, and custom irreducible units.
 
-.. container:: heading4
-
-    Irreducible units
+Irreducible units
+-----------------
 
 The first are called *irreducible* because they represent the physical base quantities which cannot be further simplified:
 
@@ -25,9 +23,8 @@ The first are called *irreducible* because they represent the physical base quan
 
 These *irreducible* units can be used to create all other physically-based units by combining them using different exponents, multipliers, and prefixes.
 
-.. container:: heading4
-
-    Built-in units
+Built-in units
+--------------
 
 Some of these combinations form our second type of units, the *built-in units*, these being common relationships which have been constructed from combinations of the irreducible units.
 The combinations can involve:
@@ -36,15 +33,14 @@ The combinations can involve:
   :code:`second` and a factor of 0.001);
 - A combination of units (a :code:`coulomb` is a :code:`second` multiplied by
   an :code:`ampere`);
-- Powers of units (a :code:`Hertz` has a base of :code:`second` with an
+- Powers of units (a :code:`hertz` has a base of :code:`second` with an
   exponent of -1); and
 - Any combination of the above.
 
 A list of pre-existing *built-in* convenience units is shown in the :cellml2:`Built-in Units table</reference/formal_and_informative/specC02_units_reference.html#table-built-in-units>`, along with their relationships to the irreducible units.
 
-.. container:: heading4
-
-    Combination or derived units
+Combination or derived units
+----------------------------
 
 The third type of units are those *combinations* which users can define for themselves based on the built-in units, the irreducible units, any other units already created, or (see below) their own custom irreducible units.
 
@@ -132,9 +128,8 @@ For example, after defining our :code:`millisecond` units, we could then use thi
         # Defining a per_millisecond unit based on millisecond^-1.
         per_ms.addUnit(ms, -1.0)  # reference unit, exponent
 
-.. container:: heading4
-
-    Custom irreducible units
+Custom irreducible units
+------------------------
 
 The final type of unit is a custom irreducible unit.
 While this is not common in purely physical models (all of the seven physical attributes are already included), for times when you're modelling something non-physical (such as our numbers of sharks or fishes), you're able to define your own.
