@@ -8,7 +8,6 @@ Here we describe the first (and most famous) model of nerve fibre electrophysiol
 This is the work by Alan Hodgkin and Andrew Huxley in 1952 cite ``10`` that won them (together with John Eccles) the 1963 Noble prize in Physiology or Medicine for *"their discoveries concerning the ionic mechanisms involved in excitation and inhibition in
 the peripheral and central portions of the nerve cell membrane"*.
 
-
 .. contents::
     :local:
 

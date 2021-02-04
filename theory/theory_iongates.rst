@@ -1,5 +1,3 @@
-.. include:: resources/roles.txt
-
 .. _theory_iongates:
 
 =========================================
@@ -62,7 +60,7 @@ where :math:`W` is the number of ways of
 arranging a given distribution of microstates of a system and
 :math:`k_{B}` is Boltzmann’s constant \ [#]_. The driving force for ion
 movement is the dispersal of energy into a more probable distribution
-(see :numref:`distribution_microstates` ; cf. the second law of
+(see :numref:`Figure {number}<distribution_microstates>` ; cf. the second law of
 thermodynamics \ [#]_).
 
 The energy change :math:`\Delta q` associated with this change of
@@ -107,7 +105,7 @@ Electrical theory
 -----------------
 Every positively charged ion that crosses the membrane raises the
 potential difference and produces an electrostatic driving force that
-opposes the entropic force (see :numref:`ocr_tut_bal_force`). To move an
+opposes the entropic force (see :numref:`Figure {number}<ocr_tut_bal_force>`). To move an
 electron of
 charge :math:`e` (:math:`\approx 1.6\times 10^{-19}\text{  }(C)`) through a
 voltage
@@ -149,7 +147,7 @@ where :math:`E_{Y}` is the "equilibrium" or "Nernst" potential for
    :align: center
    :width: 30%
 
-   The balance between :purple:`entropic` and :red:`electrostatic` forces
+   The balance between entropic and electrostatic forces
    determines the Nernst potential.
 
 
@@ -165,7 +163,7 @@ Nernst potential for that ion:
     {\overset{\overline{}}{i}}_{Y}\mathbf{=}{\overset{\overline{}}{g}}_{Y}\left( V - E_{Y} \right)
 
 This defines a linear current-voltage relation ("Ohm's law") as shown in
-:numref:`Fig. %s(a) <ion_gates_theory>`. The specific characteristics of a channel's
+:numref:`Figure {number}(a)<ion_gates_theory>`. The specific characteristics of a channel's
 behaviour depend on how its gates modify the open channel conductance.
 
 
@@ -186,7 +184,7 @@ gates that control the passage of ions through a membrane ion channel.
 If the fraction of gates that are open is :math:`y`, the fraction of gates
 that are closed is :math:`1-y`, and a first order ODE can be used to describe
 the transition between the two states
-(see :numref:`Fig. %s(b) <ion_gates_theory>`).
+(see :numref:`Figure {number}(b)<ion_gates_theory>`).
 
 .. math::
 
@@ -209,9 +207,9 @@ The constant :math:`A` can be interpreted as:
 
 as in the previous example and, with :math:`y\left( 0 \right) = 0` (i.e.
 all gates initially shut), the solution looks like
-:numref:`Fig. %s(a) <gate_behaviour>`.  The experimental data obtained
+:numref:`Figure {number}(a)<gate_behaviour>`.  The experimental data obtained
 by Hodgkin and Huxley for the squid axon indicated that the initial current
-flow began more slowly, as in :numref:`Fig. %s(b) <gate_behaviour>`.
+flow began more slowly, as in :numref:`Figure {number}(b)<gate_behaviour>`.
 
 .. figure:: images/transient_beh_gates.png
    :name: gate_behaviour
@@ -252,7 +250,7 @@ voltage :math:`V = 0`, and opening and closing rate constants of
 ms\ :sup:`-1`.
 
 The modelled behaviour of a single gate is shown by the green line in
-:numref:`ion_gate_status`, and the resulting channel current for four
+:numref:`Figure {number}<ion_gate_status>`, and the resulting channel current for four
 gates in series by the blue line. Note the slow start to the current trace
 in comparison with the single gate transient :math:`y\left( t \right)`, as
 observed experimentally by Hodgkin and Huxley.

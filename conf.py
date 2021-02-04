@@ -158,6 +158,8 @@ pygments_style = 'sphinx'
 
 # If true, enable figure numbering
 numfig = True
+# numfig_secnum_depth = (2)
+numfig_format = {'figure': 'Figure %s'} #, 'table': 'Table %s', 'code-block': 'Code Block %s'}
 
 # -- Options for HTML output ----------------------------------------------
 

@@ -15,9 +15,20 @@ This section provides tutorials, code examples, and user guides for the most com
 For general discussions and information about the CellML model structure itself, the following resources might be helpful.
 
 - :ref:`Notes on CellML structure<asides>` A small collection of pages including background information on how certain CellML elements have been designed to function.
-  
+
 - :cellml2:`CellML 2.0 Normative Specification <>` The official specification of the CellML language.  
   Note that this also contains informative sections, CellML code examples, and thoughts about the structure of CellML models.
+
+.. toctree::
+  :hidden:
+
+  installation/index.rst
+  tutorials/index.rst
+  theory/index.rst
+  howto/index.rst
+  howto/common_users.rst
+  howto/actions/index.rst
+
 
 .. container:: quicklinks
 
