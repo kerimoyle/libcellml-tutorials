@@ -1,8 +1,8 @@
 .. _theory_potassiumchannel:
 
-================================
+==============================
 A model of a potassium channel
-================================
+==============================
 
 We now deal specifically with the application of the ion channel model discussed in :ref:`the previous chapter on ion gates theory<theory_iongates>` to the Hodgkin and Huxley (HH) potassium channel. 
 This theory is the basis for the practical modelling tutorial in :ref:`HH Tutorial 2<createPotassiumChannelModel>`.
@@ -22,9 +22,8 @@ where :math:`\bar{g}_{K} = \ 36 \text{ mS.cm}^{-2}`, and with intra- and extra-c
 
 .. math::
 
-    E_{K} = \frac{RT}{zF} \ln\frac{\left\lbrack K^{+}
-    \right\rbrack_{o}}{\left\lbrack K^{+} \right\rbrack_{i}} =
-    25\ln\frac{3}{90} = - 85\text{ mV}
+    E_{K} = \frac{RT}{zF} \ln\frac{\left\lbrack K^{+} \right\rbrack_{o}}{\left\lbrack K^{+} \right\rbrack_{i}} = 25\ln\frac{3}{90} = - 85\text{ mV}
+
 
 The :math:`E_K` term is called the *equilibrium potential* since it is the potential across the cell membrane when the channel is open but no current is flowing.
 This happens when the electrostatic driving force from the potential (voltage) difference between internal and external ion *charges* is exactly matched by the entropic driving force from the ion *concentration* difference.
@@ -36,25 +35,29 @@ The gating kinetics are described (as before) by:
 
     \frac{dn}{dt} = \alpha_{n}\left( 1 - n \right) - \beta_{n}n
 
+
 with time constant:
 
 .. math::
+
     \tau_{n} = \frac{1}{\alpha_{n} + \beta_{n}}
 
-The main difference from the gating model in our previous example is that Hodgkin and Huxley found it necessary to make the rate constants :math:`\alpha_n` and :math:`\beta_n` functions of the membrane potential :math:`V` (see :numref:`Figure {number}<ocr_tut_volt_deps_gates>`) as follows \ [#]_:
+
+The main difference from the gating model in our previous example is that Hodgkin and Huxley found it necessary to make the rate constants :math:`\alpha_n` and :math:`\beta_n` functions of the membrane potential :math:`V` (see :numref:`Figure {number}<ocr_tut_volt_deps_gates>`) as follows [#]_:
 
 .. math::
 
     \alpha_{n} = \frac{- 0.01\left( V + 65 \right)}{\exp \left({-0.1 \left( V + 65 \right)}\right) - 1} \\[16pt]
     \beta_{n} = 0.125\exp{\left( \frac{- \left( V + 75 \right) } {80} \right) }
 
+
 .. figure:: images/volt_deps_of_gate_consts.png
    :name: ocr_tut_volt_deps_gates
    :alt: Voltage dependencies of gate constants
    :align: center
-   :figwidth: 8cm
+   :width: 35em
 
-   Voltage dependence of rate constants :math:`\alpha_n` and :math:`\beta_n (\text{ms}^{-1})`, time constant :math:`\tau_n (\text{ms})` and relative conductance :math:`\frac{g_{ss}}{\bar{g}_Y}`.
+   Voltage dependence of gate constants :math:`\alpha_n` and :math:`\beta_n (\text{ms}^{-1})`, time constant :math:`\tau_n (\text{ms})` and relative conductance :math:`\frac{g_{ss}}{\bar{g}_Y}`.
 
 Note that under steady state conditions when :math:`t \rightarrow \infty` and :math:`\frac{dn}{dt} \rightarrow 0`:
 
@@ -75,7 +78,7 @@ The steady state current-voltage relation for the channel is illustrated in :num
 .. figure:: images/ss_cur_volt.png
    :name: ocr_tut_ss_cur_volt
    :alt: Steady-state current voltage
-   :figwidth: 8cm
+   :width: 35em
    :align: center
 
    The steady-state current-voltage relation for the potassium channel.
