@@ -14,30 +14,23 @@ Hodgkin-Huxley 2: Creating a model which uses imports
     - Use the diagnostic :code:`Analyser` class to identify errors in the model's mathematical formulation; and
     - Serialise the model to CellML format for output.
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **Code (C++)**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`createPotassiumChannelModel.cpp<createPotassiumChannelModel.cpp>` Either the skeleton code, or ..
     - :download:`createPotassiumChannelModel_completed.cpp<createPotassiumChannelModel_completed.cpp>` the completed tutorial code; and
     - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
-.. container:: shortlist
-
-    **Code (Python)**
+    **Python resources**
 
     - :download:`createPotassiumChannelModel.py<createPotassiumChannelModel.py>` Either the skeleton code, or ..
     - :download:`createPotassiumChannelModel_completed.py<createPotassiumChannelModel_completed.py>` the completed tutorial code.
 
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     - :download:`GateModel.cellml<GateModel.cellml>` The generic gate model created in :ref:`Tutorial 1<createGateModel>`.
-
-.. contents:: Contents
-    :local:
 
 Step 1: Create the model
 ------------------------

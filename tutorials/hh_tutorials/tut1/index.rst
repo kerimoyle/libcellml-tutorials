@@ -12,24 +12,20 @@ Hodgkin-Huxley 1: Creating a model using the API
     - Use the diagnostic Analyser class to identify errors in the model's mathematical construction; and
     - Serialise the model to CellML format for output.
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **Requirements (C++)**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`createGateModel.cpp<createGateModel.cpp>` Either the skeleton code, or ..
     - :download:`createGateModel_completed.cpp<createGateModel_completed.cpp>` the completed tutorial code; and
     - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
-.. container:: shortlist
-
-    **Requirements (Python)**
+    **Python resources**
 
     - :download:`createGateModel.py<createGateModel.py>` Either the skeleton code, or ..
     - :download:`createGateModel_completed.py<createGateModel_completed.py>` the completed tutorial code.
 
-.. contents:: Contents
-    :local:
 
 Overview
 --------

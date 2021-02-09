@@ -16,34 +16,27 @@ Tutorial 5: Annotation tools
 
 Requirements
 ------------
-Either :download:`download the entire folder<tutorial5.zip>`, or:
 
-.. container:: shortlist   
+.. container:: directorylist   
 
-    **C++**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`tutorial5.cpp<tutorial5.cpp>` Either the skeleton code, or ..
     - :download:`tutorial5_complete.cpp<tutorial5_complete.cpp>` the completed tutorial code; and
     - :download:`utilities.h<../utilities/utilities.h>` and :download:`utilities.cpp<../utilities/utilities.cpp>` Utility functions for use in the tutorials.
 
-.. container:: shortlist
-
-    **Python**
+    **Python resources**
 
     - :download:`tutorial5.py<tutorial5.py>` Either the skeleton code, or ..
     - :download:`tutorial5_complete.py<tutorial5_complete.py>` the completed tutorial code; and
     - :download:`utilities.py<../utilities/utilities.py>`  Utility functions for use in the tutorials.
 
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     - :download:`MysteryModel.cellml<MysteryModel.cellml>` file to read; and
     - :download:`AnotherMysteryModel.cellml<AnotherMysteryModel.cellml>` its import dependency.
 
-.. contents:: Contents
-    :local:
 
 Background
 ----------

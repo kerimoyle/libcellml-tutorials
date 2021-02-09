@@ -14,25 +14,21 @@ Hodgkin-Huxley 3: Debugging a model
     - Use the diagnostic :code:`Analyser` class to identify issues in the model's mathematical formulation.
 
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **Code (C++)**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`debugSodiumChannelModel.cpp<debugSodiumChannelModel.cpp>` Either the skeleton code, or ..
     - :download:`debugSodiumChannelModel_completed.cpp<debugSodiumChannelModel_completed.cpp>` the completed tutorial code; and
     - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
-.. container:: shortlist
-
-    **Code (Python)**
+    **Python resources**
 
     - :download:`debugSodiumChannelModel.py<debugSodiumChannelModel.py>` Either the skeleton code, or ..
     - :download:`debugSodiumChannelModel_completed.py<debugSodiumChannelModel_completed.py>` the completed tutorial code; and
 
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     - :download:`GateModel.cellml<GateModel.cellml>` the generic gate model created in Tutorial 1;
     - :download:`SodiumChannelModel_broken.cellml<SodiumChannelModel_broken.cellml>` a sodium channel model that needs debugging;
@@ -40,8 +36,6 @@ Hodgkin-Huxley 3: Debugging a model
     - :download:`CircularControllerReference2.cellml<CircularControllerReference2.cellml>` import file; and
     - :download:`SodiumChannelController.cellml<SodiumChannelController.cellml>` import file.
 
-.. contents:: Contents
-    :local:
 
 Overview
 --------

@@ -24,33 +24,26 @@ You'll be taking a CellML2.0 file which has some mistakes in it, using the valid
 
 Requirements
 ------------
-Either :download:`download the whole folder<tutorial2.zip>`, or:
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **C++**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building;
     - :download:`tutorial2.cpp<tutorial2.cpp>` The skeleton code or
     - :download:`tutorial2_complete.cpp<tutorial2_complete.cpp>` the completed code; and
     - :download:`utilities.cpp<../utilities/utilities.cpp>` and :download:`utilities.h<../utilities/utilities.h>` Utility functions for use in the tutorials.
 
-.. container:: shortlist
-
-    **Python**
+    **Python resources**
 
     - :download:`tutorial2.py` The skeleton code or
     - :download:`tutorial2_complete.py` or the completed code; and
     - :download:`utilities.py<../utilities/utilities.py>` Utility functions for use in the tutorials.
 
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     - :download:`tutorial2.cellml<tutorial2.cellml>` the input CellML file.
 
-.. contents:: Contents
-    :local:
 
 Step 0: Set-up
 --------------

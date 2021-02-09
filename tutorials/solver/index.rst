@@ -7,15 +7,15 @@ Simple solver for generated models
 The theory behind how a numerical solver or integration program works is outlined in the :ref:`Theory of ODE solvers<theory_ode_solutions>` page.
 This section describes how to use the simple solvers provided to run models generated with either the C or Python profiles.
 
-.. contents:: Contents
-    :local:
-
-
 C profile solver
 ================
 In C++ you can use the code provided in the :code:`tutorials/solver` directory to build your generated code into a runnable simulation.
 To use the package just follow the instructions below.
-You will need to download:
+
+
+.. container:: directorylist
+
+  **C/C++ resources**
 
   - :download:`CMakeLists.txt <CMakeLists.txt>` The CMake file which controls the building of the solver.
     Note that this is a little different from usual, as outlined below.
@@ -102,7 +102,10 @@ Python profile solver
 
 The solver script is a very simple implementation of the Euler stepping method in Python.
 The theory on which it's based can be found on the :ref:`Theory of ODE solver<theory_ode_solutions>` page.
-You will need to download:
+
+.. container:: directorylist
+
+  **Python resources**
 
   - :download:`simplesolver.py<simplesolver.py>` The solver script.
 

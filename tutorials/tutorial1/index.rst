@@ -14,34 +14,26 @@ After completing this tutorial you will be able to:
 - Investigate the hierarchical contents of the :code:`Model`, including the :code:`Components`, :code:`Variables`, and MathML blocks; and
 - Serialise the model and write to another file using the :code:`Printer`.
 
-
 Requirements
 ------------
-Either :download:`download the whole folder<tutorial1.zip>`, or:
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **C++**
+    **C++ resources**
     
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building;
     - :download:`tutorial1.cpp<tutorial1.cpp>` The skeleton code or
     - :download:`tutorial1_complete.cpp<tutorial1_complete.cpp>` the completed code.
 
-.. container:: shortlist
-
-    **Python**
+    **Python resources**
 
     - :download:`tutorial1.py` The skeleton code or
     - :download:`tutorial1_complete.py` the completed code.
 
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     - :download:`tutorial1.cellml<tutorial1.cellml>` the input CellML file.
 
-.. contents:: Contents
-    :local:
 
 Step 0: Set-up
 --------------

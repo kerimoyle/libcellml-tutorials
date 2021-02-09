@@ -16,9 +16,9 @@ Hodgkin-Huxley 5: Interact with generated code
     - Using the :code:`Generator` functionality to output files in C or Python; and
     - The basic idea of numerical integration using Euler's method.
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **Code (C++)**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`solveGeneratedCode.cpp<solveGeneratedCode.cpp>` Either the skeleton code, or ..
@@ -26,16 +26,12 @@ Hodgkin-Huxley 5: Interact with generated code
     - :download:`HodgkinHuxleyModel.cpp<HodgkinHuxleyModel.cpp>` Generated implementation code from Tutorial 4; and
     - :download:`HodgkinHuxleyModel.h<HodgkinHuxleyModel.h>` Generated interface code from Tutorial 4.
 
-.. container:: shortlist
-
-    **Code (Python)**
+    **Python resources**
 
     - :download:`solveGeneratedCode.py<solveGeneratedCode.py>` Either the skeleton code, or ..
     - :download:`solveGeneratedCode_completed.py<solveGeneratedCode_completed.py>` the completed tutorial code;
-    - :download:`HodgkinHuxleyModel.py<HodgkinHuxleyModel.py>` Generated implementation code from Tutorial 4
+    - :download:`HodgkinHuxleyModel.py<HodgkinHuxleyModel.py>` Generated implementation code from Tutorial 4.
 
-.. contents:: Contents
-    :local:
 
 Step 1: Link to the generated code
 ----------------------------------

@@ -24,28 +24,23 @@ Tutorial 3: Create a model and generate code using the API
 
 Requirements
 ------------
-Either :download:`download the whole folder<tutorial3.zip>`, or:
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **C++**
+    **C++ resources**
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial3.cpp` The skeleton code; or
     - :download:`tutorial3_complete.cpp` the completed tutorial code; and
     - :download:`utilities.h<../utilities/utilities.h>` and :download:`utilities.cpp<../utilities/utilities.cpp>` Utility functions for use in the tutorials.
 
-.. container:: shortlist
-
-    **Python**
+    **Python resources**
     
     - :download:`tutorial3.py` Either the skeleton code; or
     - :download:`tutorial3_complete.py` the completed tutorial code; and
     - :download:`utilities.py<../utilities/utilities.py>`  Utility functions for use in the tutorials.
 
-.. contents:: Contents
-    :local:
-    
+
 Overview
 --------
 During this tutorial you will create a simple model representing the population dynamics of two species - one a predator (sharks), and the other their prey (fish).
