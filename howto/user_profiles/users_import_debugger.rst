@@ -5,27 +5,28 @@ Import debugger
 This example walks through the processes involved with debugging models using the :code:`Importer` class in conjunction with the diagnostic classes, :code:`Validator` and :code:`Analyser`.
 For more general debugging use cases, please see the :ref:`Model debugger<users_model_debugger>` example instead.
 
-**Contents**
+.. container:: directorylist
 
-.. contents::
-   :local:
+  **C++ resources**:  :download:`All C++ resources<>`
 
-| **C++ resources**
-|   ├ :download:`CMakeLists.txt<../code/import_debugger/CMakeLists.txt>`
-|   ├ :download:`example_importDebugger.cpp<../code/import_debugger/importDebugger.cpp>`
-|   └ resources/
-|       ├ :download:`importerExample1.cellml<../code/import_debugger/resources/importExample1.cellml>`
-|       ├ :download:`importerExample2a.cellml<../code/import_debugger/resources/importExample2a.cellml>`
-|       ├ :download:`importerExample2b.cellml<../code/import_debugger/resources/importExample2b.cellml>`
-|       └ :download:`importerExample3.cellml<../code/import_debugger/resources/importExample3.cellml>`
+  - :download:`CMakeLists.txt<../code/import_debugger/CMakeLists.txt>`
+  - :download:`example_importDebugger.cpp<../code/import_debugger/importDebugger.cpp>`
+  - resources/
+  
+      - :download:`importerExample1.cellml<../code/import_debugger/resources/importExample1.cellml>`
+      - :download:`importerExample2a.cellml<../code/import_debugger/resources/importExample2a.cellml>`
+      - :download:`importerExample2b.cellml<../code/import_debugger/resources/importExample2b.cellml>`
+      - :download:`importerExample3.cellml<../code/import_debugger/resources/importExample3.cellml>`
 
-| **Python resources**
-|   ├ :download:`example_importDebugger.py<../code/import_debugger/importDebugger.py>`
-|   └ resources/
-|       ├ :download:`importerExample1.cellml<../code/import_debugger/resources/importExample1.cellml>`
-|       ├ :download:`importerExample2a.cellml<../code/import_debugger/resources/importExample2a.cellml>`
-|       ├ :download:`importerExample2b.cellml<../code/import_debugger/resources/importExample2b.cellml>`
-|       └ :download:`importerExample3.cellml<../code/import_debugger/resources/importExample3.cellml>`
+  **Python resources**: :download:`All Python resources<>`
+
+  - :download:`example_importDebugger.py<../code/import_debugger/importDebugger.py>`
+  - resources/
+
+    - :download:`importerExample1.cellml<../code/import_debugger/resources/importExample1.cellml>`
+    - :download:`importerExample2a.cellml<../code/import_debugger/resources/importExample2a.cellml>`
+    - :download:`importerExample2b.cellml<../code/import_debugger/resources/importExample2b.cellml>`
+    - :download:`importerExample3.cellml<../code/import_debugger/resources/importExample3.cellml>`
 
 
 Parse an existing CellML model 

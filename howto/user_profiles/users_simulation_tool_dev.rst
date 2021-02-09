@@ -5,21 +5,22 @@ Simulation tool developer
 The code generation functionality in libCellML can be used to transform CellML models into procedural code for simulation.
 This example works through that process. 
 
-**Contents**
+.. container:: directorylist
 
-.. contents::
-   :local:
+   **C++ resources**: :download:`All C++ resources<>`
 
-| **C++ resources**
-|    ├ :download:`CMakeLists.txt<../code/simulation_tool_dev/CMakeLists.txt>`
-|    ├ :download:`example_simulationToolDev.cpp<../code/simulation_tool_dev/simulationToolDev.cpp>`
-|    └ resources/
-|        └ :download:`simulationExample.cellml<../code/simulation_tool_dev/simulationExample.cellml>`
+   - :download:`CMakeLists.txt<../code/simulation_tool_dev/CMakeLists.txt>`
+   - :download:`example_simulationToolDev.cpp<../code/simulation_tool_dev/simulationToolDev.cpp>`
+   - resources/
 
-| **Python resources**
-|    ├ :download:`example_simulationToolDev.py<../code/simulation_tool_dev/simulationToolDev.py>`
-|    └ resources/
-|        └ :download:`simulationExample.cellml<../code/simulation_tool_dev/simulationExample.cellml>`
+      - :download:`simulationExample.cellml<../code/simulation_tool_dev/simulationExample.cellml>`
+
+   **Python resources**: :download:`All Python resources<>`
+
+   - :download:`example_simulationToolDev.py<../code/simulation_tool_dev/simulationToolDev.py>`
+   - resources/
+
+      - :download:`simulationExample.cellml<../code/simulation_tool_dev/simulationExample.cellml>`
 
 Parse an existing model from a file
 -----------------------------------

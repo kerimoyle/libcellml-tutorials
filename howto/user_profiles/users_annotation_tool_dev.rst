@@ -9,18 +9,22 @@ In the :code:`Annotator`, the ID string is used instead.
 Because an item of any type could have an ID attribute, there is no way of knowing what kind of will be returned.
 The class makes use of casting to and from the (C++ only) :cpp_reference:`std::any type <w/cpp/utility/any>` to handle this uncertainty.
 
-.. container:: lineblocks
+.. container:: directorylist
 
-    | **C++ resources**
-    |    ├ :download:`CMakeLists.txt<../code/annotation_tool_dev/CMakeLists.txt>`
-    |    ├ :download:`annotationToolDev.cpp<../code/annotation_tool_dev/annotationToolDev.cpp>`
-    |    └ resources/
-    |        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
+  **C++ resources**
 
-    | **Python resources**
-    |    ├ :download:`annotationToolDev.py<../code/annotation_tool_dev/annotationToolDev.py>`
-    |    └ resources/
-    |        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
+  - :download:`CMakeLists.txt<../code/annotation_tool_dev/CMakeLists.txt>`
+  - :download:`annotationToolDev.cpp<../code/annotation_tool_dev/annotationToolDev.cpp>`
+  - resources/
+  
+    - :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
+
+  **Python resources**
+
+  - :download:`annotationToolDev.py<../code/annotation_tool_dev/annotationToolDev.py>`
+  - resources/
+  
+    - :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
 
 Parse an existing CellML model 
 ------------------------------
