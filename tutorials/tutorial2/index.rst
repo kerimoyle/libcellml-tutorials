@@ -188,7 +188,7 @@ To figure out what's going on, you need to retrieve the pointers to these :code:
 
     :api:`Validator class <Validator>`
 
-    - :api:`issueCount <Validator?fName=>issueCount`
+    - :api:`issueCount <Validator?fName=issueCount>`
     - :api:`issue <Validator?fName=issue>`
     - :api:`errorCount <Validator?fName=errorCount>`
     - :api:`error <Validator?fName=error>`
@@ -238,7 +238,7 @@ Again following the same retrieval idiom as in Tutorial 1 for items in sets, we 
 
 .. tabs::
 
-  .. code-block:: c++
+  .. code-tab:: cpp
 
       auto theFifteenthIssue = validator->issue(14);
 
@@ -441,8 +441,8 @@ For example, calling the :code:`math()` function on an issue which reports stori
 The functions and the types they return are shown below.
 
 +-------------------+------------------+------------------------------------------------------------------------------------------------------+
-| enumeration value | function to call | type returned from function                                                                          |
-+-------------------+------------------+------------------------------------------------------------------------------------------------------+
+| Enumeration value | Function to call | Type returned from function                                                                          |
++===================+==================+======================================================================================================+
 | COMPONENT         | component()      | :code:`ComponentPtr` a pointer to a component.                                                       |
 +-------------------+------------------+------------------------------------------------------------------------------------------------------+
 | COMPONENT_REF     | componentRef()   | :code:`ComponentPtr` a pointer to the component referenced via a :code:`component_ref`.              |
