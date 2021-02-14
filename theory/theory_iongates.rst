@@ -15,7 +15,7 @@ The theory here is the basis for the practical modelling tutorial in
 Chemical theory and entropy
 ---------------------------
 A good example of a model based on a first order equation is the one
-used by Hodgkin and Huxley cite ``10`` to describe the gating behaviour of an
+used by Hodgkin and Huxley [#]_ to describe the gating behaviour of an
 ion channel. Before we describe the
 gating behaviour of an ion channel, however, we need to explain the
 concepts of the 'Nernst potential' and channel conductance.
@@ -35,7 +35,7 @@ driving an ion through the pore is calculated from the change in
     :align: center
     :width: 50%
 
-    Distribution of microstates in a system cite ``11``. The 16 particles in a
+    Distribution of microstates in a system [#]_. The 16 particles in a
     confined region (left) have only one possible arrangement (:math:`W=1`) and
     therefore zero entropy (:math:`k_{B}\ln W=0`). When the barrier is
     removed and the number of possible locations for each particle increases
@@ -287,6 +287,14 @@ described in the next sections for the neural
 ---------------------------
 
 .. rubric:: Footnotes
+
+.. [#] 
+   Hodgkin AL and Huxley AF. A quantitative description of membrane current and its application to conduction and excitation in nerve.
+    *Journal of Physiology* 117, 500-544, 1952. `PubMed ID:
+    12991237 <http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=pubmed&cmd=Retrieve&dopt=AbstractPlus&list_uids=12991237&query_hl=1&itool=pubmed_docsum>`__
+
+.. [#]
+   Wigglesworth J. ‘Energy and Life’, Taylor & Francis Ltd, 1997.
 
 .. [#]
    The Brownian motion of individual molecules has energy :math:`k_{B}T`
