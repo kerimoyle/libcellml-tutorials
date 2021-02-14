@@ -12,24 +12,20 @@ Hodgkin-Huxley 1: Creating a model using the API
     - Use the diagnostic Analyser class to identify errors in the model's mathematical construction; and
     - Serialise the model to CellML format for output.
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **Requirements (C++)**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`createGateModel.cpp<createGateModel.cpp>` Either the skeleton code, or ..
     - :download:`createGateModel_completed.cpp<createGateModel_completed.cpp>` the completed tutorial code; and
     - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
-.. container:: shortlist
-
-    **Requirements (Python)**
+    **Python resources**
 
     - :download:`createGateModel.py<createGateModel.py>` Either the skeleton code, or ..
     - :download:`createGateModel_completed.py<createGateModel_completed.py>` the completed tutorial code.
 
-.. contents:: Contents
-    :local:
 
 Overview
 --------
@@ -56,17 +52,17 @@ Step 1: Set up the model
 
 .. container:: useful
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - create
-    - setName
-    - addComponent
+    - :api:`create <Model?fName=create>`
+    - :api:`setName <Model?fName=setName>`
+    - :api:`addComponent <Model?fName=addComponent>`
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - create
-    - setName
-    - addComponent
+    - :api:`create <Component?fName=create>`
+    - :api:`setName <Component?fName=setName>`
+    - :api:`addComponent <Component?fName=addComponent>`
 
 .. container:: dothis
 
@@ -183,11 +179,11 @@ If you're happy to write your own MathML2 string then please go ahead, but if yo
 
 .. container:: useful
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - setMath
-    - appendMath
-    - math
+    - :api:`setMath <Component?fName=setMath>`
+    - :api:`appendMath <Component?fName=appendMath>`
+    - :api:`math <Component?fName=math>`
 
 .. container:: dothis
 
@@ -261,20 +257,20 @@ Once the mathematics has been added to the component, and the component to the m
 
 .. container:: useful
 
-    :api:`Validator class<Validator>`
+    :api:`Validator class <Validator>`
 
-    - create
-    - validateModel
-    - issueCount
-    - issue
+    - :api:`create <Validator?fName=create>`
+    - :api:`validateModel <Validator?fName=validateModel>`
+    - :api:`issueCount <Validator?fName=issueCount>`
+    - :api:`issue <Validator?fName=issue>`
 
-    :api:`Issue class<Issue>`
+    :api:`Issue class <Issue>`
 
-    - description
-    - url
-    - referenceHeading
-    - level
-    - itemType
+    - :api:`description <Issue?fName=description>`
+    - :api:`url <Issue?fName=url>`
+    - :api:`referenceHeading <Issue?fName=referenceHeading>`
+    - :api:`level <Issue?fName=level>`
+    - :api:`itemType <Issue?fName=itemType>`
 
 .. container:: dothis
 
@@ -326,13 +322,13 @@ The simplest way is to print the descriptions to the terminal.
 
         **C++**
 
-        - getIssueLevelFromEnum; and
-        - getCellmlElementTypeFromEnum. 
+        - :code:`getIssueLevelFromEnum` ; and
+        - :code:`getCellmlElementTypeFromEnum` . 
 
         **Python**
 
-        - get_issue_level_from_enum; and
-        - get_cellml_element_type_from_enum.
+        - :code:`get_issue_level_from_enum` ; and
+        - :code:`get_cellml_element_type_from_enum` .
 
 .. container:: dothis
 
@@ -396,15 +392,15 @@ These must be created, named, and added to their parent component.
 
 .. container:: useful
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
-    - create
-    - setName
-    - setUnits
+    - :api:`create <Variable?fName=create>`
+    - :api:`setName <Variable?fName=setName>`
+    - :api:`setUnits <Variable?fName=setUnits>`
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - addVariable
+    - :api:`addVariable <Component?fName=addVariable>`
 
 .. container:: dothis
 
@@ -437,8 +433,8 @@ These must be created, named, and added to their parent component.
 
     Helper functions for retrieving and printing any issues from any of the logger classes:
 
-    - printIssues (C++)
-    - print_issues (Python)
+    - :code:`printIssues` (C++)
+    - :code:`print_issues` (Python)
 
 .. container:: dothis
 
@@ -495,21 +491,21 @@ In this example none of the units exist yet, so we need to create all of them.
 
 .. container:: useful
 
-    :api:`Units class<Units>`
+    :api:`Units class <Units>`
 
-    - create
-    - setName
-    - addUnit
-    - name
+    - :api:`create <Units?fName=create>`
+    - :api:`setName <Units?fName=setName>`
+    - :api:`addUnit <Units?fName=addUnit>`
+    - :api:`name <Units?fName=name>`
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - addUnits
+    - :api:`addUnits <Model?fName=addUnits>`
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
-    - setUnits
-    - units
+    - :api:`setUnits <Variable?fName=setUnits>`
+    - :api:`units <Variable?fName=units>`
 
 .. container:: dothis
 
@@ -633,12 +629,12 @@ Step 6: Analyse the mathematical construction of the model
 
 .. container:: useful
 
-    :api:`Analyser class<Analyser>`
+    :api:`Analyser class <Analyser>`
 
-    - create
-    - analyseModel
-    - issueCount
-    - issue
+    - :api:`create <Analyser?fName=create>`
+    - :api:`analyseModel <Analyser?fName=analyseModel>`
+    - :api:`issueCount <Analyser?fName=issueCount>`
+    - :api:`issue <Analyser?fName=issue>`
 
 .. container:: dothis
 
@@ -705,18 +701,18 @@ This is the reason for the second internal component, the *parameters* component
 
 .. container:: useful
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
-    - setInitialValue
-    - addEquivalence
+    - :api:`setInitialValue <Variable?fName=setInitialValue>`
+    - :api:`addEquivalence <Variable?fName=addEquivalence>`
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - variable
+    - :api:`variable <Component?fName=variable>`
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - component
+    - :api:`component <Model?fName=component>`
 
 .. container:: dothis
 
@@ -815,13 +811,13 @@ Two particularly useful idioms are shown below.
 
 .. container:: useful
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - fixVariableInterfaces
+    - :api:`fixVariableInterfaces <Model?fName=fixVariableInterfaces>`
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
-    - setInterfaceType
+    - :api:`setInterfaceType <Variable?fName=setInterfaceType>`
 
 .. container:: dothis
 

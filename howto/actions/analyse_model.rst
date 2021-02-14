@@ -9,7 +9,7 @@ This includes checking things like that all variables requiring initial values h
 The three basic steps to model analysis are:
 
 #. Creating an :code:`Analyser` item and passing in a :code:`Model` for analysis;
-#. Checking for any :code:`Issue`s raised; and
+#. Checking for any :code:`Issues` raised; and
 #. (optional: for code generation only) Retrieving a :code:`AnalysedModel` item to pass to a :code:`Generator`, if required.
 
 .. include:: ../snippets/snippet_analyser_analyse.rst

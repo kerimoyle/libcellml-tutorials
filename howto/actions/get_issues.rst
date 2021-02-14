@@ -3,12 +3,6 @@
 Retrieve ``Issue`` items
 ========================
 
-.. contents::
-    :local:
-    
-About issues
-============
-
 Selected libCellML classes contain a :code:`Logger` whose job it is to curate any issues encountered within the class, and return them to the user when asked.
 The classes are:
 
@@ -63,7 +57,7 @@ Issues can also be retrieved from subgroups based on their severity, as shown in
       auto lastWarning = parser->warning(parser->warningCount()-1);
 
       // Iterate through all HINT level issues in a Generator.
-      for (size_t h = 0; h < generator->hintCount(); ++i) {
+      for (size_t h = 0; h < generator->hintCount(); ++h) {
         // Retrieve the h-th hint and store it in the variable "myHint".
         auto myHint = generator->hint(h);
       }
@@ -105,13 +99,16 @@ Issues can also be retrieved from subgroups based on their severity, as shown in
         # Retrieve the h-th hint and store it in the variable "my_hint".
         my_hint = generator.hint(h)
 
+
 Each :code:`Issue` also contains the following attributes:
 
 - A description: a brief statement about the problem and how it might be fixed;
-- A reference heading: a chapter number pertaining to the formal :cellml2:`CellML 2.0 Specification` document, for issues related to formatting and specification;
+- A reference heading: a chapter number pertaining to the formal :cellml2:`CellML 2.0 Specification <>` document, for issues related to formatting and specification;
 - A URL: a web address at which more detailed information and examples pertaining to the issue are available;
 - A cause: an :code:`enum` which reports the type of item responsible for the issue.
   This is one of the enums:
+
+.. container:: shortlist
 
   - :code:`COMPONENT`,
   - :code:`CONNECTION`,
@@ -135,23 +132,22 @@ Each :code:`Issue` also contains the following attributes:
 
     See C++ examples
 
-      .. code-block:: cpp
+  .. code-block:: cpp
 
-        // Retrieve and print the description of the issue.
-        std::cout << issue->description() << std::endl;
+    // Retrieve and print the description of the issue.
+    std::cout << issue->description() << std::endl;
 
-        // Retrieve and print the reference heading number, if related to CellML2.0 specification and format.
-        std::cout << issue->referenceHeading() << std::endl;
+    // Retrieve and print the reference heading number, if related to CellML2.0 specification and format.
+    std::cout << issue->referenceHeading() << std::endl;
 
-        // Retrieve and print the URL for more help and information about the issue. 
-        std::cout << issue->url() << std::endl;
+    // Retrieve and print the URL for more help and information about the issue. 
+    std::cout << issue->url() << std::endl;
 
-        // Retrieve and print the item type - a libcellml::CellmlElementType enum - for the issue.
-        std::cout << getElementTypeFromEnum(issue->CellmlElementType()) << std::endl;
+    // Retrieve the item type - a libcellml::CellmlElementType enum - for the issue.
+    auto myType = issue->CellmlElementType();
 
-        // Retrieve and print the level - a libcellml::Issue::LEVEL enum - for the issue.
-        std::cout << getIssueLevelFromEnum(issue->level()) << std::endl;
-
+    // Retrieve the level - a libcellml::Issue::LEVEL enum - for the issue.
+    auto myLevel = issue->level();
 
 .. container:: toggle
 
@@ -170,9 +166,14 @@ Each :code:`Issue` also contains the following attributes:
     # Retrieve and print the URL for more help and information about the issue. 
     print(issue.url())
 
-    # Retrieve and print the cause - a libcellml.CellmlElementType enum - for the issue.
-    print(get_issue_cause_from_enum(issue.cellmlElementType()))
+    # Retrieve the cause - a libcellml.CellmlElementType enum - for the issue.
+    my_type = issue.cellmlElementType()
 
-    # Retrieve and print the level - a libcellml.Issue.LEVEL enum - for the issue.
-    print(get_issue_level_from_enum(issue.level()))
+    # Retrieve the level - a libcellml.Issue.LEVEL enum - for the issue.
+    my_level = issue.level()
+
+Useful functions for dealing with issues
+========================================
+
+.. include:: ../code_snippets/snippet_get_issues.rst
 

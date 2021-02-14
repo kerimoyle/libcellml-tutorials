@@ -52,7 +52,7 @@ For practical information about how they are used, please see the :ref:`Viewing 
     In situations where the component has already been included in the collection, is present in another collection, or is not found, this operation will return false.
     Other add functions do not return any value.
   - The :code:`addUnit` function has many overloaded argument lists.
-    Please refer to the full :api:`API addUnit<Units>` reference for details.
+    Please refer to the full :api:`API addUnit <Units?fName=addUnit>` reference for details.
 
 .. container:: toggle
 
@@ -165,7 +165,7 @@ For practical information about how they are used, please see the :ref:`Viewing 
   The replacement item overwrites what was previously stored at the position in the collection.
   In addition, the :code:`replaceComponent` takes an optional boolean argument indicating whether to search the encapsulated children for the item, if specified by name.
   By default this is set to :code:`true`.
-  For more information about replacement, please see the API documentation for :api:`Model<Model>` and :api:`Component<Component>` items directly.
+  For more information about replacement, please see the API documentation for :api:`Model <Model>` and :api:`Component <Component>` items directly.
 
   .. container:: nb
 

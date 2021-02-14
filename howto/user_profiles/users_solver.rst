@@ -5,22 +5,24 @@ Simulation tool developer: Solver
 The code generation functionality in libCellML can be used to transform CellML models into procedural code for simulation.
 This example works through that process. 
 
-**Contents**
+.. container:: directorylist
 
-.. contents::
-   :local:
+  **C++ resources**: :download:`All C++ resources<>`
 
-| **C++ resources**
-|    ├ :download:`CMakeLists.txt<../code/solver/CMakeLists.txt>`
-|    ├ :download:`example_solveGeneratedModel.cpp<../code/solver/solveGeneratedModel.cpp>`
-|    └ resources/
-|        ├ :download:`sineComparisonExample.c<../code/generated_code/sineComparisonExample.c>`
-|        └ :download:`sineComparisonExample.h<../code/generated_code/sineComparisonExample.h>`
+  - :download:`CMakeLists.txt<../code/solver/CMakeLists.txt>`
+  - :download:`example_solveGeneratedModel.cpp<../code/solver/solveGeneratedModel.cpp>`
+  - resources/
+  
+    - :download:`sineComparisonExample.c<../code/generated_code/sineComparisonExample.c>`
+    - :download:`sineComparisonExample.h<../code/generated_code/sineComparisonExample.h>`
 
-| **Python resources**
-|    ├ :download:`example_solveGeneratedModel.py<../code/solver/solveGeneratedModel.py>`
-|    └ resources/
-|        └ :download:`sineComparisonExample.py<../code/generated_code/sineComparisonExample.py>`
+  **Python resources**: :download:`All Python resources<>`
+
+  - :download:`example_solveGeneratedModel.py<../code/solver/solveGeneratedModel.py>`
+  - resources/
+      
+    - :download:`sineComparisonExample.py<../code/generated_code/sineComparisonExample.py>`
+
 
 Create a placeholder for the solver
 -----------------------------------

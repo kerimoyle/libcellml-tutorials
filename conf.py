@@ -57,7 +57,9 @@ autosectionlabel_prefix_document = True
 # Declare below as:
 #   'shortcut': ('http://linkhere/%s',''), NB have to put the string insertion %s to make it work
 extlinks = {
-    'api': ('https://libcellml.github.io/help/api/v0.2.0/classlibcellml_1_1%s', ''),
+    # NB for deployment outside of the libcellml.org domain, you will need to include the root of the href for the
+    # :api: shortcut here.  This only works internally.
+    'api': ('/documentation/api/latest/classlibcellml_1_1%s', ''),    
     'buildbot': ('https://buildbot.net%s', ''),
     'ccache': ('https://ccache.dev/%s', ''),
     'cellml1to2': ('https://github.com/hsorby/cellml1to2%s', ''),
@@ -102,37 +104,6 @@ extlinks = {
     'xml_infoset': ('http://www.w3.org/TR/2004/REC-xml-infoset-20040204/%s', ''),
     'xml_namespace_1_1': ('https://www.w3.org/TR/2006/REC-xml-names11-20060816/%s', ''),
 }
-
-# Mapping to get references in the specification document repo into this one
-# See: https://docs.readthedocs.io/en/stable/guides/intersphinx.html
-# intersphinx_mapping = {
-#     'spec': ('https://cellml-specification-dev.readthedocs.io/', None),
-# }
-
-# rst_epilog to define formatted, clickable code substitutions throughout.  It's included
-# at the bottom of every file in the project.
-# rst_prolog = """
-# .. |internalBookmark2| replace:: ``internalBookmark2``
-# .. |model| replace:: ``model``
-# .. |component| replace:: ``component``
-# .. |units| replace:: ``units``
-# .. |unit| replace:: ``unit``
-# .. |variable| replace:: ``variable``
-# .. |reset| replace:: ``reset``
-# .. |reset_value| replace:: ``reset_value``
-# .. |test_value| replace:: ``test_value``
-# .. |import| replace:: ``import``
-# .. |import_component| replace:: ``import component``
-# .. |import_units| replace:: ``import units``
-# .. |map_variables| replace:: ``map_variables``
-# .. |connection| replace:: ``connection``
-# .. |math| replace:: ``math``
-# .. |encapsulation| replace:: ``encapsulation``
-# """
-# rst_epilog = """
-# .. |component| replace:: ``component``
-# .. _component: :ref:`component`
-# """
 
 # General information about the project.
 project = u'libCellML'
@@ -187,6 +158,8 @@ pygments_style = 'sphinx'
 
 # If true, enable figure numbering
 numfig = True
+# numfig_secnum_depth = (2)
+numfig_format = {'figure': 'Figure %s'} #, 'table': 'Table %s', 'code-block': 'Code Block %s'}
 
 # -- Options for HTML output ----------------------------------------------
 

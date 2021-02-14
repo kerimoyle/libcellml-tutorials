@@ -9,11 +9,11 @@ Build and install from source
 
 0: Gather the prerequisites
 ===========================
-If you're working on a Windows or Linux machine you'll need to have :libxml2:`libxml2<>` installed.
-It can be downloaded from :libxml2_download:`this page<>`.
+If you're working on a Windows or Linux machine you'll need to have :libxml2:`libxml2 <>` installed.
+It can be downloaded from :libxml2_download:`this page <>`.
 This is present by default on MacOS operating systems.
 
-If you'd like to build the Python bindings, you'll need to have access to :swig:`SWIG<>`.
+If you'd like to build the Python bindings, you'll need to have access to :swig:`SWIG <>`.
 If you will only be working in C++ then you don't need this step.
 
 1: Create the libCellML library

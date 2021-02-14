@@ -1,43 +1,28 @@
 .. _howto:
 
-================================
-How-to guide and common examples
-================================
+============
+How-to guide
+============
 
 If you're reading this it's presumed that you're already familiar with the structure and usage of CellML models, and you want to get started on creating or reading your own as soon as possible.
 If that doesn't sound like you and you'd rather begin with a gentler introduction, please start from :ref:`Tutorial 1<tutorial1>` instead.
-
-This section can be used in two ways.  
-The first section is divided by small actions.
-If you know the action you want to perform, you can jump straight to its description below.
-
-If not, you may like to follow the common progressions listed by the types of jobs we anticipate users will want to do.
-These are listed in the second section.
 
 How to do stuff
 ---------------
 
 .. toctree:: 
-   :maxdepth: 3
-   :glob:
-
-   actions/index.rst
-
-.. toctree::
-   :hidden:
-
-   actions/index
-
-
-Common user pathways
---------------------
-
-.. toctree:: 
-    :maxdepth: 3
-    :glob:
-
-    user_profiles/index.rst
-
-
-
-
+   :maxdepth: 2
+   
+   actions/include_libcellml.rst
+   actions/parse_model.rst
+   actions/view_model.rst
+   actions/understand_collections.rst
+   actions/edit_model.rst
+   actions/print_model.rst
+   actions/resolve_imports.rst
+   actions/validate_model.rst
+   actions/get_issues.rst
+   actions/analyse_model.rst
+   actions/generate_code.rst
+   actions/solve_model.rst
+   actions/annotate_model.rst

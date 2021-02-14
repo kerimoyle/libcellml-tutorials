@@ -17,27 +17,22 @@ Hodgkin-Huxley 4: Generating code from a model
     - Using the :code:`Analyser` class to check for mathematical issues in the model. 
     - Writing to files. 
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **Code (C++)**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`generateMembraneModel.cpp<generateMembraneModel.cpp>` Either the skeleton code, or ..
     - :download:`generateMembraneModel_completed.cpp<generateMembraneModel_completed.cpp>` the completed tutorial code; and
     - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
-.. container:: shortlist
-
-    **Code (Python)**
+    **Python resources**
 
     - :download:`generateMembraneModel.py<generateMembraneModel.py>` Either the skeleton code, or ..
     - :download:`generateMembraneModel_completed.py<generateMembraneModel_completed.py>` the completed tutorial code;
     - :download:`utilities.py<../code/utilities.py>` Helper functions.
 
-
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     - :download:`GateModel.cellml<GateModel.cellml>` the generic gate model (from Tutorial 1);
     - :download:`PotassiumChannelModel.cellml<PotassiumChannelModel.cellml>` the potassium channel model (from Tutorial 2);
@@ -46,10 +41,6 @@ Hodgkin-Huxley 4: Generating code from a model
     - :download:`MembraneModelController.cellml<MembraneModelController.cellml>` an import dependency for the membrane model controller; and
     - :download:`MembraneModel.cellml<MembraneModel.cellml>` the file to parse.
 
-**Contents**
-
-.. contents::
-    :local:
 
 All of the ingredients have been assembled for us to parse a membrane model so that it can be turned into runnable code using the code generation functionality.
 We will parse the model, resolve its imports, flatten into an import-free model, validate, analyse, and generate.
@@ -242,14 +233,14 @@ Two profiles are already defined; for C++ and for Python.
 
 .. container:: useful
 
-	:api:`GeneratorProfile class<GeneratorProfile>`
+	:api:`GeneratorProfile class <GeneratorProfile>`
 
-	- create
+	- :api:`create <GeneratorProfile?fName=create>`
 	
-	:api:`Generator class<Generator>`
+	:api:`Generator class <Generator>`
 
-	- create
-	- setProfile
+	- :api:`create <Generator?fName=create>`
+	- :api:`setProfile <Generator?fName=setProfile>`
 
 .. container:: dothis
 
@@ -299,19 +290,19 @@ Instead of submitting a :code:`Model` item (as we do for all other classes), the
     
 .. container:: useful
 
-    :api:`Analyser class<GeneratorProfile>`
+    :api:`Analyser class <Analyser>`
 
-    - model
+    - :api:`model <Analyser?fName=model>`
 
-    :api:`Generator class<Generator>`
+    :api:`Generator class <Generator>`
 
-    - setModel
-    - implementationCode
-    - interfaceCode
+    - :api:`setModel <Generator?fName=setModel>`
+    - :api:`implementationCode <Generator?fName=implementationCode>`
+    - :api:`interfaceCode <Generator?fName=interfaceCode>`
 
-    :api:`GeneratorProfile class<GeneratorProfile>`
+    :api:`GeneratorProfile class <GeneratorProfile>`
 
-    - setInterfaceFileNameString
+    - :api:`setInterfaceFileNameString <GeneratorProfile?fName=setInterfaceFileNameString>`
 
 .. container:: dothis
 

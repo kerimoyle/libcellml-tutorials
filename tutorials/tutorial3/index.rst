@@ -24,28 +24,23 @@ Tutorial 3: Create a model and generate code using the API
 
 Requirements
 ------------
-Either :download:`download the whole folder<tutorial3.zip>`, or:
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **C++**
+    **C++ resources**
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial3.cpp` The skeleton code; or
     - :download:`tutorial3_complete.cpp` the completed tutorial code; and
     - :download:`utilities.h<../utilities/utilities.h>` and :download:`utilities.cpp<../utilities/utilities.cpp>` Utility functions for use in the tutorials.
 
-.. container:: shortlist
-
-    **Python**
+    **Python resources**
     
     - :download:`tutorial3.py` Either the skeleton code; or
     - :download:`tutorial3_complete.py` the completed tutorial code; and
     - :download:`utilities.py<../utilities/utilities.py>`  Utility functions for use in the tutorials.
 
-.. contents:: Contents
-    :local:
-    
+
 Overview
 --------
 During this tutorial you will create a simple model representing the population dynamics of two species - one a predator (sharks), and the other their prey (fish).
@@ -301,20 +296,20 @@ It's simple to do this once in your code using a string to represent the opening
 
 .. container:: useful
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - setMath
-    - appendMath
+    - :api:`setMath <Component?fName=setMath>`
+    - :api:`appendMath <Component?fName=appendMath>`
 
     Utility functions (C++)
 
-    - printIssues will write information on any issues from a given Logger to the terminal.  
-      Logger classes include the :code:`Validator`, :code:`Analyser`, and :code:`Parser`.
+    - :code:`printIssues` will write information on any issues from a given :code:`Logger` to the terminal.  
+      :code:`Logger` classes include the :code:`Validator`, :code:`Analyser`, and :code:`Parser`.
 
     Utility functions (Python)
 
-    - print_issues will write information on any issues from a given Logger to the terminal.  
-      Logger classes include the :code:`Validator`, :code:`Analyser`, and :code:`Parser`.
+    - :code:`print_issues` will write information on any issues from a given :code:`Logger` to the terminal.  
+      :code:`Logger` classes include the :code:`Validator`, :code:`Analyser`, and :code:`Parser`.
 
 Our last step in defining the mathematics is to link it into the component.
 The functions available to manipulate maths are:
@@ -415,14 +410,14 @@ Step 2: Create the variables
 
 .. container:: useful
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
-    - create
-    - setName
+    - :api:`create <Variable?fName=create>`
+    - :api:`setName <Variable?fName=setName>`
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - addVariable
+    - :api:`addVariable <Component?fName=addVariable>`
 
 .. container:: dothis
 
@@ -501,33 +496,24 @@ Step 3: Built-in and customised units
 -------------------------------------
 Linking variables to the *name* of their units is straightforward, but in order to be able to use them we need to also define what the name actually *means* by creating the units themselves.
 Some common units have been defined and built into libCellML, others you can define by combining the built-in ones using scaling factors and exponents, or you can define your own from scratch if need be.
-
-.. container:: toggle
-
-    .. container:: header
-
-        Read more about units
-
-    .. container:: infospec
-
-        .. include:: ../../asides/aside_units.rst
+You can read more about units on the :ref:`Understanding units<aside_units>` page.
 
 .. container:: useful
 
-    :api:`Units class<Units>`
+    :api:`Units class <Units>`
 
-    - create
-    - setName
-    - addUnit (note singular)
+    - :api:`create <Units?fName=create>`
+    - :api:`setName <Units?fName=setName>`
+    - :api:`addUnit <Units?fName=addUnit>` (note singular)
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - addUnits (note plural)
-    - linkUnits
+    - :api:`addUnits <Model?fName=addUnits>` (note plural)
+    - :api:`linkUnits <Model?fName=linkUnits>`
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
-    - setUnits (note plural)
+    - :api:`setUnits <Variable?fName=setUnits>` (note plural)
 
 To create a :code:`Units` item you need will follow the same basic steps as other entities: declare it, name it, define it, and then add it in.
 For example:
@@ -803,11 +789,11 @@ The :code:`Validator` checks your "spelling" and syntax, and the :code:`Analyser
 
 .. container:: useful
 
-    :api:`Analyser class<Analyser>`
+    :api:`Analyser class <Analyser>`
 
-    - create
-    - analyseModel
-    - model
+    - :api:`create <Analyser?fName=create>`
+    - :api:`analyseModel <Analyser?fName=analyseModel>`
+    - :api:`model <Analyser?fName=model>`
 
 .. container:: dothis
 
@@ -897,18 +883,18 @@ These are:
 
 .. container:: useful
 
-    :api:`Generator class<Generator>`
+    :api:`Generator class <Generator>`
 
-    - create
-    - profile
-    - setModel
-    - interfaceCode
-    - implementationCode
+    - :api:`create <Generator?fName=create>`
+    - :api:`profile <Generator?fName=profile>`
+    - :api:`setModel <Generator?fName=setModel>`
+    - :api:`interfaceCode <Generator?fName=interfaceCode>`
+    - :api:`implementationCode <Generator?fName=implementationCode>`
 
-    :api:`GeneratorProfile class<GeneratorProfile>`
+    :api:`GeneratorProfile class <GeneratorProfile>`
 
-    - create
-    - setInterfaceFileNameString
+    - :api:`create <GeneratorProfile?fName=create>`
+    - :api:`setInterfaceFileNameString <GeneratorProfile?fName=setInterfaceFileNameString>`
     
     The GeneratorProfile class contains an enum indicating the language of profile to set.
     In C++ this is :code:`GeneratorProfile::Profile`.

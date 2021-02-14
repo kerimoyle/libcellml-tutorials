@@ -15,28 +15,23 @@ This tutorial assumes that you are comfortable with:
 
 Requirements
 ------------
-Either :download:`download the whole folder<tutorial4.zip>`, or:
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **C++**
+    **C++ resources**
 
     - :download:`CMakeLists.txt` The CMake file for building this tutorial;
     - :download:`tutorial4.cpp` The skeleton code; or
     - :download:`tutorial4_complete.cpp` the completed tutorial code; and
     - :download:`utilities.h<../utilities/utilities.h>` and :download:`utilities.cpp<../utilities/utilities.cpp>` Utility functions for use in the tutorials.
 
-.. container:: shortlist
-
-    **Python**
+    **Python resources**
 
     - :download:`tutorial4.py` Either the skeleton code; or
     - :download:`tutorial4_complete.py` the completed tutorial code; and
     - :download:`utilities.py<../utilities/utilities.py>`  Utility functions for use in the tutorials.
 
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     This tutorial is built upon the :ref:`previous Tutorial 3<tutorial3>` and uses the output created there.
     If you haven't completed this tutorial, you can download those output files here:
@@ -44,8 +39,6 @@ Either :download:`download the whole folder<tutorial4.zip>`, or:
     - :download:`PredatorPrey.py<PredatorPrey.py>` for use with Python; or 
     - :download:`PredatorPrey.cpp<PredatorPrey.cpp>` and :download:`PredatorPrey.h<PredatorPrey.h>` for use with C++.
 
-.. contents:: Contents
-    :local:
 
 Overview
 --------
@@ -443,8 +436,6 @@ The Euler update method is: :math:`x[n+1] = x[n] + x'[n].dx`
 
 Step 5: Sanity check
 --------------------
-The file that results from running the completed version of this tutorial can be downloaded from :download:`solution.txt<solution.txt>`; a tab-delimited file that can be easily read into your favourite plotting program.
-
 You should find results similar to the figure below, where the cyclical dependency of the shark and fish populations can be seen.
 
 .. figure:: ../images/sharks_and_fish.png

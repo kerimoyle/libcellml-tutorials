@@ -7,41 +7,35 @@ Welcome to the introductory tutorial for the use of the libCellML library.
 Using these tutorials in sequence will walk you through the functionality and build your knowledge step by step.
 If, however, you just need to jump in and figure out one specific idea, you can find a tutorial related to that subject using the :ref:`How-to pages<howto>`.
 
-After completing this tutorial you will be able to:
+.. container:: shortlist
 
-- Read the contents of a CellML file;
-- Deserialise its contents using the :code:`Parser` to create a :code:`Model` structure;
-- Investigate the hierarchical contents of the :code:`Model`, including the :code:`Components`, :code:`Variables`, and MathML blocks; and
-- Serialise the model and write to another file using the :code:`Printer`.
+    After completing this tutorial you will be able to:
 
+    - Read the contents of a CellML file;
+    - Deserialise its contents using the :code:`Parser` to create a :code:`Model` structure;
+    - Investigate the hierarchical contents of the :code:`Model`, including the :code:`Components`, :code:`Variables`, and MathML blocks; and
+    - Serialise the model and write to another file using the :code:`Printer`.
 
 Requirements
 ------------
-Either :download:`download the whole folder<tutorial1.zip>`, or:
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **C++**
+    **C++ resources**
     
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building;
     - :download:`tutorial1.cpp<tutorial1.cpp>` The skeleton code or
     - :download:`tutorial1_complete.cpp<tutorial1_complete.cpp>` the completed code.
 
-.. container:: shortlist
-
-    **Python**
+    **Python resources**
 
     - :download:`tutorial1.py` The skeleton code or
     - :download:`tutorial1_complete.py` the completed code.
 
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     - :download:`tutorial1.cellml<tutorial1.cellml>` the input CellML file.
 
-.. contents:: Contents
-    :local:
 
 Step 0: Set-up
 --------------
@@ -106,10 +100,10 @@ The hard work of this transformation is done by the :code:`Parser` object which 
 
 .. container:: useful
 
-    :api:`Parser class<Parser>`
+    :api:`Parser class <Parser>`
 
-    - create
-    - parseModel
+    - :api:`create <Parser?fName=create>`
+    - :api:`parseModel <Parser?fName=parseModel>`
 
 .. container:: dothis
 
@@ -153,23 +147,23 @@ All retrieval functions - where you want to read something about any item - are 
 
 .. container:: useful
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - name
-    - id
-    - componentCount
-    - unitsCount
+    - :api:`name <Model?fName=name>`
+    - :api:`id <Model?fName=id>`
+    - :api:`componentCount <Model?fName=componentCount>`
+    - :api:`unitsCount <Model?fName=unitsCount>`
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - name
-    - id
-    - variableCount
+    - :api:`name <Component?fName=name>`
+    - :api:`id <Component?fName=id>`
+    - :api:`variableCount <Component?fName=variableCount>`
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
-    - name
-    - id
+    - :api:`name <Variable?fName=name>`
+    - :api:`id <Variable?fName=id>`
 
 For example, to find the name of the model we simply call its :code:`name()` function to return the string of its name.
 
@@ -303,10 +297,10 @@ This reverse operation is handled by the :code:`Printer`, which will transform a
 
 .. container:: useful
 
-    :api:`Printer class<Printer>`
+    :api:`Printer class <Printer>`
 
-    - create
-    - printModel
+    - :api:`create <Printer?fName=create>`
+    - :api:`printModel <Printer?fName=printModel>`
 
 .. tabs::
 

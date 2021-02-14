@@ -53,7 +53,7 @@ int main()
         printImportDependencies(model);
 
         // Retrieve a "flattened" (ie: import-free) model from the importer,
-        // and use it to over-write the current model.cd 
+        // and use it to over-write the current model.
         model = importer->flattenModel(model);
 
         printImportDependencies(model);

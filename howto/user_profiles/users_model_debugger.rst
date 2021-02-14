@@ -4,23 +4,24 @@ Model debugger
 ==============
 This example walks through the process of using the :code:`Validator` and :code:`Analyser` classes to check a CellML model's syntax and mathematical composition.
 
-**Contents**
+.. container:: directorylist
 
-.. contents::
-   :local:
+  **C++ resources**: :download:`All C++ resources<>`
+  
+  - :download:`CMakeLists.txt<../code/model_debugger/CMakeLists.txt>`
+  - :download:`example_modelDebugger.cpp<../code/model_debugger/modelDebugger.cpp>`
+  - resources/
+  
+    - :download:`debugAnalysisExample.cellml<../code/model_debugger/debugAnalysisExample.cellml>`
+    - :download:`debugAnalysisExampleImport.cellml<../code/model_debugger/debugAnalysisExampleImport.cellml>`
 
-| **C++ resources**
-|    ├ :download:`CMakeLists.txt<../code/model_debugger/CMakeLists.txt>`
-|    ├ :download:`example_modelDebugger.cpp<../code/model_debugger/modelDebugger.cpp>`
-|    └ resources/
-|        ├ :download:`debugAnalysisExample.cellml<../code/model_debugger/debugAnalysisExample.cellml>`
-|        └ :download:`debugAnalysisExampleImport.cellml<../code/model_debugger/debugAnalysisExampleImport.cellml>`
+  **Python resources**: :download:`All Python resources<>`
 
-| **Python resources**
-|    ├ :download:`example_modelDebugger.py<../code/model_debugger/modelDebugger.py>`
-|    └ resources/
-|        ├ :download:`debugAnalysisExample.cellml<../code/model_debugger/debugAnalysisExample.cellml>`
-|        └ :download:`debugAnalysisExampleImport.cellml<../code/model_debugger/debugAnalysisExampleImport.cellml>`
+  - :download:`example_modelDebugger.py<../code/model_debugger/modelDebugger.py>`
+  - resources/
+  
+    - :download:`debugAnalysisExample.cellml<../code/model_debugger/debugAnalysisExample.cellml>`
+    - :download:`debugAnalysisExampleImport.cellml<../code/model_debugger/debugAnalysisExampleImport.cellml>`
 
 Parse an existing CellML model 
 ------------------------------

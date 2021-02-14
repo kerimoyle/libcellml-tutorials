@@ -10,7 +10,7 @@
   When serialising a model using the :code:`printModel` function, the optional second argument is a boolean switch indicating whether or not to assign automatic :code:`id` attributes to any items which don't already have one.
   Existing :code:`id` attributes are unchanged by this process, and by default it is turned off.
 
-  The automatic ids adhere to the :cellml2:`XML standard for id attributes<reference/formal_and_informative/specA2.html#xml-id-attributes>`, and take the form of a 6-digit hexadecimal number, beginning with a letter.
+  The automatic ids adhere to the :cellml2:`XML standard for id attributes <reference/formal_and_informative/specA2.html#xml-id-attributes>`, and take the form of a 6-digit hexadecimal number, beginning with a letter.
 
   .. tabs::
 

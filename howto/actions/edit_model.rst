@@ -71,7 +71,7 @@ Note that the :code:`removeEquivalence` function will only remove an equivalence
 
 An additional :code:`removeAllEquivalences` function will completely remove the variable from any connected set.
 
-Please see the :api:`API Variable<Variable>` page for details of these functions.
+Please see the :api:`API Variable <Variable>` page for details of these functions.
 
 .. tabs::
 

@@ -14,25 +14,21 @@ Hodgkin-Huxley 3: Debugging a model
     - Use the diagnostic :code:`Analyser` class to identify issues in the model's mathematical formulation.
 
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **Code (C++)**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`debugSodiumChannelModel.cpp<debugSodiumChannelModel.cpp>` Either the skeleton code, or ..
     - :download:`debugSodiumChannelModel_completed.cpp<debugSodiumChannelModel_completed.cpp>` the completed tutorial code; and
     - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
-.. container:: shortlist
-
-    **Code (Python)**
+    **Python resources**
 
     - :download:`debugSodiumChannelModel.py<debugSodiumChannelModel.py>` Either the skeleton code, or ..
     - :download:`debugSodiumChannelModel_completed.py<debugSodiumChannelModel_completed.py>` the completed tutorial code; and
 
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     - :download:`GateModel.cellml<GateModel.cellml>` the generic gate model created in Tutorial 1;
     - :download:`SodiumChannelModel_broken.cellml<SodiumChannelModel_broken.cellml>` a sodium channel model that needs debugging;
@@ -40,8 +36,6 @@ Hodgkin-Huxley 3: Debugging a model
     - :download:`CircularControllerReference2.cellml<CircularControllerReference2.cellml>` import file; and
     - :download:`SodiumChannelController.cellml<SodiumChannelController.cellml>` import file.
 
-.. contents:: Contents
-    :local:
 
 Overview
 --------
@@ -433,11 +427,11 @@ You have a few different options for how to fix this one.
  
 .. container:: useful
 
-    :api:`Units class<Units>`
+    :api:`Units class <Units>`
 
-    - unitAttributes
-    - removeUnit
-    - addUnit
+    - :api:`unitAttributes <Units?fName=unitAttributes>`
+    - :api:`removeUnit <Units?fName=removeUnit>`
+    - :api:`addUnit <Units?fName=addUnit>`
 
 .. container:: dothis
 
@@ -506,17 +500,17 @@ The final validator issue refers to the fact that we need to explicitly specify 
 
 .. container:: useful
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - component("componentName", true) will search for the component's name in the whole of the encapsulation hierarchy.
+    - :api:`component <Model?fName=component>` ("componentName", true) will search for the component's name in the whole of the encapsulation hierarchy.
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - addComponent
+    - :api:`addComponent <Component?fName=addComponent>`
 
     Tutorial functions
 
-    - printEncapsulation will output just the names of the components, nested in their encapsulation hierarchy.
+    - :code:`printEncapsulation` will output just the names of the components, nested in their encapsulation hierarchy.
 
 .. container:: dothis
 
@@ -581,10 +575,10 @@ For this tutorial, the files are in the same directory as the code, so simply us
 
 .. container:: useful
     
-    :api:`Importer class<Importer>`
+    :api:`Importer class <Importer>`
     
-    - create
-    - resolveImports
+    - :api:`create <Importer?fName=create>`
+    - :api:`resolveImports <Importer?fName=create>`
 
 .. container:: dothis
 
@@ -630,9 +624,9 @@ This needs to be an iterative process because as more files become available to 
 
 .. container:: useful
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - setImportReference
+    - :api:`setImportReference  <Component?fName=setImportReference>`
 
 .. container:: dothis
 
@@ -718,11 +712,11 @@ These dependencies are stored in the importer's library, and have not yet been v
 
 .. container:: useful
 
-    :api:`Importer class<Importer>`
+    :api:`Importer class <Importer>`
 
-    - libraryCount returns the number of stored models;
-    - library returns the model at the given index or given key string;
-    - key returns a key string at the given index;
+    - :api:`libraryCount <Importer?fName=libraryCount>` returns the number of stored models;
+    - :api:`library <Importer?fName=library>` returns the model at the given index or given key string;
+    - :api:`key <Importer?fName=key>` returns a key string at the given index;
 
 .. container:: dothis
 
@@ -770,15 +764,15 @@ As soon as the model's imports have been resolved, all these will point to insta
 
 .. container:: useful 
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - importSourceCount
-    - importSource
+    - :api:`importSourceCount <Model?fName=importSourceCount>`
+    - :api:`importSource <Model?fName=importSource>`
 
-    :api:`ImportSource class<ImportSource>`
+    :api:`ImportSource class <ImportSource>`
 
-    - model
-    - url
+    - :api:`model <ImportSource?fName=model>`
+    - :api:`url <ImportSource?fName=url>`
 
 .. container:: dothis
 
@@ -831,10 +825,10 @@ If the flat model meets the analyser's checks, then the importing version will t
 
 .. container:: useful
 
-    :api:`Analyser class<Analyser>`
+    :api:`Analyser class <Analyser>`
 
-    - analyseModel
-    - flattenModel
+    - :api:`analyseModel <Analyser?fName=analyseModel>`
+    - :api:`flattenModel <Analyser?fName=flattenModel>`
 
 .. container:: dothis
 
@@ -904,9 +898,9 @@ In this example, the real problem is that these two variables are talking about 
 
 .. container:: useful
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
-    - addEquivalence
+    - :api:`addEquivalence <Variable?fName=addEquivalence>`
 
 .. container:: dothis
 
@@ -995,8 +989,8 @@ Because the "is not computed" errors are cascading by nature, frequently fixing 
 
 .. container:: useful
 
-    - C++: printEquivalentVariableSet with the variable argument
-    - Python: print_equivalent_variable_set with the variable argument
+    - C++: :code:`printEquivalentVariableSet` with the variable argument
+    - Python: :code:`print_equivalent_variable_set` with the variable argument
 
 Hints for this tutorial: 
 

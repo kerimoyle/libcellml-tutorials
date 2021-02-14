@@ -266,12 +266,9 @@ It is the evaluation of these *gradient functions* which defines the nature of t
 Simple implementations are provided which will take the generated files, from both the C and Python generator profiles, and solve the system of equations.
 
 Simple solver routines have been provided for you for both the C and Python profiles.
-Please see the relevant tutorial for details:
+Please see the :ref:`Solver tutorial<solver>` for details.
 
-  - :ref:`Simple solver for C profile<solveGeneratedModel_cpp>`
-  - :ref:`Simple solver for Python profile<solveGeneratedModel_py>`
-
-Solving the model reveals the cyclical interaction between the populations of fish and sharks, as shown in :numref:`sharks_and_fishes`.
+Solving the model reveals the cyclical interaction between the populations of fish and sharks, as shown in :numref:`Figure {number}<sharks_and_fishes>`.
 
 .. figure:: images/sharks_and_fishes.png
    :name: sharks_and_fishes

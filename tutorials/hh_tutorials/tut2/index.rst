@@ -14,30 +14,23 @@ Hodgkin-Huxley 2: Creating a model which uses imports
     - Use the diagnostic :code:`Analyser` class to identify errors in the model's mathematical formulation; and
     - Serialise the model to CellML format for output.
 
-.. container:: shortlist
+.. container:: directorylist
 
-    **Code (C++)**
+    **C++ resources**
 
     - :download:`CMakeLists.txt<CMakeLists.txt>` The CMake file for building this tutorial;
     - :download:`createPotassiumChannelModel.cpp<createPotassiumChannelModel.cpp>` Either the skeleton code, or ..
     - :download:`createPotassiumChannelModel_completed.cpp<createPotassiumChannelModel_completed.cpp>` the completed tutorial code; and
     - :download:`utilities.cpp<../code/utilities.cpp>` and :download:`utilities.h<../code/utilities.h>` Helper functions.
 
-.. container:: shortlist
-
-    **Code (Python)**
+    **Python resources**
 
     - :download:`createPotassiumChannelModel.py<createPotassiumChannelModel.py>` Either the skeleton code, or ..
     - :download:`createPotassiumChannelModel_completed.py<createPotassiumChannelModel_completed.py>` the completed tutorial code.
 
-.. container:: shortlist
-
-    **Resources**
+    **CellML resources**
 
     - :download:`GateModel.cellml<GateModel.cellml>` The generic gate model created in :ref:`Tutorial 1<createGateModel>`.
-
-.. contents:: Contents
-    :local:
 
 Step 1: Create the model
 ------------------------
@@ -57,17 +50,17 @@ The final structure of this model is shown in the diagram below.
 
 .. container:: useful
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - create
-    - setName
-    - addComponent
+    - :api:`create <Model?fName=create>`
+    - :api:`setName <Model?fName=setName>`
+    - :api:`addComponent <Model?fName=addComponent>`
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - create
-    - setName
-    - addComponent
+    - :api:`create <Component?fName=create>`
+    - :api:`setName <Component?fName=setName>`
+    - :api:`addComponent <Component?fName=addComponent>`
 
 .. container:: dothis
 
@@ -108,12 +101,12 @@ Step 2: Create a potassium channel equations component
 
 .. container:: useful
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - create
-    - setName
-    - setMath
-    - appendMath
+    - :api:`create <Component?fName=create>`
+    - :api:`setName <Component?fName=setName>`
+    - :api:`setMath <Component?fName=setMath>`
+    - :api:`appendMath <Component?fName=appendMath>`
 
 .. container:: dothis
 
@@ -174,12 +167,12 @@ Once the mathematics has been added to the component, and the component to the m
 
 .. container:: useful
 
-    :api:`Validator class<Validator>`
+    :api:`Validator class <Validator>`
 
-    - create
-    - validateModel
-    - issueCount
-    - issue
+    - :api:`create <Validator?fName=create>`
+    - :api:`validateModel <Validator?fName=validateModel>`
+    - :api:`issueCount <Validator?fName=issueCount>`
+    - :api:`issue <Validator?fName=issue>`
 
 .. container:: dothis
 
@@ -260,24 +253,24 @@ The simplest way is to print the descriptions to the terminal.
 
 .. container:: useful
 
-    :api:`Variable class<Variable>`
+    :api:`Variable class <Variable>`
 
-    - create
-    - setUnits
+    - :api:`create <Variable?fName=create>`
+    - :api:`setUnits <Variable?fName=setUnits>`
 
-    :api:`Component class<Component>`
+    :api:`Component class <Component>`
 
-    - addVariable
+    - :api:`addVariable <Component?fName=addVariable>`
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - addUnits
+    - :api:`addUnits <Model?fName=addUnits>`
 
-    :api:`Units class<Units>`
+    :api:`Units class <Units>`
 
-    - create
-    - setName
-    - addUnit
+    - :api:`create <Units?fName=create>`
+    - :api:`setName <Units?fName=setName>`
+    - :api:`addUnit <Units?fName=addUnit>`
 
 .. container:: dothis
 
@@ -593,19 +586,19 @@ Imports require three things:
 
 .. container:: useful
 
-    :api:`ImportSource class<ImportSource>`
+    :api:`ImportSource class <ImportSource>`
 
-    - create
-    - setUrl
+    - :api:`create <ImportSource?fName=create>`
+    - :api:`setUrl <ImportSource?fName=setUrl>`
 
-    :api:`Model class<Model>`
+    :api:`Model class <Model>`
 
-    - addImportSource
+    - :api:`addImportSource <Model?fName=addImportSource>`
 
-    :api:`ImportedEntity class<ImportedEntity>` (applies to components and units)
+    :api:`ImportedEntity class <ImportedEntity>` (applies to components and units)
 
-    - setImportSource
-    - setImportReference
+    - :api:`setImportSource <ImportedEntity?fName=setImportSource>`
+    - :api:`setImportReference <ImportedEntity?fName=setImportReference>`
 
 .. container:: dothis
 

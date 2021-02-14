@@ -7,20 +7,24 @@ Any item in the model which requires annotation needs to have a unique ID string
 In all other parts of libCellML, items are retrieved from their parents using either their index or their name.
 In the :code:`Annotator`, the ID string is used instead.
 Because an item of any type could have an ID attribute, there is no way of knowing what kind of will be returned.
-The class makes use of casting to and from the (C++ only) :cpp_reference:`std::any type<w/cpp/utility/any>` to handle this uncertainty.
+The class makes use of casting to and from the (C++ only) :cpp_reference:`std::any type <w/cpp/utility/any>` to handle this uncertainty.
 
-.. container:: lineblocks
+.. container:: directorylist
 
-    | **C++ resources**
-    |    ├ :download:`CMakeLists.txt<../code/annotation_tool_dev/CMakeLists.txt>`
-    |    ├ :download:`annotationToolDev.cpp<../code/annotation_tool_dev/annotationToolDev.cpp>`
-    |    └ resources/
-    |        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
+  **C++ resources**
 
-    | **Python resources**
-    |    ├ :download:`annotationToolDev.py<../code/annotation_tool_dev/annotationToolDev.py>`
-    |    └ resources/
-    |        └ :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
+  - :download:`CMakeLists.txt<../code/annotation_tool_dev/CMakeLists.txt>`
+  - :download:`annotationToolDev.cpp<../code/annotation_tool_dev/annotationToolDev.cpp>`
+  - resources/
+  
+    - :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
+
+  **Python resources**
+
+  - :download:`annotationToolDev.py<../code/annotation_tool_dev/annotationToolDev.py>`
+  - resources/
+  
+    - :download:`annotationExample.cellml<../code/annotation_tool_dev/annotationExample.cellml>`
 
 Parse an existing CellML model 
 ------------------------------
@@ -118,7 +122,7 @@ A null pointer will be returned if the item does not have the type requested, or
 Retrieve items by id (unknown type) 
 -----------------------------------
 It's more likely that you won't know the type of item to which a given ID relates, so will need to use the generic *item* function to retrieve it.  
-This returns two pieces of information: the first is the appropriate :code:`CellMLElements` enum value for the type, and the second is the item itself cast into the :cpp_reference:`std::any type<w/cpp/utility/any>` (in C++).
+This returns two pieces of information: the first is the appropriate :code:`CellMLElements` enum value for the type, and the second is the item itself cast into the :cpp_reference:`std::any type <w/cpp/utility/any>` (in C++).
 In Python, the returned item requires no further transformation.
 
 .. tabs::
