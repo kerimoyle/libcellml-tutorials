@@ -1,10 +1,10 @@
-.. _theory_potassiumchannel:
+.. _potassium_channel:
 
 ==============================
 A model of a potassium channel
 ==============================
 
-We now deal specifically with the application of the ion channel model discussed in :ref:`the previous chapter on ion gates theory<theory_iongates>` to the Hodgkin and Huxley (HH) potassium channel. 
+We now deal specifically with the application of the ion channel model discussed in :ref:`the previous chapter on ion gates theory<ion_gates>` to the Hodgkin and Huxley (HH) potassium channel. 
 This theory is the basis for the practical modelling tutorial in :ref:`HH Tutorial 2<createPotassiumChannelModel>`.
 
 .. contents::
@@ -22,7 +22,7 @@ where :math:`\bar{g}_{K} = \ 36 \text{ mS.cm}^{-2}`, and with intra- and extra-c
 
 .. math::
 
-    E_{K} = \frac{RT}{zF} \ln\frac{\left\lbrack K^{+} \right\rbrack_{o}}{\left\lbrack K^{+} \right\rbrack_{i}} = 25\ln\frac{3}{90} = - 85\text{ mV}
+    E_{K} = \frac{RT}{zF} \ln\frac{\left\lbrack K^{+} \right\rbrack_{o}}{\left\lbrack K^{+} \right\rbrack_{i}} \approx - 85\text{ mV}
 
 
 The :math:`E_K` term is called the *equilibrium potential* since it is the potential across the cell membrane when the channel is open but no current is flowing.
@@ -96,7 +96,7 @@ Variables are contained within components in order to make the models modular, a
 But along with this containment functionality comes the need for the enclosed variables to communicate with one another across these artificial barriers.
 This is done by creating *equivalent variable maps*, wherein a variable in one component is mapped through an *interface* to a corresponding variable in another.
 
-More information about how components can be nested to create a hierarchical *encapsulation structure* is shown in more detail in the next chapter, :ref:`A model of a sodium channel<theory_sodiumchannel>` and demonstrated in :ref:`HH Tutorial 3<debugSodiumChannelModel>`.
+More information about how components can be nested to create a hierarchical *encapsulation structure* is shown in more detail in the next chapter, :ref:`A model of a sodium channel<sodium_channel>` and demonstrated in :ref:`HH Tutorial 3<debugSodiumChannelModel>`.
 
 .. figure:: images/potassium_component_structure.png
     :name: potassium_component_structure
@@ -111,7 +111,7 @@ Simulation and results
 ----------------------
 The behaviour of the potassium channel can be simulated using the :ref:`simple solver<solver>` provided to run the code generated in :ref:`HH Tutorial 2<createPotassiumChannelModel>`.
 A step change in membrane voltage between 0mV and -85mV and back gives the behaviour shown in :numref:`Figure {number}<potassium_voltage>` to :numref:`Figure {number}<potassium_current>` below.
-These were created using a timestep of 0.01ms to an ending time of 40ms using the :ref:`simple ODE solver<theory_ode_solutions>`.
+These were created using a timestep of 0.01ms to an ending time of 40ms using the :ref:`simple ODE solver<ode_solutions>`.
 
 At 0mV, the steady state value of the :math:`n`-gate is :math:`n_{\infty} = \frac{\alpha_{n}}{\alpha_{n} + \beta_{n}} =` 0.324 and, at -85mV, :math:`n_{\infty} = \ `\ 0.945.
 
@@ -163,7 +163,7 @@ Next steps
 ----------
 This potassium channel model will be used - together with a sodium channel model (in :ref:`HH Tutorial 3<debugSodiumChannelModel>`) and a leakage channel model - to form the Hodgkin-Huxley neuron model (in :ref:`HH Tutorial 4<generateMembraneModel>`), where the membrane ion channel current flows are coupled to the equations governing current flow along the axon to generate an action potential.
 
-The next chapter describes the theory behind the :ref:`sodium channel model<theory_sodiumchannel>`.
+The next chapter describes the theory behind the :ref:`sodium channel model<sodium_channel>`.
 
 ---------------------------
 

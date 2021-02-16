@@ -1,8 +1,8 @@
 .. _index:
 
-=======================
-libCellML Users' Guides
-=======================
+=====================
+libCellML User Guides
+=====================
 
 The purpose of libCellML is to create, manipulate, serialise, deserialise, validate and instantiate :cellml2:`CellML 2.0 <>` models.
 This section provides tutorials, code examples, and user guides for the most common use cases.

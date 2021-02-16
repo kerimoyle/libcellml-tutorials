@@ -1,4 +1,4 @@
-.. _theory_iongates:
+.. _ion_gates:
 
 =========================================
 A model of ion channel gating and current
@@ -281,8 +281,8 @@ The gating time constants
 voltage dependent. Both of these voltage dependent factors of ion
 channel gating are important in explaining channel properties, as is
 described in the next sections for the neural
-:ref:`potassium<theory_potassiumchannel>` and
-:ref:`sodium ion channels<theory_sodiumchannel>`.
+:ref:`potassium<potassium_channel>` and
+:ref:`sodium ion channels<sodium_channel>`.
 
 ---------------------------
 

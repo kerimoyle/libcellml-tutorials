@@ -31,7 +31,7 @@ Overview
 --------
 This is the first tutorial in a series designed to walk the user through some of libCellML's functionality available in the API.
 Its goal is to create from scratch a voltage-independent ion gate model.
-The theory of this kind of gate can be found on the :ref:`Ion Gate theory page<theory_iongates>`.
+The theory of this kind of gate can be found on the :ref:`Ion Gate theory page<ion_gates>`.
 
 One of the goals of the CellML format (which must be supported by libCellML) is the construction of models that are reusable.
 Throughout these tutorials we will create entities in such a way as to enable their reuse as easily as possible.  

@@ -1,4 +1,4 @@
-.. _theory_sodiumchannel:
+.. _sodium_channel:
 
 ===========================
 A model of a sodium channel
@@ -24,9 +24,8 @@ where :math:`\bar{g}_{Na} = \ `\ 120 mS.cm\ :sup:`-2`, and with :math:`\left\lbr
 
 .. math::
 
-   E_{Na} = \frac{RT}{zF}\ln\frac{\left\lbrack Na^{+} \right\rbrack_{o}}{\left\lbrack Na^{+} \right\rbrack_{i}} = 25 \ln\frac{140}{30} = 35\text{mV}.
+   E_{Na} = \frac{RT}{zF}\ln\frac{\left\lbrack Na^{+} \right\rbrack_{o}}{\left\lbrack Na^{+} \right\rbrack_{i}} \approx 35\text{mV}.
 
-**TODO** ... this doesn't equal 35 ...??
 
 The gating kinetics are described by:
 
@@ -161,8 +160,8 @@ v.   The large sodium current :math:`i_{Na}` is an inward current and hence nega
 
 Next steps
 ----------
-The incorporation of this sodium channel model into the full Hodgkin-Huxley model of a neuron is described in the next chapter, :ref:`Hodgkin-Huxley assembly<hh_background>`.
-This will include the :math:`n`-gate described in the previous chapter, :ref:`A model of a potassium channel<theory_potassiumchannel>` as well as a leakage current model.
+The incorporation of this sodium channel model into the full Hodgkin-Huxley model of a neuron is described in the next chapter, :ref:`Hodgkin-Huxley assembly<hodgkin_huxley_model>`.
+This will include the :math:`n`-gate described in the previous chapter, :ref:`A model of a potassium channel<potassium_channel>` as well as a leakage current model.
 
 
 ---------------------------
