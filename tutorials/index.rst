@@ -26,7 +26,7 @@ For more information on their theoretical background, please see the :ref:`Hodgk
     :titlesonly:
     :glob:
 
-    hh_tutorials/index
+    hh_tutorial*/index
 
 
 .. toctree::
