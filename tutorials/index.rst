@@ -19,8 +19,8 @@ The first set of tutorials provides a simple starting point for users who are un
     tutorial*/index
     solver/index
     
-Advanced tutorials
-------------------
+Hodgkin-Huxley modelling tutorials
+----------------------------------
 
 The second set of tutorials take the user progressively through different aspects of the libCellML functionality while building towards a model of Hodgkin and Huxley's squid axon activation.
 It is aimed at users who are already familiar with the concept of CellML and modelling.
