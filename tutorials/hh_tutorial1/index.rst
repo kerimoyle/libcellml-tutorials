@@ -40,9 +40,10 @@ The basic structure of this model highlights that too.
 .. container:: shortlist
 
     We will create a model with three components:
+
     - An *equations* component, which contains all of the working pieces and mathematics specific to the model;
     - A *parameters* component, which contains any hard-coded parameters or values specific to this model; and
-    - A wrapper component, which is the parent of the other two.
+    - A *wrapper* component, which is the parent of the other two.
 
 This arrangement means that it's simple to import this model into others, as well as to locate or over-ride parameter values or reuse equations.
 Each of the components created throughout this series of tutorials will follow this same structure.
