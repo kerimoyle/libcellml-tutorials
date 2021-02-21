@@ -6,7 +6,10 @@ libCellML Tutorials
 
 Please follow the :ref:`Installation instructions<installation>` first to get yourself a copy of libCellML.
 
-The first set is a simple starting point for users who are unfamiliar with CellML and/or modelling in general.
+Introductory tutorials
+----------------------
+
+The first set of tutorials provides a simple starting point for users who are unfamiliar with CellML and/or modelling in general.
 
 .. toctree::
     :maxdepth: 2
@@ -16,7 +19,10 @@ The first set is a simple starting point for users who are unfamiliar with CellM
     tutorial*/index
     solver/index
     
-The second set of tutorials below take the user progressively through different aspects of the libCellML functionality while building towards a model of Hodgkin and Huxley's squid axon activation.
+Hodgkin-Huxley modelling tutorials
+----------------------------------
+
+The second set of tutorials take the user progressively through different aspects of the libCellML functionality while building towards a model of Hodgkin and Huxley's squid axon activation.
 It is aimed at users who are already familiar with the concept of CellML and modelling.
 
 For more information on their theoretical background, please see the :ref:`Hodgkin-Huxley theory pages<theory_index>`.  
@@ -26,7 +32,7 @@ For more information on their theoretical background, please see the :ref:`Hodgk
     :titlesonly:
     :glob:
 
-    hh_tutorials/index
+    hh_tutorial*/index
 
 
 .. toctree::
