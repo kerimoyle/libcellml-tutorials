@@ -26,8 +26,7 @@ For general discussions and information about the CellML model structure itself,
   tutorials/index.rst
   theory/index.rst
   howto/index.rst
-  howto/common_users.rst
-  howto/actions/index.rst
+  common_users/index.rst
 
 
 .. container:: quicklinks

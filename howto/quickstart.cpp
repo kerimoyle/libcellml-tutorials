@@ -17,7 +17,7 @@ int main()
     //  STEP 1:   Deserialise a CellML Model from the contents of a CellML file
 
     //  1.a   Open the file and read its contents into a buffer stream
-    std::ifstream inFile("../resources/quickstart.cellml");
+    std::ifstream inFile("/resources/quickstart.cellml");
     std::stringstream inFileContents;
     inFileContents << inFile.rdbuf();
 
