@@ -21,7 +21,7 @@ It is derived as follows:
    :name: leaky_cable_current_flow
    :alt: Current flow in a leaky cable
    :align: right
-   :figwidth: 6.5cm
+   :figwidth: 50%
 
    Current flow in a leaky cable.  **TODO** I don't understand the vertical arrow??
 
@@ -71,7 +71,7 @@ Theory: Action potentials
    :name: neuron_current_flow
    :alt: Current flow in a neuron
    :align: right
-   :figwidth: 6.5cm
+   :figwidth: 50%
 
    Current flow in a neuron.  **TODO** I don't understand the vertical arrow for V?? direction of voltage? Is one side in/out the cell?
 

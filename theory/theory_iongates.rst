@@ -171,7 +171,7 @@ behaviour depend on how its gates modify the open channel conductance.
    :name: ion_gates
    :alt: Open channel linear IV
    :align: center
-   :width: 12cm
+   :width: 70%
 
    (a) Open channel linear current-voltage relation.  (b) Ion channel gating
    kinetics. :math:`y` is the fraction of gates in the open state.

@@ -55,7 +55,7 @@ The main difference from the gating model in our previous example is that Hodgki
    :name: voltage_dependent_gates
    :alt: Voltage dependencies of gate constants
    :align: center
-   :width: 35em
+   :width: 35%
 
    Voltage dependence of gate constants :math:`\alpha_n` and :math:`\beta_n (\text{ms}^{-1})`, time constant :math:`\tau_n (\text{ms})` and relative conductance :math:`\frac{g_{ss}}{\bar{g}_Y}`.
 
@@ -78,7 +78,7 @@ The steady state current-voltage relation for the channel is illustrated in :num
 .. figure:: images/ss_cur_volt.png
    :name: steady_state_current_voltage_relationship
    :alt: Steady-state current voltage
-   :width: 35em
+   :width: 35%
    :align: center
 
    The steady-state current-voltage relation for the potassium channel.
@@ -102,7 +102,7 @@ More information about how components can be nested to create a hierarchical *en
     :name: potassium_component_structure
     :alt: Structure of the potassium channel component with its n-gate and environment component
     :align: center
-    :figwidth: 12cm
+    :figwidth: 80%
 
     Structure of the potassium channel component with its :math:`n`-gate and environment component
 
