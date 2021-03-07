@@ -81,7 +81,7 @@ Each of these components has its own equations (voltage-dependent gates and firs
 
 .. _sodium_channel_encap_structure:
 .. figure:: images/sodium_channel_encap_structure.png
-    :name: na_enc_str
+    :name: sodium_chanel_encapsulation_structure
     :align: left
 
     The sodium channel component is the parent of two children:
@@ -99,7 +99,7 @@ The results of the computation, with an end time of 40ms, and Euler step of 0.01
 
 .. _sodium_v:
 .. figure:: images/tut7_Vgraph.png
-   :name: tut7_Vgraph
+   :name: sodium_voltage
    :alt: Driving function for the voltage clamp
    :align: center
 
@@ -108,7 +108,7 @@ The results of the computation, with an end time of 40ms, and Euler step of 0.01
 
 .. _sodium_m:
 .. figure:: images/tut7_mgraph.png
-   :name: tut7_mgraph
+   :name: m_gate_dynamics
    :alt: m-gate dynamics
    :align: center
 
@@ -117,7 +117,7 @@ The results of the computation, with an end time of 40ms, and Euler step of 0.01
 
 .. _sodium_h:
 .. figure:: images/tut7_hgraph.png
-   :name: tut7_hgraph
+   :name: h_gate_dynamics
    :alt: h-gate dynamics
    :align: center
 
@@ -126,7 +126,7 @@ The results of the computation, with an end time of 40ms, and Euler step of 0.01
 
 .. _sodium_g:
 .. figure:: images/tut7_Nacond_graph.png
-   :name: tut7_Nacond_graph
+   :name: sodium_conductance
    :alt: Sodium conductance
    :align: center
 
@@ -135,7 +135,7 @@ The results of the computation, with an end time of 40ms, and Euler step of 0.01
 
 .. _sodium_i:
 .. figure:: images/tut7_iNagraph.png
-   :name: tut7_Naigraph
+   :name: sodium_current
    :alt: Sodium current
    :align: center
 
