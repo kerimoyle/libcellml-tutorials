@@ -248,7 +248,7 @@ The solution files are written in a tab-delimited format which can be read by yo
 The plots below were generated using a step size of 0.1 for 100 iterations.
 
 .. figure:: ../images/sineComparison.png
-   :name: sineComparison
+   :name: sine_comparison
    :alt: Solution to sine comparison model
    :align: center
 
