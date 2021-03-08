@@ -1,4 +1,6 @@
-.. _aside_constant_vs_variable:
+.. _constants_vs_variables:
+
+:orphan:
 
 Constants vs Variables
 ======================

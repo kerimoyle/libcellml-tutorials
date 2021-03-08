@@ -1,4 +1,6 @@
-.. _aside_units:
+.. _understanding_units:
+
+:orphan:
 
 Understanding units
 ===================

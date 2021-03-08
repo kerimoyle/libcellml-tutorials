@@ -514,7 +514,7 @@ In this example none of the units exist yet, so we need to create all of them.
     These will represent units of milliseconds and per millisecond respectively.
     
 Some basic units have been defined and built into libCellML, others you can define by combining the built-in ones using scaling factors and exponents, or you can define your own from scratch if need be.
-Please read the :ref:`Understanding units<aside_units>` page for more detailed information, but for now let's look at a simple example that defines a :code:`Units` item representing millivolts.
+Please read the :ref:`Understanding units<understanding_units>` page for more detailed information, but for now let's look at a simple example that defines a :code:`Units` item representing millivolts.
 
 .. tabs::
 
