@@ -16,7 +16,6 @@ How to do stuff
    include_libcellml.rst
    parse_model.rst
    view_model.rst
-   understand_collections.rst
    edit_model.rst
    print_model.rst
    resolve_imports.rst
