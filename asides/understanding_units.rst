@@ -1,4 +1,6 @@
-.. _aside_units:
+.. _understanding_units:
+
+:orphan:
 
 Understanding units
 ===================
@@ -10,16 +12,18 @@ There are four different kinds of units used here: irreducible units, built-in u
 Irreducible units
 -----------------
 
-The first are called *irreducible* because they represent the physical base quantities which cannot be further simplified:
+.. container:: shortlist 
 
-- length (:code:`metre`)
-- time (:code:`second`)
-- amount of a substance (:code:`mole`)
-- temperature (:code:`kelvin`)
-- mass (:code:`kilogram`)
-- electrical current (:code:`ampere`)
-- luminous intensity (:code:`candela`)
-- non-dimensional (:code:`dimensionless`)
+    The first are called *irreducible* because they represent the physical base quantities which cannot be further simplified:
+
+    - length (:code:`metre`)
+    - time (:code:`second`)
+    - amount of a substance (:code:`mole`)
+    - temperature (:code:`kelvin`)
+    - mass (:code:`kilogram`)
+    - electrical current (:code:`ampere`)
+    - luminous intensity (:code:`candela`)
+    - non-dimensional (:code:`dimensionless`)
 
 These *irreducible* units can be used to create all other physically-based units by combining them using different exponents, multipliers, and prefixes.
 
@@ -29,13 +33,12 @@ Built-in units
 Some of these combinations form our second type of units, the *built-in units*, these being common relationships which have been constructed from combinations of the irreducible units.
 The combinations can involve:
 
-- A scaling factor (the units :code:`millisecond` is equivalent to
-  :code:`second` and a factor of 0.001);
-- A combination of units (a :code:`coulomb` is a :code:`second` multiplied by
-  an :code:`ampere`);
-- Powers of units (a :code:`hertz` has a base of :code:`second` with an
-  exponent of -1); and
-- Any combination of the above.
+.. container:: shortlist
+
+    - A scaling factor (the units :code:`millisecond` is equivalent to :code:`second` and a factor of 0.001);
+    - A combination of units (a :code:`coulomb` is a :code:`second` multiplied by an :code:`ampere`);
+    - Powers of units (a :code:`hertz` has a base of :code:`second` with an exponent of -1); and
+    - Any combination of the above.
 
 A list of pre-existing *built-in* convenience units is shown in the :cellml2:`Built-in Units table </reference/formal_and_informative/specC02_units_reference.html#table-built-in-units>`, along with their relationships to the irreducible units.
 
