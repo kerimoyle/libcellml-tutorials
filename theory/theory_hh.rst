@@ -18,15 +18,15 @@ The *cable equation* was developed in 1890\ [#]_ to predict the degradation of a
 It is derived as follows:
 
 .. figure:: images/current_flow_leaky_cable.png
-   :name: ocr_tut_cur_flow_leaky
+   :name: leaky_cable_current_flow
    :alt: Current flow in a leaky cable
    :align: right
-   :figwidth: 6.5cm
+   :figwidth: 50%
 
    Current flow in a leaky cable.  **TODO** I don't understand the vertical arrow??
 
 
-If the voltage is raised at the left hand end of the cable (shown by the deep red in :numref:`ocr_tut_cur_flow_leaky`), an axial current :math:`i_a` (in :math:`A`) will flow.
+If the voltage is raised at the left hand end of the cable (shown by the deep red in :numref:`leaky_cable_current_flow`), an axial current :math:`i_a` (in :math:`A`) will flow.
 This current depends on the voltage gradient according to Ohm's Law, such that:
 
 .. math::
@@ -68,28 +68,28 @@ Theory: Action potentials
 -------------------------
 
 .. figure:: images/current_flow_neuron.png
-   :name: ocr_tut_cur_flow_neuron
+   :name: neuron_current_flow
    :alt: Current flow in a neuron
    :align: right
-   :figwidth: 6.5cm
+   :figwidth: 50%
 
    Current flow in a neuron.  **TODO** I don't understand the vertical arrow for V?? direction of voltage? Is one side in/out the cell?
 
 The cable equation above can be used to model the propagation of an action potential along a neuron or any other excitable cell. 
-The leak current is associated primarily with the inward movement of sodium ions through the membrane's sodium channel, giving the *inward* membrane current :math:`i_{Na}`, and the outward movement of potassium ions through a membrane potassium channel, giving the *outward* current :math:`i_K` (see :numref:`ocr_tut_cur_flow_neuron`).
+The leak current is associated primarily with the inward movement of sodium ions through the membrane's sodium channel, giving the *inward* membrane current :math:`i_{Na}`, and the outward movement of potassium ions through a membrane potassium channel, giving the *outward* current :math:`i_K` (see :numref:`neuron_current_flow`).
 A further small leak current :math:`i_L = g_L\left( V - E_L \right)` associated with chloride and other ions is also included.
 **TODO** Need to define E_L and g_L ??
 How is i_L related to i_leak above??
 
 .. figure:: images/current_voltage_trajectory.png
-   :name: ocr_tut_cur_volt_traj
+   :name: current_voltage_during_action_potential
    :alt: Current-voltage trajectory
    :align: center
 
    Current-voltage trajectory during an action potential.
 
 When the membrane potential :math:`V` rises due to axial current flow, the sodium (:math:`Na^+`) channels open and the potassium (:math:`K^+`) channels close, such that the membrane potential moves towards the Nernst potential for sodium.
-The subsequent decline of the Na channel conductance and the increasing K channel conductance as the voltage drops rapidly repolarises the membrane to its resting potential of -85mV (see :numref:`ocr_tut_cur_volt_traj`).
+The subsequent decline of the Na channel conductance and the increasing K channel conductance as the voltage drops rapidly repolarises the membrane to its resting potential of -85mV (see :numref:`current_voltage_during_action_potential`).
 
 
 If we assume that the whole cell is clamped with an axially-uniform potential then we can neglect\ [#]_ the term in the equation above representing the rate of change of axial current along the cable:
@@ -106,7 +106,7 @@ and so obtain the membrane potential :math:`V` by integrating the first order OD
    \frac{dV}{dt} = \frac{- \left( i_{Na} + \ i_K + i_L \right)}{C_m}
 
 .. figure:: images/hodgkin_1952.png
-   :name: ocr_tut_hh_1952
+   :name: hodgkin_huxley_schematic
    :alt: CellML schematic cell membrane model
    :align: center
 
@@ -118,10 +118,10 @@ TODO How are the i_L and I_L in the figure related?  Consistent labelling needed
 Interpretation as a CellML model
 --------------------------------
 We discussed the idea and implementation of *encapsulation* in the :ref:`previous section on the sodium channel<theory_sodiumchannel>`, and here it is no different.
-We would like to create a model with the encapsulation structure shown in :numref:`hh_encapsulation`.
+We would like to create a model with the encapsulation structure shown in :numref:`cellml_of_hh_model`.
 
 .. figure:: images/hh_encapsulation.png
-   :name: hh_encapsulation
+   :name: cellml_of_hh_model
    :alt: CellML schematic HH model
    :align: center
 

@@ -439,7 +439,7 @@ Step 5: Sanity check
 You should find results similar to the figure below, where the cyclical dependency of the shark and fish populations can be seen.
 
 .. figure:: ../images/sharks_and_fish.png
-   :name: sharksAndFish
+   :name: population_dynamics_of_sharks_and_fish
    :alt: Population dynamics of sharks and fish
    :align: center
 

@@ -30,7 +30,7 @@ driving an ion through the pore is calculated from the change in
 *entropy*.
 
 .. figure:: images/distribution_microstates.png
-    :name: distribution_microstates
+    :name: distribution_of_microstates
     :alt: Distribution of microstates
     :align: center
     :width: 50%
@@ -60,7 +60,7 @@ where :math:`W` is the number of ways of
 arranging a given distribution of microstates of a system and
 :math:`k_{B}` is Boltzmann’s constant \ [#]_. The driving force for ion
 movement is the dispersal of energy into a more probable distribution
-(see :numref:`Figure {number}<distribution_microstates>` ; cf. the second law of
+(see :numref:`Figure: {name}<distribution_of_microstates>` ; cf. the second law of
 thermodynamics \ [#]_).
 
 The energy change :math:`\Delta q` associated with this change of
@@ -105,7 +105,7 @@ Electrical theory
 -----------------
 Every positively charged ion that crosses the membrane raises the
 potential difference and produces an electrostatic driving force that
-opposes the entropic force (see :numref:`Figure {number}<ocr_tut_bal_force>`). To move an
+opposes the entropic force (see :numref:`Figure: {name}<balance_of_forces>`). To move an
 electron of
 charge :math:`e` (:math:`\approx 1.6\times 10^{-19}\text{  }(C)`) through a
 voltage
@@ -142,7 +142,7 @@ where :math:`E_{Y}` is the "equilibrium" or "Nernst" potential for
 \frac{2.5\times10^{3}\ }{0.96\times10^{5}}\text{ }(J.C^{-1}) \approx 25mV`.
 
 .. figure:: images/balance_forces.png
-   :name: ocr_tut_bal_force
+   :name: balance_of_forces
    :alt: Balance of entropic and electrostatic forces
    :align: center
    :width: 30%
@@ -163,15 +163,15 @@ Nernst potential for that ion:
     {\overset{\overline{}}{i}}_{Y}\mathbf{=}{\overset{\overline{}}{g}}_{Y}\left( V - E_{Y} \right)
 
 This defines a linear current-voltage relation ("Ohm's law") as shown in
-:numref:`Figure {number}(a)<ion_gates_theory>`. The specific characteristics of a channel's
+:numref:`Figure {name} (a)<ion_gates>`. The specific characteristics of a channel's
 behaviour depend on how its gates modify the open channel conductance.
 
 
 .. figure:: images/ion_gates_theory.png
-   :name: ion_gates_theory
+   :name: ion_gates
    :alt: Open channel linear IV
    :align: center
-   :width: 12cm
+   :width: 70%
 
    (a) Open channel linear current-voltage relation.  (b) Ion channel gating
    kinetics. :math:`y` is the fraction of gates in the open state.
@@ -184,7 +184,7 @@ gates that control the passage of ions through a membrane ion channel.
 If the fraction of gates that are open is :math:`y`, the fraction of gates
 that are closed is :math:`1-y`, and a first order ODE can be used to describe
 the transition between the two states
-(see :numref:`Figure {number}(b)<ion_gates_theory>`).
+(see :numref:`Figure {name} (b)<ion_gates>`).
 
 .. math::
 
@@ -207,12 +207,12 @@ The constant :math:`A` can be interpreted as:
 
 as in the previous example and, with :math:`y\left( 0 \right) = 0` (i.e.
 all gates initially shut), the solution looks like
-:numref:`Figure {number}(a)<gate_behaviour>`.  The experimental data obtained
+:numref:`Figure {name} (a)<transient_gate_behaviour>`.  The experimental data obtained
 by Hodgkin and Huxley for the squid axon indicated that the initial current
-flow began more slowly, as in :numref:`Figure {number}(b)<gate_behaviour>`.
+flow began more slowly, as in :numref:`Figure {name} (b)<transient_gate_behaviour>`.
 
 .. figure:: images/transient_beh_gates.png
-   :name: gate_behaviour
+   :name: transient_gate_behaviour
    :alt: Transient gate behaviour
    :figwidth: 50%
    :align: center
@@ -250,7 +250,7 @@ voltage :math:`V = 0`, and opening and closing rate constants of
 ms\ :sup:`-1`.
 
 The modelled behaviour of a single gate is shown by the green line in
-:numref:`Figure {number}<ion_gate_status>`, and the resulting channel current for four
+:numref:`Figure: {name}<ion_gate_status>`, and the resulting channel current for four
 gates in series by the blue line. Note the slow start to the current trace
 in comparison with the single gate transient :math:`y\left( t \right)`, as
 observed experimentally by Hodgkin and Huxley.
