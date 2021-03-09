@@ -1,4 +1,4 @@
-.. _analyser:
+.. _understanding_analyser:
 
 ================================
 Understanding the analyser class

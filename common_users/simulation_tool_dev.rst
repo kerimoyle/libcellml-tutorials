@@ -51,7 +51,7 @@ Thus even if a model is valid, it could still be the equivalent of correctly-spe
 Once a model has been passed to a :code:`Validator` instance, the validator's internal logger will contain a list of any of the issues which have been encountered during the checking process. 
 A model can be said to be valid - that is, conforming to the :cellml2:`CellML normative specification <>` - if the validator's logger contains no issues with a level of :code:`ERROR`.
 
-For more information on how to use any of the classes which record issues, please see the :ref:`Get Issues<actions_get_issues>` section.
+For more information on how to use any of the classes which record issues, please see the :ref:`Get Issues<get_issues>` section.
 
 Analyse model
 -------------
@@ -60,7 +60,7 @@ The :code:`Validator` checks that the syntax of the model is correct; the :code:
 There are three steps to model analysis:
 
 1. Create an :code:`Analyser` item and submit the model for analysis.
-2. Address any issues reported (see the :ref:`Get Issues<actions_get_issues>` section for details).
+2. Address any issues reported (see the :ref:`Get Issues<get_issues>` section for details).
 3. Use the :code:`AnalyserModel` item that's constructed as input to the :code:`Generator` (see next section).
 
 .. include:: /resources/snippets/snippet_analyser_analyse.rst
