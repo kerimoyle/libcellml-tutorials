@@ -28,7 +28,7 @@ For general discussions and information about the CellML model structure itself,
   howto/index.rst
   common_users/index.rst
   asides/index.rst
-  issue_codes/index.rst
+  runtime_codes/index.rst
 
 
 .. container:: quicklinks
@@ -38,5 +38,5 @@ For general discussions and information about the CellML model structure itself,
   :ref:`How-to guide<howto>`
   :ref:`Common scenarios<common_users>`
   :ref:`Notes on CellML structure<asides>`
-  :ref:`Run-time issue codes<issue_codes>`
+  :ref:`Run-time issue codes<runtime_codes>`
   :cellml2:`CellML 2.0 Normative Specification<>`
