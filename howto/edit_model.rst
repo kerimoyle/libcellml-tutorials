@@ -17,11 +17,8 @@ Within the structure each item has two parts:
 .. contents::
     :local:
 
-About editing
-=============
-
 Editing attributes
-------------------
+==================
 For any item type, each attribute :code:`xyz` may be edited using the general :code:`setXyz` function, whose arguments vary depending on the attribute.
 Note that this is distinct from editing collections of items, which is discussed below.
 
@@ -30,8 +27,8 @@ Note that this is distinct from editing collections of items, which is discussed
    include :: /resources/snippets/snippet_edit_mathml.rst
 
 Editing collections
--------------------
-General families of functions are available for editing collections, but take the form of :code:`addXyz` and :code:`removeXyz`, :code:`takeXyz` and :code:`replaceXyz`, as explained in :ref:`Understanding collections<understand_collections>`.
+===================
+General families of functions are available for editing collections, but take the form of :code:`addXyz` and :code:`removeXyz`, :code:`takeXyz` and :code:`replaceXyz`, as explained in :ref:`Understanding collections<understanding_collections>`.
 
 Some example snippets are shown below:
 
@@ -43,12 +40,9 @@ Some example snippets are shown below:
 
 .. include:: /resources/snippets/snippet_replace_thing.rst
 
-Editing special relationships
------------------------------
-Some parts of the CellML model require different treatment to those listed above; connections between equivalent variables, for example.
 
 Editing variable equivalences
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=============================
 In the situation of equivalent variable collections there is no clear "ownership" of the equivalence as an attribute of any one variable, and neither is there a central parent item with curation ability over the set of variables.
 A different approach is required.
 
@@ -107,7 +101,7 @@ Adding a variable :code:`produce` with an equivalence to :code:`fruit` and to :c
 
 
 Editing an encapsulation hierarchy
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==================================
 Components may be added to a model or another component to create an encapsulation hierarchy, but there are a few things to watch out for in this situation.
 Components must belong to only one parent, so when adding a component from one location in the encapsulation to another, it is removed from the original parent.
 

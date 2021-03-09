@@ -14,15 +14,11 @@ How to do stuff
    :maxdepth: 2
    
    include_libcellml.rst
-   parse_model.rst
+   serialise_model.rst
    view_model.rst
-   understand_collections.rst
    edit_model.rst
-   print_model.rst
+   check_model.rst
    resolve_imports.rst
-   validate_model.rst
-   get_issues.rst
-   analyse_model.rst
    generate_code.rst
    solve_model.rst
    annotate_model.rst
