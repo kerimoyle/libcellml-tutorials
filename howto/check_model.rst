@@ -7,6 +7,8 @@ Check a model
 Two checker classes are provided in libCellML; the :code:`Validator` and the :code:`Analyser` classes.
 These can be used to check the syntax and structure of your model is correct (validating), and to check that its mathematical representation is solvable (analysing). 
 
+.. _validate_model:
+
 Validate a model
 ================
 The :code:`Validator` is the equivalent of a spelling checker: it can check that each item in a model has all of the information it needs, but it can't check whether it means what you intend it to.
@@ -17,9 +19,9 @@ Thus even if a model is valid, it could still be the equivalent of correctly-spe
 Once a model has been passed to a :code:`Validator` instance, the validator's internal logger will contain a list of any of the issues which have been encountered during the checking process. 
 A model can be said to be valid - that is, conforming to the :cellml2:`CellML normative specification <>` - if the validator's logger contains no issues with a level of :code:`ERROR`.
 
-For more information on how to use any of the classes which record issues, please see the :ref:`Get Issues<actions_get_issues>` section below.
+For more information on how to use any of the classes which record issues, please see the :ref:`Get Issues<get_issues>` section below.
 
-.. _actions_get_issues:
+.. _get_issues:
 
 Retrieve Issue items
 ====================
@@ -178,12 +180,14 @@ Each :code:`Issue` also contains the following attributes:
     # Retrieve the level - a libcellml.Issue.LEVEL enum - for the issue.
     my_level = issue.level()
 
-Useful functions for dealing with issues
+Useful functions for dealing with Issues
 ========================================
 
 .. include:: /resources/code_snippets/snippet_get_issues.rst
 
-Analyse a model item
+.. _analyse_model:
+
+Analyse a Model item
 ====================
 
 The :code:`Analyser` class takes an existing, valid :code:`Model` item, and checks it for mathematical sense.
@@ -198,7 +202,7 @@ The three basic steps to model analysis are:
 .. include:: /resources/snippets/snippet_analyser_analyse.rst
 
 Any issues or messages raised are stored within the class's logger.
-More information about accessing :code:`Issue` items can be found on the :ref:`Common actions > Retrieve Issue items<actions_get_issues>` page.
+More information about accessing :code:`Issue` items can be found on the :ref:`Common actions > Retrieve Issue items<get_issues>` page.
 
 Use of the :code:`Analyser` class is a prerequisite for the :code:`Generator` class.
 The generator makes use of the structures created during the analysis process, so takes a :code:`AnalyserModel` as an input.  

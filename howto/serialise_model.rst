@@ -63,4 +63,4 @@ As with the :code:`Parser` and the :code:`Validator`, the :code:`Printer` also r
     write_file.write(serialised_model)
     write_file.close()
 
-Details of any issues that the printer encounters and records can be retrieved as described on the :ref:`Retrieve Issue items<actions_get_issues>` page.
+Details of any issues that the printer encounters and records can be retrieved as described on the :ref:`Retrieve Issue items<get_issues>` page.
