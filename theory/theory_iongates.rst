@@ -7,7 +7,7 @@ A model of ion channel gating and current
 This chapter describes a generic ion channel, and provides a foundation for
 later chapters where specific channels of sodium and potassium are described.
 The theory here is the basis for the practical modelling tutorial in
-:ref:`Tutorial 5<tutorial5>`.
+:ref:`HH Tutorial 5<solveGeneratedCode>`.
 
 .. contents::
    :local:
