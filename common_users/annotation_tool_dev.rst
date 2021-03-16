@@ -145,6 +145,8 @@ In Python, the returned item requires no further transformation.
 
          The item with id of "green" has type of "units".
 
+.. _handle_duplicated_id_attributes:
+
 Handle duplicated ID attributes
 -------------------------------
 Duplicated IDs in any XML document are not permitted, and CellML is no different.
