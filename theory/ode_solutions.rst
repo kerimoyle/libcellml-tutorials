@@ -1,4 +1,4 @@
-.. _theory_ode_solutions:
+.. _ode_solutions:
 
 ============================================================
 Solution methods for sets of Ordinary Differential Equations

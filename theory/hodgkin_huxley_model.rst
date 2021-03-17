@@ -1,8 +1,8 @@
-.. _hh_background:
+.. _hodgkin_huxley_model:
 
-=====================================
-A model of the nerve action potential
-=====================================
+==================================================
+The Hodgkin-Huxley model of nerve action potential
+==================================================
 
 Here we describe the first (and most famous) model of nerve fibre electrophysiology based on the membrane ion channels that we have discussed in the last two sections.
 This is the work by Alan Hodgkin and Andrew Huxley in 1952 [#]_ that won them (together with John Eccles) the 1963 Noble prize in Physiology or Medicine for *"their discoveries concerning the ionic mechanisms involved in excitation and inhibition in
@@ -12,7 +12,7 @@ the peripheral and central portions of the nerve cell membrane"*.
     :local:
 
 
-Theory: the cable equation
+Theory: The cable equation
 --------------------------
 The *cable equation* was developed in 1890\ [#]_ to predict the degradation of an electrical signal passing along the transatlantic cable.
 It is derived as follows:
@@ -20,8 +20,8 @@ It is derived as follows:
 .. figure:: images/current_flow_leaky_cable.png
    :name: leaky_cable_current_flow
    :alt: Current flow in a leaky cable
-   :align: right
-   :figwidth: 50%
+   :align: center
+   :figwidth: 500
 
    Current flow in a leaky cable.  **TODO** I don't understand the vertical arrow??
 
@@ -70,8 +70,8 @@ Theory: Action potentials
 .. figure:: images/current_flow_neuron.png
    :name: neuron_current_flow
    :alt: Current flow in a neuron
-   :align: right
-   :figwidth: 50%
+   :align: center
+   :figwidth: 600
 
    Current flow in a neuron.  **TODO** I don't understand the vertical arrow for V?? direction of voltage? Is one side in/out the cell?
 
@@ -109,15 +109,16 @@ and so obtain the membrane potential :math:`V` by integrating the first order OD
    :name: hodgkin_huxley_schematic
    :alt: CellML schematic cell membrane model
    :align: center
+   :figwidth: 500
 
-   A schematic cell diagram describing the current flows across the cell bilipid membrane that are captured in the Hodgkin-Huxley model.
+   A schematic cell diagram describing the current flows across the cell bi-lipid membrane that are captured in the Hodgkin-Huxley model.
    The membrane ion channels are a sodium (Na\ :sup:`+`) channel, a potassium (K\ :sup:`+`) channel, and a leakage (L) channel (for chloride and other ions) through which the currents I\ :sub:`Na`, I\ :sub:`K` and I\ :sub:`L` flow, respectively.
 
 TODO How are the i_L and I_L in the figure related?  Consistent labelling needed?
 
 Interpretation as a CellML model
 --------------------------------
-We discussed the idea and implementation of *encapsulation* in the :ref:`previous section on the sodium channel<theory_sodiumchannel>`, and here it is no different.
+We discussed the idea and implementation of *encapsulation* in the :ref:`previous section on the sodium channel<sodium_channel>`, and here it is no different.
 We would like to create a model with the encapsulation structure shown in :numref:`cellml_of_hh_model`.
 
 .. figure:: images/hh_encapsulation.png
@@ -136,7 +137,7 @@ Importing allows all or part of a model to be used in-situ, without needing to m
 Simulation and results
 ----------------------
 :ref:`HH Tutorial 2: Creating a model which uses imports<createPotassiumChannelModel>` outlines how smaller models can be used to construct a more complicated model as described above.
-In this instance, the models described earlier representing a :ref:`potassium channel<theory_potassiumchannel>` and a :ref:`sodium channel<theory_sodiumchannel>`, as well as one to represent the leakage concept introduced above can be combined to make the full Hodgkin-Huxley model.
+In this instance, the models described earlier representing a :ref:`potassium channel<potassium_channel>` and a :ref:`sodium channel<sodium_channel>`, as well as one to represent the leakage concept introduced above can be combined to make the full Hodgkin-Huxley model.
 
 
 ---------------------------

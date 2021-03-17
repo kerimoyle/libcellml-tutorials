@@ -4,7 +4,7 @@
 Simple solver for generated models
 ==================================
 
-The theory behind how a numerical solver or integration program works is outlined in the :ref:`Theory of ODE solvers<theory_ode_solutions>` page.
+The theory behind how a numerical solver or integration program works is outlined in the :ref:`Theory of ODE solvers<ode_solutions>` page.
 This section describes how to use the simple solvers provided to run models generated with either the C or Python profiles.
 
 C profile solver
@@ -101,7 +101,7 @@ Python profile solver
 =====================
 
 The solver script is a very simple implementation of the Euler stepping method in Python.
-The theory on which it's based can be found on the :ref:`Theory of ODE solver<theory_ode_solutions>` page.
+The theory on which it's based can be found on the :ref:`Theory of ODE solver<ode_solutions>` page.
 
 .. container:: directorylist
 
