@@ -106,7 +106,7 @@ If you're seeing an issue with this code, it's because you need to use the :code
 
     **API** :api:`Annotator::setModel function<Annotator?fName=setModel>`
 
-    **How-to** :ref:`Howto: Annotate a model<annotate_model>`
+    **How-to** :ref:`Annotate a model<annotate_model>`
 
     **Common users** :ref:`Annotation tool developer<users_annotation_tool_dev>`
         
@@ -123,7 +123,7 @@ This code is generated when the :code:`Annotator` is given a null pointer instea
 
     **API** :api:`Annotator::setModel function<Annotator?fName=setModel>`
 
-    **How-to** :ref:`Howto: Annotate a model<annotate_model>`
+    **How-to** :ref:`Annotate a model<annotate_model>`
 
     **Tutorial** :ref:`Tutorial 5: Annotation<tutorial5>`
 
@@ -142,7 +142,7 @@ When the :code:`Model` that was submitted to this :code:`Annotator` does not hav
 
     **API** :api:`Annotator::item function<Annotator?fName=item>` (or any of the type-specific retrieval functions)
 
-    **How-to** :ref:`Howto: Annotate a model<annotate_model>`
+    **How-to** :ref:`Annotate a model<annotate_model>`
 
     **Tutorial** :ref:`Tutorial 5: Annotation<tutorial5>`
 
