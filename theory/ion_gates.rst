@@ -163,12 +163,12 @@ Nernst potential for that ion:
     {\overset{\overline{}}{i}}_{Y}\mathbf{=}{\overset{\overline{}}{g}}_{Y}\left( V - E_{Y} \right)
 
 This defines a linear current-voltage relation ("Ohm's law") as shown in
-:numref:`Figure {name} (a)<ion_gates>`. The specific characteristics of a channel's
+:numref:`Figure {name} (a)<ion_gates_theory>`. The specific characteristics of a channel's
 behaviour depend on how its gates modify the open channel conductance.
 
 
 .. figure:: images/ion_gates_theory.png
-   :name: ion_gates
+   :name: ion_gates_theory
    :alt: Open channel linear IV
    :align: center
    :width: 70%
@@ -184,7 +184,7 @@ gates that control the passage of ions through a membrane ion channel.
 If the fraction of gates that are open is :math:`y`, the fraction of gates
 that are closed is :math:`1-y`, and a first order ODE can be used to describe
 the transition between the two states
-(see :numref:`Figure {name} (b)<ion_gates>`).
+(see :numref:`Figure {name} (b)<ion_gates_theory>`).
 
 .. math::
 
