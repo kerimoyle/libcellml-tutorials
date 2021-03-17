@@ -7,7 +7,7 @@ Annotate a model
 libCellML does not provide annotation functionality directly, but it can help with some of the things that you might need to know in order to implement your own.
 Each annotation is attached to a unique ID locator which can be retrieved and edited, or created automatically if you haven't already set them yourself.
 Since CellML is a subset of XML, any item may have an ID attribute, including operations within the MathML blocks, CellML entities, and CellML non-entity items (connections, encapsulations etc).
-These ID attributes themselves must follow the specification rules: please see :cellml2:`1.2.5 XML ID attributes <specA2.html?issue=1.2.5>` for details.
+These ID attributes themselves must follow the specification rules: please see :cellml2:`1.2.5 XML ID attributes <specA2.html?issue=XML>` for details.
 
 .. container:: nb
 
