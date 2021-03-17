@@ -138,10 +138,10 @@ Running this will give you the terminal output:
 
 .. code-block:: text
 
-    python3 solveGeneratedModel.py -m ../resources/tutorial3_PredatorPrey_generated.py -dt 0.01 -n 2000
+    python3 solveGeneratedModel.py -m /resources/tutorial3_PredatorPrey_generated.py -dt 0.01 -n 2000
 
     ====================================================================
-       SIMPLE SOLVER: ../resources/tutorial3_PredatorPrey_generated
+       SIMPLE SOLVER: /resources/tutorial3_PredatorPrey_generated
     --------------------------------------------------------------------
 
        VARIABLE OF INTEGRATION (units, stepsize)
@@ -161,7 +161,7 @@ Running this will give you the terminal output:
           d (per_fish_day, -0.6)
           c (per_day, -2.8)
 
-       SOLUTION written to ../resources/tutorial3_PredatorPrey_generated_solution.txt
+       SOLUTION written to /resources/tutorial3_PredatorPrey_generated_solution.txt
     ====================================================================
 
 The output is a tab delimited file with the ending :code:`_solution.txt` after the input file name (note that it's in the same directory as the running file too), which can be opened by the plotting program of your choice.

@@ -268,10 +268,10 @@ Simple implementations are provided which will take the generated files, from bo
 Simple solver routines have been provided for you for both the C and Python profiles.
 Please see the :ref:`Solver tutorial<solver>` for details.
 
-Solving the model reveals the cyclical interaction between the populations of fish and sharks, as shown in :numref:`Figure {number}<sharks_and_fishes>`.
+Solving the model reveals the cyclical interaction between the populations of fish and sharks, as shown in :numref:`Figure: {name}<population_dynamics>`.
 
 .. figure:: images/sharks_and_fishes.png
-   :name: sharks_and_fishes
+   :name: population_dynamics
    :alt: Population dynamics of sharks and fishes
    :align: center
 

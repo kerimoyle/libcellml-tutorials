@@ -52,7 +52,7 @@ Before we construct a model of the sodium channel, we first introduce some furth
 complexity inherent in biological modelling.
 First we'll look at the use of *encapsulation groups* and *public* and *private* interfaces to control the visibility of information in modular CellML components.
 To understand encapsulation, it is useful to use terms like *parent*, *child* and *sibling*, to describe the relationships between components.
-This is illustrated in :numref:`Figure {number}<encapsulation_parent_structure>` below:
+This is illustrated in :numref:`Figure: {name}<encapsulation_parent_structure>` below:
 
 .. figure:: images/encapsulation_parent_structure.png
     :name: encapsulation_parent_structure
@@ -67,7 +67,7 @@ Defining an encapsulation structure controls which components are able to see an
   The types of interface listed below are those which are *possible*; but each must be explicitly specified before it can be used.
   While :code:`none` is the implied default, it may be specified explicitly as well.
 - A :code:`public` interface is available between siblings.
-  This is also true of top-level components (which are siblings with a :code:`Model` parent), such as the 'grandparent' and 'no relation' components in :numref:`Figure {number}<encapsulation_parent_structure>`.
+  This is also true of top-level components (which are siblings with a :code:`Model` parent), such as the 'grandparent' and 'no relation' components in :numref:`Figure: {name}<encapsulation_parent_structure>`.
   A :code:`public` interface is also available *from* a child *to* its parent (note direction).
 - A :code:`private` interface is available *from* a parent *to* its child(ren), again noting the direction.
 - Both :code:`public` and :code:`private` interfaces are available using the :code:`public_and_private` type, needed where there is more than one level of nesting  (for example, a grandparent-parent-child structure).
@@ -80,7 +80,7 @@ Each of these components has its own equations (voltage-dependent gates and firs
 
 .. _sodium_channel_encap_structure:
 .. figure:: images/sodium_channel_encap_structure.png
-    :name: na_enc_str
+    :name: sodium_chanel_encapsulation_structure
     :align: left
 
     The sodium channel component is the parent of two children:
@@ -94,11 +94,11 @@ Simulation and results
 The behaviour of the sodium channel was simulated using the :ref:`simple solver<solver>` provided to run the code generated
 in :ref:`HH Tutorial 3<debugSodiumChannelModel>`.
 Three voltage-step experiments were run with voltage conditions of (a) -85mV to -20mV, (b) -85mV to 0mV and (c) -85mV to +20mV.
-The results of the computation, with an end time of 40ms, and Euler step of 0.01ms are shown in :numref:`Figure {number}<sodium_v>` to :numref:`Figure {number}<sodium_i>` below.
+The results of the computation, with an end time of 40ms, and Euler step of 0.01ms are shown in :numref:`Figure: {name}<sodium_voltage>` to :numref:`Figure: {name}<sodium_i>` below.
 
 .. _sodium_v:
 .. figure:: images/tut7_Vgraph.png
-   :name: tut7_Vgraph
+   :name: sodium_voltage
    :alt: Driving function for the voltage clamp
    :align: center
 
@@ -107,7 +107,7 @@ The results of the computation, with an end time of 40ms, and Euler step of 0.01
 
 .. _sodium_m:
 .. figure:: images/tut7_mgraph.png
-   :name: tut7_mgraph
+   :name: m_gate_dynamics
    :alt: m-gate dynamics
    :align: center
 
@@ -116,7 +116,7 @@ The results of the computation, with an end time of 40ms, and Euler step of 0.01
 
 .. _sodium_h:
 .. figure:: images/tut7_hgraph.png
-   :name: tut7_hgraph
+   :name: h_gate_dynamics
    :alt: h-gate dynamics
    :align: center
 
@@ -125,7 +125,7 @@ The results of the computation, with an end time of 40ms, and Euler step of 0.01
 
 .. _sodium_g:
 .. figure:: images/tut7_Nacond_graph.png
-   :name: tut7_Nacond_graph
+   :name: sodium_conductance
    :alt: Sodium conductance
    :align: center
 
@@ -134,7 +134,7 @@ The results of the computation, with an end time of 40ms, and Euler step of 0.01
 
 .. _sodium_i:
 .. figure:: images/tut7_iNagraph.png
-   :name: tut7_Naigraph
+   :name: sodium_current
    :alt: Sodium current
    :align: center
 
@@ -147,10 +147,10 @@ Of particular note in the results are these features:
 
 i.   The kinetics of the :math:`m`-gate are much faster than the :math:`h`-gate.
 
-ii.  The opening behaviour is faster as the voltage is stepped to higher values since :math:`\tau = \frac{1}{\alpha_{n} + \beta_{n}}` reduces with increasing :math:`V` (see :numref:`Figure {number}<ocr_tut_volt_deps_gates>`).
+ii.  The opening behaviour is faster as the voltage is stepped to higher values since :math:`\tau = \frac{1}{\alpha_{n} + \beta_{n}}` reduces with increasing :math:`V` (see :numref:`Figure: {name}<voltage_dependent_gates>`).
 
 iii. The sodium channel conductance rises (*activates*) and then falls (*deactivates*) under a positive voltage step from rest since the three :math:`m`-gates turn on, but the :math:`h`-gate turns off and the conductance is a product of these. 
-     Compare this with the :numref:`Figure {number}<potassium_ngate>` which is only reduced back to zero by stepping the voltage back to its resting value – that is, *deactivating* it.
+     Compare this with the :numref:`Figure: {name}<potassium_n_gate_response>` which is only reduced back to zero by stepping the voltage back to its resting value – that is, *deactivating* it.
 
 iv.  The only time current :math:`i_{Na}` flows through the sodium channel is during the brief period when the :math:`m`-gate is rapidly opening and the much slower :math:`h`-gate is beginning to close.
      A small current flows during the reverse voltage step but this is at a time when the :math:`h`-gate is now firmly off so the magnitude is very small.

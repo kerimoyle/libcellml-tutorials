@@ -15,7 +15,7 @@ if __name__ == "__main__":
     #  STEP 1:   Deserialise a CellML Model from the contents of a CellML file
 
     #  1.a   Open the file and read its contents into a buffer stream
-    read_file1 = open("../resources/tutorial2.cellml", "r")
+    read_file1 = open("/resources/tutorial2.cellml", "r")
 
     #  1.b   Create a libCellML Parser, and use it to parse the inFileContents
     #        stream and return it as a ModelPtr instance
